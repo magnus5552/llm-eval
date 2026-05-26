@@ -1,0 +1,10 @@
+# Core
+pydantic>=2.6.0
+pyyaml>=6.0
+
+# LLM providers — install only what you need
+anthropic>=0.35.0           # Anthropic (Claude)
+openai>=1.40.0              # OpenAI + Gemini compat + DeepSeek compat
+
+# Optional: load API keys from .env file
+python-dotenv>=1.0.0

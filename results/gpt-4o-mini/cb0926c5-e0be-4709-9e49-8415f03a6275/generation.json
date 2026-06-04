@@ -1,0 +1,105 @@
+{
+  "run_id": "cb0926c5-e0be-4709-9e49-8415f03a6275",
+  "timestamp": "2026-06-03T18:12:42.861737+00:00",
+  "elapsed_s": 10.94,
+  "model": "gpt-4o-mini",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 3469,
+    "completion": 1,
+    "total": 3470
+  },
+  "variant": {
+    "index": 0,
+    "domain": "www.google.com",
+    "port": 9443,
+    "handshake_hint": "Use tls-token for maximum active-probe resistance (M8).",
+    "padding_hint": "Use mimicry/chrome-browsing to pass M4/M6."
+  },
+  "generation_result": {
+    "reasoning": "In this configuration, I chose to use `transport.type: tls` as it is crucial for escaping detection via entropy analysis (R1). I set the fingerprint to `chrome-120`, which aligns with the necessary rules imposed by the detection metrics (R2). The SNI is specified as `www.google.com`, fulfilling the requirement to ensure it's non-empty for M2 (R3). For the handshake strategy, I opted for `tls-token`, promoting resistance against active probing (M8) while leveraging automated key material handling (R6). To comply with M4/M6, I selected `padding.mode: mimicry` with the profile set to `chrome-browsing`, which should provide a strong level of obfuscation for our packet sizes (R5). I opted for `timing.mode: none` since introducing artificial timing could lead to unintended detection patterns (R7). To enable fallback, I ensured that it points to the same SNI as the transport, fulfilling the requirement for a real HTTPS target (R4).",
+    "config": {
+      "protocol": "tunnel-config-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.google.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.google.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "The use of TLS with a valid fingerprint ensures it will likely be categorized as regular HTTPS traffic without raising alarms."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "With a valid SNI, browser-like fingerprint, and proper configurations, the chances of triggering alerts in Suricata are minimal."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Using a common browser fingerprint and appropriate padding strategies should prevent detection by JA3 fingerprinting."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "The selected padding and handshake strategy should provide enough variability to raise the CV sufficiently high."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Using mimicry for padding should keep the packet lengths varied enough to pass KL divergence checks."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "The presence of a fallback mechanism to a real HTTPS request reduces the likelihood of detection in active probing."
+      }
+    },
+    "known_weaknesses": [
+      "While this configuration is designed to evade a wide range of detection metrics, factors such as network anomalies or broader monitoring by advanced techniques could still pose risks. Regular analysis of circumvention effectiveness and updates to the configuration may be necessary to counter evolving detection methods."
+    ]
+  }
+}

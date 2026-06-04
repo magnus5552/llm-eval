@@ -1,0 +1,106 @@
+{
+  "run_id": "a375f611-8523-47cd-8b34-7aa835820030",
+  "timestamp": "2026-06-03T18:25:33.448295+00:00",
+  "elapsed_s": 9.61,
+  "model": "gpt-4o",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 3469,
+    "completion": 1,
+    "total": 3470
+  },
+  "variant": {
+    "index": 0,
+    "domain": "www.google.com",
+    "port": 9443,
+    "handshake_hint": "Use tls-token for maximum active-probe resistance (M8).",
+    "padding_hint": "Use mimicry/chrome-browsing to pass M4/M6."
+  },
+  "generation_result": {
+    "reasoning": "In designing this tunnel configuration, specific decisions are made to ensure the tunnel is indistinguishable from regular HTTPS traffic and passes all detection metrics (M1-M8).\n\nFor the transport layer, I chose `tls` with `port: 9443` and a TLS fingerprint of `chrome-120`. This aligns with regular HTTPS usage, ensuring M1 and M3 are likely to pass. The SNI is set to `www.google.com`, satisfying R3 and supporting normal HTTPS behavior, preventing Suricata detection (M2) failures.\n\nThe handshake leverages `tls-token`, specifically using the `session_ticket` field for embedding a PSK identifier. This strategy is effective against active probes and complies with R6 while maintaining high stealth under active probing tests (M8).\n\nFor padding, `mimicry` mode with the `chrome-browsing` profile is selected. This minimizes entropy anomalies and fits typical web browsing patterns, aiding in a lower detection likelihood by flow classifiers and KL divergence tests (M4 and M6).\n\nTiming is set to `none` to avoid introducing regularity that could raise suspicion as detected by M7.\n\nFor the fallback, a reverse proxy mode pointing to a real HTTPS site (\"https://www.google.com\") is configured. This ensures compliance with R4, allowing graceful handling of active probe traffic hence lowering the chance of active probe (M8) detection.",
+    "config": {
+      "protocol": "novel-tunnel-config-1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.google.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.google.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "Using TLS with a chrome-120 fingerprint on port 9443 should blend with regular HTTPS traffic."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Using a non-empty SNI and standard HTTPS configurations will bypass Suricata rules."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "JA3 hash matches a real Chrome browser, and entropy should mimic encrypted HTTPS."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Mimicry padding and lack of timing irregularities should prevent anomalous flow statistics."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Mimicry padding will match length distributions of normal HTTPS."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Reverse-proxy fallback to a real HTTPS site should pass active probe distinguishability checks."
+      }
+    },
+    "known_weaknesses": [
+      "While this configuration should pass all major detection systems, minor discrepancies in traffic patterns could still be used by sophisticated analysis tools to detect unusual meta-patterns.",
+      "Some less common or future detections might pick up on configuration specificities not covered by the current metrics."
+    ]
+  }
+}

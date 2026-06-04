@@ -1,0 +1,107 @@
+{
+  "run_id": "91446ef0-1148-4489-8a8f-9303d60c8554",
+  "timestamp": "2026-06-03T18:29:49.518399+00:00",
+  "elapsed_s": 21.1,
+  "model": "claude-haiku-3-5",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 6083,
+    "completion": 1,
+    "total": 6084
+  },
+  "variant": {
+    "index": 0,
+    "domain": "www.google.com",
+    "port": 9443,
+    "handshake_hint": "Use tls-token for maximum active-probe resistance (M8).",
+    "padding_hint": "Use mimicry/chrome-browsing to pass M4/M6."
+  },
+  "generation_result": {
+    "reasoning": "Transport Design: I'll use TLS 1.3 with a Chrome 120 fingerprint to maximize browser-like appearance. Port 9443 is a non-standard HTTPS port, which adds a subtle layer of obfuscation without being too suspicious. Using www.google.com as the SNI provides a highly credible camouflage domain.\n\nHandshake Strategy: TLS-token handshake provides an excellent balance of active probe resistance and simplicity. By using session ticket field with a 48-byte length and HKDF-SHA256, we create a plausible key derivation mechanism that looks like standard TLS session resumption.\n\nPadding Approach: Chrome browsing profile mimicry is ideal for defeating ML classifiers. This profile introduces natural-looking packet size variations that closely resemble real web browsing traffic, helping us pass both packet length entropy (M6) and flow classification (M4) checks.\n\nCrypto and Timing Choices: ChaCha20-Poly1305 provides modern, efficient encryption that doesn't raise suspicions. Completely disabling artificial timing prevents detection through inter-arrival time analysis. The fallback to Google's HTTPS endpoint ensures we can handle active probing attempts convincingly.",
+    "config": {
+      "protocol": "google-camouflage-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.google.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.google.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "Chrome-like TLS 1.3 configuration with standard ALPN protocols prevents DPI classification as VPN"
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Valid SNI, browser fingerprint, and standard ALPN avoid triggering Suricata rules"
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Chrome-120 JA3 fingerprint and mimicry padding prevent raw-noise detection"
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Chrome browsing padding profile introduces natural packet size variations to defeat flow ML"
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Mimicry mode ensures packet length distribution matches real web browsing"
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Google fallback and TLS-token handshake provide robust active probe resistance"
+      }
+    },
+    "known_weaknesses": [
+      "Non-standard port (9443) might draw some scrutiny",
+      "Static TLS certificate could be fingerprinted if reused across multiple connections",
+      "Predictable session ticket length might be detectable in long-term traffic analysis"
+    ]
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "run_id": "2c646dd2-c832-486b-809e-afa6e59b0ca0",
+  "timestamp": "2026-06-03T18:39:51.879785+00:00",
+  "elapsed_s": 21.15,
+  "model": "deepseek-chat",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 6298,
+    "completion": 1,
+    "total": 6299
+  },
+  "variant": {
+    "index": 0,
+    "domain": "www.google.com",
+    "port": 9443,
+    "handshake_hint": "Use tls-token for maximum active-probe resistance (M8).",
+    "padding_hint": "Use mimicry/chrome-browsing to pass M4/M6."
+  },
+  "generation_result": {
+    "reasoning": "1. **Transport**: Using TLS with Chrome-120 fingerprint ensures M2/M3 pass (browser-like JA3 and SNI present). Port 9443 is non-standard but avoids immediate suspicion. 2. **Handshake**: TLS-token handshake provides active-probe resistance (M8) by embedding PSK in session tickets, while requiring no pre-shared keys for automated testing. 3. **Padding**: Mimicry mode with chrome-browsing profile ensures packet length distribution matches real HTTPS traffic (M4/M6). 4. **Fallback**: Reverse-proxy to www.google.com ensures active probes return legitimate HTTPS responses (M8).",
+    "config": {
+      "protocol": "tls-token-mimicry-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.google.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.google.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "Protocol will be classified as TLS/HTTPS due to browser-like fingerprint and SNI."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "No alerts expected with valid SNI and browser TLS fingerprint."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "JA3 matches Chrome-120, and payload entropy will resemble HTTPS."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Mimicry padding ensures flow statistics resemble real browsing traffic."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Packet length distribution mimics Chrome browsing, avoiding fixed-size patterns."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Fallback returns legitimate HTTPS responses, resisting active probes."
+      }
+    },
+    "known_weaknesses": [
+      "Non-standard port (9443) may trigger manual inspection in some environments.",
+      "TLS-token handshake may be detectable if session ticket fields are actively monitored."
+    ]
+  }
+}

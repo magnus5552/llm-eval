@@ -1,0 +1,107 @@
+{
+  "run_id": "01b5e89d-b2ad-49d7-9372-e37dbbd72208",
+  "timestamp": "2026-06-03T18:33:04.277411+00:00",
+  "elapsed_s": 19.9,
+  "model": "claude-haiku-3-5",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 6086,
+    "completion": 1,
+    "total": 6087
+  },
+  "variant": {
+    "index": 2,
+    "domain": "www.microsoft.com",
+    "port": 8443,
+    "handshake_hint": "Combine tls-token with a browser fingerprint from a less common browser (safari-17).",
+    "padding_hint": "Use mimicry/video-streaming to simulate different traffic profile."
+  },
+  "generation_result": {
+    "reasoning": "This configuration is designed to blend seamlessly with legitimate HTTPS traffic while maintaining strong obfuscation properties.\n\nTransport Layer: I've chosen Safari 17 as the TLS fingerprint to provide a less common but still legitimate browser signature. The SNI is set to microsoft.com to match our camouflage requirements. Port 8443 is a plausible alternative HTTPS port used by enterprise services.\n\nHandshake Strategy: TLS-token provides a lightweight authentication mechanism without introducing complex noise patterns. By using session tickets, we're mimicking standard TLS session resumption behaviors that are common in real-world browser connections.\n\nPadding Configuration: Video streaming profile introduces more variability in packet sizes compared to standard web browsing, which helps defeat uniform distribution detection while maintaining a realistic traffic pattern. This should help pass ML and entropy-based classifiers.\n\nFallback Mechanism: Reverse proxy to microsoft.com ensures that any active probing will receive a legitimate HTTPS response, critical for evading sophisticated detection techniques.\n\nCrypto choices prioritize modern, secure primitives (ChaCha20-Poly1305) that are also used in contemporary TLS implementations.",
+    "config": {
+      "protocol": "microsoft-proxy-v3",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 8443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.microsoft.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "video-streaming"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.microsoft.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "Safari-like TLS, standard HTTPS port, enterprise-style SNI"
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Valid SNI, browser-matching TLS config, no known rule triggers"
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Safari 17 JA3 fingerprint, varied packet sizes from video streaming profile"
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Packet size variance from video streaming mimicry reduces VPN probability"
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Mimicry mode prevents uniform packet lengths"
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Microsoft.com fallback provides authentic HTTPS response"
+      }
+    },
+    "known_weaknesses": [
+      "Safari 17 fingerprint might be less common, potentially raising suspicion",
+      "Session ticket length is fixed (48 bytes), which could be a minor statistical tell",
+      "No inter-packet timing randomization, which might be detectable in some advanced analyses"
+    ]
+  }
+}

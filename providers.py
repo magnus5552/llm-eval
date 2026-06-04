@@ -1,38 +1,60 @@
 """
-LLM provider abstraction.
+LLM provider via polza.ai — OpenAI-compatible proxy for 400+ models.
 
-Two concrete implementations:
-  AnthropicProvider   – uses Anthropic SDK + tools API (forced tool call)
-  OpenAICompatProvider– uses OpenAI SDK + function calling
-                        Works for: OpenAI, Google Gemini (via compat), DeepSeek
+All models (OpenAI, Anthropic, Google, DeepSeek, …) are reached through
+a single endpoint using one API key:
 
-Both providers force a single structured tool call, parse the result with
-Pydantic, and return (T, ProviderMeta).
+    Base URL : https://polza.ai/api/v1
+    Auth     : Authorization: Bearer <POLZA_API_KEY>
+    Model IDs: provider/model-name  (e.g. "anthropic/claude-opus-4-5")
+
+Structured output is implemented with OpenAI function-calling (tool_choice
+forced to a single tool), which polza.ai forwards correctly to every
+underlying model that supports it.
+
+Required environment variable (either name works):
+    POLZA_API_KEY   — from https://polza.ai/dashboard/api-keys
+    POLZA_KEY       — alternative name
 """
 from __future__ import annotations
 
 import json
 import logging
+import os
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import Any, Type, TypeVar
+from pathlib import Path
+from typing import Type, TypeVar
 
 from pydantic import BaseModel
 
 log = logging.getLogger(__name__)
 
+# Load .env from the same directory as this file (optional, no-op if missing)
+try:
+    from dotenv import load_dotenv as _load_dotenv
+    _load_dotenv(Path(__file__).parent / ".env", override=True)
+except ImportError:
+    pass
+
 T = TypeVar("T", bound=BaseModel)
 
+_POLZA_BASE_URL = "https://polza.ai/api/v1"
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Shared metadata
+# ─────────────────────────────────────────────────────────────────────────────
 
 @dataclass
 class ProviderMeta:
     """Token usage and latency metadata returned alongside the structured result."""
-    model:              str
-    provider:           str
-    prompt_tokens:      int
-    completion_tokens:  int
-    total_tokens:       int
-    extra:              dict = field(default_factory=dict)  # provider-specific fields
+    model:             str
+    provider:          str
+    prompt_tokens:     int
+    completion_tokens: int
+    total_tokens:      int
+    extra:             dict = field(default_factory=dict)
 
 
 class LLMProvider(ABC):
@@ -44,126 +66,52 @@ class LLMProvider(ABC):
         schema: Type[T],
         tool_name: str = "output",
         tool_description: str = "Return the structured result.",
-    ) -> tuple[T, ProviderMeta]:
-        """Call the LLM, force it to fill *schema*, return (instance, meta)."""
-        ...
+    ) -> tuple[T, ProviderMeta]: ...
 
     @property
     @abstractmethod
     def model_id(self) -> str:
-        """Canonical model identifier for artifact naming."""
+        """Short model identifier used for artifact directory naming."""
         ...
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Anthropic
+# Polza provider  (the only provider needed)
 # ─────────────────────────────────────────────────────────────────────────────
 
-class AnthropicProvider(LLMProvider):
+class PolzaProvider(LLMProvider):
     """
-    Uses Anthropic's tools API with tool_choice={"type":"tool"} to guarantee
-    a single structured tool call.
+    Calls polza.ai via the OpenAI SDK.
 
-    Requires: ANTHROPIC_API_KEY in environment.
+    polza_model  — full polza model ID, e.g. "anthropic/claude-opus-4-5"
+    display_name — short alias used in artifact paths, e.g. "claude-opus-4"
     """
 
     def __init__(
         self,
-        model: str = "claude-opus-4-5",
-        max_tokens: int = 4096,
-        temperature: float = 1.0,
+        polza_model:  str,
+        display_name: str,
+        max_tokens:   int   = 4096,
+        temperature:  float = 1.0,
     ):
-        import anthropic  # late import – optional dependency
-        self._client = anthropic.Anthropic()
-        self._model  = model
-        self._max_tokens = max_tokens
-        self._temperature = temperature
-
-    @property
-    def model_id(self) -> str:
-        return self._model
-
-    def generate_structured(
-        self,
-        system: str,
-        user: str,
-        schema: Type[T],
-        tool_name: str = "output",
-        tool_description: str = "Return the structured result.",
-    ) -> tuple[T, ProviderMeta]:
-        json_schema = schema.model_json_schema()
-        # Anthropic requires additionalProperties to not be present at root
-        json_schema.pop("additionalProperties", None)
-
-        response = self._client.messages.create(
-            model=self._model,
-            max_tokens=self._max_tokens,
-            temperature=self._temperature,
-            system=system,
-            tools=[{
-                "name": tool_name,
-                "description": tool_description,
-                "input_schema": json_schema,
-            }],
-            tool_choice={"type": "tool", "name": tool_name},
-            messages=[{"role": "user", "content": user}],
+        from openai import OpenAI
+        api_key = (
+            os.environ.get("POLZA_API_KEY")
+            or os.environ.get("POLZA_KEY")
+            or ""
         )
-
-        # Extract tool use block
-        tool_block = next(
-            (b for b in response.content if b.type == "tool_use"),
-            None,
-        )
-        if tool_block is None:
-            raise ValueError(f"Anthropic returned no tool_use block: {response}")
-
-        result = schema.model_validate(tool_block.input)
-
-        meta = ProviderMeta(
-            model=self._model,
-            provider="anthropic",
-            prompt_tokens=response.usage.input_tokens,
-            completion_tokens=response.usage.output_tokens,
-            total_tokens=response.usage.input_tokens + response.usage.output_tokens,
-        )
-        return result, meta
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# OpenAI-compatible  (OpenAI, Google Gemini, DeepSeek, Mistral, …)
-# ─────────────────────────────────────────────────────────────────────────────
-
-class OpenAICompatProvider(LLMProvider):
-    """
-    Uses the OpenAI SDK with function calling to produce structured output.
-
-    Compatible with any OpenAI-compatible API:
-      - OpenAI:  base_url=None, api_key from OPENAI_API_KEY
-      - Gemini:  base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
-                 api_key from GOOGLE_API_KEY
-      - DeepSeek:base_url="https://api.deepseek.com", api_key from DEEPSEEK_API_KEY
-    """
-
-    def __init__(
-        self,
-        model: str = "gpt-4o",
-        base_url: str | None = None,
-        api_key: str | None = None,
-        max_tokens: int = 4096,
-        temperature: float = 1.0,
-    ):
-        from openai import OpenAI  # late import
         self._client = OpenAI(
-            base_url=base_url,
-            api_key=api_key,  # None → read from env
+            base_url=_POLZA_BASE_URL,
+            api_key=api_key,
         )
-        self._model = model
-        self._max_tokens = max_tokens
-        self._temperature = temperature
+        self._polza_model  = polza_model
+        self._display_name = display_name
+        self._max_tokens   = max_tokens
+        self._temperature  = temperature
 
     @property
     def model_id(self) -> str:
-        return self._model
+        return self._display_name
 
     def generate_structured(
         self,
@@ -173,10 +121,8 @@ class OpenAICompatProvider(LLMProvider):
         tool_name: str = "output",
         tool_description: str = "Return the structured result.",
     ) -> tuple[T, ProviderMeta]:
-        json_schema = schema.model_json_schema()
-
         response = self._client.chat.completions.create(
-            model=self._model,
+            model=self._polza_model,
             max_tokens=self._max_tokens,
             temperature=self._temperature,
             messages=[
@@ -186,95 +132,81 @@ class OpenAICompatProvider(LLMProvider):
             tools=[{
                 "type": "function",
                 "function": {
-                    "name": tool_name,
+                    "name":        tool_name,
                     "description": tool_description,
-                    "parameters": json_schema,
+                    "parameters":  schema.model_json_schema(),
                 },
             }],
             tool_choice={"type": "function", "function": {"name": tool_name}},
         )
 
-        choice = response.choices[0]
+        choice    = response.choices[0]
         tool_call = choice.message.tool_calls[0] if choice.message.tool_calls else None
         if tool_call is None:
-            raise ValueError(f"No tool call in response: {choice}")
+            raise ValueError(
+                f"polza/{self._polza_model} returned no tool call.\n"
+                f"finish_reason={choice.finish_reason!r}\n"
+                f"content={choice.message.content!r}"
+            )
 
-        raw = json.loads(tool_call.function.arguments)
-        result = schema.model_validate(raw)
+        result = schema.model_validate(json.loads(tool_call.function.arguments))
 
         usage = response.usage
         meta = ProviderMeta(
-            model=self._model,
-            provider="openai-compat",
-            prompt_tokens=usage.prompt_tokens if usage else 0,
+            model=self._polza_model,
+            provider="polza",
+            prompt_tokens=usage.prompt_tokens     if usage else 0,
             completion_tokens=usage.completion_tokens if usage else 0,
-            total_tokens=usage.total_tokens if usage else 0,
+            total_tokens=usage.total_tokens       if usage else 0,
         )
         return result, meta
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Registry  — model_alias → provider factory
+# Model registry  — alias → (polza_model_id, display_name)
 # ─────────────────────────────────────────────────────────────────────────────
+# Model IDs follow polza's "provider/model-name" format.
+# Add / remove entries freely; display_name is used for results/ directory names.
 
-def _make_google_provider(model: str, **kw) -> OpenAICompatProvider:
-    import os
-    return OpenAICompatProvider(
-        model=model,
-        base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
-        api_key=os.environ.get("GOOGLE_API_KEY"),
-        **kw,
-    )
-
-
-def _make_deepseek_provider(model: str, **kw) -> OpenAICompatProvider:
-    import os
-    return OpenAICompatProvider(
-        model=model,
-        base_url="https://api.deepseek.com",
-        api_key=os.environ.get("DEEPSEEK_API_KEY"),
-        **kw,
-    )
-
-
-# alias → (factory, canonical_model_name)
-MODEL_REGISTRY: dict[str, tuple] = {
-    # Anthropic
-    "claude-opus-4":      (AnthropicProvider,    "claude-opus-4-5"),
-    "claude-sonnet-4":    (AnthropicProvider,    "claude-sonnet-4-5"),
-    "claude-sonnet-3-5":  (AnthropicProvider,    "claude-3-5-sonnet-20241022"),
-    # OpenAI
-    "gpt-4o":             (OpenAICompatProvider, "gpt-4o"),
-    "gpt-4.1":            (OpenAICompatProvider, "gpt-4.1"),
-    "gpt-4o-mini":        (OpenAICompatProvider, "gpt-4o-mini"),
-    # Google Gemini (via OpenAI-compat endpoint)
-    "gemini-2.0-flash":   (_make_google_provider, "gemini-2.0-flash"),
-    "gemini-2.5-pro":     (_make_google_provider, "gemini-2.5-pro-preview-05-06"),
-    # DeepSeek
-    "deepseek-chat":      (_make_deepseek_provider, "deepseek-chat"),
-    "deepseek-r1":        (_make_deepseek_provider, "deepseek-reasoner"),
+MODEL_REGISTRY: dict[str, tuple[str, str]] = {
+    # ── Anthropic ──────────────────────────────────────────────────────────────
+    "claude-haiku-3":    ("anthropic/claude-3-haiku",             "claude-haiku-3"),
+    "claude-haiku-3-5":  ("anthropic/claude-3.5-haiku",          "claude-haiku-3-5"),
+    "claude-haiku-4":    ("anthropic/claude-haiku-4.5",          "claude-haiku-4"),
+    "claude-sonnet-4":   ("anthropic/claude-sonnet-4",           "claude-sonnet-4"),
+    "claude-sonnet-4-5": ("anthropic/claude-sonnet-4.5",         "claude-sonnet-4-5"),
+    "claude-opus-4":     ("anthropic/claude-opus-4",             "claude-opus-4"),
+    # ── OpenAI ────────────────────────────────────────────────────────────────
+    "gpt-4o-mini":       ("openai/gpt-4o-mini",                  "gpt-4o-mini"),
+    "gpt-4o":            ("openai/gpt-4o",                       "gpt-4o"),
+    "gpt-4.1-mini":      ("openai/gpt-4.1-mini",                 "gpt-4.1-mini"),
+    "gpt-4.1":           ("openai/gpt-4.1",                      "gpt-4.1"),
+    # ── Google ────────────────────────────────────────────────────────────────
+    "gemini-2.5-flash":      ("google/gemini-2.5-flash",         "gemini-2.5-flash"),
+    "gemini-2.5-flash-lite": ("google/gemini-2.5-flash-lite",    "gemini-2.5-flash-lite"),
+    "gemini-2.5-pro":        ("google/gemini-2.5-pro",           "gemini-2.5-pro"),
+    "gemini-3-flash":        ("google/gemini-3-flash-preview",   "gemini-3-flash"),
+    # ── DeepSeek ──────────────────────────────────────────────────────────────
+    "deepseek-chat":     ("deepseek/deepseek-chat",              "deepseek-chat"),
+    "deepseek-v3":       ("deepseek/deepseek-chat-v3-0324",      "deepseek-v3"),
+    "deepseek-r1":       ("deepseek/deepseek-r1",                "deepseek-r1"),
+    # ── Qwen (Alibaba) ────────────────────────────────────────────────────────
+    "qwen3-32b":         ("qwen/qwen3-32b",                      "qwen3-32b"),
+    "qwen3-max":         ("qwen/qwen3-max",                      "qwen3-max"),
 }
 
 
-def build_provider(alias: str, **kwargs) -> LLMProvider:
+def build_provider(alias: str, **kwargs) -> PolzaProvider:
     """
-    Build a provider from a registry alias.
+    Instantiate a PolzaProvider from a registry alias.
     Extra kwargs (temperature, max_tokens) are forwarded to the constructor.
     """
     if alias not in MODEL_REGISTRY:
-        raise ValueError(
-            f"Unknown model alias {alias!r}. "
-            f"Available: {', '.join(MODEL_REGISTRY)}"
-        )
+        available = ", ".join(sorted(MODEL_REGISTRY))
+        raise ValueError(f"Unknown model {alias!r}. Available: {available}")
 
-    factory, model_name = MODEL_REGISTRY[alias]
-
-    # Factories that take model + extra kwargs
-    if factory in (AnthropicProvider, OpenAICompatProvider):
-        return factory(model=model_name, **kwargs)
-    else:
-        # Custom factory functions (google, deepseek)
-        return factory(model_name, **kwargs)
+    polza_id, display = MODEL_REGISTRY[alias]
+    return PolzaProvider(polza_model=polza_id, display_name=display, **kwargs)
 
 
 def list_models() -> list[str]:

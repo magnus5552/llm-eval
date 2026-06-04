@@ -1,0 +1,35 @@
+protocol: microsoft-proxy-v3
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19445
+  tls:
+    version: '1.3'
+    fingerprint: safari-17
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.microsoft.com
+    cert_file: D:\programs\диплом\llm-eval\results\claude-haiku-3-5\01b5e89d-b2ad-49d7-9372-e37dbbd72208\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\claude-haiku-3-5\01b5e89d-b2ad-49d7-9372-e37dbbd72208\server.key
+    insecure: true
+handshake:
+  type: tls-token
+  tls_token:
+    field: session_ticket
+    kdf: hkdf-sha256
+    psk: 86011f78010acd6277386f9033bb4bfed88381c3b5f7428d37f087e6e798d788
+    length: 48
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: mimicry
+  profile: video-streaming
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.microsoft.com

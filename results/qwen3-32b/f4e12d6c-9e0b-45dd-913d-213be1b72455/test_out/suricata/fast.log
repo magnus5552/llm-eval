@@ -1,0 +1,2 @@
+06/03/2026-18:47:40.470549  [**] [1:9000021:1] TUNNEL-TEST Uniform near-MTU TCP segments (possible fixed padding) [**] [Classification: Potential Corporate Privacy Violation] [Priority: 1] {TCP} 127.0.0.1:19444 -> 127.0.0.1:6492
+06/03/2026-18:47:42.584324  [**] [1:9000021:1] TUNNEL-TEST Uniform near-MTU TCP segments (possible fixed padding) [**] [Classification: Potential Corporate Privacy Violation] [Priority: 1] {TCP} 127.0.0.1:19444 -> 127.0.0.1:6517

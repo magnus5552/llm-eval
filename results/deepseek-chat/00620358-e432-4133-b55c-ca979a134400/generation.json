@@ -1,0 +1,106 @@
+{
+  "run_id": "00620358-e432-4133-b55c-ca979a134400",
+  "timestamp": "2026-06-03T18:48:58.800537+00:00",
+  "elapsed_s": 24.49,
+  "model": "deepseek-chat",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 6302,
+    "completion": 1,
+    "total": 6303
+  },
+  "variant": {
+    "index": 2,
+    "domain": "www.microsoft.com",
+    "port": 8443,
+    "handshake_hint": "Combine tls-token with a browser fingerprint from a less common browser (safari-17).",
+    "padding_hint": "Use mimicry/video-streaming to simulate different traffic profile."
+  },
+  "generation_result": {
+    "reasoning": "1. **Transport**: Using TLS with Safari-17 fingerprint to blend in with less common browser traffic, reducing the chance of fingerprint collisions. The SNI is set to www.microsoft.com to match the camouflage domain requirement. Port 8443 is chosen as it's commonly used for HTTPS alternatives, avoiding immediate suspicion.\n2. **Handshake**: TLS-token handshake is selected for simplicity and compatibility with automated testing. The session_ticket field is used for PSK derivation, ensuring secure session establishment without static keys.\n3. **Padding**: Mimicry mode with video-streaming profile is used to simulate a different traffic pattern, avoiding uniform packet sizes that trigger M6. This profile introduces variability in packet lengths, mimicking real video traffic.\n4. **Fallback**: Enabled reverse-proxy fallback to www.microsoft.com ensures active probes receive legitimate HTTPS responses, passing M8. The target matches the SNI to maintain consistency.\n5. **Timing**: Mode is set to none to avoid artificial timing patterns that could increase KL-IAT scores (M7).",
+    "config": {
+      "protocol": "safari-tls-token-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 8443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.microsoft.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "video-streaming"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.microsoft.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "TLS/HTTPS classification is expected due to the use of standard TLS with browser fingerprint."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Non-empty SNI and browser-like TLS fingerprint should avoid Suricata alerts."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Safari-17 fingerprint matches a real browser, avoiding entropy-based detection."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Mimicry padding with video-streaming profile introduces natural packet size variability."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Video-streaming mimicry avoids fixed-size padding, keeping KL divergence low."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Reverse-proxy fallback ensures legitimate HTTPS responses to probes."
+      }
+    },
+    "known_weaknesses": [
+      "Safari-17 fingerprint might be less common in some networks, potentially standing out if Safari traffic is rare.",
+      "Video-streaming profile may not perfectly mimic all network conditions, possibly affecting M4/M6 under close scrutiny."
+    ]
+  }
+}

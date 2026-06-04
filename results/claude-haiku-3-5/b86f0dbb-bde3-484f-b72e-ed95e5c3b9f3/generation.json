@@ -1,0 +1,109 @@
+{
+  "run_id": "b86f0dbb-bde3-484f-b72e-ed95e5c3b9f3",
+  "timestamp": "2026-06-03T18:31:24.771796+00:00",
+  "elapsed_s": 23.22,
+  "model": "claude-haiku-3-5",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 6089,
+    "completion": 1,
+    "total": 6090
+  },
+  "variant": {
+    "index": 1,
+    "domain": "www.cloudflare.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk2 for forward secrecy without pre-shared static keys.",
+    "padding_hint": "Use random padding with wide range [40, 1400] to pass M6."
+  },
+  "generation_result": {
+    "reasoning": "Transport Design:\nI'll use TLS 1.3 with a Chrome 120 fingerprint to maximize browser-like characteristics. Port 443 and Cloudflare SNI provide standard HTTPS camouflage. Chrome's ALPN preferences help pass Zeek/JA3 fingerprinting by including both HTTP/2 and HTTP/1.1.\n\nHandshake Strategy:\nUsing Noise NNpsk2 provides forward-secret key exchange without static keys. The pattern allows ephemeral key generation on each connection, preventing long-term key traceability. BLAKE2s offers fast, cryptographically secure hashing that doesn't reveal protocol characteristics.\n\nPadding Configuration:\nRandom padding between 40-1400 bytes mimics natural HTTPS traffic variation. This wide range prevents uniform packet sizes that trigger ML classifiers. The approach ensures statistical diversity in packet lengths, reducing KL divergence detection risks.\n\nFallback Mechanism:\nCloudflare reverse proxy ensures that any active probing receives a legitimate HTTPS response. This is critical for defeating M8 distinguishability checks. The target matches our SNI, creating a consistent network narrative.\n\nCrypto and Timing:\nChaCha20-Poly1305 provides modern, fast encryption. No artificial timing ensures natural inter-packet characteristics. These choices minimize computational overhead while maintaining strong security properties.",
+    "config": {
+      "protocol": "cloudflare-noise-v2",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.cloudflare.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk2",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 40,
+        "random_max": 1400,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.cloudflare.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "Chrome-like TLS 1.3 with standard ALPN, Cloudflare SNI masks true protocol"
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Non-empty SNI, standard port, browser-matching TLS config"
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Chrome 120 JA3 fingerprint, standard ALPN sequence"
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Random padding prevents uniform packet size detection"
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Wide random padding range (40-1400) mimics natural HTTPS variance"
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Cloudflare reverse proxy ensures legitimate HTTPS response"
+      }
+    },
+    "known_weaknesses": [
+      "Noise protocol might have unique handshake pattern",
+      "Random padding could still have statistical tells",
+      "Ephemeral keys might create subtle timing differences"
+    ]
+  }
+}

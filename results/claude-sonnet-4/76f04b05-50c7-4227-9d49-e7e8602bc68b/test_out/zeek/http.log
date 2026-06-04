@@ -1,0 +1,29 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	http
+#open	2026-06-03-18-38-09
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	trans_depth	method	host	uri	referrer	version	user_agent	origin	request_body_len	response_body_len	status_code	status_msg	info_code	info_msg	tags	username	password	proxied	orig_fuids	orig_filenames	orig_mime_types	resp_fuids	resp_filenames	resp_mime_types
+#types	time	string	addr	port	addr	port	count	string	string	string	string	string	string	string	count	count	count	string	count	string	set[enum]	string	string	set[string]	vector[string]	vector[string]	vector[string]	vector[string]	vector[string]	vector[string]
+1780511818.420330	C015M51q6JV52OeoM2	127.0.0.1	15260	127.0.0.1	9080	1	GET	example.com	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	F2uSvg1y2u5mfV6UBa	-	text/html
+1780511818.852999	Ch6Ljl4UmiX8RxBf9g	127.0.0.1	15263	127.0.0.1	9080	1	GET	example.org	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	FRemk116gIOcPZ3Tca	-	text/html
+1780511819.413579	CX0raD2OzRXWnvGprl	127.0.0.1	15270	127.0.0.1	9080	1	GET	example.com	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	FovOYN2Mo9YhjEqJm1	-	text/html
+1780511819.394534	C7cPNz27bg76qYbZ6i	127.0.0.1	15267	127.0.0.1	9080	1	GET	httpbin.org	/get	-	1.1	python-requests/2.34.2	-	0	306	200	OK	-	-	(empty)	-	-	-	-	-	-	FUug5qVEyE9Rb2fS9	-	text/json
+1780511819.833938	Ci2hGp2LrzZSJzF9ye	127.0.0.1	15273	127.0.0.1	9080	1	GET	example.org	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	FgjJot47gtbn28sc1g	-	text/html
+1780511820.030066	Cg38j71d8JzZSTHXpi	127.0.0.1	15276	127.0.0.1	9080	1	GET	httpbin.org	/headers	-	1.1	python-requests/2.34.2	-	0	225	200	OK	-	-	(empty)	-	-	-	-	-	-	F7IlEh2D8FKfqCySvg	-	text/json
+1780511820.372156	CBGAXX2OY7pXzb0pUi	127.0.0.1	15279	127.0.0.1	9080	1	GET	httpbin.org	/get	-	1.1	python-requests/2.34.2	-	0	306	200	OK	-	-	(empty)	-	-	-	-	-	-	FRF1JI2h5XeB2gqMw4	-	text/json
+1780511820.554012	CK2oDv3zmZYI5bfv3g	127.0.0.1	15282	127.0.0.1	9080	1	GET	example.com	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	FkQvZa1O5YDB6frTv7	-	text/html
+1780511820.967381	CFE3VL3LLOH1KHzUKj	127.0.0.1	15288	127.0.0.1	9080	1	GET	example.org	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	FgfVii4W1rwZ5LTBJ7	-	text/html
+1780511821.053177	C4j7lO23MqIQNbSdb9	127.0.0.1	15285	127.0.0.1	9080	1	GET	httpbin.org	/headers	-	1.1	python-requests/2.34.2	-	0	225	200	OK	-	-	(empty)	-	-	-	-	-	-	FJYUio45wPTWE9a6h5	-	text/json
+1780511821.570576	CMPuTu4voJQUohP9hc	127.0.0.1	15295	127.0.0.1	9080	1	GET	example.com	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	Fwdz6L3x54HfnUpyF9	-	text/html
+1780511821.493609	CUdhJv2SvguY3rDsi4	127.0.0.1	15292	127.0.0.1	9080	1	GET	httpbin.org	/get	-	1.1	python-requests/2.34.2	-	0	306	200	OK	-	-	(empty)	-	-	-	-	-	-	FCWVI13T6fsr62f0f5	-	text/json
+1780511821.991237	C6kwsq2F0bsKl0GShe	127.0.0.1	15298	127.0.0.1	9080	1	GET	example.org	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	F3MYSf1k5Ro7lTi7b5	-	text/html
+1780511822.524399	CRfXUi4JzspPCE6tP3	127.0.0.1	15302	127.0.0.1	9080	1	GET	httpbin.org	/get	-	1.1	python-requests/2.34.2	-	0	306	200	OK	-	-	(empty)	-	-	-	-	-	-	F5rhtS2wSahvT6OBb4	-	text/json
+1780511822.529902	CCPNfm1nuxdREX5Lwe	127.0.0.1	15301	127.0.0.1	9080	1	GET	httpbin.org	/headers	-	1.1	python-requests/2.34.2	-	0	225	200	OK	-	-	(empty)	-	-	-	-	-	-	FEZ3ow2qoJQCSB9iT9	-	text/json
+1780511823.055152	CW53h014k6JsyLVh6d	127.0.0.1	15308	127.0.0.1	9080	1	GET	example.com	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	FvJvJzH0SwhNk1Z3	-	text/html
+1780511823.153419	CTe6y14AiIn6PNWOWi	127.0.0.1	15307	127.0.0.1	9080	1	GET	httpbin.org	/headers	-	1.1	python-requests/2.34.2	-	0	225	200	OK	-	-	(empty)	-	-	-	-	-	-	FOuCgg19h4913dCQQg	-	text/json
+1780511823.486646	CkVNzp2iUdXzDLNxu6	127.0.0.1	15313	127.0.0.1	9080	1	GET	example.org	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	FFoRNS1mS3g28u7jPb	-	text/html
+1780511837.412958	CpW3Pu3xRZ4D6lQNZ5	127.0.0.1	15335	127.0.0.1	19444	1	GET	127.0.0.1	/	-	-	-	-	0	0	-	-	-	-	(empty)	-	-	-	-	-	-	-	-	-
+1780511852.651322	Cz2h43ZgCletqw0Qf	127.0.0.1	15354	127.0.0.1	19443	1	GET	127.0.0.1	/	-	-	-	-	0	0	-	-	-	-	(empty)	-	-	-	-	-	-	-	-	-
+#close	2026-06-03-18-38-09

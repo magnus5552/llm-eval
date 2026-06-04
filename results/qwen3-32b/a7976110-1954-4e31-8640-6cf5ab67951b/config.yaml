@@ -1,0 +1,35 @@
+protocol: safari-tls-token-v3
+version: 3
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19445
+  tls:
+    version: '1.3'
+    fingerprint: safari-17
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.microsoft.com
+    cert_file: D:\programs\диплом\llm-eval\results\qwen3-32b\a7976110-1954-4e31-8640-6cf5ab67951b\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\qwen3-32b\a7976110-1954-4e31-8640-6cf5ab67951b\server.key
+    insecure: true
+handshake:
+  type: tls-token
+  tls_token:
+    field: session_ticket
+    kdf: hkdf-sha256
+    psk: f6ee9c6438da742773dce3b253c86c897e0f1f8797917d54b4fd3d15b6770053
+    length: 48
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: mimicry
+  profile: video-streaming
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.microsoft.com/edge/releases/120.0.2210.27/120.0.2210.27_win10-x64_23972.170_en-US.cab

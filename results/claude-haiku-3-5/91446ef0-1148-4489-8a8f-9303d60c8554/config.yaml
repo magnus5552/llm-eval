@@ -1,0 +1,35 @@
+protocol: google-camouflage-v1
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19443
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.google.com
+    cert_file: D:\programs\диплом\llm-eval\results\claude-haiku-3-5\91446ef0-1148-4489-8a8f-9303d60c8554\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\claude-haiku-3-5\91446ef0-1148-4489-8a8f-9303d60c8554\server.key
+    insecure: true
+handshake:
+  type: tls-token
+  tls_token:
+    field: session_ticket
+    kdf: hkdf-sha256
+    psk: be6b8c9ff7f201f1ba27d30946a71c851ca344fb446cdcb9b2d0eda00d937a1a
+    length: 48
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: mimicry
+  profile: chrome-browsing
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.google.com

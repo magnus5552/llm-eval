@@ -189,17 +189,54 @@ Verdict = Literal["PASS", "FAIL", "UNCERTAIN"]
 class MetricPrediction(BaseModel):
     """LLM's self-assessment for a single detection metric."""
     verdict:     Verdict = "UNCERTAIN"
-    explanation: str     = Field(description="1-2 sentence justification")
+    explanation: str     = ""
+
+
+class _DefaultPrediction:
+    """Factory that returns a default MetricPrediction — used as Field default."""
+    def __call__(self) -> MetricPrediction:
+        return MetricPrediction()
 
 
 class StealthPrediction(BaseModel):
     """LLM's prediction of which metrics its config will pass."""
-    m1_ndpi:    MetricPrediction = Field(description="nDPI classification — should not classify as VPN")
-    m2_suricata: MetricPrediction = Field(description="Suricata IDS — should produce zero alerts")
-    m3_zeek:    MetricPrediction = Field(description="Zeek JA3 / payload entropy — browser fingerprint or no raw-noise")
-    m4_ml:      MetricPrediction = Field(description="Flow ML classifier — vpn_prob < 0.65")
-    m6_kl_len:  MetricPrediction = Field(description="KL divergence of packet lengths vs HTTPS")
-    m8_probe:   MetricPrediction = Field(description="Active probe resistance — fallback must return legit HTTPS")
+    m1_ndpi:     MetricPrediction = Field(default_factory=MetricPrediction,
+                     description="nDPI classification — should not classify as VPN")
+    m2_suricata: MetricPrediction = Field(default_factory=MetricPrediction,
+                     description="Suricata IDS — should produce zero alerts")
+    m3_zeek:     MetricPrediction = Field(default_factory=MetricPrediction,
+                     description="Zeek JA3 / payload entropy — browser fingerprint or no raw-noise")
+    m4_ml:       MetricPrediction = Field(default_factory=MetricPrediction,
+                     description="Flow ML classifier — vpn_prob < 0.65")
+    m6_kl_len:   MetricPrediction = Field(default_factory=MetricPrediction,
+                     description="KL divergence of packet lengths vs HTTPS")
+    m8_probe:    MetricPrediction = Field(default_factory=MetricPrediction,
+                     description="Active probe resistance — fallback must return legit HTTPS")
+
+
+def _parse_stealth_string(text: str) -> dict:
+    """
+    Gemini sometimes returns stealth_prediction as a plain-text string like:
+      "M1: PASS (TLS on standard port)\nM2: PASS ..."
+    Convert it to the expected dict structure.
+    """
+    mapping = {
+        "M1": "m1_ndpi", "M2": "m2_suricata",
+        "M3": "m3_zeek", "M4": "m4_ml",
+        "M6": "m6_kl_len", "M8": "m8_probe",
+    }
+    result: dict = {}
+    for line in text.splitlines():
+        for key, field in mapping.items():
+            if line.strip().upper().startswith(key):
+                verdict = "UNCERTAIN"
+                if "PASS" in line.upper():
+                    verdict = "PASS"
+                elif "FAIL" in line.upper():
+                    verdict = "FAIL"
+                result[field] = {"verdict": verdict, "explanation": line.strip()}
+                break
+    return result
 
 
 class GenerationResult(BaseModel):
@@ -208,20 +245,46 @@ class GenerationResult(BaseModel):
     The 'config' field is serialized to YAML and passed to tunnel-gen.
     """
     reasoning: str = Field(
+        default="",
         description=(
             "Step-by-step design rationale: why each section was chosen. "
             "Cover transport, handshake, padding, fallback decisions."
-        )
+        ),
     )
     config: TunnelConfig = Field(
         description="The complete tunnel DSL configuration."
     )
     stealth_prediction: StealthPrediction = Field(
-        description="Per-metric PASS/FAIL/UNCERTAIN prediction with justification."
+        default_factory=StealthPrediction,
+        description="Per-metric PASS/FAIL/UNCERTAIN prediction with justification.",
     )
     known_weaknesses: List[str] = Field(
+        default_factory=list,
         description=(
             "List of potential detection vectors this config may still trigger. "
             "Be honest about trade-offs."
-        )
+        ),
     )
+
+    @field_validator("config", mode="before")
+    @classmethod
+    def coerce_config_from_string(cls, v: object) -> object:
+        if isinstance(v, str):
+            import yaml as _yaml
+            return _yaml.safe_load(v)
+        return v
+
+    @field_validator("stealth_prediction", mode="before")
+    @classmethod
+    def coerce_stealth_from_string(cls, v: object) -> object:
+        if isinstance(v, str):
+            return _parse_stealth_string(v)
+        return v
+
+    @field_validator("known_weaknesses", mode="before")
+    @classmethod
+    def coerce_weaknesses_to_list(cls, v: object) -> list:
+        if isinstance(v, str):
+            # Model returned a plain string — wrap it
+            return [v] if v.strip() else []
+        return v if isinstance(v, list) else []

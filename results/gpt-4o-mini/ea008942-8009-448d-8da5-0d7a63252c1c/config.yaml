@@ -1,0 +1,36 @@
+protocol: novel-tls-v1
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19444
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.cloudflare.com
+    cert_file: D:\programs\диплом\llm-eval\results\gpt-4o-mini\ea008942-8009-448d-8da5-0d7a63252c1c\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\gpt-4o-mini\ea008942-8009-448d-8da5-0d7a63252c1c\server.key
+    insecure: true
+handshake:
+  type: noise
+  noise:
+    pattern: NNpsk2
+    cipher_suite: 25519:ChaChaPoly:BLAKE2s
+    local_key: generate
+    psk: aab9d8aacfabc0bffe5638b767cee447a1b1149c67f75b826861fbd446cfd91f
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: random
+  random_min: 40
+  random_max: 1400
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.cloudflare.com

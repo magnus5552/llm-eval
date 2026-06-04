@@ -1,0 +1,1077 @@
+{
+  "generated_at": "2026-06-03T18:56:02.859539+00:00",
+  "models": [
+    {
+      "model": "claude-haiku-3-5",
+      "n_runs": 3,
+      "n_tested": 3,
+      "pass_rate": 0.0,
+      "check_pass": {
+        "M1_ndpi": 3,
+        "M2_suricata": 3,
+        "M3_ja3": 3,
+        "M4_vpn_prob": 3,
+        "M5_vpn_prob_seq": 3,
+        "M6_kl_len": 1,
+        "M8_probe": 3
+      },
+      "check_fail": {
+        "M7_kl_iat": 3,
+        "M6_kl_len": 2
+      },
+      "avg_tokens": 6087,
+      "avg_elapsed_s": 21.4,
+      "pred_accuracy": 1.0,
+      "diversity": {
+        "unique_fingerprints": [
+          "chrome-120",
+          "safari-17"
+        ],
+        "unique_handshakes": [
+          "noise",
+          "tls-token"
+        ],
+        "unique_snis": [
+          "www.cloudflare.com",
+          "www.google.com",
+          "www.microsoft.com"
+        ]
+      }
+    },
+    {
+      "model": "claude-sonnet-4",
+      "n_runs": 5,
+      "n_tested": 5,
+      "pass_rate": 0.0,
+      "check_pass": {
+        "M1_ndpi": 5,
+        "M3_ja3": 4,
+        "M4_vpn_prob": 5,
+        "M5_vpn_prob_seq": 5,
+        "M8_probe": 5,
+        "M6_kl_len": 1,
+        "M2_suricata": 1
+      },
+      "check_fail": {
+        "M2_suricata": 4,
+        "M6_kl_len": 4,
+        "M7_kl_iat": 5,
+        "M3_ja3": 1
+      },
+      "avg_tokens": 6047,
+      "avg_elapsed_s": 17.3,
+      "pred_accuracy": 0.8,
+      "diversity": {
+        "unique_fingerprints": [
+          "chrome-120",
+          "safari-17"
+        ],
+        "unique_handshakes": [
+          "noise",
+          "tls-token"
+        ],
+        "unique_snis": [
+          "www.cloudflare.com",
+          "www.google.com",
+          "www.microsoft.com"
+        ]
+      }
+    },
+    {
+      "model": "deepseek-chat",
+      "n_runs": 6,
+      "n_tested": 6,
+      "pass_rate": 0.0,
+      "check_pass": {
+        "M1_ndpi": 6,
+        "M4_vpn_prob": 6,
+        "M5_vpn_prob_seq": 6,
+        "M8_probe": 6,
+        "M3_ja3": 5,
+        "M2_suricata": 3
+      },
+      "check_fail": {
+        "M2_suricata": 3,
+        "M3_ja3": 1,
+        "M6_kl_len": 6,
+        "M7_kl_iat": 6
+      },
+      "avg_tokens": 6301,
+      "avg_elapsed_s": 20.4,
+      "pred_accuracy": 0.867,
+      "diversity": {
+        "unique_fingerprints": [
+          "chrome-120",
+          "safari-17"
+        ],
+        "unique_handshakes": [
+          "noise",
+          "tls-token"
+        ],
+        "unique_snis": [
+          "www.cloudflare.com",
+          "www.google.com",
+          "www.microsoft.com"
+        ]
+      }
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "n_runs": 3,
+      "n_tested": 3,
+      "pass_rate": 0.0,
+      "check_pass": {
+        "M1_ndpi": 3,
+        "M2_suricata": 3,
+        "M3_ja3": 3,
+        "M4_vpn_prob": 3,
+        "M5_vpn_prob_seq": 3,
+        "M8_probe": 3
+      },
+      "check_fail": {
+        "M6_kl_len": 3,
+        "M7_kl_iat": 3
+      },
+      "avg_tokens": 2728,
+      "avg_elapsed_s": 6.9,
+      "pred_accuracy": 1.0,
+      "diversity": {
+        "unique_fingerprints": [
+          "chrome-120",
+          "safari-17"
+        ],
+        "unique_handshakes": [
+          "noise",
+          "tls-token"
+        ],
+        "unique_snis": [
+          "www.cloudflare.com",
+          "www.google.com",
+          "www.microsoft.com"
+        ]
+      }
+    },
+    {
+      "model": "gpt-4o",
+      "n_runs": 3,
+      "n_tested": 3,
+      "pass_rate": 0.0,
+      "check_pass": {
+        "M1_ndpi": 3,
+        "M2_suricata": 3,
+        "M3_ja3": 3,
+        "M4_vpn_prob": 3,
+        "M5_vpn_prob_seq": 3,
+        "M8_probe": 3
+      },
+      "check_fail": {
+        "M6_kl_len": 3,
+        "M7_kl_iat": 3
+      },
+      "avg_tokens": 3472,
+      "avg_elapsed_s": 8.6,
+      "pred_accuracy": 1.0,
+      "diversity": {
+        "unique_fingerprints": [
+          "chrome-120",
+          "safari-17"
+        ],
+        "unique_handshakes": [
+          "noise",
+          "tls-token"
+        ],
+        "unique_snis": [
+          "www.cloudflare.com",
+          "www.google.com",
+          "www.microsoft.com"
+        ]
+      }
+    },
+    {
+      "model": "gpt-4o-mini",
+      "n_runs": 9,
+      "n_tested": 5,
+      "pass_rate": 0.0,
+      "check_pass": {
+        "M1_ndpi": 5,
+        "M2_suricata": 5,
+        "M3_ja3": 5,
+        "M4_vpn_prob": 5,
+        "M5_vpn_prob_seq": 5,
+        "M8_probe": 5,
+        "M6_kl_len": 1
+      },
+      "check_fail": {
+        "M6_kl_len": 4,
+        "M7_kl_iat": 5
+      },
+      "avg_tokens": 3475,
+      "avg_elapsed_s": 11.7,
+      "pred_accuracy": 1.0,
+      "diversity": {
+        "unique_fingerprints": [
+          "chrome-120",
+          "safari-17"
+        ],
+        "unique_handshakes": [
+          "noise",
+          "none",
+          "tls-token"
+        ],
+        "unique_snis": [
+          "www.amazon.com",
+          "www.cloudflare.com",
+          "www.github.com",
+          "www.google.com",
+          "www.microsoft.com"
+        ]
+      }
+    },
+    {
+      "model": "qwen3-32b",
+      "n_runs": 6,
+      "n_tested": 6,
+      "pass_rate": 0.0,
+      "check_pass": {
+        "M1_ndpi": 6,
+        "M3_ja3": 6,
+        "M4_vpn_prob": 6,
+        "M5_vpn_prob_seq": 6,
+        "M8_probe": 6,
+        "M2_suricata": 4,
+        "M6_kl_len": 1
+      },
+      "check_fail": {
+        "M2_suricata": 2,
+        "M6_kl_len": 5,
+        "M7_kl_iat": 6
+      },
+      "avg_tokens": 5166,
+      "avg_elapsed_s": 29.1,
+      "pred_accuracy": 0.933,
+      "diversity": {
+        "unique_fingerprints": [
+          "chrome-120",
+          "firefox-120",
+          "safari-17"
+        ],
+        "unique_handshakes": [
+          "noise",
+          "tls-token"
+        ],
+        "unique_snis": [
+          "www.cloudflare.com",
+          "www.google.com",
+          "www.microsoft.com"
+        ]
+      }
+    }
+  ],
+  "reference": [],
+  "all_runs": [
+    {
+      "source": "claude-haiku-3-5",
+      "run_id": "01b5e89d-b2ad-49d7-9372-e37dbbd72208",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "PASS",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "PASS",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "microsoft-proxy-v3",
+      "fingerprint": "safari-17",
+      "handshake": "tls-token",
+      "sni": "www.microsoft.com",
+      "padding": "mimicry",
+      "has_fallback": true,
+      "tokens_total": 6087,
+      "pred_correct": 5,
+      "pred_total": 5
+    },
+    {
+      "source": "claude-haiku-3-5",
+      "run_id": "91446ef0-1148-4489-8a8f-9303d60c8554",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "PASS",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "google-camouflage-v1",
+      "fingerprint": "chrome-120",
+      "handshake": "tls-token",
+      "sni": "www.google.com",
+      "padding": "mimicry",
+      "has_fallback": true,
+      "tokens_total": 6084,
+      "pred_correct": 5,
+      "pred_total": 5
+    },
+    {
+      "source": "claude-haiku-3-5",
+      "run_id": "b86f0dbb-bde3-484f-b72e-ed95e5c3b9f3",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "PASS",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "cloudflare-noise-v2",
+      "fingerprint": "chrome-120",
+      "handshake": "noise",
+      "sni": "www.cloudflare.com",
+      "padding": "random",
+      "has_fallback": true,
+      "tokens_total": 6090,
+      "pred_correct": 5,
+      "pred_total": 5
+    },
+    {
+      "source": "claude-sonnet-4",
+      "run_id": "0e00f908-48ca-4352-a10b-782940ad5205",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "FAIL",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "noise-nk-v2",
+      "fingerprint": "chrome-120",
+      "handshake": "noise",
+      "sni": "www.cloudflare.com",
+      "padding": "random",
+      "has_fallback": true,
+      "tokens_total": 6050,
+      "pred_correct": 4,
+      "pred_total": 5
+    },
+    {
+      "source": "claude-sonnet-4",
+      "run_id": "4a289871-cf6c-4a10-b597-831645d81be2",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "FAIL",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "PASS",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "safari-video-tls-v1",
+      "fingerprint": "safari-17",
+      "handshake": "tls-token",
+      "sni": "www.microsoft.com",
+      "padding": "mimicry",
+      "has_fallback": true,
+      "tokens_total": 6047,
+      "pred_correct": 4,
+      "pred_total": 5
+    },
+    {
+      "source": "claude-sonnet-4",
+      "run_id": "5916c23f-176b-4fb3-95ee-64788913d7a1",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "FAIL",
+        "M3_ja3": "FAIL",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "noise-nnpsk2-safari-v1",
+      "fingerprint": "safari-17",
+      "handshake": "noise",
+      "sni": "www.cloudflare.com",
+      "padding": "random",
+      "has_fallback": true,
+      "tokens_total": 6050,
+      "pred_correct": 3,
+      "pred_total": 5
+    },
+    {
+      "source": "claude-sonnet-4",
+      "run_id": "76f04b05-50c7-4227-9d49-e7e8602bc68b",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "FAIL",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "tls-token-chrome-v1",
+      "fingerprint": "chrome-120",
+      "handshake": "tls-token",
+      "sni": "www.google.com",
+      "padding": "mimicry",
+      "has_fallback": true,
+      "tokens_total": 6044,
+      "pred_correct": 4,
+      "pred_total": 5
+    },
+    {
+      "source": "claude-sonnet-4",
+      "run_id": "c62d332a-022b-4e3a-894e-3fe7ebca3ffc",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "PASS",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "chrome-tls-token-v1",
+      "fingerprint": "chrome-120",
+      "handshake": "tls-token",
+      "sni": "www.google.com",
+      "padding": "mimicry",
+      "has_fallback": true,
+      "tokens_total": 6044,
+      "pred_correct": 5,
+      "pred_total": 5
+    },
+    {
+      "source": "deepseek-chat",
+      "run_id": "00620358-e432-4133-b55c-ca979a134400",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "FAIL",
+        "M3_ja3": "FAIL",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "safari-tls-token-v1",
+      "fingerprint": "safari-17",
+      "handshake": "tls-token",
+      "sni": "www.microsoft.com",
+      "padding": "mimicry",
+      "has_fallback": true,
+      "tokens_total": 6303,
+      "pred_correct": 3,
+      "pred_total": 5
+    },
+    {
+      "source": "deepseek-chat",
+      "run_id": "156d8715-1237-4328-8e6b-c4c40407ceb7",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "FAIL",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "safari-tls-token-v1",
+      "fingerprint": "safari-17",
+      "handshake": "tls-token",
+      "sni": "www.microsoft.com",
+      "padding": "mimicry",
+      "has_fallback": true,
+      "tokens_total": 6303,
+      "pred_correct": 4,
+      "pred_total": 5
+    },
+    {
+      "source": "deepseek-chat",
+      "run_id": "1c0471c9-bab6-449a-b1e5-ebc99dad1005",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "PASS",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "chrome-mimic-tls-token-v1",
+      "fingerprint": "chrome-120",
+      "handshake": "tls-token",
+      "sni": "www.google.com",
+      "padding": "mimicry",
+      "has_fallback": true,
+      "tokens_total": 6299,
+      "pred_correct": 5,
+      "pred_total": 5
+    },
+    {
+      "source": "deepseek-chat",
+      "run_id": "2c646dd2-c832-486b-809e-afa6e59b0ca0",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "PASS",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "tls-token-mimicry-v1",
+      "fingerprint": "chrome-120",
+      "handshake": "tls-token",
+      "sni": "www.google.com",
+      "padding": "mimicry",
+      "has_fallback": true,
+      "tokens_total": 6299,
+      "pred_correct": 5,
+      "pred_total": 5
+    },
+    {
+      "source": "deepseek-chat",
+      "run_id": "7731d652-6e29-43d4-adb9-7e89e183a313",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "FAIL",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "noise-nnpsk2-v1",
+      "fingerprint": "chrome-120",
+      "handshake": "noise",
+      "sni": "www.cloudflare.com",
+      "padding": "random",
+      "has_fallback": true,
+      "tokens_total": 6302,
+      "pred_correct": 4,
+      "pred_total": 5
+    },
+    {
+      "source": "deepseek-chat",
+      "run_id": "d6071a40-f8dc-4a11-88c9-2551da706260",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "PASS",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "noise-nnpsk2-v1",
+      "fingerprint": "chrome-120",
+      "handshake": "noise",
+      "sni": "www.cloudflare.com",
+      "padding": "random",
+      "has_fallback": true,
+      "tokens_total": 6302,
+      "pred_correct": 5,
+      "pred_total": 5
+    },
+    {
+      "source": "gemini-2.5-flash",
+      "run_id": "c7e12bb0-4ea4-441b-8b4c-1ae3a612151e",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "PASS",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "tls-token-safari-streaming-v3",
+      "fingerprint": "safari-17",
+      "handshake": "tls-token",
+      "sni": "www.microsoft.com",
+      "padding": "mimicry",
+      "has_fallback": true,
+      "tokens_total": 2728,
+      "pred_correct": 1,
+      "pred_total": 1
+    },
+    {
+      "source": "gemini-2.5-flash",
+      "run_id": "ccf893cf-6705-4427-b7cb-bf5dd6eb0ada",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "PASS",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "tls-token-chrome-mimicry-v1",
+      "fingerprint": "chrome-120",
+      "handshake": "tls-token",
+      "sni": "www.google.com",
+      "padding": "mimicry",
+      "has_fallback": true,
+      "tokens_total": 2725,
+      "pred_correct": 5,
+      "pred_total": 5
+    },
+    {
+      "source": "gemini-2.5-flash",
+      "run_id": "f76007ca-64b2-4ae5-934c-7a5fb39bd88a",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "PASS",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "noise-obfuscated-tunnel-v2",
+      "fingerprint": "chrome-120",
+      "handshake": "noise",
+      "sni": "www.cloudflare.com",
+      "padding": "random",
+      "has_fallback": true,
+      "tokens_total": 2730,
+      "pred_correct": 5,
+      "pred_total": 5
+    },
+    {
+      "source": "gpt-4o",
+      "run_id": "93df0102-4472-48e5-b32c-566e8bc2c9cf",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "PASS",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "safari-token-v3",
+      "fingerprint": "safari-17",
+      "handshake": "tls-token",
+      "sni": "www.microsoft.com",
+      "padding": "mimicry",
+      "has_fallback": true,
+      "tokens_total": 3472,
+      "pred_correct": 5,
+      "pred_total": 5
+    },
+    {
+      "source": "gpt-4o",
+      "run_id": "a375f611-8523-47cd-8b34-7aa835820030",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "PASS",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "novel-tunnel-config-1",
+      "fingerprint": "chrome-120",
+      "handshake": "tls-token",
+      "sni": "www.google.com",
+      "padding": "mimicry",
+      "has_fallback": true,
+      "tokens_total": 3470,
+      "pred_correct": 5,
+      "pred_total": 5
+    },
+    {
+      "source": "gpt-4o",
+      "run_id": "e20466be-be70-4ea9-9045-225f14e243c1",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "PASS",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "noise-protocol-v2",
+      "fingerprint": "chrome-120",
+      "handshake": "noise",
+      "sni": "www.cloudflare.com",
+      "padding": "random",
+      "has_fallback": true,
+      "tokens_total": 3475,
+      "pred_correct": 5,
+      "pred_total": 5
+    },
+    {
+      "source": "gpt-4o-mini",
+      "run_id": "12e1b253-946b-4d55-84e9-5adaa59afce2",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "PASS",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "tunnel-config-v1",
+      "fingerprint": "chrome-120",
+      "handshake": "none",
+      "sni": "www.amazon.com",
+      "padding": "mimicry",
+      "has_fallback": true,
+      "tokens_total": 3478,
+      "pred_correct": 5,
+      "pred_total": 5
+    },
+    {
+      "source": "gpt-4o-mini",
+      "run_id": "4c457fa8-b046-4361-9d31-11ec3657a67f",
+      "verdict": null,
+      "checks": {},
+      "protocol": "novel-tunnel-v1",
+      "fingerprint": "chrome-120",
+      "handshake": "tls-token",
+      "sni": "www.google.com",
+      "padding": "mimicry",
+      "has_fallback": true,
+      "tokens_total": 3470,
+      "pred_correct": null,
+      "pred_total": null
+    },
+    {
+      "source": "gpt-4o-mini",
+      "run_id": "67469cbd-fa0d-4087-b194-8d6049dd0d65",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "PASS",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "custom-tls-v1",
+      "fingerprint": "chrome-120",
+      "handshake": "noise",
+      "sni": "www.github.com",
+      "padding": "random",
+      "has_fallback": true,
+      "tokens_total": 3482,
+      "pred_correct": 0,
+      "pred_total": 0
+    },
+    {
+      "source": "gpt-4o-mini",
+      "run_id": "8b3fc5d4-ed40-48db-bbf6-0c44a6ecfcaf",
+      "verdict": null,
+      "checks": {},
+      "protocol": "tls-noise-v2",
+      "fingerprint": "chrome-120",
+      "handshake": "noise",
+      "sni": "www.cloudflare.com",
+      "padding": "random",
+      "has_fallback": true,
+      "tokens_total": 3475,
+      "pred_correct": null,
+      "pred_total": null
+    },
+    {
+      "source": "gpt-4o-mini",
+      "run_id": "9127163e-40e5-4be1-bb9d-445b12928f78",
+      "verdict": null,
+      "checks": {},
+      "protocol": "novel-tls-v1",
+      "fingerprint": "safari-17",
+      "handshake": "tls-token",
+      "sni": "www.microsoft.com",
+      "padding": "mimicry",
+      "has_fallback": true,
+      "tokens_total": 3472,
+      "pred_correct": null,
+      "pred_total": null
+    },
+    {
+      "source": "gpt-4o-mini",
+      "run_id": "cb0926c5-e0be-4709-9e49-8415f03a6275",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "PASS",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "tunnel-config-v1",
+      "fingerprint": "chrome-120",
+      "handshake": "tls-token",
+      "sni": "www.google.com",
+      "padding": "mimicry",
+      "has_fallback": true,
+      "tokens_total": 3470,
+      "pred_correct": 5,
+      "pred_total": 5
+    },
+    {
+      "source": "gpt-4o-mini",
+      "run_id": "d2917378-4e17-48ae-85d4-d88685667636",
+      "verdict": null,
+      "checks": {},
+      "protocol": "novel-tunnel-protocol-v1",
+      "fingerprint": "chrome-120",
+      "handshake": "noise",
+      "sni": "www.github.com",
+      "padding": "random",
+      "has_fallback": true,
+      "tokens_total": 3482,
+      "pred_correct": null,
+      "pred_total": null
+    },
+    {
+      "source": "gpt-4o-mini",
+      "run_id": "ea008942-8009-448d-8da5-0d7a63252c1c",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "PASS",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "novel-tls-v1",
+      "fingerprint": "chrome-120",
+      "handshake": "noise",
+      "sni": "www.cloudflare.com",
+      "padding": "random",
+      "has_fallback": true,
+      "tokens_total": 3475,
+      "pred_correct": 5,
+      "pred_total": 5
+    },
+    {
+      "source": "gpt-4o-mini",
+      "run_id": "f2803634-094a-44f9-b151-fdbb5cfc7693",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "PASS",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "PASS",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "novel-tls-v1",
+      "fingerprint": "safari-17",
+      "handshake": "tls-token",
+      "sni": "www.microsoft.com",
+      "padding": "mimicry",
+      "has_fallback": true,
+      "tokens_total": 3472,
+      "pred_correct": 5,
+      "pred_total": 5
+    },
+    {
+      "source": "qwen3-32b",
+      "run_id": "1632c9eb-4024-4214-95a0-6de97e2fb4f2",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "FAIL",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "llm-gen-v3",
+      "fingerprint": "safari-17",
+      "handshake": "tls-token",
+      "sni": "www.microsoft.com",
+      "padding": "mimicry",
+      "has_fallback": true,
+      "tokens_total": 5166,
+      "pred_correct": 4,
+      "pred_total": 5
+    },
+    {
+      "source": "qwen3-32b",
+      "run_id": "26599c05-c58c-4d66-9950-944553c889f9",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "PASS",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "noise-llm-gen-v2",
+      "fingerprint": "firefox-120",
+      "handshake": "noise",
+      "sni": "www.cloudflare.com",
+      "padding": "random",
+      "has_fallback": true,
+      "tokens_total": 5170,
+      "pred_correct": 5,
+      "pred_total": 5
+    },
+    {
+      "source": "qwen3-32b",
+      "run_id": "5d40c717-aac4-46cf-a8ef-aac6a53d5cd3",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "PASS",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "chrome-tls-token-1",
+      "fingerprint": "chrome-120",
+      "handshake": "tls-token",
+      "sni": "www.google.com",
+      "padding": "mimicry",
+      "has_fallback": true,
+      "tokens_total": 5162,
+      "pred_correct": 5,
+      "pred_total": 5
+    },
+    {
+      "source": "qwen3-32b",
+      "run_id": "a7976110-1954-4e31-8640-6cf5ab67951b",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "PASS",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "PASS",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "safari-tls-token-v3",
+      "fingerprint": "safari-17",
+      "handshake": "tls-token",
+      "sni": "www.microsoft.com",
+      "padding": "mimicry",
+      "has_fallback": true,
+      "tokens_total": 5166,
+      "pred_correct": 5,
+      "pred_total": 5
+    },
+    {
+      "source": "qwen3-32b",
+      "run_id": "d05dc17b-a8b7-4ed8-b2cd-973b193791dc",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "PASS",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "tls-token-chrome-9443",
+      "fingerprint": "chrome-120",
+      "handshake": "tls-token",
+      "sni": "www.google.com",
+      "padding": "mimicry",
+      "has_fallback": true,
+      "tokens_total": 5162,
+      "pred_correct": 5,
+      "pred_total": 5
+    },
+    {
+      "source": "qwen3-32b",
+      "run_id": "f4e12d6c-9e0b-45dd-913d-213be1b72455",
+      "verdict": "FAIL",
+      "checks": {
+        "M1_ndpi": "PASS",
+        "M2_suricata": "FAIL",
+        "M3_ja3": "PASS",
+        "M4_vpn_prob": "PASS",
+        "M5_vpn_prob_seq": "PASS",
+        "M6_kl_len": "FAIL",
+        "M7_kl_iat": "FAIL",
+        "M8_probe": "PASS"
+      },
+      "protocol": "noise-tls-v2",
+      "fingerprint": "chrome-120",
+      "handshake": "noise",
+      "sni": "www.cloudflare.com",
+      "padding": "random",
+      "has_fallback": true,
+      "tokens_total": 5170,
+      "pred_correct": 4,
+      "pred_total": 5
+    }
+  ]
+}

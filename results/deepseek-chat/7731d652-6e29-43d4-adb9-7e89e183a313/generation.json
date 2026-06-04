@@ -1,0 +1,108 @@
+{
+  "run_id": "7731d652-6e29-43d4-adb9-7e89e183a313",
+  "timestamp": "2026-06-03T18:47:15.318227+00:00",
+  "elapsed_s": 18.17,
+  "model": "deepseek-chat",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 6301,
+    "completion": 1,
+    "total": 6302
+  },
+  "variant": {
+    "index": 1,
+    "domain": "www.cloudflare.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk2 for forward secrecy without pre-shared static keys.",
+    "padding_hint": "Use random padding with wide range [40, 1400] to pass M6."
+  },
+  "generation_result": {
+    "reasoning": "1. Transport: TLS with Chrome-120 fingerprint ensures M2/M3 pass (browser-like JA3 and SNI present). Port 443 mimics standard HTTPS. 2. Handshake: Noise NNpsk2 provides forward secrecy without static keys, balancing security and automation. 3. Padding: Random mode with wide range (40-1400) avoids M6's KL divergence penalty while maintaining natural traffic variability. 4. Fallback: Reverse-proxy to www.cloudflare.com ensures M8 active probes return legitimate HTTPS responses. Timing is left natural to avoid M7 IAT anomalies.",
+    "config": {
+      "protocol": "noise-nnpsk2-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.cloudflare.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk2",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 40,
+        "random_max": 1400,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.cloudflare.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "TLS/HTTPS classification guaranteed by transport.type=tls and browser fingerprint."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Non-empty SNI and browser-like TLS fingerprint avoid Suricata alerts."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Chrome-120 JA3 fingerprint matches real browser traffic."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Random padding and natural timing prevent uniform flow features."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Wide random padding range closely mimics HTTPS packet length distribution."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Fallback to Cloudflare returns valid HTTPS responses to probes."
+      }
+    },
+    "known_weaknesses": [
+      "Noise handshake may introduce slight packet size anomalies during negotiation (though NNpsk2 minimizes this).",
+      "Random padding without mimicry profile may not perfectly match Chrome's specific length distribution (though wide range compensates)."
+    ]
+  }
+}

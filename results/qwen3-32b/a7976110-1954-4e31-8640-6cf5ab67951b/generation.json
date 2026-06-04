@@ -1,0 +1,103 @@
+{
+  "run_id": "a7976110-1954-4e31-8640-6cf5ab67951b",
+  "timestamp": "2026-06-03T18:54:16.233760+00:00",
+  "elapsed_s": 20.94,
+  "model": "qwen3-32b",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 5165,
+    "completion": 1,
+    "total": 5166
+  },
+  "variant": {
+    "index": 2,
+    "domain": "www.microsoft.com",
+    "port": 8443,
+    "handshake_hint": "Combine tls-token with a browser fingerprint from a less common browser (safari-17).",
+    "padding_hint": "Use mimicry/video-streaming to simulate different traffic profile."
+  },
+  "generation_result": {
+    "reasoning": "Starting to draft the tunnel configuration based on the given constraints. First, I need to configure the transport to use TLS on port 8443 with the SNI set to www.microsoft.com. I'll select 'safari-17' as the fingerprint to comply with the hint for this run. Next, for the handshake, a 'tls-token' strategy is suggested with the required parameters. For padding, the 'mimicry' mode with the video-streaming profile will be used to simulate the intended traffic. The fallback will be set to a real HTTPS target ensuring M8 is met. Finally, the timing mode is set to 'none' since there's no specific hypothesis provided for this run.",
+    "config": {
+      "protocol": "safari-tls-token-v3",
+      "version": 3,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 8443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.microsoft.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "video-streaming"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.microsoft.com/edge/releases/120.0.2210.27/120.0.2210.27_win10-x64_23972.170_en-US.cab"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "Using TLS with SNI set to a legitimate web domain (www.microsoft.com) and a TLS fingerprint matching Safari 17 should pass nDPI as normal HTTPS traffic."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "TLS-based transport with specified ALPN and non-empty SNI should avoid triggering Suricata IDS alerts. The configuration does not have characteristics typical of common tunneling protocols."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Using a legitimate TLS fingerprint (safari-17) will result in a JA3 hash matching real Safari browser, which complies with Zeek monitoring. No raw encrypted streams are used since TLS is employed with encryption."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Using TLS and mimicking video streaming traffic should reduce ML classifier certainty. The mimicry padding approach simulates real HTTPS traffic patterns effectively."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "The mimicry padding with video streaming profile replicates real HTTPS traffic lengths, keeping KL divergence low."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "The fallback configuration is set to a genuine HTTPS target, ensuring responses during active probing appear as regular web traffic."
+      }
+    },
+    "known_weaknesses": []
+  }
+}

@@ -1,0 +1,36 @@
+protocol: noise-obfuscated-tunnel-v2
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19444
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.cloudflare.com
+    cert_file: D:\programs\диплом\llm-eval\results\gemini-2.5-flash\f76007ca-64b2-4ae5-934c-7a5fb39bd88a\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\gemini-2.5-flash\f76007ca-64b2-4ae5-934c-7a5fb39bd88a\server.key
+    insecure: true
+handshake:
+  type: noise
+  noise:
+    pattern: NNpsk2
+    cipher_suite: 25519:ChaChaPoly:BLAKE2s
+    local_key: generate
+    psk: 001a8e1b5516b8e3b16b3785f90363331a52b1b491a34cbcce12baabe3ceca19
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: random
+  random_min: 40
+  random_max: 1400
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.cloudflare.com

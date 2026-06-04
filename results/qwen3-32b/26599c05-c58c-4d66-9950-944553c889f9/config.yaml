@@ -1,0 +1,36 @@
+protocol: noise-llm-gen-v2
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19444
+  tls:
+    version: '1.3'
+    fingerprint: firefox-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.cloudflare.com
+    cert_file: D:\programs\диплом\llm-eval\results\qwen3-32b\26599c05-c58c-4d66-9950-944553c889f9\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\qwen3-32b\26599c05-c58c-4d66-9950-944553c889f9\server.key
+    insecure: true
+handshake:
+  type: noise
+  noise:
+    pattern: NNpsk2
+    cipher_suite: 25519:ChaChaPoly:BLAKE2s
+    local_key: generate
+    psk: 8dcbffe0b6f3c8b3cb0fbf8b2c2b3dd5f9729c7b404bca4e1c3654c64399414a
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: random
+  random_min: 40
+  random_max: 1400
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.cloudflare.com

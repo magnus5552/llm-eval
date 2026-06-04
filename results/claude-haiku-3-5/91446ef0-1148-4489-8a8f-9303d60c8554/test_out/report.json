@@ -1,0 +1,216 @@
+{
+  "verdict": "FAIL",
+  "failed_checks": [
+    "M6_kl_len",
+    "M7_kl_iat"
+  ],
+  "skipped_checks": [],
+  "checks": {
+    "M1_ndpi": {
+      "result": "PASS",
+      "detail": {
+        "classified_as": "SOCKS",
+        "confidence": null,
+        "is_known_vpn": false
+      }
+    },
+    "M2_suricata": {
+      "result": "PASS",
+      "detail": {
+        "alert_count": 0,
+        "categories": []
+      }
+    },
+    "M3_ja3": {
+      "result": "PASS",
+      "detail": {
+        "ja3_is_browser": false,
+        "browser_matches": [],
+        "unique_ja3_count": 0,
+        "high_entropy_streams": 0,
+        "payload_byte_entropy": 7.718
+      }
+    },
+    "M4_vpn_prob": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob": 0.0983
+      }
+    },
+    "M5_vpn_prob_seq": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob_seq": 0.4143
+      }
+    },
+    "M6_kl_len": {
+      "result": "FAIL",
+      "detail": {
+        "kl_len": 0.3669
+      }
+    },
+    "M7_kl_iat": {
+      "result": "FAIL",
+      "detail": {
+        "kl_iat": 0.5215
+      }
+    },
+    "M8_probe": {
+      "result": "PASS",
+      "detail": {
+        "distinguishable_ratio": 0.667,
+        "flags": 2
+      }
+    }
+  },
+  "config": {
+    "dsl_config": "D:\\programs\\\u0434\u0438\u043f\u043b\u043e\u043c\\llm-eval\\results\\claude-haiku-3-5\\91446ef0-1148-4489-8a8f-9303d60c8554\\config.yaml",
+    "scenario": "web",
+    "duration_s": 30
+  },
+  "raw": {
+    "pcap_path": "D:\\programs\\\u0434\u0438\u043f\u043b\u043e\u043c\\llm-eval\\results\\claude-haiku-3-5\\91446ef0-1148-4489-8a8f-9303d60c8554\\test_out\\capture.pcap",
+    "m1_ndpi": {
+      "classified_as": "SOCKS",
+      "is_known_vpn": false,
+      "is_acceptable": true,
+      "flow_count": 102,
+      "known_flow_count": 102,
+      "protocol_distribution": {
+        "SOCKS": 50,
+        "TLS.Google": 50,
+        "TLS": 1,
+        "HTTP": 1
+      },
+      "ja3_hashes": [
+        "004640c86d18b1d53189601e8e02d785",
+        "03ddbb63c142ec754b78ed65849ea6a6",
+        "053ad35ef4fc17c5c7c32fea793d0cf5",
+        "069e80ea241e16e415db368c4d52c887",
+        "172c26c701a7f934dd79e4f7755c32a2",
+        "1cb138cd378d12b280e5aeaafc409709",
+        "2588b981ef7c577051cc407afabdae6a",
+        "2bdf8d15fc943e8bd6a0aea327213fbe",
+        "2e0e3ef34c54c23560eb93faea8811d0",
+        "32b384380454156a2d7a064994d7655f",
+        "33ef15d51b86d66a858198ebb8102452",
+        "369ceb091c80e03b7d76650199058210",
+        "370ae4a9c35e850b111c9af1285dcaf1",
+        "384d1bf971ebd1e3fcb4a054601a8c28",
+        "47c9ca867ddb3cdd19519c716831e884",
+        "48d0645899e0d5b56bc51055aae7ac93",
+        "4b7091b04cb3bedd67472ce3dd9a6757",
+        "4d739c3e4c8cbe4ff08b73e1a7fea5e0",
+        "50ea23b6f8c0771357b0da47e044fcf2",
+        "5a36d7f84a315ff20100846a4464c5d3",
+        "5b5b9b8ccbab1e022e475b00fce1d452",
+        "5cc87c690b9d1ade61bc4d11e422496e",
+        "64800ed537d9b8f0bd1406750f74cd10",
+        "6facd023a652fce26bc9e3114124252b",
+        "73c363349c26dfabddc9772ad369e9fe",
+        "7a17132da6c5e4d282faa8095f210fda",
+        "7b65ab2a78df6527a9e6cf0b950d4413",
+        "7edc4c74126c2e96155ed8bb1faca358",
+        "850005823d4de3f342c6e373ba8beb15",
+        "895520aa602ecc0782ac44f462deaddf",
+        "9995836ba7f7712f3fc61ec03eacc5fe",
+        "9b6b0aee9ed11962ecce141629aa496d",
+        "9ffa6fa9bcce472094bd5b5801f83d47",
+        "a0a60abfa196b0add3cdd9afd4e0544b",
+        "a5851daf42eeddb0fc4b13c5e47ad45a",
+        "a5c2b24b838d7bf6759ee9dd01a9cd5b",
+        "a67e1925fc2bc279247ba084e46ab63e",
+        "a76e8292f8678a9101c7051e758e1598",
+        "ab4897f72d1246a2fc852cee79b7215c",
+        "bd76b962257fb4a38969815c9b19b683",
+        "c173bc11c8ab13979f5f6840b7f46bfc",
+        "c36487a186a3815cca7e6997088b9efa",
+        "caa880d6a51ea4462943395eeb1fba5d",
+        "ce362dd9adcdd58eb114c1c1c0f5708e",
+        "d7d843fff10c0b682422a014678f047e",
+        "e459c25949417046071e1898f5e1d28a",
+        "e8130928da909eba7be633d872c17512",
+        "eaf2ed73c6e3ed89dd5d8cbab9515316",
+        "ef936c0f94de42d1e916f2399c51e412",
+        "f68587a884b4e6db288fde6fa58bc86b",
+        "f98a077f5a75c0a98336456673bb6a99"
+      ],
+      "ja4_hashes": [
+        "f4febc55ea12b31ae17cfb7e614afda8"
+      ],
+      "sni_set": [
+        "127.0.0.1",
+        "www.google.com"
+      ],
+      "tls_versions": [
+        "TLSv1.3"
+      ]
+    },
+    "m2_suricata": {
+      "alert_count": 0,
+      "alerts": [],
+      "flow_count": 105,
+      "tls_count": 51,
+      "tls_versions": [
+        "TLS 1.3"
+      ],
+      "tls_sni": [
+        "127.0.0.1",
+        "www.google.com"
+      ],
+      "categories": []
+    },
+    "m3_zeek": {
+      "ja3_hashes": [],
+      "ja3s_hashes": [],
+      "snis": [
+        "127.0.0.1",
+        "www.google.com"
+      ],
+      "cipher_suites": [
+        "TLS_AES_128_GCM_SHA256"
+      ],
+      "tls_versions": [
+        "TLSv13"
+      ],
+      "browser_matches": [],
+      "ja3_is_browser": false,
+      "unique_ja3_count": 0,
+      "conn_count": 105,
+      "unknown_service_conns": 0,
+      "payload_byte_entropy": 7.718,
+      "high_entropy_streams": 0,
+      "entropy_sample_size": 140076
+    },
+    "m4_m7_flow": {
+      "vpn_prob": 0.0983,
+      "vpn_prob_seq": 0.4143,
+      "kl_len": 0.3669,
+      "kl_iat": 0.5215,
+      "total_packets": 2413,
+      "total_flows": 105,
+      "total_bytes": 400113,
+      "duration_s": 37.58,
+      "pkt_len_mean": 274.9,
+      "pkt_len_std": 421.4,
+      "iat_mean_ms": 15.58,
+      "small_pkt_pct": 54.5,
+      "large_pkt_pct": 8.7,
+      "model_used": "heuristic"
+    },
+    "m8_probe": {
+      "distinguishable_ratio": 0.667,
+      "distinguishable_flags": 2,
+      "check_random_bytes_responded": true,
+      "check_http_looks_http": false,
+      "check_server_speaks_first": false,
+      "ttfb_mean_ms": 42.0,
+      "ttfb_values_ms": [
+        63.0,
+        0.0,
+        63.0
+      ],
+      "probe_count": 5
+    }
+  }
+}

@@ -1,0 +1,35 @@
+protocol: tunnel-config-v1
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19443
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.google.com
+    cert_file: D:\programs\диплом\llm-eval\results\gpt-4o-mini\cb0926c5-e0be-4709-9e49-8415f03a6275\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\gpt-4o-mini\cb0926c5-e0be-4709-9e49-8415f03a6275\server.key
+    insecure: true
+handshake:
+  type: tls-token
+  tls_token:
+    field: session_ticket
+    kdf: hkdf-sha256
+    psk: 131266d91b9be3080dcf5f2aee7f4d8b337cb2f174e9e0a4c6c2f13cc55e4697
+    length: 48
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: mimicry
+  profile: chrome-browsing
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.google.com

@@ -1,0 +1,106 @@
+{
+  "run_id": "f2803634-094a-44f9-b151-fdbb5cfc7693",
+  "timestamp": "2026-06-03T18:15:36.666303+00:00",
+  "elapsed_s": 15.13,
+  "model": "gpt-4o-mini",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 3471,
+    "completion": 1,
+    "total": 3472
+  },
+  "variant": {
+    "index": 2,
+    "domain": "www.microsoft.com",
+    "port": 8443,
+    "handshake_hint": "Combine tls-token with a browser fingerprint from a less common browser (safari-17).",
+    "padding_hint": "Use mimicry/video-streaming to simulate different traffic profile."
+  },
+  "generation_result": {
+    "reasoning": "For the transport layer, I chose `tls` as required, enabling the config to evade detection by maintaining a strong resemblance to HTTPS traffic. The specified listening port is `8443`, which is less commonly scrutinized as opposed to the typical `443`. I used the `safari-17` fingerprint to meet the requirements while still resembling browser traffic effectively. The SNI is set to `www.microsoft.com`, ensuring it is non-empty to avoid triggering Suricata rules.\n\nIn terms of handshake, I opted for `tls-token`, allowing for PSK authentication, which generally provides high security and efficiency. Keeping it simple, I left the PSK fields empty so the evaluator can inject real keys, which is a standard practice for automated testing. \n\nFor padding, I implemented `mimicry` mode with a `video-streaming` profile, simulating variable traffic patterns to remain indistinguishable from legitimate data streams. This choice helps to counteract metrics related to packet length uniformity and sequence, maintaining the stealth required to pass M6.\n\nTiming is set to `none` as there are no specific hypotheses surrounding timing that would warrant artificial enhancements. This common approach helps avoid drawing attention to any timing anomalies.\n\nI enabled the fallback mechanism with a reverse proxy targeting `https://www.microsoft.com`, ensuring compliance with M8 by allowing a real HTTPS server response for active probing.",
+    "config": {
+      "protocol": "novel-tls-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 8443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.microsoft.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "video-streaming"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.microsoft.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "The configuration uses TLS with a common browser fingerprint and valid SNI, making it indistinguishable from regular HTTPS traffic."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "With non-empty SNI and a recommended TLS fingerprint, the configuration aligns with passing conditions for Suricata."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "The chosen JA3 fingerprint corresponds to a browser and the payload entropy should remain within normal HTTPS parameters."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "The configuration avoids uniform packet sizes and maintains a varied packet structure promoting diverse flow characteristics."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "The mimicry padding strategy ensures packet lengths don't create significant divergence from standard HTTPS metrics."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "The active probing fallback mechanism is implemented correctly, giving a valid HTTPS response."
+      }
+    },
+    "known_weaknesses": [
+      "Potential issues may arise from the use of `safari-17` which is less common, but the risk is mitigated by employing other characteristics that match regular HTTPS traffic.",
+      "Close monitoring may still reveal anomalies in traffic patterns under intensive analysis, particularly in environments with sophisticated detection systems."
+    ]
+  }
+}

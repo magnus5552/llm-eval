@@ -1,0 +1,105 @@
+{
+  "run_id": "c7e12bb0-4ea4-441b-8b4c-1ae3a612151e",
+  "timestamp": "2026-06-03T18:43:40.484256+00:00",
+  "elapsed_s": 6.39,
+  "model": "gemini-2.5-flash",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 2727,
+    "completion": 1,
+    "total": 2728
+  },
+  "variant": {
+    "index": 2,
+    "domain": "www.microsoft.com",
+    "port": 8443,
+    "handshake_hint": "Combine tls-token with a browser fingerprint from a less common browser (safari-17).",
+    "padding_hint": "Use mimicry/video-streaming to simulate different traffic profile."
+  },
+  "generation_result": {
+    "reasoning": "Transport is set to TLS 1.3 with a Safari-17 fingerprint and SNI to www.microsoft.com to blend with legitimate HTTPS traffic and evade DPI (M1) and Suricata (M2). Port 8443 is a common alternative for HTTPS, further obscuring the tunnel. The TLS token handshake provides an authentication method while integrating its metadata within the TLS traffic, making it harder to distinguish from standard TLS negotiation (M1, M2, M3). Padding is set to mimicry with a \"video-streaming\" profile. This aims to generate variable packet sizes and inter-arrival times that resemble real video streaming, which helps in evading ML flow classifiers (M4, M5), and KL divergence metrics (M6, M7). Finally, a fallback to reverse-proxy to www.microsoft.com is enabled, providing a legitimate HTTPS response to active probes (M8).",
+    "config": {
+      "protocol": "tls-token-safari-streaming-v3",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 8443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.microsoft.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "video-streaming"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.microsoft.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "M1: PASS (TLS on standard port, browser fingerprint). M2: PASS (SNI present, standard port, browser-like TLS fingerprint). M3: PASS (Safari-17 fingerprint matches a known browser). M4: PASS (Mimicry padding with video-streaming profile should create a diverse flow matching legitimate traffic). M5: PASS (TLS handshake followed by variable padding should resemble legitimate traffic negotiation). M6: PASS (Mimicry mode avoids fixed-size padding). M7: PASS (No artificial timing delays or batching applied). M8: PASS (Fallback to a real HTTPS site is enabled)."
+      },
+      "m2_suricata": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m3_zeek": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m4_ml": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m6_kl_len": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m8_probe": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      }
+    },
+    "known_weaknesses": [
+      "Safari-17 fingerprint might be less common and could stand out if the majority of traffic in the monitored environment is Chrome or Firefox. Depending on the test environment, \"video-streaming\" padding could generate higher packet rates or sustained large packets which might trigger certain flow-based anomaly detection systems not covered by M4/M5 if not carefully modelled and implemented."
+    ]
+  }
+}

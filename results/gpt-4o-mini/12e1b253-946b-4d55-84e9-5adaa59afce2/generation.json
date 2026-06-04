@@ -1,0 +1,100 @@
+{
+  "run_id": "12e1b253-946b-4d55-84e9-5adaa59afce2",
+  "timestamp": "2026-06-03T18:18:41.493887+00:00",
+  "elapsed_s": 10.21,
+  "model": "gpt-4o-mini",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 3477,
+    "completion": 1,
+    "total": 3478
+  },
+  "variant": {
+    "index": 4,
+    "domain": "www.amazon.com",
+    "port": 9443,
+    "handshake_hint": "Try handshake=none for the simplest possible surface — pure TLS with mimicry.",
+    "padding_hint": "Use mimicry/chrome-browsing but experiment with ssh-interactive for low-traffic sessions."
+  },
+  "generation_result": {
+    "reasoning": "For the transport layer, I chose TLS with `port: 9443` to meet the preferred listening port requirement while remaining under the standard HTTPS port range. The `fingerprint: chrome-120` was selected to ensure a browser-like behavior when subjected to detection, which helps in evading M1 and M3. The SNI is set to `www.amazon.com`, meeting the non-empty SNI requirement needed for M2. \n\nFor the handshake, I used `type: none`, opting for bare TLS. This keeps the surface simple and doesn't require additional complexities that could introduce risks of detection through other metrics. This aligns well with the guidance for using `handshake=none` for a pure TLS solution. \n\nIn the padding section, I opted for `mode: mimicry` with a `profile: chrome-browsing`. This setting helps in making the traffic appear more like regular web browsing, which is less likely to raise alarms in deep-packet inspection scenarios. \n\nFor fallback, I ensured that it is enabled and pointed to a real HTTPS target (https://www.amazon.com) to handle potential active probing and ensure smooth operation under scrutiny. Finally, I set the timing mode to `none` to avoid introducing predictability in timing that could be flagged by M7.",
+    "config": {
+      "protocol": "tunnel-config-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.amazon.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "none",
+        "noise": null,
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.amazon.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "By using TLS with a common port and a browser-like fingerprint, the traffic is likely to be classified as regular HTTPS."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "The non-empty SNI, standard port, and use of a common fingerprint should evade common Suricata rules."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "With the chosen fingerprint and padding strategy, JA3 should resemble browser traffic, thus passing the fingerprinting tests."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "The traffic characteristics are expected to align closely with HTTPS patterns, avoiding detection as a VPN."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Using mimicry with varied padding to resemble regular HTTPS frames should keep KL divergence values low."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "The fallback to a real HTTPS server mitigates the risks associated with active probing."
+      }
+    },
+    "known_weaknesses": [
+      "Potential risks from overly aggressive DPI systems that might flag unusual shimming behavior, but overall design aims to blend in with legitimate HTTPS traffic."
+    ]
+  }
+}

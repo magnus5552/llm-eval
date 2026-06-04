@@ -1,0 +1,36 @@
+protocol: noise-protocol-v2
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19444
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.cloudflare.com
+    cert_file: D:\programs\диплом\llm-eval\results\gpt-4o\e20466be-be70-4ea9-9045-225f14e243c1\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\gpt-4o\e20466be-be70-4ea9-9045-225f14e243c1\server.key
+    insecure: true
+handshake:
+  type: noise
+  noise:
+    pattern: NNpsk2
+    cipher_suite: 25519:ChaChaPoly:BLAKE2s
+    local_key: generate
+    psk: 7d2ea0d8e8cd6f87598cc585611e983e7c9c7e1d7c0f512ac2aed3414b7a1cc2
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: random
+  random_min: 40
+  random_max: 1400
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.cloudflare.com

@@ -1,0 +1,103 @@
+{
+  "run_id": "ccf893cf-6705-4427-b7cb-bf5dd6eb0ada",
+  "timestamp": "2026-06-03T18:40:44.838540+00:00",
+  "elapsed_s": 6.24,
+  "model": "gemini-2.5-flash",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 2724,
+    "completion": 1,
+    "total": 2725
+  },
+  "variant": {
+    "index": 0,
+    "domain": "www.google.com",
+    "port": 9443,
+    "handshake_hint": "Use tls-token for maximum active-probe resistance (M8).",
+    "padding_hint": "Use mimicry/chrome-browsing to pass M4/M6."
+  },
+  "generation_result": {
+    "reasoning": "This configuration uses TLS 1.3 transport with a Chrome 120 fingerprint and SNI to resemble legitimate web traffic, crucial for evading DPI and IDS. The handshake employs a TLS token within the session_ticket field, an established TLS extension, which helps to blend secondary authentication data invisibly into the TLS flow, addressing the handshake strategy hint and bolstering M8 resistance. Padding is set to mimicry with a chrome-browsing profile to closely emulate real browser traffic patterns, directly targeting M4, M5, and M6 by avoiding uniform packet sizes. Finally, a reverse proxy fallback to www.google.com ensures M8 active probes receive a valid HTTPS response, making the tunnel indistinguishable from a standard web server.",
+    "config": {
+      "protocol": "tls-token-chrome-mimicry-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.google.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.google.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "M1: PASS (TLS 1.3 with browser fingerprint and valid SNI should classify as HTTPS)"
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "M2: PASS (Chrome 120 fingerprint, ALPN, and valid SNI www.google.com target Suricata's expectations)"
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "M3: PASS (Chrome 120 fingerprint generates a known browser JA3, avoiding raw-encrypted detection)"
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "M4: PASS (Mimicry padding with chrome-browsing profile explicitly addresses flow feature distribution to keep vpn_prob low)"
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "M6: PASS (Mimicry padding prevents fixed-size packets, keeping KL divergence low)"
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "M8: PASS (Enabled fallback to a real HTTPS target, www.google.com, ensures active probes receive legitimate responses)"
+      }
+    },
+    "known_weaknesses": []
+  }
+}

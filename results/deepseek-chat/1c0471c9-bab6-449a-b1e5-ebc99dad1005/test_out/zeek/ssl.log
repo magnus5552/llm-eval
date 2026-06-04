@@ -1,0 +1,14 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	ssl
+#open	2026-06-03-18-47-14
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	version	cipher	curve	server_name	resumed	last_alert	next_protocol	established	ssl_history	cert_chain_fps	client_cert_chain_fps	sni_matches_cert	server_version	client_version	client_ciphers	ssl_client_exts	ssl_server_exts	ticket_lifetime_hint	dh_param_size	point_formats	client_curves	orig_alpn	client_supported_versions	server_supported_version	psk_key_exchange_modes	client_key_share_groups	server_key_share_group	client_comp_methods	sigalgs	hashalgs
+#types	time	string	addr	port	addr	port	string	string	string	string	bool	string	string	bool	string	vector[string]	vector[string]	bool	count	count	vector[count]	vector[count]	vector[count]	count	count	vector[count]	vector[count]	vector[string]	vector[count]	count	vector[count]	vector[count]	count	vector[count]	vector[count]	vector[count]
+1780512348.202191	CLvSsV3t6Rwx3oI7Gc	127.0.0.1	6947	127.0.0.1	19443	TLSv13	TLS_AES_128_GCM_SHA256	x25519	www.google.com	F	-	-	T	CsiI	-	-	-	771	771	31354,4865,4866,4867,49195,49199,49196,49200,52393,52392,49171,49172,156,157,47,53	51914,65037,45,65281,17513,43,13,10,51,5,35,18,23,27,11,0,16,56026	43,51	-	-	0	31354,29,23,24	h2,http/1.1	6682,772,771	772	1	31354,29	29	0	3,4,1,3,5,1,6,1	4,8,4,5,8,5,8,6
+1780512348.621128	CeBAu74CmhBVqactmb	127.0.0.1	6951	127.0.0.1	19443	TLSv13	TLS_AES_128_GCM_SHA256	x25519	www.google.com	F	-	-	T	CsiI	-	-	-	771	771	43690,4865,4866,4867,49195,49199,49196,49200,52393,52392,49171,49172,156,157,47,53	35466,10,16,43,0,51,27,23,35,65281,18,65037,11,13,17513,5,45,39578	43,51	-	-	0	39578,29,23,24	h2,http/1.1	2570,772,771	772	1	39578,29	29	0	3,4,1,3,5,1,6,1	4,8,4,5,8,5,8,6
+1780512349.161330	CAhd971sNag79iKPDh	127.0.0.1	6954	127.0.0.1	19443	TLSv13	TLS_AES_128_GCM_SHA256	x25519	www.google.com	F	-	-	T	CsiI	-	-	-	771	771	2570,4865,4866,4867,49195,49199,49196,49200,52393,52392,49171,49172,156,157,47,53	31354,16,27,65281,43,10,0,5,45,11,18,51,35,13,65037,17513,23,43690	43,51	-	-	0	23130,29,23,24	h2,http/1.1	35466,772,771	772	1	23130,29	29	0	3,4,1,3,5,1,6,1	4,8,4,5,8,5,8,6
+1780512354.497705	CWeaCm2TAQYg2guRU9	127.0.0.1	6960	127.0.0.1	19443	TLSv13	TLS_AES_128_GCM_SHA256	x25519	www.google.com	F	-	-	T	CsiI	-	-	-	771	771	14906,4865,4866,4867,49195,49199,49196,49200,52393,52392,49171,49172,156,157,47,53	39578,43,51,0,10,45,65037,16,18,11,35,23,13,65281,27,5,17513,51914	43,51	-	-	0	6682,29,23,24	h2,http/1.1	51914,772,771	772	1	6682,29	29	0	3,4,1,3,5,1,6,1	4,8,4,5,8,5,8,6
+1780512356.849777	CiUSOr304rVaPB4ba1	127.0.0.1	6962	127.0.0.1	19443	TLSv13	TLS_AES_128_GCM_SHA256	x25519	127.0.0.1	F	-	-	F	Cji	-	-	-	771	771	4865,4866	0,43,10	43,51	-	-	-	29	-	772,771	772	-	-	29	0	-	-
+#close	2026-06-03-18-47-14

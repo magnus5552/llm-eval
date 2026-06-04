@@ -1,0 +1,35 @@
+protocol: novel-tls-v1
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19445
+  tls:
+    version: '1.3'
+    fingerprint: safari-17
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.microsoft.com
+    cert_file: D:\programs\диплом\llm-eval\results\gpt-4o-mini\f2803634-094a-44f9-b151-fdbb5cfc7693\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\gpt-4o-mini\f2803634-094a-44f9-b151-fdbb5cfc7693\server.key
+    insecure: true
+handshake:
+  type: tls-token
+  tls_token:
+    field: session_ticket
+    kdf: hkdf-sha256
+    psk: f5af7479aeb2d37ed46dd90295ea92762e0948223365fe0b8f3f3a7bf12671fc
+    length: 48
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: mimicry
+  profile: video-streaming
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.microsoft.com

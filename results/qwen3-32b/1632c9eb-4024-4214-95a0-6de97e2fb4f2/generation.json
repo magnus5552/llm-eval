@@ -1,0 +1,108 @@
+{
+  "run_id": "1632c9eb-4024-4214-95a0-6de97e2fb4f2",
+  "timestamp": "2026-06-03T18:48:38.345460+00:00",
+  "elapsed_s": 37.07,
+  "model": "qwen3-32b",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 5165,
+    "completion": 1,
+    "total": 5166
+  },
+  "variant": {
+    "index": 2,
+    "domain": "www.microsoft.com",
+    "port": 8443,
+    "handshake_hint": "Combine tls-token with a browser fingerprint from a less common browser (safari-17).",
+    "padding_hint": "Use mimicry/video-streaming to simulate different traffic profile."
+  },
+  "generation_result": {
+    "reasoning": "To generate a configuration that evades detection metrics M1–M8, I selected the following components:\n\n1. **Transport**: TLS protocol with port 8443 and SNI set to `www.microsoft.com` aligns with constraint R3. Using TLS is essential to pass M1 and avoid raw-udp/tcp which are easily detectable. I set the fingerprint to `safari-17` per the task's hint, ensuring it mimics a real client to avoid detection by M3.\n\n2. **Handshake**: I chose `tls-token` as the handshake strategy, as it's compatible with TLS and can be automated easily by injecting the PSK during evaluation. This strategy is in line with R6, and the `hkdf-sha256` is selected for KDF for security and compatibility.\n\n3. **Padding**: For padding, I selected `mimicry` with `video-streaming` to simulate traffic similar to actual video streaming sessions and improve chances of evading M6. Random padding can disrupt packet-length modeling but `mimicry` provides a more effective obfuscation while still being realistic for evading the KL length divergence metric.\n\n4. **Timing**: I used `none` as timing mode because introducing artificial delays or batching could raise the KL divergence for inter-arrival times (M7), which we want to avoid unless necessary for other evasion strategies.\n\n5. **Fallback**: To pass M8, I enabled fallback with a real HTTPS server `https://www.microsoft.com` that corresponds to the SNI used, ensuring any active probes will not reveal a lack of HTTPS service.\n\n6. **Crypto**: I chose `chacha20-poly1305` for AEAD and `hkdf-sha256` for KDF for their performance and resistance to known attacks, which supports obfuscation and strong encryption where needed for a robust, undetectable stream.",
+    "config": {
+      "protocol": "llm-gen-v3",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 8443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.microsoft.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "video-streaming"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.microsoft.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "TLS with a `safari-17` fingerprint is indistinguishable enough from HTTPS to evade ndpI detection, which will classify it as a web protocol, not a tunnelling protocol."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "The presence of a valid SNI with a browser fingerprint (safari-17) helps avoid triggering Suricata rules related to tunnelling. The TLS handshake is standard and uses a real host domain in the SNI, reducing detection signals."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Using a fingerprint mimicking Safari 17 ensures the JA3 hash matches known client patterns, and encryption is properly obfuscated to avoid detection by payload entropy analysis."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "The padding using `mimicry/video-streaming` strategy makes packet size distributions similar to HTTPS and minimises uniformity which helps reduce the ML-detectedvpn probabilities."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "The use of a mimicry packet profile for video-streaming helps achieve a packet length distribution similar to HTTPS, reducing KL divergence and making it harder to distinguish from normal traffic."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Fallback to a real HTTPS server ensures that active TCP probes yield expected HTTPS behavior, preventing any distinction from standard HTTPS traffic."
+      }
+    },
+    "known_weaknesses": [
+      "The `safari-17` fingerprint is less common compared to other fingerprints, which could introduce subtle discrepancies in some detection systems.",
+      "The use of a TLS-token with session tickets might be distinguishable under deep timing analysis in some scenarios. However, given the fallback and mimicry strategies used, this is not the primary concern for automated detection.",
+      "In the presence of advanced anomaly detection techniques, the `video-streaming` mimicry might be considered atypical for certain client behavior in some environments.",
+      "The configuration is designed for automated testing only and does not include user interaction-based obfuscation techniques that could enhance real-world stealth."
+    ]
+  }
+}

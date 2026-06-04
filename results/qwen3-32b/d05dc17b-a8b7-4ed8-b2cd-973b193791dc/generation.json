@@ -1,0 +1,106 @@
+{
+  "run_id": "d05dc17b-a8b7-4ed8-b2cd-973b193791dc",
+  "timestamp": "2026-06-03T18:50:45.271557+00:00",
+  "elapsed_s": 28.92,
+  "model": "qwen3-32b",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 5161,
+    "completion": 1,
+    "total": 5162
+  },
+  "variant": {
+    "index": 0,
+    "domain": "www.google.com",
+    "port": 9443,
+    "handshake_hint": "Use tls-token for maximum active-probe resistance (M8).",
+    "padding_hint": "Use mimicry/chrome-browsing to pass M4/M6."
+  },
+  "generation_result": {
+    "reasoning": "Step 1: Transport. I set the transport type to 'tls' as per R1. Port was set to 9443 as required, but it's a non-standard HTTPS port which may raise suspicion for M2 and M6. For the SNI, I used 'www.google.com' to maintain legitimacy and avoid triggering Suricata rules. The TLS fingerprint was chosen as 'chrome-120' which is a common fingerprint to pass both Suricata and Zeek's JA3 fingerprint detection.\n\nStep 2: Handshake. As per the instruction, I selected 'tls-token' handshake strategy to maximize the resistance to active probing (M8). For the TLS token, I used the default parameters but left the PSK empty for the evaluator to handle. The TLS-token handshake helps the protocol mimic standard TLS sessions, which is crucial for evading detection from nDPI and other DPI systems.\n\nStep 3: Padding. To evade the KL divergence detection on packet length, I used 'mimicry' with the 'chrome-browsing' profile. This should simulate typical browsing behavior and avoid uniform traffic pattern detection on metrics M4 and M6.\n\nStep 4: Fallback. I enabled the fallback to a real HTTPS target at 'https://www.google.com'. This ensures the protocol can mimic legitimate HTTPS traffic during active probing and avoid detection by M8.\n\nI've carefully considered the timing, and as per R7, I've set the timing mode to 'none' to avoid any artificial timing that could make detection easier.",
+    "config": {
+      "protocol": "tls-token-chrome-9443",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.google.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.google.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "TLS handshake with a common chrome-120 fingerprint on port 9443 should be misclassified as HTTPS by nDPI instead of a known VPN protocol."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Suricata has no specific pattern to detect this traffic, as it uses a valid TLS handshake with a real SNI and browser fingerprint."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Chrome-120 JA3 fingerprint plus chrome-browsing padding will not trigger any alert due to its realistic behavior."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "The traffic mimics legitimate TLS traffic patterns with mimicry padding, making it suitable to pass the ML classifier."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "The mimicry mode with 'chrome-browsing' profile should closely resemble the pattern of real traffic, minimizing the KL divergence in packet lengths."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "The fallback mechanism to a legitimate Google HTTPS server ensures the protocol can resist active probing by returning genuine traffic."
+      }
+    },
+    "known_weaknesses": [
+      "The use of a non-standard port 9443 may slightly raise suspicion. Some DPI systems might flag non-standard ports for further inspection.",
+      "TLS-token handshake is relatively uncommon outside enterprise environments. If the network has rules against non-browser traffic patterns, this could be detected."
+    ]
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "run_id": "f76007ca-64b2-4ae5-934c-7a5fb39bd88a",
+  "timestamp": "2026-06-03T18:42:12.558870+00:00",
+  "elapsed_s": 8.06,
+  "model": "gemini-2.5-flash",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 2729,
+    "completion": 1,
+    "total": 2730
+  },
+  "variant": {
+    "index": 1,
+    "domain": "www.cloudflare.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk2 for forward secrecy without pre-shared static keys.",
+    "padding_hint": "Use random padding with wide range [40, 1400] to pass M6."
+  },
+  "generation_result": {
+    "reasoning": "Transport: Utilizes TLS 1.3 with a Chrome JA3 fingerprint to blend in with standard web traffic and evade M1, M2, and M3. The SNI is set to \"www.cloudflare.com\" to avoid Suricata alerts and provide a credible fallback target. Handshake: Employs the Noise NNpsk2 pattern for forward secrecy, as specified, without requiring pre-provisioned static keys. This provides a secure and robust handshake while satisfying R6. This choice means the initial handshake will look like a Noise exchange within the TLS tunnel, requiring careful padding to make it blend in. Padding: Random padding with a wide range (40-1400 bytes) is used to prevent detection by M4, M5, and M6. This avoids the pitfalls of fixed-size padding (which causes M6 FAIL) and aims to mimic the variable packet sizes seen in real browser traffic more effectively than merely fixed padding. Timing: Set to \"none\" as per R7, to avoid introducing artificial regularities that could be detected by M7. Fallback: Enabled and configured as a reverse proxy to \"https://www.cloudflare.com\" to pass M8, ensuring that active probes receive a legitimate HTTPS response.",
+    "config": {
+      "protocol": "noise-obfuscated-tunnel-v2",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.cloudflare.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk2",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 40,
+        "random_max": 1400,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.cloudflare.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "M1: PASS (TLS on 443, browser fingerprint)"
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "M2: PASS (TLS 1.3, Chrome fingerprint, SNI present, standard port)"
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "M3: PASS (Chrome JA3 fingerprint, TLS encapsulation)"
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "M4: PASS (Random padding should diversify packet sizes and reduce detectability)"
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "M6: PASS (Random padding with wide range, not fixed size)"
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "M8: PASS (Fallback to legitimate HTTPS target enabled)"
+      }
+    },
+    "known_weaknesses": [
+      "Noise protocol handshake patterns could be detectable using advanced ML heuristics that go beyond basic flow features, especially if the initial packet sizes are highly uniform. The use of random padding mitigates this to some extent.",
+      "While the JA3 fingerprint will match Chrome, side-channel attacks on traffic patterns (e.g., specific timing of handshake packets or subsequent data flow) could potentially distinguish this from genuine browser traffic if not sufficiently randomized."
+    ]
+  }
+}

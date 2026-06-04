@@ -1,0 +1,224 @@
+{
+  "verdict": "FAIL",
+  "failed_checks": [
+    "M6_kl_len",
+    "M7_kl_iat"
+  ],
+  "skipped_checks": [],
+  "checks": {
+    "M1_ndpi": {
+      "result": "PASS",
+      "detail": {
+        "classified_as": "SOCKS",
+        "confidence": null,
+        "is_known_vpn": false
+      }
+    },
+    "M2_suricata": {
+      "result": "PASS",
+      "detail": {
+        "alert_count": 0,
+        "categories": []
+      }
+    },
+    "M3_ja3": {
+      "result": "PASS",
+      "detail": {
+        "ja3_is_browser": false,
+        "browser_matches": [],
+        "unique_ja3_count": 0,
+        "high_entropy_streams": 0,
+        "payload_byte_entropy": 7.723
+      }
+    },
+    "M4_vpn_prob": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob": 0.095
+      }
+    },
+    "M5_vpn_prob_seq": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob_seq": 0.4143
+      }
+    },
+    "M6_kl_len": {
+      "result": "FAIL",
+      "detail": {
+        "kl_len": 0.3779
+      }
+    },
+    "M7_kl_iat": {
+      "result": "FAIL",
+      "detail": {
+        "kl_iat": 0.523
+      }
+    },
+    "M8_probe": {
+      "result": "PASS",
+      "detail": {
+        "distinguishable_ratio": 0.667,
+        "flags": 2
+      }
+    }
+  },
+  "config": {
+    "dsl_config": "D:\\programs\\\u0434\u0438\u043f\u043b\u043e\u043c\\llm-eval\\results\\qwen3-32b\\5d40c717-aac4-46cf-a8ef-aac6a53d5cd3\\config.yaml",
+    "scenario": "web",
+    "duration_s": 30
+  },
+  "raw": {
+    "pcap_path": "D:\\programs\\\u0434\u0438\u043f\u043b\u043e\u043c\\llm-eval\\results\\qwen3-32b\\5d40c717-aac4-46cf-a8ef-aac6a53d5cd3\\test_out\\capture.pcap",
+    "m1_ndpi": {
+      "classified_as": "SOCKS",
+      "is_known_vpn": false,
+      "is_acceptable": true,
+      "flow_count": 121,
+      "known_flow_count": 121,
+      "protocol_distribution": {
+        "LLMNR": 8,
+        "MDNS": 4,
+        "SOCKS": 53,
+        "TLS.Google": 53,
+        "TLS": 1,
+        "HTTP": 1,
+        "NetBIOS": 1
+      },
+      "ja3_hashes": [
+        "11ab5369abea14e8c9cb2ecd659e7972",
+        "12617f0428baee5ba423b5bdf7418113",
+        "1b4cea3b3e6adabc661db8355b56885d",
+        "2a725fac16e44808f03fb7abde9bd19c",
+        "2a9466cb109ac551456b8dc2d54dfa63",
+        "32bb4fe1b1cbdb967476fcc9b537a987",
+        "3e8e6ddc9f7d834ae2eee0b01ea68c42",
+        "477ffb2600ce347943f24b9594afb87d",
+        "48d9a5aabe8704d7a367c402c2eeaa28",
+        "4c0a300e8308643ffa3c38ff3afe0391",
+        "4e60fee29f4b8bf9603bbc83339d6706",
+        "51cceea46dca743407e0037647fdfbef",
+        "53a541d059421128df4ba67d1d43b6f0",
+        "5b2aad41ef4c6b102dc526eeaa8040a1",
+        "5f13d955c47ef90106d02ba767b768c4",
+        "637734f9fc2536a7e65e5ada7aef6ea2",
+        "638ac5939f31ec480e3b592eebefe16f",
+        "66587c6fbec75434829093f58b2ec284",
+        "6857517e9a91475939314cf9615d1126",
+        "687791494f56bafe48629669a84a076e",
+        "69166d94dfa03c3908f99410c76e8f6a",
+        "6b73d819eabd8ad75cab45e46bc069a9",
+        "6fe06b13038fb17825ba2a948ca22b52",
+        "7c2de2f1fcbe1c0cc17ca727a3b5acbf",
+        "853c3eb959e071af0fb29294ae7e1eee",
+        "85d21f34ac5804be8a7bc6d465d4f474",
+        "85ed52f3794b8c52fd176998df779894",
+        "8ccf660770dfc109bd5f2a08c1f031bd",
+        "9abf8ab06a2b437d060db60c79e4295f",
+        "9b9dca3d6df35dce434af67324b81e50",
+        "9bcca3ecc885dec618ea0878f57943c9",
+        "9c48d8f1c6b8dd2d3a8a05f3ba8bbcf6",
+        "9d90c2dc53a66bf70e19ed4f03155858",
+        "a4b23595b81bbe7913b02a146716afee",
+        "a72236263b6bd1f855c0ac680600172f",
+        "b1fa07e1ffbb1cf5ff17f143175274f9",
+        "b249585b2f6e6ad89fa5cd0f1457d6ee",
+        "b628c70469dfc4a2f5bb0398f35da0aa",
+        "bbafc545a0e76622b3e94ccedadbb038",
+        "c2244d7e1f7e3d95e2049aa769f3aaf0",
+        "c36487a186a3815cca7e6997088b9efa",
+        "c7bd35481801565733aa5869b8d20883",
+        "c80e12ed828e79992a6b5972503b50f0",
+        "c89a53b7fd95717987c42bbf4fa719ff",
+        "c96354e2050f64ae5d2d0915e23a3995",
+        "cbea71c8986d4066d7b6eb0dc395001e",
+        "cd457e3413dcde28769f1cdd586bf2e7",
+        "d8e525a2e885f88d12ca8e207ff84a88",
+        "da10ac4da9c0536a0458c34599c781d9",
+        "db75f761ae983a6ad1857108e3c541b2",
+        "e48562939c2a291591dde1639ff9367e",
+        "eda9750972f1ec4b8a5af4289b5de6c5",
+        "f873286fae173d24abed5d750c594c4c",
+        "fe2f7196b5fabb04dd8cd61c890de13c"
+      ],
+      "ja4_hashes": [
+        "f4febc55ea12b31ae17cfb7e614afda8"
+      ],
+      "sni_set": [
+        "127.0.0.1",
+        "desktop-rhkm7oi",
+        "desktop-rhkm7oi.local",
+        "www.google.com"
+      ],
+      "tls_versions": [
+        "TLSv1.3"
+      ]
+    },
+    "m2_suricata": {
+      "alert_count": 0,
+      "alerts": [],
+      "flow_count": 126,
+      "tls_count": 54,
+      "tls_versions": [
+        "TLS 1.3"
+      ],
+      "tls_sni": [
+        "127.0.0.1",
+        "www.google.com"
+      ],
+      "categories": []
+    },
+    "m3_zeek": {
+      "ja3_hashes": [],
+      "ja3s_hashes": [],
+      "snis": [
+        "127.0.0.1",
+        "www.google.com"
+      ],
+      "cipher_suites": [
+        "TLS_AES_128_GCM_SHA256"
+      ],
+      "tls_versions": [
+        "TLSv13"
+      ],
+      "browser_matches": [],
+      "ja3_is_browser": false,
+      "unique_ja3_count": 0,
+      "conn_count": 126,
+      "unknown_service_conns": 0,
+      "payload_byte_entropy": 7.723,
+      "high_entropy_streams": 0,
+      "entropy_sample_size": 146744
+    },
+    "m4_m7_flow": {
+      "vpn_prob": 0.095,
+      "vpn_prob_seq": 0.4143,
+      "kl_len": 0.3779,
+      "kl_iat": 0.523,
+      "total_packets": 2621,
+      "total_flows": 120,
+      "total_bytes": 425171,
+      "duration_s": 37.65,
+      "pkt_len_mean": 260.2,
+      "pkt_len_std": 412.1,
+      "iat_mean_ms": 14.37,
+      "small_pkt_pct": 57.0,
+      "large_pkt_pct": 7.9,
+      "model_used": "heuristic"
+    },
+    "m8_probe": {
+      "distinguishable_ratio": 0.667,
+      "distinguishable_flags": 2,
+      "check_random_bytes_responded": true,
+      "check_http_looks_http": false,
+      "check_server_speaks_first": false,
+      "ttfb_mean_ms": 36.7,
+      "ttfb_values_ms": [
+        63.0,
+        0.0,
+        47.0
+      ],
+      "probe_count": 5
+    }
+  }
+}

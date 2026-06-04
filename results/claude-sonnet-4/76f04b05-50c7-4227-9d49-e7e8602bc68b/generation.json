@@ -1,0 +1,109 @@
+{
+  "run_id": "76f04b05-50c7-4227-9d49-e7e8602bc68b",
+  "timestamp": "2026-06-03T18:36:36.157929+00:00",
+  "elapsed_s": 18.6,
+  "model": "claude-sonnet-4",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 6043,
+    "completion": 1,
+    "total": 6044
+  },
+  "variant": {
+    "index": 0,
+    "domain": "www.google.com",
+    "port": 9443,
+    "handshake_hint": "Use tls-token for maximum active-probe resistance (M8).",
+    "padding_hint": "Use mimicry/chrome-browsing to pass M4/M6."
+  },
+  "generation_result": {
+    "reasoning": "**Transport Design**: I selected TLS 1.3 over port 9443 with Chrome 120 fingerprint to satisfy R1 and R2. Chrome 120 produces authentic browser JA3 signatures that will pass M3 Zeek analysis. The SNI is set to \"www.google.com\" as required by R3 to avoid triggering Suricata rule 9000002. ALPN includes both HTTP/2 and HTTP/1.1 to mirror real Chrome behavior.\n\n**Handshake Strategy**: I chose tls-token with session_ticket field as suggested in the constraints. This provides strong active-probe resistance for M8 by hiding the authentication token within standard TLS session ticket extensions. The PSK field is left empty for automated key injection. A 48-byte length strikes a balance between security and avoiding unusual ticket sizes that might trigger detection.\n\n**Padding Configuration**: Mimicry mode with chrome-browsing profile is selected to pass M4/M6 as suggested. This will generate realistic packet size distributions that match actual Chrome HTTPS traffic patterns, avoiding the uniform packet sizes that would cause instant M6 failure. The chrome-browsing profile includes appropriate variance for web browsing behavior.\n\n**Timing and Fallback**: No artificial timing manipulation (mode: none) prevents M7 KL-IAT degradation that often comes with batching or delay injection. The fallback is configured to reverse-proxy to the same domain as our SNI (www.google.com) to provide seamless active probe resistance for M8 while maintaining domain consistency.",
+    "config": {
+      "protocol": "tls-token-chrome-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.google.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.google.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "TLS 1.3 with authentic Chrome fingerprint and standard HTTPS patterns should classify as TLS/HTTPS, not VPN protocols."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Non-empty SNI (www.google.com), standard port, Chrome fingerprint, and proper TLS structure should avoid triggering ET Open rules."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Chrome-120 fingerprint produces legitimate browser JA3 signature. TLS-token handshake hides tunnel data within standard TLS flows, avoiding raw entropy detection."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Mimicry padding with chrome-browsing profile should produce realistic packet size variance and avoid uniform patterns that ML classifiers flag as VPN traffic."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Chrome-browsing mimicry profile generates packet length distributions matching real HTTPS traffic, keeping KL divergence well below 0.30 threshold."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Fallback reverse-proxy to www.google.com provides authentic HTTPS responses to active probes, making the service indistinguishable from a real web server."
+      }
+    },
+    "known_weaknesses": [
+      "TLS session ticket extensions might be analyzed for unusual patterns if sophisticated DPI examines ticket structure",
+      "Chrome fingerprint detection relies on static JA3 signatures - future Chrome updates could invalidate fingerprint authenticity",
+      "Mimicry padding profile assumes chrome-browsing dataset remains representative of current Chrome behavior",
+      "Server certificate and domain mismatch could be detected if probes validate certificate chain against SNI",
+      "High-volume usage patterns might still be detectable through connection frequency analysis despite per-connection stealth"
+    ]
+  }
+}

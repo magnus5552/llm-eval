@@ -1,0 +1,36 @@
+protocol: noise-nk-v2
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19444
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.cloudflare.com
+    cert_file: D:\programs\диплом\llm-eval\results\claude-sonnet-4\0e00f908-48ca-4352-a10b-782940ad5205\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\claude-sonnet-4\0e00f908-48ca-4352-a10b-782940ad5205\server.key
+    insecure: true
+handshake:
+  type: noise
+  noise:
+    pattern: NNpsk2
+    cipher_suite: 25519:ChaChaPoly:BLAKE2s
+    local_key: generate
+    psk: 818928941846a6f55062a3a9bc5354d66a6604fd9c5a32b91e9aac4672b0e641
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: random
+  random_min: 40
+  random_max: 1400
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.cloudflare.com

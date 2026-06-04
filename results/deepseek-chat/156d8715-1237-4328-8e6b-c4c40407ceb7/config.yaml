@@ -1,0 +1,35 @@
+protocol: safari-tls-token-v1
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19445
+  tls:
+    version: '1.3'
+    fingerprint: safari-17
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.microsoft.com
+    cert_file: D:\programs\диплом\llm-eval\results\deepseek-chat\156d8715-1237-4328-8e6b-c4c40407ceb7\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\deepseek-chat\156d8715-1237-4328-8e6b-c4c40407ceb7\server.key
+    insecure: true
+handshake:
+  type: tls-token
+  tls_token:
+    field: session_ticket
+    kdf: hkdf-sha256
+    psk: 427f71b38db49ca38b3941a583e38c57a65de4d8f21045c0b8d326c7de584ee8
+    length: 48
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: mimicry
+  profile: video-streaming
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.microsoft.com

@@ -138,40 +138,58 @@ def _prepare_config(config_yaml: str, work_dir: Path, port: int) -> Path:
     return config_path
 
 
+def _is_valid_pem(path: Path) -> bool:
+    try:
+        return b"-----BEGIN" in path.read_bytes()
+    except Exception:
+        return False
+
+
 def _ensure_cert(work_dir: Path, cn: str) -> tuple[Path, Path]:
-    """Generate a self-signed TLS cert if not already present."""
+    """
+    Generate a self-signed TLS cert/key in work_dir using the `cryptography`
+    library (pure Python — no openssl subprocess, no system openssl.cnf conflicts).
+    Re-generates if the files are missing or not valid PEM.
+    """
     cert_p = work_dir / "server.crt"
     key_p  = work_dir / "server.key"
 
-    if cert_p.exists() and key_p.exists():
+    if _is_valid_pem(cert_p) and _is_valid_pem(key_p):
         return cert_p, key_p
 
-    # Sanitise CN
-    safe_cn = "".join(c for c in cn if c.isalnum() or c in ".-_")[:64] or "localhost"
+    import datetime
+    from cryptography import x509
+    from cryptography.hazmat.primitives import hashes, serialization
+    from cryptography.hazmat.primitives.asymmetric import rsa
+    from cryptography.x509.oid import NameOID
 
-    try:
-        subprocess.run(
-            [
-                "openssl", "req", "-x509",
-                "-newkey", "rsa:2048",
-                "-keyout", str(key_p),
-                "-out",    str(cert_p),
-                "-days",   "1",
-                "-nodes",
-                "-subj",   f"/CN={safe_cn}",
-            ],
-            capture_output=True,
-            check=True,
-            timeout=30,
+    safe_cn = cn[:64] or "localhost"
+
+    key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
+
+    now = datetime.datetime.now(datetime.timezone.utc)
+    builder = (
+        x509.CertificateBuilder()
+        .subject_name(x509.Name([x509.NameAttribute(NameOID.COMMON_NAME, safe_cn)]))
+        .issuer_name(x509.Name([x509.NameAttribute(NameOID.COMMON_NAME, safe_cn)]))
+        .public_key(key.public_key())
+        .serial_number(x509.random_serial_number())
+        .not_valid_before(now)
+        .not_valid_after(now + datetime.timedelta(days=1))
+        .add_extension(
+            x509.SubjectAlternativeName([x509.DNSName(safe_cn)]),
+            critical=False,
         )
-        log.debug("Generated cert for CN=%s → %s", safe_cn, cert_p)
-    except FileNotFoundError:
-        # openssl not in PATH — write placeholder files so tunnel-testing can at
-        # least try (it may fail, but we'll get a meaningful error from the report)
-        log.warning("openssl not found; writing placeholder cert files")
-        cert_p.write_text("# placeholder\n")
-        key_p.write_text("# placeholder\n")
+    )
+    cert = builder.sign(key, hashes.SHA256())
 
+    cert_p.write_bytes(cert.public_bytes(serialization.Encoding.PEM))
+    key_p.write_bytes(key.private_bytes(
+        serialization.Encoding.PEM,
+        serialization.PrivateFormat.TraditionalOpenSSL,
+        serialization.NoEncryption(),
+    ))
+    log.debug("Generated cert CN=%s → %s", safe_cn, cert_p)
     return cert_p, key_p
 
 

@@ -1,0 +1,106 @@
+{
+  "run_id": "93df0102-4472-48e5-b32c-566e8bc2c9cf",
+  "timestamp": "2026-06-03T18:28:25.025905+00:00",
+  "elapsed_s": 7.35,
+  "model": "gpt-4o",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 3471,
+    "completion": 1,
+    "total": 3472
+  },
+  "variant": {
+    "index": 2,
+    "domain": "www.microsoft.com",
+    "port": 8443,
+    "handshake_hint": "Combine tls-token with a browser fingerprint from a less common browser (safari-17).",
+    "padding_hint": "Use mimicry/video-streaming to simulate different traffic profile."
+  },
+  "generation_result": {
+    "reasoning": "### Transport:\nFollowing R1, I selected `transport.type: tls` as anything else would be quickly detectable by deep-packet inspection. For the fingerprint (R2), I chose `safari-17` as an uncommon browser fingerprint, which helps in evading M3 metrics where typical protocol patterns are identifiable. The SNI domain is set to `www.microsoft.com` as per the run constraints to ensure M2 is passed, and port 8443 is selected to resemble typical HTTPS traffic.\n\n### Handshake:\nI chose `handshake.type: tls-token` mixing it with `safari-17` (R6). This helps integrate the PSK mechanism within a TLS structure, making the tunnel harder to distinguish from legitimate traffic patterns—a critical measure for passing M1, M4, and M5 by mimicking typical TLS negotiation.\n\n### Padding:\nI opted for `padding.mode: mimicry` with the `video-streaming` profile, which can closely resemble large, variable-sized packet flows common in streaming services (R5). This decision directly targets M4 and M6 to ensure the flow pattern appears less conspicuous compared to uniform or random padding strategies.\n\n### Fallback:\nConsistent with R4, fallback is enabled with `mode: reverse-proxy` redirecting to `https://www.microsoft.com` . This ensures any active probe results in a legitimate HTTPS response, passing M8.\n\n### Timing:\nSelected `timing.mode: none` (R7), as adding artificial timing adjustments might increase the KL divergence for inter-arrival times and worsen metrics like M7 unnecessarily.",
+    "config": {
+      "protocol": "safari-token-v3",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 8443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.microsoft.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "video-streaming"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.microsoft.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "TLS with valid SNI, indistinguishable JA3 fingerprint from browser HTTPS traffic."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Correctly configured SNI with safari browser fingerprint evades Suricata rules."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Safari JA3 fingerprint used, aligned with real browser traffic profile."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Padding mimicry simulates video-streaming traffic pattern, reducing distinguishable flow characteristics."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Mimicry padding avoids uniform packet sizes, aligning with natural HTTPS traffic."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Active probing responded by real HTTPS server, aligns with legitimate traffic expectations."
+      }
+    },
+    "known_weaknesses": [
+      "Fingerprint choice: Safari is less common, might produce detectable deviations from mainstream fingerprints.",
+      "Video-streaming profile could trigger different patterns expected in typical HTTPS browsing under some analysis metrics."
+    ]
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "run_id": "67469cbd-fa0d-4087-b194-8d6049dd0d65",
+  "timestamp": "2026-06-03T18:17:10.047877+00:00",
+  "elapsed_s": 16.06,
+  "model": "gpt-4o-mini",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 3481,
+    "completion": 1,
+    "total": 3482
+  },
+  "variant": {
+    "index": 3,
+    "domain": "www.github.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk0 — PSK at first message, extra entropy from the start.",
+    "padding_hint": "Use random padding [64, 1200] — avoid near-MTU sizes to reduce M5 score."
+  },
+  "generation_result": {
+    "reasoning": "In the transport section, I selected `tls` as the protocol type to meet R1 requirements and ensure evasion from common traffic analysis. The `tls.sni` is set to `www.github.com`, fulfilling R3 as the preferred camouflage domain. For `tls.fingerprint`, I opted for `chrome-120` to maintain compatibility with M3 challenges that analyze JA3 fingerprints. \n\nIn the handshake section, I used `noise` with `pattern: NNpsk0` to introduce PSK at the outset, which aligns with the specified handshake strategy while also complying with R6. The `local_key` is defined as 'generate', allowing the evaluator to inject key material dynamically as required.\n\nThe padding mode is defined as `random` with a min of 64 and a max of 1200 bytes, which addresses R5 by avoiding fixed sizes. This variation helps reduce predictability of packet sizes, benefiting M5 and M6. No fixed padding sizes will prevent instant penalties in those metrics.\n\nThe fallback section is enabled and directs requests to a valid HTTPS target, which is crucial for M8 compliance. The timing mode is set to `none`, ensuring natural packet transmission without irregular delays that could trigger unwanted detection flags.",
+    "config": {
+      "protocol": "custom-tls-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.github.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk0",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": []
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 64,
+        "random_max": 1200,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.github.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m2_suricata": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m3_zeek": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m4_ml": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m6_kl_len": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m8_probe": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      }
+    },
+    "known_weaknesses": []
+  }
+}

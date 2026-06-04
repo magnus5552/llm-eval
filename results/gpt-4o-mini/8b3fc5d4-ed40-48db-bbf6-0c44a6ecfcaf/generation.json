@@ -1,0 +1,107 @@
+{
+  "run_id": "8b3fc5d4-ed40-48db-bbf6-0c44a6ecfcaf",
+  "timestamp": "2026-06-03T18:10:29.949491+00:00",
+  "elapsed_s": 12.14,
+  "model": "gpt-4o-mini",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 3474,
+    "completion": 1,
+    "total": 3475
+  },
+  "variant": {
+    "index": 1,
+    "domain": "www.cloudflare.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk2 for forward secrecy without pre-shared static keys.",
+    "padding_hint": "Use random padding with wide range [40, 1400] to pass M6."
+  },
+  "generation_result": {
+    "reasoning": "For the transport layer, I chose `tls` on port `443` with the SNI set to `www.cloudflare.com`, fulfilling the constraint for a preferred camouflage domain and standard port usage. I selected the `chrome-120` fingerprint, which is important for evading detection as it mimics normal browser traffic patterns required for M3. The handshake type is set to `noise` with the `NNpsk2` pattern for forward secrecy, thus avoiding static keys while ensuring secure communication. I used the `local_key` parameter set to `generate` to allow the evaluator to provide dynamic key material as needed.\n\nFor padding, I opted for `random` with a range of `[40, 1400]`, allowing for varied packet sizes that help avoid detection by M6. This choice guards against predictability in packet sizes while still maintaining a functional communication capability. Since specific hypotheses about timing manipulation have not been established, I used `timing.mode: none` to avoid any artificial delays that could negatively impact detection metrics, particularly M7. Finally, I ensured that the fallback mechanism is enabled with a target of `https://www.cloudflare.com`, which aligns with our SNI and fulfills the requirement for active probing (M8).",
+    "config": {
+      "protocol": "tls-noise-v2",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.cloudflare.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk2",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 40,
+        "random_max": 1400,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.cloudflare.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "The configuration uses TLS with a recognized SNI and a browser-like fingerprint, making it indistinguishable from HTTPS traffic."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "The SNI is provided and the configuration matches browser behaviors; thus, it should not trigger any alerts from Suricata."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "The use of a well-known fingerprint and the random padding should contribute to a valid JA3 hash that mimics actual browser behavior."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "The parameters chosen lead to non-uniform packet sizes, contributing to a lower likelihood of being classified as VPN."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Random padding with the specified range ensures variability in packet sizes, aiding in evading KL divergence metrics."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "The fallback ensures that any active probing will receive a valid HTTPS response, minimizing detection risk."
+      }
+    },
+    "known_weaknesses": [
+      "Potential issues may arise if the randomness of packet timing patterns is observed closely, but with no artificial timing mechanisms employed, this risk is mitigated. Additionally, relying on the browser fingerprinting may draw attention if targeted specifically, although using `chrome-120` is a common pattern that helps blend in."
+    ]
+  }
+}

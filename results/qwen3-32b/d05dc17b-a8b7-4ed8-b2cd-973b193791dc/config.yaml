@@ -1,0 +1,35 @@
+protocol: tls-token-chrome-9443
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19443
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.google.com
+    cert_file: D:\programs\диплом\llm-eval\results\qwen3-32b\d05dc17b-a8b7-4ed8-b2cd-973b193791dc\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\qwen3-32b\d05dc17b-a8b7-4ed8-b2cd-973b193791dc\server.key
+    insecure: true
+handshake:
+  type: tls-token
+  tls_token:
+    field: session_ticket
+    kdf: hkdf-sha256
+    psk: 15da755f4832ecc440f6ce4c294cadbff14790afad50f9422378159c78b81a38
+    length: 48
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: mimicry
+  profile: chrome-browsing
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.google.com

@@ -1,3 +1,0 @@
-{
-  "error": "config_prepare: openssl exited 1: Error checking x509 extension section v3_ca\r\nE8490000:error:11000078:X509 V3 routines:v2i_AUTHORITY_KEYID:unknown option:../openssl-3.5.6/crypto/x509/v3_akid.c:123:name=keyid option=nonss\r\nE8490000:er"
-}

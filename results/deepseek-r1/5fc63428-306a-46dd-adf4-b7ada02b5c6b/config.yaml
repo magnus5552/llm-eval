@@ -1,0 +1,35 @@
+protocol: llm-gen-v1
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19490
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.google.com
+    cert_file: D:\programs\диплом\llm-eval\results\deepseek-r1\5fc63428-306a-46dd-adf4-b7ada02b5c6b\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\deepseek-r1\5fc63428-306a-46dd-adf4-b7ada02b5c6b\server.key
+    insecure: true
+handshake:
+  type: tls-token
+  tls_token:
+    field: session_ticket
+    kdf: hkdf-sha256
+    psk: d2b41437365cdff34d84e3329b8c7d2bbb758f14961dfbf34afe8e31f501f7ea
+    length: 48
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: mimicry
+  profile: chrome-browsing
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.google.com

@@ -1,0 +1,108 @@
+{
+  "run_id": "847d73a7-1108-464d-a7c2-445c7902b064",
+  "timestamp": "2026-06-07T10:41:11.116904+00:00",
+  "elapsed_s": 28.18,
+  "model": "gemini-2.5-pro",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 2730,
+    "completion": 2588,
+    "total": 5318
+  },
+  "variant": {
+    "index": 1,
+    "domain": "www.cloudflare.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk2 for forward secrecy without pre-shared static keys.",
+    "padding_hint": "Use random padding with wide range [40, 1400] to pass M6."
+  },
+  "generation_result": {
+    "reasoning": "This configuration uses a Noise-based handshake inside a standard TLS 1.3 tunnel. \n*   **Transport**: The tunnel is wrapped in TLS 1.3 on port 443, using a real-world SNI for \"www.cloudflare.com\" and a Safari 17 TLS fingerprint. This is designed to be indistinguishable from normal, high-volume web traffic and pass basic DPI and IDS checks (M1, M2, M3).\n*   **Handshake**: The `NNpsk2` Noise pattern provides forward secrecy and authentication without requiring pre-shared static keys, making it ideal for the automated test environment. The handshake occurs after the TLS negotiation is complete, hiding it from casual observation.\n*   **Padding**: Wide-range random padding (40-1400 bytes) is a direct countermeasure against packet-size analysis (M6 KL divergence). By avoiding fixed-size packets, it also helps defeat ML-based classifiers that use packet size statistics as features (M4, M5).\n*   **Fallback**: The fallback to a live HTTPS target matching the SNI is critical for defeating active probes (M8). Any connection not completing the Noise handshake will be proxied to the real Cloudflare site, making the server appear as a standard web server.",
+    "config": {
+      "protocol": "noise-randompad-v2",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.cloudflare.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk2",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 40,
+        "random_max": 1400,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.cloudflare.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m2_suricata": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m3_zeek": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m4_ml": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m6_kl_len": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m8_probe": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      }
+    },
+    "known_weaknesses": [
+      "While random padding is effective against statistical tests like KL-divergence, its uniform probability distribution is still different from the multi-modal distribution of real browser traffic. A highly sophisticated adversary performing long-term analysis might be able to distinguish this pattern from the \"mimicry\" profile.",
+      "The first few data packets after the TLS handshake contain the Noise handshake. While encrypted, their size and timing might present a minor fingerprinting surface compared to an immediate HTTP/2 request."
+    ]
+  }
+}

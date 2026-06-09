@@ -1,0 +1,24 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	dns
+#open	2026-06-07-10-48-55
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	proto	trans_id	rtt	query	qclass	qclass_name	qtype	qtype_name	rcode	rcode_name	AA	TC	RD	RA	Z	answers	TTLs	rejected	opcode	opcode_name
+#types	time	string	addr	port	addr	port	enum	count	interval	string	count	string	count	string	count	string	bool	bool	bool	bool	count	vector[string]	vector[interval]	bool	count	string
+1780829272.594724	C17DUK1Jqw8L9F7Xe3	fd58:baa6:dead::1	5353	ff02::fb	5353	udp	0	-	_googlecast._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F	0	query
+1780829273.597540	C17DUK1Jqw8L9F7Xe3	fd58:baa6:dead::1	5353	ff02::fb	5353	udp	0	-	_googlecast._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F	0	query
+1780829275.598695	C17DUK1Jqw8L9F7Xe3	fd58:baa6:dead::1	5353	ff02::fb	5353	udp	0	-	_googlecast._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F	0	query
+1780829272.594571	C3PXub4tXyMCyviSJ1	10.8.1.3	5353	224.0.0.251	5353	udp	0	-	_googlecast._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F	0	query
+1780829272.598538	C3PXub4tXyMCyviSJ1	10.8.1.3	5353	224.0.0.251	5353	udp	0	-	_googlecast._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F	0	query
+1780829273.597402	C3PXub4tXyMCyviSJ1	10.8.1.3	5353	224.0.0.251	5353	udp	0	-	_googlecast._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F	0	query
+1780829273.597603	C3PXub4tXyMCyviSJ1	10.8.1.3	5353	224.0.0.251	5353	udp	0	-	_googlecast._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F	0	query
+1780829275.598587	C3PXub4tXyMCyviSJ1	10.8.1.3	5353	224.0.0.251	5353	udp	0	-	_googlecast._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F	0	query
+1780829275.598750	C3PXub4tXyMCyviSJ1	10.8.1.3	5353	224.0.0.251	5353	udp	0	-	_googlecast._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F	0	query
+1780829272.594100	CrXDOb1oTY52MkrN2e	fe80::d3e5:fd2a:f62c:a48b	5353	ff02::fb	5353	udp	0	-	_googlecast._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F	0	query
+1780829273.596958	CrXDOb1oTY52MkrN2e	fe80::d3e5:fd2a:f62c:a48b	5353	ff02::fb	5353	udp	0	-	_googlecast._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F	0	query
+1780829275.598239	CrXDOb1oTY52MkrN2e	fe80::d3e5:fd2a:f62c:a48b	5353	ff02::fb	5353	udp	0	-	_googlecast._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F	0	query
+1780829272.593693	Csna9w4MPAYqbFjmt7	26.56.25.32	5353	224.0.0.251	5353	udp	0	-	_googlecast._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F	0	query
+1780829273.596613	Csna9w4MPAYqbFjmt7	26.56.25.32	5353	224.0.0.251	5353	udp	0	-	_googlecast._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F	0	query
+1780829275.597989	Csna9w4MPAYqbFjmt7	26.56.25.32	5353	224.0.0.251	5353	udp	0	-	_googlecast._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F	0	query
+#close	2026-06-07-10-48-55

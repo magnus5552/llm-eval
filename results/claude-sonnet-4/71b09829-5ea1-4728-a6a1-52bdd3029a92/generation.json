@@ -1,0 +1,108 @@
+{
+  "run_id": "71b09829-5ea1-4728-a6a1-52bdd3029a92",
+  "timestamp": "2026-06-07T08:56:02.479640+00:00",
+  "elapsed_s": 19.02,
+  "model": "claude-sonnet-4",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 6043,
+    "completion": 1,
+    "total": 6044
+  },
+  "variant": {
+    "index": 0,
+    "domain": "www.google.com",
+    "port": 9443,
+    "handshake_hint": "Use tls-token for maximum active-probe resistance (M8).",
+    "padding_hint": "Use mimicry/chrome-browsing to pass M4/M6."
+  },
+  "generation_result": {
+    "reasoning": "**Transport Design:** Using TLS on port 9443 with Firefox-120 fingerprint. Firefox provides excellent stealth as it's widely used and has a distinct-but-legitimate JA3 signature that differs from Chrome (good for diversity across runs). Port 9443 is non-standard but still within the typical HTTPS range, avoiding both well-known ports that might trigger special scrutiny and obviously suspicious high ports. The SNI matches the fallback target for consistency.\n\n**Handshake Strategy:** Implementing TLS-token with session_ticket field embedding. This provides strong authentication while maintaining perfect TLS compatibility - the handshake looks exactly like a normal TLS 1.3 session resumption. The 48-byte token length is typical for real session tickets, and HKDF-SHA256 is standard. Leaving PSK empty allows the evaluator to inject proper key material for testing.\n\n**Padding Configuration:** Using mimicry mode with chrome-browsing profile to generate realistic packet size distributions that closely match actual HTTPS traffic patterns. This is critical for passing M4 (ML classifier) and M6 (KL divergence) by avoiding uniform sizes and maintaining natural variation. Chrome-browsing profile includes the mix of small control packets and larger data transfers typical of web browsing.\n\n**Fallback Implementation:** Reverse-proxy to www.google.com ensures that active probes receive legitimate HTTPS responses, making the service indistinguishable from a real web server under scanning. This is essential for M8 resistance - probes will see valid HTTP/2 responses with proper headers and content.\n\n**Crypto and Timing:** ChaCha20-Poly1305 with HKDF-SHA256 provides strong security with good performance. No artificial timing is applied (mode: none) to avoid creating detectable patterns in inter-arrival times that could trigger M7. Natural network jitter provides sufficient timing obfuscation.",
+    "config": {
+      "protocol": "firefox-tls-token-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "firefox-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.google.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.google.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "Perfect TLS 1.3 compliance with Firefox fingerprint ensures nDPI classifies this as standard HTTPS traffic, not VPN protocol"
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Firefox-120 fingerprint on standard port with valid SNI and ALPN avoids all Emerging Threats rules targeting VPN protocols"
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Firefox-120 JA3 signature is legitimate and widely recognized. TLS-token embedding in session tickets is cryptographically indistinguishable from normal resumption"
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Chrome-browsing mimicry profile generates realistic packet size distributions with natural variation, avoiding uniform patterns that trigger ML classifiers"
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Mimicry padding closely replicates real HTTPS packet length distributions, maintaining low KL divergence well under 0.30 threshold"
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Reverse-proxy fallback to Google provides authentic HTTPS responses to all probe types, making service indistinguishable from legitimate web server"
+      }
+    },
+    "known_weaknesses": [
+      "TLS session ticket field embedding could theoretically be detected if an adversary specifically monitors for non-standard entropy patterns in session tickets, though this is not implemented in common DPI systems",
+      "Firefox fingerprint may become outdated over time as browser versions evolve, potentially making the JA3 signature appear suspicious",
+      "Port 9443 is non-standard for HTTPS which could attract attention from human analysts, though automated systems typically don't flag this",
+      "Mimicry padding depends on the quality of the chrome-browsing profile - if the statistical model is imperfect, subtle deviations might be detectable by advanced ML systems"
+    ]
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "run_id": "ada22564-21f0-4aa1-9f12-178682fdcca7",
+  "timestamp": "2026-06-07T09:16:16.354163+00:00",
+  "elapsed_s": 5.56,
+  "model": "gemini-2.5-flash",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 2737,
+    "completion": 1,
+    "total": 2738
+  },
+  "variant": {
+    "index": 3,
+    "domain": "www.github.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk0 — PSK at first message, extra entropy from the start.",
+    "padding_hint": "Use random padding [64, 1200] — avoid near-MTU sizes to reduce M5 score."
+  },
+  "generation_result": {
+    "reasoning": "Transport: TLS 1.3 with a Chrome fingerprint and SNI to www.github.com ensures the traffic strongly resembles legitimate HTTPS. This satisfies M1, M2, and M3 by presenting well-known TLS characteristics and a valid browser fingerprint. Handshake: Using Noise with the NNpsk0 pattern provides an early authenticated handshake, adding security and obfuscation. The PSK at the first message introduces extra entropy from the start, which could help with M5 by making initial packet sequences less predictable, and fulfills the hint. Padding: Random padding between 64 and 1200 bytes is chosen to avoid regular packet sizes that trigger M4 and M6. This range specifically avoids frequently used large MTU sizes, aiming to reduce the risk of M5 (packet sequence classifier) detecting unusual patterns early on, aligning with the constraint. Timing: 'none' is selected to prevent artificial timing regularities from causing a failure for M7 (KL-IAT). Fallback: An enabled reverse-proxy fallback to www.github.com is critical for M8. If active probes are employed, they will receive a valid HTTPS response from a legitimate server, thus avoiding an RST and preventing detection.",
+    "config": {
+      "protocol": "noise-nnpsk0-random-padding-v4",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.github.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk0",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 64,
+        "random_max": 1200,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.github.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "M1: PASS (TLS 1.3, browser fingerprint)"
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "M2: PASS (Valid SNI, browser fingerprint)"
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "M3: PASS (Chrome fingerprint used, TLS expected)"
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "M4: PASS (Random padding avoids uniform packet sizes and helps obscure flow correlation)"
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "M6: PASS (Random padding avoids fixed-size issues)"
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "M8: PASS (Fallback is enabled and targeting a real HTTPS server)"
+      }
+    },
+    "known_weaknesses": [
+      "Noise protocol handshake might still be distinguishable if the initial packet lengths or timing deviate significantly from a standard TLS client hello, even with random padding. Requires careful tuning and testing to ensure M5/M7 pass."
+    ]
+  }
+}

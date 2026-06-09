@@ -1,0 +1,103 @@
+{
+  "run_id": "c62b924f-2032-4a7b-9d4e-d71a0f8863ad",
+  "timestamp": "2026-06-07T09:01:53.416554+00:00",
+  "elapsed_s": 18.38,
+  "model": "claude-sonnet-4",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 6052,
+    "completion": 1,
+    "total": 6053
+  },
+  "variant": {
+    "index": 4,
+    "domain": "www.amazon.com",
+    "port": 9443,
+    "handshake_hint": "Try handshake=none for the simplest possible surface — pure TLS with mimicry.",
+    "padding_hint": "Use mimicry/chrome-browsing but experiment with ssh-interactive for low-traffic sessions."
+  },
+  "generation_result": {
+    "reasoning": "**Transport Design**: I'm using TLS on port 9443 as specified, with Safari-17 fingerprint for diversity (since this is run 5/5). Amazon.com is a high-traffic, legitimate target that should blend well. TLS 1.3 with modern ALPN protocols (h2, http/1.1) mimics real browser behavior. The Safari fingerprint provides good evasion while being less common than Chrome in previous runs.\n\n**Handshake Strategy**: Following the hint, I'm using `handshake: none` for the minimal attack surface. This creates pure TLS tunneling without additional cryptographic layers that might introduce detectable patterns. The simplicity reduces the chance of timing anomalies or packet structure irregularities that ML classifiers might catch.\n\n**Padding Configuration**: I'm experimenting with `ssh-interactive` profile as suggested for this run, which should produce more varied packet sizes suitable for low-traffic sessions. This differs from the typical `chrome-browsing` profile and may help evade ML classifiers trained primarily on web browsing patterns. The mimicry mode ensures realistic size distributions rather than uniform padding.\n\n**Fallback Setup**: Configured reverse-proxy to Amazon.com matching our SNI, ensuring active probes receive legitimate HTTPS responses. This is critical for M8 evasion - probes will see real Amazon infrastructure responses rather than connection refusals or non-HTTP content.\n\n**Timing and Crypto**: Using default timing (none) to avoid artificial inter-arrival patterns that could increase KL-divergence scores. ChaCha20-Poly1305 with HKDF-SHA256 provides strong security without introducing detectable cryptographic signatures since it's hidden within the TLS layer.",
+    "config": {
+      "protocol": "safari-amazon-ssh-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.amazon.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "none",
+        "noise": null,
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "ssh-interactive"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.amazon.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "Pure TLS 1.3 with Safari fingerprint should classify as HTTPS/TLS, no VPN-specific signatures present"
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Safari-17 fingerprint with valid SNI (amazon.com) on standard port should not trigger ET Open rules"
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Safari-17 JA3 matches real browser fingerprint, no raw encrypted payload analysis since traffic is within TLS"
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "SSH-interactive mimicry profile creates varied packet sizes and realistic flow patterns, should score vpn_prob < 0.65"
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Mimicry mode with ssh-interactive profile produces realistic packet length distribution similar to HTTPS"
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Reverse-proxy fallback to real Amazon.com will return legitimate HTTPS responses to active probes"
+      }
+    },
+    "known_weaknesses": [
+      "SSH-interactive padding profile may have slightly different statistical properties than typical HTTPS browsing, potentially detectable by advanced ML models",
+      "Safari fingerprints are less common than Chrome, which might make the traffic stand out in environments where Safari usage is rare",
+      "Pure TLS tunneling without additional authentication could be vulnerable to traffic analysis if the session establishment patterns differ from normal HTTPS",
+      "The absence of handshake complexity means all security relies on TLS layer - any TLS-level attacks could compromise the tunnel"
+    ]
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "run_id": "93d0f884-1d6b-4779-b11a-463b67748a8c",
+  "timestamp": "2026-06-07T10:44:39.378198+00:00",
+  "elapsed_s": 25.86,
+  "model": "gemini-2.5-pro",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 2738,
+    "completion": 2170,
+    "total": 4908
+  },
+  "variant": {
+    "index": 3,
+    "domain": "www.github.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk0 — PSK at first message, extra entropy from the start.",
+    "padding_hint": "Use random padding [64, 1200] — avoid near-MTU sizes to reduce M5 score."
+  },
+  "generation_result": {
+    "reasoning": "This configuration uses a layered approach. The outer layer is standard TLS 1.3, configured to mimic a Chrome browser connecting to www.github.com, which should satisfy initial inspection by tools like nDPI and Suricata (M1, M2, M3). For the handshake, it uses the Noise `NNpsk0` pattern to initiate the encrypted channel immediately, providing early entropy. The random padding strategy avoids fixed packet sizes (evading M6) and the specific range of [64, 1200] is chosen to avoid near-MTU sizes that are penalized by sequence classifiers (M5). Finally, the fallback to a real HTTPS target is essential to defeat active probing (M8).",
+    "config": {
+      "protocol": "noise-psk0-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.github.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk0",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 64,
+        "random_max": 1200,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.github.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "M1 (nDPI): PASS - The outer protocol is TLS."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "M2 (Suricata): PASS - Correct SNI, port 443, and a valid browser fingerprint will prevent alerts."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "M3 (Zeek/JA3): PASS - The JA3 fingerprint will match Chrome-120."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "M4 (ML Flow): PASS - Random padding with a wide range will significantly lower the VPN probability score compared to fixed-size padding."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "M6 (KL-len): PASS - Random padding is specifically designed to keep KL divergence low."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "M8 (Active Probe): PASS - The fallback mechanism will respond to probes with a legitimate response from the target server."
+      }
+    },
+    "known_weaknesses": [
+      "The primary weakness is the `NNpsk0` handshake payload immediately following the TLS handshake. A sophisticated packet-sequence classifier (M5) might be trained to distinguish this from a standard HTTP/2 encrypted handshake, which would have a different initial packet pattern (e.g., SETTINGS frames).",
+      "While random padding is effective against basic classifiers (M6), its statistical distribution is less realistic than the `mimicry` profile. A highly tuned ML flow classifier (M4) might detect subtle differences between this padding and a true browser's traffic distribution."
+    ]
+  }
+}

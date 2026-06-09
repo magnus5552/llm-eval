@@ -1,0 +1,20 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	files
+#open	2026-06-07-10-03-53
+#fields	ts	fuid	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	source	depth	analyzers	mime_type	filename	duration	local_orig	is_orig	seen_bytes	total_bytes	missing_bytes	overflow_bytes	timedout	parent_fuid	md5	sha1	sha256	extracted	extracted_cutoff	extracted_size
+#types	time	string	string	addr	port	addr	port	string	count	set[string]	string	string	interval	bool	bool	count	count	count	count	bool	string	string	string	string	string	bool	count
+1780826565.484932	FSaNgm1zBwvnGtxtBi	CeWwv24qBz5oMrclu3	127.0.0.1	42283	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780826565.921880	Fdm6Iv3Enm8tQ5Yq21	CV93HydQB95fyHBql	127.0.0.1	42287	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780826573.357363	FVs7IsS0XgFeKLhc5	C5HLup36AOWAmDFink	127.0.0.1	42293	127.0.0.1	9080	HTTP	0	(empty)	text/json	-	0.000000	T	F	225	225	0	0	F	-	-	-	-	-	-	-
+1780826573.784348	F8BaWu1JZ8NDCDG5Cl	CMyfsPKBsY9Lp0Mqf	127.0.0.1	42297	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780826574.196358	FbZTb1d6BfJEOh1B7	CdamHw1ZH9NlqFijF7	127.0.0.1	42300	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780826582.984493	FrxSCj3R2G1Fr4vzie	CaW1q64XNgtJjXuFjc	127.0.0.1	42306	127.0.0.1	9080	HTTP	0	(empty)	text/json	-	0.000000	T	F	225	225	0	0	F	-	-	-	-	-	-	-
+1780826583.401994	FPJw1n1pAv14dlrCnb	Ckiiff29m8GCv4FxN7	127.0.0.1	42309	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780826583.829792	FwB48Wx4b1F365IU2	CwMiLG2CaJq1VrpWi5	127.0.0.1	42313	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780826591.319126	FNZIva2ymQBtRKRqTk	CiGQKF345YoCoVQkS7	127.0.0.1	42320	127.0.0.1	9080	HTTP	0	(empty)	text/json	-	0.000000	T	F	225	225	0	0	F	-	-	-	-	-	-	-
+1780826591.740824	FvX7Ou4lpCj2JKJlQd	C6gFJP1xEy7VGASNab	127.0.0.1	42323	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780826592.166586	FWVhl02LXgKyJv3e2h	CP05jP2L71i94X9HAe	127.0.0.1	42326	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+#close	2026-06-07-10-03-53

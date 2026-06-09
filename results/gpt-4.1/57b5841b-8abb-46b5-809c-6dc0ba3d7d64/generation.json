@@ -1,0 +1,109 @@
+{
+  "run_id": "57b5841b-8abb-46b5-809c-6dc0ba3d7d64",
+  "timestamp": "2026-06-07T08:45:33.359686+00:00",
+  "elapsed_s": 8.81,
+  "model": "gpt-4.1",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 3949,
+    "completion": 1,
+    "total": 3950
+  },
+  "variant": {
+    "index": 3,
+    "domain": "www.github.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk0 — PSK at first message, extra entropy from the start.",
+    "padding_hint": "Use random padding [64, 1200] — avoid near-MTU sizes to reduce M5 score."
+  },
+  "generation_result": {
+    "reasoning": "Transport: I selected TLS on port 443 with the Chrome 120 fingerprint to best match real browser clients, as required by R1 and R2. Using the SNI 'www.github.com' (R3), a highly popular HTTPS domain, maximizes camouflage and SNI legitimacy. The handshake uses Noise NNpsk0 per the run hint and R6, maximally blending traffic entropy, with the PSK field left empty for testing. AEAD and KDF are set as commonly used, secure defaults (chacha20-poly1305 and hkdf-sha256). Padding uses 'random' in the range [64,1200] to avoid uniformity (no fixed sizes, R5), prevent large-MTU-like frames (reducing M5 VPN probability), and still cover the spread of browser HTTPS packets. Timing is set to 'none' to avoid artificial periodicity and preserve natural flow inter-arrival statistics (R7). Fallback is a reverse proxy to https://www.github.com, matching SNI and providing robust probe resistance (R4). Each setting is chosen for stealth and detection metric evasion, with variability controlled as per the run index.",
+    "config": {
+      "protocol": "chrome-noise-nnpsk0-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.github.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk0",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 64,
+        "random_max": 1200,
+        "profile": null
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.github.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "TLS transport with Chrome fingerprint, standard port, and valid SNI means nDPI will classify this as HTTPS, not a VPN or proxy."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Suricata rules are bypassed as TLS fields (SNI, ALPN, fingerprint) are browser-typical; ET rules for suspicious TLS are not triggered."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "JA3 matches Chrome 120; payload entropy looks like TLS-in-browsers, avoiding raw encrypted streams. No unusual ciphers or handshakes."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Randomized padding sizes with bias away from the MTU, and natural TLS timings, preserve flow characteristics close to HTTPS."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Padding covers a diverse set of sizes without uniformity; KL divergence against HTTPS length histogram should be low."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Fallback proxying to www.github.com SNI/target ensures probes get legitimate HTTPS responses, preventing probe detection."
+      }
+    },
+    "known_weaknesses": [
+      "If the implementation of Noise handshake is not byte-for-byte identical to browser TLS flows, future IDS with Noise-trained signatures might flag it (though current NDPI/IDS cannot).",
+      "Unusually rare handshake patterns in enterprise environments could be analytics outliers (long-term risk).",
+      "Entropy or packet timing subtleties introduced by the Noise PSK phase may, in rare edge cases, depart slightly from vanilla TLS if implementation details differ."
+    ]
+  }
+}

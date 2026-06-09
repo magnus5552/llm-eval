@@ -1,0 +1,16 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	socks
+#open	2026-06-07-11-05-49
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	version	user	password	status	request.host	request.name	request_p	bound.host	bound.name	bound_p
+#types	time	string	addr	port	addr	port	count	string	string	string	addr	string	port	addr	string	port
+1780830284.149001	CD8aZ34xgztAvZOoUk	127.0.0.1	45706	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	45707
+1780830284.775523	CfP2DC1Tn6APyJfvk2	127.0.0.1	45709	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	45710
+1780830285.090672	ChJxUg4KRLCcGznMo9	127.0.0.1	45713	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	45714
+1780830285.195056	CZGRdV1z4NqMAyazZ	127.0.0.1	45716	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	45717
+1780830285.518025	CHXcy34BZC2C1VEGQh	127.0.0.1	45719	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	45720
+1780830285.610476	CWGUmW3UBPWTcYjiMk	127.0.0.1	45722	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	45723
+1780830285.942964	CPWjXhDrFA9EVwCj6	127.0.0.1	45725	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	45726
+#close	2026-06-07-11-05-49

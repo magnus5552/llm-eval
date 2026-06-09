@@ -1,0 +1,35 @@
+protocol: novel-tunnel-v3
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19482
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: storage.googleapis.com
+    cert_file: D:\programs\диплом\llm-eval\results\gpt-4o\051842ff-70b6-4175-81f0-0165d693cd52\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\gpt-4o\051842ff-70b6-4175-81f0-0165d693cd52\server.key
+    insecure: true
+handshake:
+  type: tls-token
+  tls_token:
+    field: session_ticket
+    kdf: hkdf-sha256
+    psk: a6a5db2af9954c19c1667ea6d83b699e3bc2dcd098ada2035ba93fb0ae504030
+    length: 48
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: mimicry
+  profile: chrome-browsing
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://storage.googleapis.com

@@ -1,0 +1,101 @@
+{
+  "run_id": "d08a96cf-fafe-4ec9-a20a-1903b079d02b",
+  "timestamp": "2026-06-07T10:51:04.160239+00:00",
+  "elapsed_s": 241.58,
+  "model": "deepseek-r1",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 5275,
+    "completion": 3015,
+    "total": 8290
+  },
+  "variant": {
+    "index": 4,
+    "domain": "www.amazon.com",
+    "port": 9443,
+    "handshake_hint": "Try handshake=none for the simplest possible surface — pure TLS with mimicry.",
+    "padding_hint": "Use mimicry/chrome-browsing but experiment with ssh-interactive for low-traffic sessions."
+  },
+  "generation_result": {
+    "reasoning": "Chose pure TLS (v1.3) with Chrome-120 fingerprint to match browser characteristics exactly. Mimicry padding with 'chrome-browsing' profile replicates packet length distributions of real Chrome traffic. No handshake minimizes negotiation patterns. Fallback to amazon.com matches SNI for active probe resistance. Port 9443 avoids common VPN ports while accepting TLS. Timing left natural to avoid artificial patterns that worsen KL-IAT metrics.",
+    "config": {
+      "protocol": "llm-gen-v5",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.amazon.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "none",
+        "noise": null,
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.amazon.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": ""
+      }
+    },
+    "known_weaknesses": [
+      "The timing (inter-arrival times) is not controlled and may not match the burstiness of real browsing if the tunnel sends data at a constant rate, potentially increasing KL-IAT divergence.",
+      "Lack of inner handshake means tunnel relies solely on TLS encryption without additional authentication/obfuscation, which could expose raw tunnel patterns if TLS is compromised (though detection risk is low)."
+    ]
+  }
+}

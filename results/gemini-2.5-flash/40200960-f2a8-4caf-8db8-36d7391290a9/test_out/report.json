@@ -1,0 +1,177 @@
+{
+  "verdict": "FAIL",
+  "failed_checks": [
+    "M6_kl_len",
+    "M7_kl_iat"
+  ],
+  "skipped_checks": [],
+  "checks": {
+    "M1_ndpi": {
+      "result": "PASS",
+      "detail": {
+        "classified_as": "TLS.Amazon",
+        "confidence": null,
+        "is_known_vpn": false
+      }
+    },
+    "M2_suricata": {
+      "result": "PASS",
+      "detail": {
+        "alert_count": 0,
+        "categories": []
+      }
+    },
+    "M3_ja3": {
+      "result": "PASS",
+      "detail": {
+        "ja3_is_browser": false,
+        "browser_matches": [],
+        "unique_ja3_count": 0,
+        "high_entropy_streams": 0,
+        "payload_byte_entropy": 7.76
+      }
+    },
+    "M4_vpn_prob": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob": 0.0865
+      }
+    },
+    "M5_vpn_prob_seq": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob_seq": 0.4143
+      }
+    },
+    "M6_kl_len": {
+      "result": "FAIL",
+      "detail": {
+        "kl_len": 0.4624
+      }
+    },
+    "M7_kl_iat": {
+      "result": "FAIL",
+      "detail": {
+        "kl_iat": 0.5811
+      }
+    },
+    "M8_probe": {
+      "result": "PASS",
+      "detail": {
+        "distinguishable_ratio": 0.667,
+        "flags": 2
+      }
+    }
+  },
+  "config": {
+    "dsl_config": "D:\\programs\\\u0434\u0438\u043f\u043b\u043e\u043c\\llm-eval\\results\\gemini-2.5-flash\\40200960-f2a8-4caf-8db8-36d7391290a9\\config.yaml",
+    "scenario": "web",
+    "duration_s": 30
+  },
+  "raw": {
+    "pcap_path": "D:\\programs\\\u0434\u0438\u043f\u043b\u043e\u043c\\llm-eval\\results\\gemini-2.5-flash\\40200960-f2a8-4caf-8db8-36d7391290a9\\test_out\\capture.pcap",
+    "m1_ndpi": {
+      "classified_as": "TLS.Amazon",
+      "is_known_vpn": false,
+      "is_acceptable": true,
+      "flow_count": 24,
+      "known_flow_count": 24,
+      "protocol_distribution": {
+        "TLS.Amazon": 11,
+        "SOCKS": 11,
+        "TLS": 1,
+        "HTTP": 1
+      },
+      "ja3_hashes": [
+        "000b19fa210f47753d1279cb60ff7022",
+        "36cc8a9df25fa2968a4e322546980c4d",
+        "3f2bfb6412c0f0c3159d110b415032ab",
+        "7526dd4543044ceef601461c5339255b",
+        "76cc2c5eca35b31b75a47085b87b2c0d",
+        "7c34108bb5e3d16e89739dc879bd8f4b",
+        "7d95387787b17e35737652b635a49a9a",
+        "8cca9548834dd6af1bab067e25f80188",
+        "b8b7173f32756b5691ff6e67d70e1b4f",
+        "c2c1023009b1f844973b1bc8ae6cc684",
+        "c36487a186a3815cca7e6997088b9efa",
+        "dcd35f1224d8dea21d67decef3d8a20b"
+      ],
+      "ja4_hashes": [
+        "f4febc55ea12b31ae17cfb7e614afda8"
+      ],
+      "sni_set": [
+        "127.0.0.1",
+        "www.amazon.com"
+      ],
+      "tls_versions": [
+        "TLSv1.3"
+      ]
+    },
+    "m2_suricata": {
+      "alert_count": 0,
+      "alerts": [],
+      "flow_count": 27,
+      "tls_count": 12,
+      "tls_versions": [
+        "TLS 1.3"
+      ],
+      "tls_sni": [
+        "127.0.0.1",
+        "www.amazon.com"
+      ],
+      "categories": []
+    },
+    "m3_zeek": {
+      "ja3_hashes": [],
+      "ja3s_hashes": [],
+      "snis": [
+        "127.0.0.1",
+        "www.amazon.com"
+      ],
+      "cipher_suites": [
+        "TLS_AES_128_GCM_SHA256"
+      ],
+      "tls_versions": [
+        "TLSv13"
+      ],
+      "browser_matches": [],
+      "ja3_is_browser": false,
+      "unique_ja3_count": 0,
+      "conn_count": 27,
+      "unknown_service_conns": 0,
+      "payload_byte_entropy": 7.76,
+      "high_entropy_streams": 0,
+      "entropy_sample_size": 27781
+    },
+    "m4_m7_flow": {
+      "vpn_prob": 0.0865,
+      "vpn_prob_seq": 0.4143,
+      "kl_len": 0.4624,
+      "kl_iat": 0.5811,
+      "total_packets": 486,
+      "total_flows": 27,
+      "total_bytes": 66659,
+      "duration_s": 33.6,
+      "pkt_len_mean": 223.9,
+      "pkt_len_std": 373.1,
+      "iat_mean_ms": 69.27,
+      "small_pkt_pct": 63.4,
+      "large_pkt_pct": 6.0,
+      "model_used": "heuristic"
+    },
+    "m8_probe": {
+      "distinguishable_ratio": 0.667,
+      "distinguishable_flags": 2,
+      "check_random_bytes_responded": true,
+      "check_http_looks_http": false,
+      "check_server_speaks_first": false,
+      "ttfb_mean_ms": 0.0,
+      "ttfb_values_ms": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "probe_count": 5
+    }
+  }
+}

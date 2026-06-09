@@ -1,0 +1,108 @@
+{
+  "run_id": "af7fee8b-fe05-43eb-8e99-50fe7facc23a",
+  "timestamp": "2026-06-07T09:06:56.283048+00:00",
+  "elapsed_s": 39.02,
+  "model": "claude-opus-4",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 6046,
+    "completion": 1,
+    "total": 6047
+  },
+  "variant": {
+    "index": 2,
+    "domain": "www.microsoft.com",
+    "port": 8443,
+    "handshake_hint": "Combine tls-token with a browser fingerprint from a less common browser (safari-17).",
+    "padding_hint": "Use mimicry/video-streaming to simulate different traffic profile."
+  },
+  "generation_result": {
+    "reasoning": "Transport: Using TLS on port 8443 with safari-17 fingerprint as requested. This less common browser fingerprint still passes M3 while adding diversity to our configs. Microsoft.com SNI provides credible cover traffic - it's a major tech company site with diverse traffic patterns. Port 8443 is commonly used for alternative HTTPS services.\n\nHandshake: Implementing tls-token as suggested, which provides PSK authentication while maintaining TLS compatibility. The session_ticket field is a standard TLS extension that won't raise suspicion. Length of 48 bytes is typical for session tickets.\n\nPadding: Using mimicry mode with video-streaming profile as requested. This simulates the bursty, variable-size packet patterns of video content delivery, which is common on Microsoft properties (Teams, Stream). This should pass M4-M6 by avoiding uniform sizes and matching realistic HTTPS patterns.\n\nTiming: Keeping timing mode as none to avoid artificial regularity that could trigger M7. Natural timing variations from the application layer provide sufficient randomness.\n\nFallback: Configured reverse-proxy to www.microsoft.com matching our SNI. This ensures active probes receive legitimate Microsoft HTTPS responses, satisfying M8's distinguishability checks.",
+    "config": {
+      "protocol": "safari-video-tls-v3",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 8443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.microsoft.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "video-streaming"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.microsoft.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "nDPI will see standard TLS 1.3 traffic with valid SNI and browser fingerprint. The safari-17 fingerprint and Microsoft SNI are legitimate combinations."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "All Suricata requirements met: SNI present (www.microsoft.com), port 8443 is acceptable for HTTPS, safari-17 is a real browser fingerprint."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Safari-17 JA3 fingerprint matches a real browser. TLS-token handshake occurs within TLS channel, so no raw encrypted streams are exposed."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Video-streaming mimicry produces variable packet sizes with realistic bursts and idle periods, avoiding the uniform patterns that trigger high VPN probability."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Video-streaming profile generates diverse packet sizes matching real video delivery patterns, keeping KL divergence well below 0.30 threshold."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Fallback configured to proxy to real Microsoft servers. Active probes will receive legitimate Microsoft HTTPS responses indistinguishable from direct connections."
+      }
+    },
+    "known_weaknesses": [
+      "Safari browser usage is less common than Chrome/Firefox, potentially drawing attention in environments where Safari is rare",
+      "Port 8443 while legitimate, is less common than 443 and might be subject to additional scrutiny in some networks",
+      "Video-streaming traffic patterns on Microsoft domains might not perfectly match typical Microsoft service usage patterns",
+      "The TLS session ticket timing and reuse patterns might differ from genuine Safari behavior if analyzed deeply"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	socks
+#open	2026-06-07-11-10-38
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	version	user	password	status	request.host	request.name	request_p	bound.host	bound.name	bound_p
+#types	time	string	addr	port	addr	port	count	string	string	string	addr	string	port	addr	string	port
+1780830605.261233	CKDjhc1BoSJBE7fiy1	127.0.0.1	41186	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	41187
+1780830576.156914	CG3G9k4ezBEurSgzYh	127.0.0.1	41094	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	41095
+1780830595.804701	CTYufek89HVCHJc1k	127.0.0.1	41130	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	41131
+1780830589.383438	ClZnRy3pOqcz0Ri7Wc	127.0.0.1	41124	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	41125
+1780830588.944750	ClcjMa35xGSuN6c4w4	127.0.0.1	41121	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	41122
+1780830597.980472	C9vkSR1ECGRKDnUktj	127.0.0.1	41143	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	41144
+1780830596.672504	CL6TjijqtrPwmJOg9	127.0.0.1	41137	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	41138
+1780830588.503692	CssNjgVkBOwItwIc7	127.0.0.1	41118	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	41119
+1780830602.717080	C6EzDu4Ozjx8dAjZVe	127.0.0.1	41170	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	41171
+1780830587.226734	CRI6N83XmRvwttQqdl	127.0.0.1	41115	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	41116
+1780830596.245628	CUzyJN1y2eCl7KKZDe	127.0.0.1	41134	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	41135
+1780830585.749722	CrhAaD2UqzqtlC8yZi	127.0.0.1	41111	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	41112
+1780830582.169420	Cg31rh4Nr2Z1Ims4Ac	127.0.0.1	41101	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	41102
+1780830585.309133	CwNY1F7pyeaKSIqSh	127.0.0.1	41108	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	41109
+1780830584.884744	CDPWac1xrY3QmHjCm2	127.0.0.1	41105	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	41106
+1780830576.644783	CgcN6JLygLKM6NN69	127.0.0.1	41097	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	41098
+1780830598.420520	CbQEgb42dnz4IZpjd9	127.0.0.1	41146	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	41147
+1780830599.488607	C4x1i2c0cLUOljLq1	127.0.0.1	41152	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	41153
+1780830598.859140	CG6Wj50JSzoxGCKW3	127.0.0.1	41149	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	41150
+1780830597.349809	Cn23bY2CtRcnV6MA52	127.0.0.1	41140	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	41141
+1780830590.326425	CmvPr52N7L1qFZ79Ud	127.0.0.1	41127	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	41128
+1780830600.545242	CdftQI1z9RwKFQkv7e	127.0.0.1	41158	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	41159
+1780830600.969966	CvoUE96rbwPVHOvza	127.0.0.1	41161	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	41162
+1780830601.600037	Chv2k04vPGF3tfBJW5	127.0.0.1	41164	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	41165
+1780830603.141806	CkK3iEJyuccKXvm29	127.0.0.1	41173	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	41175
+1780830602.292229	CztvL73m1uwhAW6kE9	127.0.0.1	41167	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	41168
+1780830575.653062	CJ3xYI3tcUypdii0Gh	127.0.0.1	41090	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	41091
+1780830604.388364	CIMEEp3xRV2eNzUpFj	127.0.0.1	41180	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	41181
+1780830603.758510	Ci7LUSyLfmHOCDIj9	127.0.0.1	41177	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	41178
+1780830600.119991	CWQCCm4wrtmNXK1un5	127.0.0.1	41155	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	41156
+1780830604.820242	CleFaM19KLi0s9X9Vj	127.0.0.1	41183	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	41184
+#close	2026-06-07-11-10-38

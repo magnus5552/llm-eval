@@ -1,0 +1,35 @@
+protocol: safari-msft-video-v3
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19445
+  tls:
+    version: '1.3'
+    fingerprint: safari-17
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.microsoft.com
+    cert_file: D:\programs\диплом\llm-eval\results\claude-sonnet-4\03a6ff53-9ae1-4bf7-bd23-b07d3df2018b\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\claude-sonnet-4\03a6ff53-9ae1-4bf7-bd23-b07d3df2018b\server.key
+    insecure: true
+handshake:
+  type: tls-token
+  tls_token:
+    field: session_ticket
+    kdf: hkdf-sha256
+    psk: 9ff5c0250742f885d1f389c82334dcccd52a37c5d1fc3ee90a9766f7c66aaf8c
+    length: 48
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: mimicry
+  profile: video-streaming
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.microsoft.com

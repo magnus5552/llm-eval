@@ -1,0 +1,36 @@
+protocol: noise-nnpsk2-random-v2
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19444
+  tls:
+    version: '1.3'
+    fingerprint: firefox-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.cloudflare.com
+    cert_file: D:\programs\диплом\llm-eval\results\claude-opus-4\c975c3cc-9d66-40e5-97a2-a27af728bb08\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\claude-opus-4\c975c3cc-9d66-40e5-97a2-a27af728bb08\server.key
+    insecure: true
+handshake:
+  type: noise
+  noise:
+    pattern: NNpsk2
+    cipher_suite: 25519:ChaChaPoly:BLAKE2s
+    local_key: generate
+    psk: 9480b2dbf0c451e9b3e83ff64e2a1e8e1dd373de4d9e133e8336614e11436f59
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: random
+  random_min: 40
+  random_max: 1400
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.cloudflare.com

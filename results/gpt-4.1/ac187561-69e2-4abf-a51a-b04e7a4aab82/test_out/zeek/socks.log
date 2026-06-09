@@ -1,0 +1,57 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	socks
+#open	2026-06-07-08-48-28
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	version	user	password	status	request.host	request.name	request_p	bound.host	bound.name	bound_p
+#types	time	string	addr	port	addr	port	count	string	string	string	addr	string	port	addr	string	port
+1780822064.168516	CpyasS37iqMAuMokV4	127.0.0.1	15727	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	15728
+1780822063.740595	CjGCUS1F3xNyIhVXM9	127.0.0.1	15724	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	15725
+1780822065.259516	CWznI12RjxWlwO2CK2	127.0.0.1	15733	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	15734
+1780822063.132463	C9yE5X6CMppDgRT7i	127.0.0.1	15721	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	15722
+1780822062.519348	ClrQNK1WJBxD0lEmel	127.0.0.1	15718	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	15719
+1780822060.004310	CeLE3ApBU0FWcJsP6	127.0.0.1	15703	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	15704
+1780822064.595949	CaT21pZl8RHKjh17k	127.0.0.1	15730	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	15731
+1780822061.653994	CXxjBVAC0cBG6F1Dh	127.0.0.1	15712	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	15713
+1780822058.934963	C41AS72LRg1IxfG4rc	127.0.0.1	15696	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	15697
+1780822062.094436	CiaKkA2n6Fta63fXt3	127.0.0.1	15715	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	15716
+1780822058.272075	CqTkbH3MAMIf2cCxXi	127.0.0.1	15693	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	15694
+1780822057.847219	CX1tCe3DX1Y33tNUt2	127.0.0.1	15690	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	15691
+1780822046.247400	CVcaNhDTyKojGcQei	127.0.0.1	20061	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	20062
+1780822045.602119	CSOM0E4hRNJVySslNb	127.0.0.1	20058	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	20059
+1780822049.898842	CxhCwC32mXGiRWtdF3	127.0.0.1	20083	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	20084
+1780822054.719446	CIMcR4bvUtUEXjZd9	127.0.0.1	15672	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	15673
+1780822046.877812	CXWgnt2jKZxOOTeFH1	127.0.0.1	20064	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	20065
+1780822041.420701	CgzJY82IyzQrfCBpK	127.0.0.1	20034	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	20035
+1780822048.419876	Cme1Opwp1f4fNScw8	127.0.0.1	20073	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	20074
+1780822059.563382	CS64f51Z0l3ZV9b1hh	127.0.0.1	15699	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	15700
+1780822047.726933	COte7q2MFAsjTyBrD5	127.0.0.1	20070	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	20071
+1780822057.407781	CiUcX34fg43wDWDnnf	127.0.0.1	15687	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	15688
+1780822040.555565	C14kGf3sxUMzv4pBwg	127.0.0.1	20028	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	20029
+1780822040.997297	CoNr6o2Fn2Faq1Ywba	127.0.0.1	20031	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	20032
+1780822044.755701	CMjZQ7dZjOYzWUt7e	127.0.0.1	20052	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	20053
+1780822044.156250	CCnBiS2ECgcj8qjgn5	127.0.0.1	20049	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	20050
+1780822042.080618	CVXrKwAVhLOEZTde3	127.0.0.1	20037	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	20038
+1780822060.426975	C0T5PQ3YXYwUKZrjD5	127.0.0.1	15706	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	15707
+1780822042.694505	C55I3Celd3fW4AwT6	127.0.0.1	20040	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	20041
+1780822056.793950	CBbUagEVxFv4BOEpj	127.0.0.1	15684	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	15685
+1780822050.511094	CvjnDQ1zWVuHNCzfm5	127.0.0.1	20086	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	20087
+1780822043.543735	ClX81S2idCiyh32Dzc	127.0.0.1	20046	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	20047
+1780822043.119427	CpQOwIRDPtSbElNMa	127.0.0.1	20043	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	20044
+1780822049.051041	CgUGSz37Azsqktsg41	127.0.0.1	20076	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	20077
+1780822051.562630	CsOGCc2iF6P3qqoyL	127.0.0.1	20092	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	20093
+1780822049.475282	CKdRB41mNEB2bykma1	127.0.0.1	20079	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	20080
+1780822056.180789	CZKryX1OoXnxHDn0nd	127.0.0.1	15681	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	15682
+1780822051.122555	CD6y8R31LEkZYj6kx7	127.0.0.1	20089	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	20090
+1780822051.987570	CUcEug3tW5xDE8blog	127.0.0.1	20095	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	20096
+1780822054.105289	CDhgj02DFfgXraYNMk	127.0.0.1	15669	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	15670
+1780822052.583701	Cstp821P1fIaQip9R6	127.0.0.1	58207	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	58208
+1780822045.178110	CuIshI3rxp4Q0FVEpk	127.0.0.1	20055	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	20056
+1780822047.302812	Cj740J3fJ5qQpesFp5	127.0.0.1	20067	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	20068
+1780822053.257365	ClJTan4xgLCtxU0XF6	127.0.0.1	15663	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	15664
+1780822061.040553	CaZir54NqvULM2O2z2	127.0.0.1	15709	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	15710
+1780822053.680485	Ctrg3T1tcPk2yBG6H4	127.0.0.1	15666	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	15667
+1780822055.332337	CAVqf812JPA9LpoH26	127.0.0.1	15675	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	15676
+1780822055.756551	CWoTfy3MHJ0CKBsNPb	127.0.0.1	15678	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	15679
+#close	2026-06-07-08-48-28

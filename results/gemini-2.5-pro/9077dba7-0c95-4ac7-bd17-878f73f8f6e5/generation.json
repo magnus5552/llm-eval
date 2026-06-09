@@ -1,0 +1,108 @@
+{
+  "run_id": "9077dba7-0c95-4ac7-bd17-878f73f8f6e5",
+  "timestamp": "2026-06-07T10:52:54.334027+00:00",
+  "elapsed_s": 26.09,
+  "model": "gemini-2.5-pro",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 2724,
+    "completion": 2510,
+    "total": 5234
+  },
+  "variant": {
+    "index": 8,
+    "domain": "cdn.jsdelivr.net",
+    "port": 443,
+    "handshake_hint": "Use noise NN (no PSK, no auth) — simplest noise for comparison.",
+    "padding_hint": "Use mimicry/video-streaming to test a different length distribution."
+  },
+  "generation_result": {
+    "reasoning": "This configuration uses a multi-layered approach to evade detection. The transport layer is standard TLS 1.3 with a Chrome 120 fingerprint and an SNI pointing to a major CDN, `cdn.jsdelivr.net`, making the initial connection indistinguishable from normal web traffic. The handshake uses an unauthenticated Noise (`NN`) key exchange inside the TLS tunnel, adding a layer of cryptographic separation without requiring pre-shared keys. For traffic analysis evasion, the padding mode mimics a video streaming session, which produces a packet length distribution that is common and difficult to flag as anomalous. Finally, a fallback to the real `cdn.jsdelivr.net` ensures that any active probes receive a legitimate HTTPS response, defeating distinguishability checks.",
+    "config": {
+      "protocol": "noise-video-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "cdn.jsdelivr.net",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NN",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "video-streaming"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://cdn.jsdelivr.net"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "M1 (nDPI): PASS - The outer protocol is TLS, which nDPI will correctly identify."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "M2 (Suricata IDS): PASS - A valid, common SNI (`cdn.jsdelivr.net`), standard port (443), and browser-like TLS fingerprint will prevent alerts."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "M3 (Zeek/JA3): PASS - The JA3 fingerprint will match Chrome 120. The subsequent Noise handshake is encrypted within the TLS stream."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "M4 (ML flow classifier): PASS - `padding.mode: mimicry` with the `video-streaming` profile is designed to create traffic statistics that fall within the normal range for HTTPS, thus avoiding ML detection."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "M6 (KL divergence - length): PASS - Mimicry mode directly counters KL divergence analysis by generating a packet size distribution modeled on real video traffic, far superior to `fixed` or basic `random` padding."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "M8 (Active probe): PASS - The `fallback` is enabled and correctly configured to proxy probes to the live `cdn.jsdelivr.net` site, which will respond like a normal web server."
+      }
+    },
+    "known_weaknesses": [
+      "The primary potential weakness is the Noise handshake itself. Even though it occurs inside the encrypted TLS stream, the exchange of two small, potentially fixed-size handshake messages (`-> e`, `<- e, ee`) after the TLS handshake completes could be a fingerprintable pattern for a detector specifically designed to find Noise-based tunnels.",
+      "The `NN` pattern provides no authentication for the inner handshake, meaning the client is trusting the TLS server certificate to have connected to the correct tunnel endpoint. This is a security trade-off for simplicity of key management."
+    ]
+  }
+}

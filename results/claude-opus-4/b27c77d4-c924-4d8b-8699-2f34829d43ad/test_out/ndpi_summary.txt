@@ -1,0 +1,11 @@
+Guessed flow protos:	8
+
+DPI Packets (TCP):	674	(6.18 pkts/flow)
+Confidence Unknown          : 7 (flows)
+Confidence DPI              : 102 (flows)
+
+Unknown	59	3233	7
+HTTP	9	538	1
+TLS	10	680	1
+Google	1307	295197	50
+SOCKS	996	86996	50

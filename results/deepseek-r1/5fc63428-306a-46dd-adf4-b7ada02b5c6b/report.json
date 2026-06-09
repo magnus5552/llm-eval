@@ -1,0 +1,205 @@
+{
+  "verdict": "PASS",
+  "failed_checks": [],
+  "skipped_checks": [],
+  "checks": {
+    "M1_ndpi": {
+      "result": "PASS",
+      "detail": {
+        "classified_as": "TLS.Google",
+        "confidence": null,
+        "is_known_vpn": false
+      }
+    },
+    "M2_suricata": {
+      "result": "PASS",
+      "detail": {
+        "alert_count": 0,
+        "categories": []
+      }
+    },
+    "M3_ja3": {
+      "result": "PASS",
+      "detail": {
+        "ja3_is_browser": false,
+        "browser_matches": [],
+        "unique_ja3_count": 0,
+        "high_entropy_streams": 0,
+        "payload_byte_entropy": 7.746
+      }
+    },
+    "M4_vpn_prob": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob": 0.0981
+      }
+    },
+    "M5_vpn_prob_seq": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob_seq": 0.4143
+      }
+    },
+    "M6_kl_len": {
+      "result": "PASS",
+      "detail": {
+        "kl_len": 0.3636
+      }
+    },
+    "M7_kl_iat": {
+      "result": "PASS",
+      "detail": {
+        "kl_iat": 0.2633
+      }
+    },
+    "M8_probe": {
+      "result": "PASS",
+      "detail": {
+        "distinguishable_ratio": 0.667,
+        "flags": 2
+      }
+    }
+  },
+  "config": {
+    "dsl_config": "D:\\programs\\диплом\\llm-eval\\results\\deepseek-r1\\5fc63428-306a-46dd-adf4-b7ada02b5c6b\\config.yaml",
+    "scenario": "web",
+    "duration_s": 30
+  },
+  "raw": {
+    "pcap_path": "D:\\programs\\диплом\\llm-eval\\results\\deepseek-r1\\5fc63428-306a-46dd-adf4-b7ada02b5c6b\\test_out\\capture.pcap",
+    "m1_ndpi": {
+      "classified_as": "TLS.Google",
+      "is_known_vpn": false,
+      "is_acceptable": true,
+      "flow_count": 86,
+      "known_flow_count": 86,
+      "protocol_distribution": {
+        "TLS": 1,
+        "HTTP": 1,
+        "TLS.Google": 42,
+        "SOCKS": 42
+      },
+      "ja3_hashes": [
+        "0344664d48e044f6fa475f1e81ae7178",
+        "29e4b09e30c78e981ad8382012af2894",
+        "2bc3c4223be10dbdabdb82550fc5de91",
+        "2d8d7c0d00cdfdfab5202fda2cc9c845",
+        "2fc5e856352b5f78c28e8c283f78f39e",
+        "3a2eb9fff89fb0e6ccb5cbf3b1d9f1ed",
+        "3cd49f1a82836524da405523a404257c",
+        "40c2348427a0e7af98835ab77f02de36",
+        "413c8bb9780887791072425ecbd928f3",
+        "4a737c15b66f176c303a32f8352abd4a",
+        "4c073ae07faf3db3c95bf34eaabb227d",
+        "4ee8c8529e786f52adda70e19a00e177",
+        "51b830b44c88856869025383c8ec0a49",
+        "5686fc9e179b714b63899433b1eda929",
+        "59e686399fc24563b67b8ed050ac4cb1",
+        "5e448790807fe6c8b3eea33c83f82a78",
+        "5fb2426ede2109cf9a7654f25a27f2c0",
+        "6da2d976d87f7a362eb4ae5090e6b4f1",
+        "7a471421f83f0c979ab1b5c76ad87c42",
+        "81a65dcfd2c6542d92104cca9de3123c",
+        "8511988f2926631dd02ed89145f00870",
+        "8633d43fe3d9e9d3e386d678acd874a2",
+        "877eca8ef7fa9d8f88dad45510f145a6",
+        "8a557f7a32e5716d0379ac8301b60e99",
+        "8c3e1fb70d5c1b0929066c65f1dc5481",
+        "8cce56efa557057fc0d1b5331f670a64",
+        "98e95bee465e05e19455914a12036b5f",
+        "9b2144d55490cf25bac0c4be7a8acd16",
+        "9e8b9c32c4af3ca41d7f5e43902a678c",
+        "9feab066ccc5204dfb8b5bddfe60b998",
+        "a69125e9a101aa0e6083cc6bb848c5cd",
+        "adb72b52b6d0896fbf0da80f588a78e8",
+        "c36487a186a3815cca7e6997088b9efa",
+        "d5e3ce435984a1bbb67dcb450dcae448",
+        "d703826214cada5f42610a58ecbb39d3",
+        "db4f007a4292822471841929ae977fe6",
+        "e0a2e7e567c0c3ee33f36f0c2aad477a",
+        "e1679b679177838018c520e24e8ec8ab",
+        "e3055943328d90cebc2f0f58757517e3",
+        "e829c18c0c567abb3b4e659968d3217e",
+        "e9d96631fe2749a738ab2674aafc48c7",
+        "ee400dd43000267954e93315d42fdb6f",
+        "f9700a4a6b6dd5de211895a86fda90f4"
+      ],
+      "ja4_hashes": [
+        "f4febc55ea12b31ae17cfb7e614afda8"
+      ],
+      "sni_set": [
+        "127.0.0.1",
+        "www.google.com"
+      ],
+      "tls_versions": [
+        "TLSv1.3"
+      ]
+    },
+    "m2_suricata": {
+      "alert_count": 0,
+      "alerts": [],
+      "flow_count": 93,
+      "tls_count": 43,
+      "tls_versions": [
+        "TLS 1.3"
+      ],
+      "tls_sni": [
+        "127.0.0.1",
+        "www.google.com"
+      ],
+      "categories": []
+    },
+    "m3_zeek": {
+      "ja3_hashes": [],
+      "ja3s_hashes": [],
+      "snis": [
+        "127.0.0.1",
+        "www.google.com"
+      ],
+      "cipher_suites": [
+        "TLS_AES_128_GCM_SHA256"
+      ],
+      "tls_versions": [
+        "TLSv13"
+      ],
+      "browser_matches": [],
+      "ja3_is_browser": false,
+      "unique_ja3_count": 0,
+      "conn_count": 94,
+      "unknown_service_conns": 0,
+      "payload_byte_entropy": 7.746,
+      "high_entropy_streams": 0,
+      "entropy_sample_size": 114867
+    },
+    "m4_m7_flow": {
+      "vpn_prob": 0.0981,
+      "vpn_prob_seq": 0.4143,
+      "kl_len": 0.3636,
+      "kl_iat": 0.2633,
+      "total_packets": 2003,
+      "total_flows": 93,
+      "total_bytes": 327517,
+      "duration_s": 36.69,
+      "pkt_len_mean": 274.0,
+      "pkt_len_std": 420.6,
+      "iat_mean_ms": 18.32,
+      "small_pkt_pct": 55.9,
+      "large_pkt_pct": 8.5,
+      "model_used": "heuristic"
+    },
+    "m8_probe": {
+      "distinguishable_ratio": 0.667,
+      "distinguishable_flags": 2,
+      "check_random_bytes_responded": true,
+      "check_http_looks_http": false,
+      "check_server_speaks_first": false,
+      "ttfb_mean_ms": 57.7,
+      "ttfb_values_ms": [
+        110.0,
+        0.0,
+        63.0
+      ],
+      "probe_count": 5
+    }
+  }
+}

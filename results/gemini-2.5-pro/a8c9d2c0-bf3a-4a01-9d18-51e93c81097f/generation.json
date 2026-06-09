@@ -1,0 +1,107 @@
+{
+  "run_id": "a8c9d2c0-bf3a-4a01-9d18-51e93c81097f",
+  "timestamp": "2026-06-07T10:59:19.269171+00:00",
+  "elapsed_s": 29.66,
+  "model": "gemini-2.5-pro",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 2729,
+    "completion": 2746,
+    "total": 5475
+  },
+  "variant": {
+    "index": 2,
+    "domain": "www.microsoft.com",
+    "port": 8443,
+    "handshake_hint": "Combine tls-token with a browser fingerprint from a less common browser (safari-17).",
+    "padding_hint": "Use mimicry/video-streaming to simulate different traffic profile."
+  },
+  "generation_result": {
+    "reasoning": "This configuration is designed to mimic a Safari browser streaming video from a Microsoft-hosted service, providing a highly plausible camouflage.\n\n- **Transport:** We use TLS 1.3 on port 8443, a common alternate HTTPS port. The `safari-17` fingerprint and a `www.microsoft.com` SNI are used to create a TLS handshake that is indistinguishable from a real Safari browser connecting to Microsoft, directly addressing M2 (Suricata) and M3 (JA3).\n\n- **Handshake:** `tls-token` is chosen for authentication. It embeds the pre-shared key material within the TLS session ticket, a standard TLS 1.3 feature for session resumption. This avoids any non-standard handshake messages that could be flagged.\n\n- **Padding:** The `mimicry` engine with the `video-streaming` profile is selected. This will shape the tunnel's packet size distribution to resemble a real-time video stream. This profile evades detection by statistical analysis (M4, M6) and offers a different traffic shape than the more common `chrome-browsing` profile, potentially defeating classifiers tuned for that specific pattern.\n\n- **Fallback:** To defeat active probing (M8), fallback is enabled to reverse-proxy any non-tunnel connection attempts to the legitimate `https://www.microsoft.com`, ensuring the probe receives a valid response consistent with the SNI.",
+    "config": {
+      "protocol": "safari-video-tls-token-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 8443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.microsoft.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "video-streaming"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.microsoft.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m2_suricata": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m3_zeek": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m4_ml": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m6_kl_len": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m8_probe": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      }
+    },
+    "known_weaknesses": [
+      "The `video-streaming` padding profile creates a distinct statistical signature. While it differs from simple browsing, an adversary could train a classifier specifically to detect video-like patterns, potentially flagging this tunnel.",
+      "The TLS fingerprint is for Safari, but if the client-side application behavior (e.g., HTTP requests inside the tunnel) does not match Safari's typical behavior, a very sophisticated cross-layer analysis could detect an anomaly.",
+      "The fixed length of the session ticket (48 bytes) used for the handshake token could be a minor statistical fingerprint if other common servers use different lengths."
+    ]
+  }
+}

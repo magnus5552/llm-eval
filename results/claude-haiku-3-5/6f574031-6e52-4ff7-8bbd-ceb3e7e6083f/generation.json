@@ -1,0 +1,107 @@
+{
+  "run_id": "6f574031-6e52-4ff7-8bbd-ceb3e7e6083f",
+  "timestamp": "2026-06-07T08:48:29.432749+00:00",
+  "elapsed_s": 20.34,
+  "model": "claude-haiku-3-5",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 6083,
+    "completion": 1,
+    "total": 6084
+  },
+  "variant": {
+    "index": 0,
+    "domain": "www.google.com",
+    "port": 9443,
+    "handshake_hint": "Use tls-token for maximum active-probe resistance (M8).",
+    "padding_hint": "Use mimicry/chrome-browsing to pass M4/M6."
+  },
+  "generation_result": {
+    "reasoning": "Transport Design: I've selected TLS 1.3 with a Chrome 120 fingerprint to maximize browser-like characteristics. The SNI is set to www.google.com as specified, using port 9443 to avoid standard HTTPS port suspicion while still looking like a standard web service. \n\nHandshake Strategy: TLS-token handshake provides an additional layer of authentication without introducing exotic protocol signatures. The 48-byte length and hkdf-sha256 KDF are chosen to mimic standard TLS session ticket mechanics while providing a covert key derivation mechanism.\n\nPadding Approach: Chrome browsing profile mimicry ensures packet length distributions closely match real browser traffic. This strategy targets defeating ML classifiers and KL divergence detection by introducing natural-looking packet size variance.\n\nFallback Mechanism: Google's HTTPS endpoint is used as a reverse proxy target, ensuring that any active probing will return a legitimate web response. This is critical for defeating sophisticated probe resistance checks.\n\nCrypto Selection: ChaCha20-Poly1305 with HKDF-SHA256 provides modern, standardized cryptographic primitives that don't raise unnecessary protocol suspicion.",
+    "config": {
+      "protocol": "llm-gen-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.google.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.google.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "Chrome-like TLS 1.3 fingerprint with standard ALPN, unlikely to trigger VPN classification"
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Valid SNI, standard browser ALPN, no suspicious protocol indicators"
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Exact Chrome 120 JA3 fingerprint, standard browser-like negotiation"
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Chrome browsing padding profile introduces natural packet size variance"
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Mimicry mode prevents uniform packet sizes, matching HTTPS traffic distribution"
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Google fallback ensures legitimate HTTPS response to active probing"
+      }
+    },
+    "known_weaknesses": [
+      "Potential timing side-channels in TLS handshake",
+      "Static certificate might be detectable if reused",
+      "Fixed session ticket length could be a subtle fingerprint"
+    ]
+  }
+}

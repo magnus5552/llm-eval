@@ -1,0 +1,105 @@
+{
+  "run_id": "a26d10da-ca82-45ae-bffa-b7bfe4a649f3",
+  "timestamp": "2026-06-07T08:30:33.478930+00:00",
+  "elapsed_s": 17.03,
+  "model": "gpt-4o-mini",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 3471,
+    "completion": 1,
+    "total": 3472
+  },
+  "variant": {
+    "index": 2,
+    "domain": "www.microsoft.com",
+    "port": 8443,
+    "handshake_hint": "Combine tls-token with a browser fingerprint from a less common browser (safari-17).",
+    "padding_hint": "Use mimicry/video-streaming to simulate different traffic profile."
+  },
+  "generation_result": {
+    "reasoning": "In this configuration, the transport layer is set to use TLS with a fingerprint of 'safari-17' for a less common browser identity that can evade specific detection metrics. The listening port is specified as 8443, which is often used for secure communications without raising suspicion. The handshake strategy uses 'tls-token', facilitating a secure connection while leaving the PSK fields empty for automatic injection. For padding, the mode is set to 'mimicry' with the profile 'video-streaming' to simulate varied traffic patterns rather than fixed sizes, which could raise flags. Timing is kept as 'none' to avoid introducing regular patterns that could be detectable. The fallback mechanism is enabled, routing to 'https://www.microsoft.com', ensuring a legitimate exit path during active probing, satisfying M8 requirements.",
+    "config": {
+      "protocol": "novel-tunnel-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 8443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.microsoft.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "video-streaming"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.microsoft.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "Using TLS with a compatible fingerprint and SNI matching a legitimate domain minimizes detection risk."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "The configuration utilizes a non-empty SNI, while the handshake and transport configurations comply with established HTTPS norms, keeping alerts to zero."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "The chosen fingerprint mimics a real browser, and the use of tls-token authentication avoids detectable raw encryption streams, satisfying JA3 and entropy criteria."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "The configuration avoids artificial patterns in packet sizes and maintains a diverse range in its traffic characteristics, suggesting a low likelihood of being flagged as VPN traffic."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "The padding mode of mimicry with a video-streaming profile ensures varied packet sizes that align closely with typical HTTPS traffic distribution."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "An operational fallback to a legitimate HTTPS server is in place, which is critical for handling active probing without raising suspicion."
+      }
+    },
+    "known_weaknesses": [
+      "This config relies on the active existence of www.microsoft.com for the fallback mechanism. If the target changes or experiences downtime, the tunnel may face detection issues during probing. Additionally, while using an uncommon browser fingerprint reduces immediate detection risks, advancements in fingerprinting techniques may still pose risks in the future."
+    ]
+  }
+}

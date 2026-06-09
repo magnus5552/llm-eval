@@ -1,0 +1,65 @@
+---------------------------------------------------------------------------------------------------
+Date: 6/7/2026 -- 11:00:59 (uptime: 0d, 00h 00m 26s)
+---------------------------------------------------------------------------------------------------
+Counter                                                      | TM Name                   | Value
+---------------------------------------------------------------------------------------------------
+decoder.pkts                                                 | Total                     | 1783
+decoder.bytes                                                | Total                     | 399112
+decoder.ipv4                                                 | Total                     | 1765
+decoder.ipv6                                                 | Total                     | 18
+decoder.null                                                 | Total                     | 1783
+decoder.tcp                                                  | Total                     | 1729
+tcp.syn                                                      | Total                     | 80
+tcp.synack                                                   | Total                     | 80
+tcp.rst                                                      | Total                     | 6
+decoder.udp                                                  | Total                     | 54
+decoder.avg_pkt_size                                         | Total                     | 223
+decoder.max_pkt_size                                         | Total                     | 1560
+flow.total                                                   | Total                     | 97
+flow.tcp                                                     | Total                     | 88
+flow.udp                                                     | Total                     | 9
+flow.wrk.spare_sync_avg                                      | Total                     | 100
+flow.wrk.spare_sync                                          | Total                     | 1
+flow.wrk.flows_evicted_needs_work                            | Total                     | 80
+flow.wrk.flows_evicted_pkt_inject                            | Total                     | 158
+flow.wrk.flows_injected                                      | Total                     | 80
+tcp.sessions                                                 | Total                     | 80
+tcp.ssn_from_pool                                            | Total                     | 80
+tcp.segment_from_cache                                       | Total                     | 350
+tcp.segment_from_pool                                        | Total                     | 215
+detect.alerts_suppressed                                     | Total                     | 34
+app_layer.flow.http                                          | Total                     | 2
+app_layer.tx.http                                            | Total                     | 2
+app_layer.flow.tls                                           | Total                     | 39
+app_layer.flow.dcerpc_tcp                                    | Total                     | 28
+app_layer.flow.dhcp                                          | Total                     | 1
+app_layer.flow.mdns                                          | Total                     | 4
+app_layer.flow.failed_udp                                    | Total                     | 4
+app_layer.tx.dhcp                                            | Total                     | 1
+app_layer.tx.mdns                                            | Total                     | 48
+flow.end.state.new                                           | Total                     | 17
+flow.end.state.established                                   | Total                     | 68
+flow.end.state.closed                                        | Total                     | 12
+flow.end.tcp_state.established                               | Total                     | 34
+flow.end.tcp_state.close_wait                                | Total                     | 34
+flow.end.tcp_state.closed                                    | Total                     | 12
+flow.mgr.full_hash_pass                                      | Total                     | 1
+flow.mgr.rows_per_sec                                        | Total                     | 6553
+flow.spare                                                   | Total                     | 9900
+flow.mgr.rows_maxlen                                         | Total                     | 1
+flow.mgr.flows_checked                                       | Total                     | 66
+flow.mgr.flows_notimeout                                     | Total                     | 66
+memcap.pressure                                              | Total                     | 5
+memcap.pressure_max                                          | Total                     | 5
+defrag.memuse                                                | Total                     | 33554432
+flow.recycler.recycled                                       | Total                     | 17
+flow.recycler.queue_max                                      | Total                     | 17
+tcp.memuse                                                   | Total                     | 622592
+tcp.reassembly_memuse                                        | Total                     | 114688
+http.byterange.memuse                                        | Total                     | 168384
+http.byterange.memcap                                        | Total                     | 104857600
+ippair.memuse                                                | Total                     | 398144
+ippair.memcap                                                | Total                     | 16777216
+host.memuse                                                  | Total                     | 382144
+host.memcap                                                  | Total                     | 33554432
+flow.memuse                                                  | Total                     | 7154304

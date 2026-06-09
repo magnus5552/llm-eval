@@ -1,0 +1,107 @@
+{
+  "run_id": "e7e680ac-f0d3-49e0-a742-0be07f9cc1ab",
+  "timestamp": "2026-06-07T09:47:54.916906+00:00",
+  "elapsed_s": 17.57,
+  "model": "qwen3-32b",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 5161,
+    "completion": 1,
+    "total": 5162
+  },
+  "variant": {
+    "index": 0,
+    "domain": "www.google.com",
+    "port": 9443,
+    "handshake_hint": "Use tls-token for maximum active-probe resistance (M8).",
+    "padding_hint": "Use mimicry/chrome-browsing to pass M4/M6."
+  },
+  "generation_result": {
+    "reasoning": "Step-by-step design rationale: transport, handshake, padding, fallback decisions...",
+    "config": {
+      "protocol": "generated-protocol-1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "0.0.0.0",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.google.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.google.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "TLS 1.3 with chrome-120 fingerprint mimics standard HTTPS traffic effectively."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Non-empty SNI (www.google.com) and correct ALPN settings avoid Suricata detections."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Chrome-120 fingerprint matches real browser JA3 signatures precisely."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Chrome-browsing padding profile creates natural packet size variation."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Mimicry padding closely matches standard HTTPS length distributions."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Reverse-proxy fallback serves genuine Google HTTPS responses to probes."
+      }
+    },
+    "known_weaknesses": [
+      "Chrome-browsing padding might be less effective against high-accuracy ML models trained on large datasets",
+      "TLS 1.3 is newer and may raise suspicion in legacy network monitoring tools",
+      "Active probing can still detect anomalies despite fallback, depending on probe sophistication"
+    ]
+  }
+}

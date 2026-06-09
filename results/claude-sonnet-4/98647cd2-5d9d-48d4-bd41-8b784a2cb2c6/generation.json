@@ -1,0 +1,111 @@
+{
+  "run_id": "98647cd2-5d9d-48d4-bd41-8b784a2cb2c6",
+  "timestamp": "2026-06-07T09:00:25.897199+00:00",
+  "elapsed_s": 18.71,
+  "model": "claude-sonnet-4",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 6054,
+    "completion": 1,
+    "total": 6055
+  },
+  "variant": {
+    "index": 3,
+    "domain": "www.github.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk0 — PSK at first message, extra entropy from the start.",
+    "padding_hint": "Use random padding [64, 1200] — avoid near-MTU sizes to reduce M5 score."
+  },
+  "generation_result": {
+    "reasoning": "**Transport design**: Using TLS on port 443 with Chrome-120 fingerprint to maximize browser mimicry for M2/M3. GitHub.com is chosen as SNI to match the preferred domain - it's a high-traffic legitimate site that makes sense for tunneling scenarios. TLS 1.3 with standard ALPN (h2, http/1.1) provides the most common browser negotiation pattern.\n\n**Handshake strategy**: Implementing Noise NNpsk0 as requested - this provides PSK authentication from the very first message, adding entropy immediately which should help with M3 payload analysis. The 25519:ChaChaPoly:BLAKE2s cipher suite is modern and efficient. Using \"generate\" for local_key and leaving PSK empty allows the evaluator to inject proper key material for automated testing.\n\n**Padding approach**: Random padding between 64-1200 bytes as specified. This range avoids the problematic near-MTU sizes (1400+) that can trigger M5 sequence detection while providing sufficient variability for M6 KL divergence. The lower bound of 64 ensures we don't have suspiciously small frames, while 1200 stays well below typical MTU limits.\n\n**Fallback configuration**: Reverse proxy to GitHub.com matching our SNI for M8 active probe resistance. This ensures probes receive legitimate HTTPS responses that match the expected domain, preventing distinguishability checks from triggering.\n\n**Additional considerations**: Using ChaCha20-Poly1305 for crypto as it's both secure and commonly used in modern protocols. Timing is set to \"none\" to avoid artificial patterns that could increase M7 KL-IAT scores. This configuration balances strong security (PSK authentication from start) with effective traffic mimicry.",
+    "config": {
+      "protocol": "noise-nnpsk0-github-v4",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.github.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk0",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 64,
+        "random_max": 1200,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.github.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "TLS transport with proper browser fingerprint should be classified as HTTPS/TLS, not as VPN protocol"
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Chrome-120 fingerprint on port 443 with valid SNI (www.github.com) matches legitimate browser traffic patterns"
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Chrome-120 fingerprint produces authentic browser JA3 hash, avoiding raw entropy detection triggers"
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Random padding 64-1200 bytes provides good packet size variability, avoiding uniform size patterns that ML classifiers detect"
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Random padding distribution should produce KL divergence well below 0.30 threshold compared to legitimate HTTPS traffic"
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Fallback reverse proxy to www.github.com returns legitimate HTTPS responses matching the SNI, preventing probe distinguishability"
+      }
+    },
+    "known_weaknesses": [
+      "Noise NNpsk0 handshake may have distinctive timing patterns during key exchange that could be fingerprinted with sufficient samples",
+      "Random padding bounds (64-1200) create a specific distribution signature that could be learned by advanced ML models",
+      "GitHub.com target may have specific response characteristics (headers, content) that differ from expected client behavior patterns",
+      "ChaCha20-Poly1305 crypto operations might introduce subtle timing side-channels under load",
+      "The specific combination of Noise + TLS could create a unique protocol stack signature detectable by deep behavioral analysis"
+    ]
+  }
+}

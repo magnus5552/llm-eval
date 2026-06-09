@@ -1,0 +1,30 @@
+protocol: baseline-ssh-mimic-v1
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19447
+  tls:
+    version: '1.3'
+    fingerprint: safari-17
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.amazon.com
+    cert_file: D:\programs\диплом\llm-eval\results\gemini-2.5-pro\a56be013-ab62-4789-a8e8-88f31e43048a\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\gemini-2.5-pro\a56be013-ab62-4789-a8e8-88f31e43048a\server.key
+    insecure: true
+handshake:
+  type: none
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: mimicry
+  profile: ssh-interactive
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.amazon.com

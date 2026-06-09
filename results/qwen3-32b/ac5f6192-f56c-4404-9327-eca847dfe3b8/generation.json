@@ -1,0 +1,107 @@
+{
+  "run_id": "ac5f6192-f56c-4404-9327-eca847dfe3b8",
+  "timestamp": "2026-06-07T09:49:23.614254+00:00",
+  "elapsed_s": 20.72,
+  "model": "qwen3-32b",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 5169,
+    "completion": 1,
+    "total": 5170
+  },
+  "variant": {
+    "index": 1,
+    "domain": "www.cloudflare.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk2 for forward secrecy without pre-shared static keys.",
+    "padding_hint": "Use random padding with wide range [40, 1400] to pass M6."
+  },
+  "generation_result": {
+    "reasoning": "",
+    "config": {
+      "protocol": "",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.cloudflare.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk2",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "Tunnel-Gen-Conf",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 40,
+        "random_max": 1400,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": 0,
+        "delay_max_ms": 0
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.cloudflare.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "TLS 1.3 with chrome-120 fingerprint and correct SNI will be identified as HTTPS by nDPI."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "SNI set to www.cloudflare.com, a legitimate HTTPS domain. TLS fingerprint is realistic, should not trigger Suricata rules."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "chrome-120 TLS fingerprint matches expected browser behavior. Noise handshake uses PSK authentication, but encrypted payload won't be flagged as noise if it appears as TLS-encrypted data."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Random padding with size range [40,1400] should produce natural flow characteristics that pass ML-based detection."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Random padding with a wide size range (40-1400) ensures packet length distribution closely mimics HTTPS traffic, resulting in a low KL divergence score."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Fallback is enabled and configured to return real Google traffic, which will pass active probing checks."
+      }
+    },
+    "known_weaknesses": [
+      "Noise protocol pattern is more complex than standard TLS; could potentially be flagged as unusual traffic pattern if deep protocol analysis is applied."
+    ]
+  }
+}

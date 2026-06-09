@@ -1,0 +1,36 @@
+protocol: llm-gen-v12
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19494
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.cloudflare.com
+    cert_file: D:\programs\диплом\llm-eval\results\deepseek-r1\f99c2f91-975d-42c3-8578-73704b31f1af\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\deepseek-r1\f99c2f91-975d-42c3-8578-73704b31f1af\server.key
+    insecure: true
+handshake:
+  type: noise
+  noise:
+    pattern: NNpsk2
+    cipher_suite: 25519:ChaChaPoly:BLAKE2s
+    local_key: generate
+    psk: 9f40bb506496040b796bbc8aea3d8145f7fe98537313f86ca1497862cf1da965
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: random
+  random_min: 40
+  random_max: 1400
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.cloudflare.com

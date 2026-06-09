@@ -1,0 +1,15 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	http
+#open	2026-06-07-10-46-33
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	trans_depth	method	host	uri	referrer	version	user_agent	origin	request_body_len	response_body_len	status_code	status_msg	info_code	info_msg	tags	username	password	proxied	orig_fuids	orig_filenames	orig_mime_types	resp_fuids	resp_filenames	resp_mime_types
+#types	time	string	addr	port	addr	port	count	string	string	string	string	string	string	string	count	count	count	string	count	string	set[enum]	string	string	set[string]	vector[string]	vector[string]	vector[string]	vector[string]	vector[string]	vector[string]
+1780829127.990825	Cf4widp8OKrnHrNhg	127.0.0.1	42696	127.0.0.1	9080	1	GET	example.com	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	F4Gy0Y2guE7YGPN68b	-	text/html
+1780829128.418393	Cn8IVW1YhqesBRjb64	127.0.0.1	42702	127.0.0.1	9080	1	GET	example.org	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	FJs08j3bZMkOeKuXod	-	text/html
+1780829127.971358	CuRwgY1haUWO7NDEI1	127.0.0.1	42700	127.0.0.1	19467	1	GET	127.0.0.1	/	-	-	-	-	0	0	-	-	-	-	(empty)	-	-	-	-	-	-	-	-	-
+1780829128.954766	CIxIRelr9tvKahmwg	127.0.0.1	42705	127.0.0.1	9080	1	GET	httpbin.org	/get	-	-	python-requests/2.34.2	-	0	0	-	-	-	-	(empty)	-	-	-	-	-	-	-	-	-
+1780829143.135448	C4IpaB4RozJo0Rpcw3	127.0.0.1	42724	127.0.0.1	19506	1	GET	127.0.0.1	/	-	-	-	-	0	0	-	-	-	-	(empty)	-	-	-	-	-	-	-	-	-
+1780829161.778624	COYmUj12nFF95qSkj4	127.0.0.1	42742	127.0.0.1	19446	1	GET	127.0.0.1	/	-	-	-	-	0	0	-	-	-	-	(empty)	-	-	-	-	-	-	-	-	-
+#close	2026-06-07-10-46-33

@@ -1,0 +1,31 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	http
+#open	2026-06-07-10-47-48
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	trans_depth	method	host	uri	referrer	version	user_agent	origin	request_body_len	response_body_len	status_code	status_msg	info_code	info_msg	tags	username	password	proxied	orig_fuids	orig_filenames	orig_mime_types	resp_fuids	resp_filenames	resp_mime_types
+#types	time	string	addr	port	addr	port	count	string	string	string	string	string	string	string	count	count	count	string	count	string	set[enum]	string	string	set[string]	vector[string]	vector[string]	vector[string]	vector[string]	vector[string]	vector[string]
+1780829201.020466	CJDevI3LrAQg8Olpz4	127.0.0.1	42814	127.0.0.1	9080	1	GET	example.com	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	Fqy9Tw2riU1g4C2vI3	-	text/html
+1780829201.441875	C4QuYW3XmLDLh1ND4	127.0.0.1	42817	127.0.0.1	9080	1	GET	example.org	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	Ft4rEs4BMsN4kbrVVa	-	text/html
+1780829201.772929	C3nlQI2XJw66tTMF7b	127.0.0.1	42821	127.0.0.1	9080	1	GET	example.com	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	FrT8Gb1CZHWsihKO4i	-	text/html
+1780829202.195833	CS1R8C3OIQySrzjwik	127.0.0.1	42827	127.0.0.1	9080	1	GET	example.org	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	F3hsc11IujIkcuron8	-	text/html
+1780829202.721973	CowtuyrlVWq6Ks1sl	127.0.0.1	42833	127.0.0.1	9080	1	GET	httpbin.org	/get	-	1.1	python-requests/2.34.2	-	0	306	200	OK	-	-	(empty)	-	-	-	-	-	-	FXXik6aIqTTzzojK4	-	text/json
+1780829202.503740	CA2p5R3jpCSF2j6fJ3	127.0.0.1	42830	127.0.0.1	9080	1	GET	httpbin.org	/headers	-	1.1	python-requests/2.34.2	-	0	225	200	OK	-	-	(empty)	-	-	-	-	-	-	FsyOHj1nDg7EdtXk39	-	text/json
+1780829206.039850	CrbM6y1BGCmkvv2tua	127.0.0.1	42840	127.0.0.1	9080	1	GET	example.com	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	Ff4OgtzP8drrkpjx7	-	text/html
+1780829206.470455	Cx36Qx32LHzMM93hB6	127.0.0.1	42843	127.0.0.1	9080	1	GET	example.org	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	FjS9mE1LxdXoM3tKm7	-	text/html
+1780829207.048265	CLuV6OGb6AygBOQsh	127.0.0.1	42846	127.0.0.1	9080	1	GET	httpbin.org	/get	-	1.1	python-requests/2.34.2	-	0	306	200	OK	-	-	(empty)	-	-	-	-	-	-	FAmm771yxBqWCF4agd	-	text/json
+1780829208.216768	CbDJXh3hNxQoaM2ne6	127.0.0.1	42852	127.0.0.1	9080	1	GET	httpbin.org	/headers	-	1.1	python-requests/2.34.2	-	0	225	200	OK	-	-	(empty)	-	-	-	-	-	-	F5gS67VdtRC9v7eGl	-	text/json
+1780829208.758727	C5AGJ41azosH2e503	127.0.0.1	42855	127.0.0.1	9080	1	GET	example.com	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	FMlVtr92rQNS1xnLe	-	text/html
+1780829209.184965	CLsnJ1Ck5ACOLKnTh	127.0.0.1	42858	127.0.0.1	9080	1	GET	example.org	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	F8g6g16aZjlBcI8w4	-	text/html
+1780829209.782090	CA4bYvKRbxQzHmOOi	127.0.0.1	42864	127.0.0.1	9080	1	GET	example.com	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	FfnsZA1BmmMyLLuroc	-	text/html
+1780829210.208641	CEiwMe2i5h3rW22418	127.0.0.1	42867	127.0.0.1	9080	1	GET	example.org	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	FICL4R2Ncjgi10U9Zi	-	text/html
+1780829210.788984	CJcGGp1alDlr0OnMfd	127.0.0.1	42876	127.0.0.1	9080	1	GET	httpbin.org	/get	-	1.1	python-requests/2.34.2	-	0	306	200	OK	-	-	(empty)	-	-	-	-	-	-	Fo4HxU18yAFIHuSv8h	-	text/json
+1780829210.250283	CqADj53YKGzjjSmOh8	127.0.0.1	42872	127.0.0.1	19468	1	GET	127.0.0.1	/	-	-	-	-	0	0	-	-	-	-	(empty)	-	-	-	-	-	-	-	-	-
+1780829204.387133	CONVcM37mLImn8IbJ9	127.0.0.1	42836	127.0.0.1	9080	1	GET	httpbin.org	/headers	-	-	python-requests/2.34.2	-	0	0	-	-	-	-	(empty)	-	-	-	-	-	-	-	-	-
+1780829201.969407	CaC4Cu4zHHnONH5Zui	127.0.0.1	42824	127.0.0.1	9080	1	GET	httpbin.org	/get	-	-	python-requests/2.34.2	-	0	0	-	-	-	-	(empty)	-	-	-	-	-	-	-	-	-
+1780829209.707726	C5wD5z4P9TCznA0PI3	127.0.0.1	42861	127.0.0.1	9080	1	GET	httpbin.org	/get	-	-	python-requests/2.34.2	-	0	0	-	-	-	-	(empty)	-	-	-	-	-	-	-	-	-
+1780829212.488524	CUytNw1geBELgvPYNe	127.0.0.1	42879	127.0.0.1	9080	1	GET	httpbin.org	/headers	-	-	python-requests/2.34.2	-	0	0	-	-	-	-	(empty)	-	-	-	-	-	-	-	-	-
+1780829234.781690	CIqE642qmZmp8tkHd1	127.0.0.1	42913	127.0.0.1	19485	1	GET	127.0.0.1	/	-	-	-	-	0	0	-	-	-	-	(empty)	-	-	-	-	-	-	-	-	-
+1780829234.719572	CPkeN33bbvaN7E7sq3	127.0.0.1	42909	127.0.0.1	19507	1	GET	127.0.0.1	/	-	-	-	-	0	0	-	-	-	-	(empty)	-	-	-	-	-	-	-	-	-
+#close	2026-06-07-10-47-48

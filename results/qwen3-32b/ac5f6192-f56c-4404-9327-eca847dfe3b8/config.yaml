@@ -1,0 +1,37 @@
+protocol: ''
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19444
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.cloudflare.com
+    cert_file: D:\programs\диплом\llm-eval\results\qwen3-32b\ac5f6192-f56c-4404-9327-eca847dfe3b8\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\qwen3-32b\ac5f6192-f56c-4404-9327-eca847dfe3b8\server.key
+    insecure: true
+handshake:
+  type: noise
+  noise:
+    pattern: NNpsk2
+    cipher_suite: 25519:ChaChaPoly:BLAKE2s
+    prologue: Tunnel-Gen-Conf
+    local_key: generate
+    psk: dbc30cab7fcbba8c5fee3d5143c6b26562e4260aebdda164e350da612d3e7fa4
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: random
+  random_min: 40
+  random_max: 1400
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.cloudflare.com

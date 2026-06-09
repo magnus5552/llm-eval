@@ -1,0 +1,24 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	socks
+#open	2026-06-07-10-03-53
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	version	user	password	status	request.host	request.name	request_p	bound.host	bound.name	bound_p
+#types	time	string	addr	port	addr	port	count	string	string	string	addr	string	port	addr	string	port
+1780826574.090069	CdamHw1ZH9NlqFijF7	127.0.0.1	42300	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	42301
+1780826573.678496	CMyfsPKBsY9Lp0Mqf	127.0.0.1	42297	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	42298
+1780826571.754650	C5HLup36AOWAmDFink	127.0.0.1	42293	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	42294
+1780826583.720022	CwMiLG2CaJq1VrpWi5	127.0.0.1	42313	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	42314
+1780826574.500284	CDuUMn2BCUCF8yOZDj	127.0.0.1	42303	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	42304
+1780826565.814789	CV93HydQB95fyHBql	127.0.0.1	42287	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	42288
+1780826565.366131	CeWwv24qBz5oMrclu3	127.0.0.1	42283	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	42284
+1780826579.984204	CaW1q64XNgtJjXuFjc	127.0.0.1	42306	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	42307
+1780826592.472073	CwFSgptLKwtnTSzkc	127.0.0.1	42329	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	42330
+1780826583.291643	Ckiiff29m8GCv4FxN7	127.0.0.1	42309	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	42310
+1780826584.150631	Cfp6yd19sL9HpVIvGb	127.0.0.1	42316	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	42317
+1780826566.229516	CG5F7r3RqfUYynf3Fd	127.0.0.1	42290	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	42291
+1780826589.671876	CiGQKF345YoCoVQkS7	127.0.0.1	42320	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	42321
+1780826591.637112	C6gFJP1xEy7VGASNab	127.0.0.1	42323	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	42324
+1780826592.060826	CP05jP2L71i94X9HAe	127.0.0.1	42326	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	42327
+#close	2026-06-07-10-03-53

@@ -1,0 +1,15 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	ssl
+#open	2026-06-07-10-43-12
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	version	cipher	curve	server_name	resumed	last_alert	next_protocol	established	ssl_history	cert_chain_fps	client_cert_chain_fps	sni_matches_cert	server_version	client_version	client_ciphers	ssl_client_exts	ssl_server_exts	ticket_lifetime_hint	dh_param_size	point_formats	client_curves	orig_alpn	client_supported_versions	server_supported_version	psk_key_exchange_modes	client_key_share_groups	server_key_share_group	client_comp_methods	sigalgs	hashalgs
+#types	time	string	addr	port	addr	port	string	string	string	string	bool	string	string	bool	string	vector[string]	vector[string]	bool	count	count	vector[count]	vector[count]	vector[count]	count	count	vector[count]	vector[count]	vector[string]	vector[count]	count	vector[count]	vector[count]	count	vector[count]	vector[count]	vector[count]
+1780828925.984452	CmbU4n1zL4miAukcKl	127.0.0.1	25795	127.0.0.1	19444	TLSv13	TLS_AES_128_GCM_SHA256	x25519	www.cloudflare.com	F	-	-	T	CsiI	-	-	-	771	771	4865,4867,4866,49195,49199,52393,52392,49196,49200,49162,49161,49171,49172,156,157,47,53	0,23,65281,10,11,35,16,5,34,51,43,13,45,28,65037	43,51	-	-	0	29,23,24,25,256,257	h2,http/1.1	772,771	772	1	29,23	29	0	3,3,3,4,5,6,1,1,1,3,1	4,5,6,8,8,8,4,5,6,2,2
+1780828929.857892	CM7qIo16plwNrbyJpk	127.0.0.1	25797	127.0.0.1	19444	TLSv13	TLS_AES_128_GCM_SHA256	x25519	www.cloudflare.com	F	-	-	T	CsiI	-	-	-	771	771	4865,4867,4866,49195,49199,52393,52392,49196,49200,49162,49161,49171,49172,156,157,47,53	0,23,65281,10,11,35,16,5,34,51,43,13,45,28,65037	43,51	-	-	0	29,23,24,25,256,257	h2,http/1.1	772,771	772	1	29,23	29	0	3,3,3,4,5,6,1,1,1,3,1	4,5,6,8,8,8,4,5,6,2,2
+1780828931.316644	CdBtpa2SFNOn2GJMBj	127.0.0.1	25802	127.0.0.1	19444	TLSv13	TLS_AES_128_GCM_SHA256	x25519	www.cloudflare.com	F	-	-	T	CsiI	-	-	-	771	771	4865,4867,4866,49195,49199,52393,52392,49196,49200,49162,49161,49171,49172,156,157,47,53	0,23,65281,10,11,35,16,5,34,51,43,13,45,28,65037	43,51	-	-	0	29,23,24,25,256,257	h2,http/1.1	772,771	772	1	29,23	29	0	3,3,3,4,5,6,1,1,1,3,1	4,5,6,8,8,8,4,5,6,2,2
+1780828933.023195	CcXWNO3MhsEtzSB0Qh	127.0.0.1	25803	127.0.0.1	19444	TLSv13	TLS_AES_128_GCM_SHA256	x25519	127.0.0.1	F	-	-	F	Cji	-	-	-	771	771	4865,4866	0,43,10	43,51	-	-	-	29	-	772,771	772	-	-	29	0	-	-
+1780828938.056291	C7ni7W3uWFA65Yozd2	127.0.0.1	25815	127.0.0.1	19504	TLSv13	TLS_AES_128_GCM_SHA256	x25519	127.0.0.1	F	-	-	F	Cji	-	-	-	771	771	4865,4866	0,43,10	43,51	-	-	-	29	-	772,771	772	-	-	29	0	-	-
+1780828960.008976	CpH6UE2lgX0ZJySHql	127.0.0.1	25835	127.0.0.1	19465	TLSv13	TLS_AES_128_GCM_SHA256	x25519	127.0.0.1	F	-	-	F	Cji	-	-	-	771	771	4865,4866	0,43,10	43,51	-	-	-	29	-	772,771	772	-	-	29	0	-	-
+#close	2026-06-07-10-43-12

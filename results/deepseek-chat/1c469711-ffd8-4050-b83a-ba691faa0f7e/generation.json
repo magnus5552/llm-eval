@@ -1,0 +1,106 @@
+{
+  "run_id": "1c469711-ffd8-4050-b83a-ba691faa0f7e",
+  "timestamp": "2026-06-07T09:21:05.815660+00:00",
+  "elapsed_s": 32.26,
+  "model": "deepseek-chat",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 6298,
+    "completion": 1,
+    "total": 6299
+  },
+  "variant": {
+    "index": 0,
+    "domain": "www.google.com",
+    "port": 9443,
+    "handshake_hint": "Use tls-token for maximum active-probe resistance (M8).",
+    "padding_hint": "Use mimicry/chrome-browsing to pass M4/M6."
+  },
+  "generation_result": {
+    "reasoning": "1) Transport uses TLS with Chrome-120 fingerprint to match browser traffic (M2/M3 pass). SNI is set to www.google.com for Suricata compatibility (M2). 2) Handshake uses TLS-token with session_ticket field for PSK auth, leaving PSK empty for evaluator injection (R6). This provides active probe resistance (M8). 3) Padding uses mimicry/chrome-browsing profile to blend with real Chrome traffic patterns (M4/M6 pass). 4) Timing is disabled to avoid artificial patterns (M7). 5) Fallback points to Google to handle probes (M8).",
+    "config": {
+      "protocol": "tls-token-mimicry-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.google.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.google.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "TLS/HTTPS classification guaranteed by transport.type=tls"
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Browser fingerprint + valid SNI won't trigger ET rules"
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Chrome-120 JA3 matches real browser"
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Mimicry padding matches Chrome flow statistics"
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Mimicry profile closely matches HTTPS length distribution"
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Fallback returns legitimate Google HTTPS responses"
+      }
+    },
+    "known_weaknesses": [
+      "TLS-token handshake may be detectable if session_ticket field is monitored for abnormal lengths",
+      "Fixed ALPN list (h2, http/1.1) could be fingerprinted if ALPN randomization is expected"
+    ]
+  }
+}

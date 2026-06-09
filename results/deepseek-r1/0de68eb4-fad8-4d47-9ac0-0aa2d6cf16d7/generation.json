@@ -1,0 +1,109 @@
+{
+  "run_id": "0de68eb4-fad8-4d47-9ac0-0aa2d6cf16d7",
+  "timestamp": "2026-06-07T09:39:05.935158+00:00",
+  "elapsed_s": 190.44,
+  "model": "deepseek-r1",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 5270,
+    "completion": 2347,
+    "total": 7617
+  },
+  "variant": {
+    "index": 3,
+    "domain": "www.github.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk0 — PSK at first message, extra entropy from the start.",
+    "padding_hint": "Use random padding [64, 1200] — avoid near-MTU sizes to reduce M5 score."
+  },
+  "generation_result": {
+    "reasoning": "Transport: TLS 1.3 with Chrome 120 fingerprint and www.github.com SNI ensures browser-like appearance for M1-M3. Handshake: Noise NNpsk0 provides early PSK entropy while being embedded within TLS encryption. Padding: Random 64-1200 byte sizes avoid fixed patterns (M4-M6) and near-MTU detection. Fallback: Reverse proxy to github.com handles active probes (M8). Timing: None preserves natural inter-arrival times (M7).",
+    "config": {
+      "protocol": "noise-nnpsk0-random-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.github.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk0",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 64,
+        "random_max": 1200,
+        "profile": null
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.github.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": ""
+      }
+    },
+    "known_weaknesses": [
+      "Fixed handshake size of Noise NNpsk0 might be detectable if padding is insufficient, but random padding mitigates this.",
+      "Random padding range (64-1200) may not perfectly match real traffic distributions.",
+      "Self-signed certificate on tunnel server might trigger warnings in non-insecure clients, but evaluator uses insecure."
+    ]
+  }
+}

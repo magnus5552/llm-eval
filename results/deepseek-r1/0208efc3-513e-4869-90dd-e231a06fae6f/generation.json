@@ -1,0 +1,101 @@
+{
+  "run_id": "0208efc3-513e-4869-90dd-e231a06fae6f",
+  "timestamp": "2026-06-07T09:43:26.352986+00:00",
+  "elapsed_s": 193.49,
+  "model": "deepseek-r1",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 5268,
+    "completion": 2758,
+    "total": 8026
+  },
+  "variant": {
+    "index": 4,
+    "domain": "www.amazon.com",
+    "port": 9443,
+    "handshake_hint": "Try handshake=none for the simplest possible surface — pure TLS with mimicry.",
+    "padding_hint": "Use mimicry/chrome-browsing but experiment with ssh-interactive for low-traffic sessions."
+  },
+  "generation_result": {
+    "reasoning": "For the 5th run, we vary parameters by using Safari-17 TLS fingerprint and random padding (40-1400 bytes) instead of mimicry. This tests if a wide random padding range can evade metrics without mimicking a specific profile. Handshake is set to none for simplicity, reducing protocol surface. Fallback targets www.amazon.com to match SNI. Timing is natural (none) to avoid IAT anomalies.",
+    "config": {
+      "protocol": "safari-tls-random-pad",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.amazon.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "none",
+        "noise": null,
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 40,
+        "random_max": 1400,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.amazon.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m4_ml": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m6_kl_len": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": ""
+      }
+    },
+    "known_weaknesses": [
+      "Random padding may not perfectly mimic HTTPS packet length distribution, potentially increasing KL divergence (M6) and ML classifier score (M4).",
+      "Safari-17 fingerprint is less common than Chrome or Firefox, but still a valid browser signature."
+    ]
+  }
+}

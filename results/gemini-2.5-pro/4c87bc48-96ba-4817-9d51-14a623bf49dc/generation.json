@@ -1,0 +1,106 @@
+{
+  "run_id": "4c87bc48-96ba-4817-9d51-14a623bf49dc",
+  "timestamp": "2026-06-07T10:10:00.246218+00:00",
+  "elapsed_s": 33.14,
+  "model": "gemini-2.5-pro",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 2727,
+    "completion": 2684,
+    "total": 5411
+  },
+  "variant": {
+    "index": 2,
+    "domain": "www.microsoft.com",
+    "port": 8443,
+    "handshake_hint": "Combine tls-token with a browser fingerprint from a less common browser (safari-17).",
+    "padding_hint": "Use mimicry/video-streaming to simulate different traffic profile."
+  },
+  "generation_result": {
+    "reasoning": "This configuration is designed for high stealth by closely mimicking a specific, plausible web traffic scenario: video streaming from a Safari browser to a Microsoft-owned domain.\n\n- **Transport:** We use TLS 1.3 with the `safari-17` fingerprint, creating a legitimate JA3 hash that evades M3. The SNI is set to `www.microsoft.com` and the port to 8443 (a common alternate HTTPS port) to create a consistent, non-suspicious outer layer that will pass M1 and M2 inspections.\n\n- **Handshake:** The `tls-token` method is used for authentication. It embeds the authentication data within a standard TLS session ticket, making it computationally difficult to distinguish from a normal TLS session resumption without the pre-shared key. This is a very subtle way to perform the tunnel handshake.\n\n- **Padding:** `mimicry` mode with the `video-streaming` profile is selected. This is a crucial choice to defeat statistical analysis (M4, M6). Instead of using generic or random padding, the packet sizes will follow a distribution model trained on real video-over-HTTPS traffic, making the flow characteristics much harder to classify as a VPN.\n\n- **Fallback:** To defeat active probing (M8), a `reverse-proxy` fallback to the legitimate `https://www.microsoft.com` is configured. Any non-tunnel probe will receive a genuine response from Microsoft's servers, making the tunnel endpoint indistinguishable from the real thing.\n",
+    "config": {
+      "protocol": "tls-token-video-v3",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 8443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.microsoft.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "video-streaming"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.microsoft.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m2_suricata": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m3_zeek": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m4_ml": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m6_kl_len": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m8_probe": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      }
+    },
+    "known_weaknesses": [
+      "The primary weakness is a potential a mismatch between the padding profile and the actual traffic. If the user is performing low-latency, small-packet tasks (like SSH), the `video-streaming` padding profile (which favors larger packets) could be detected by a highly sophisticated adversary comparing payload entropy with packet size.",
+      "Using port 8443 instead of 443 is a very weak but possible distinguishing feature. While common for services, it's less common for a major domain like `www.microsoft.com`, and could be used as one part of a multi-factor firewall rule detection heuristic-a-larger heuristic for-a larger heuristic for fingerprinting."
+    ]
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "run_id": "c975c3cc-9d66-40e5-97a2-a27af728bb08",
+  "timestamp": "2026-06-07T09:05:06.524008+00:00",
+  "elapsed_s": 37.23,
+  "model": "claude-opus-4",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 6049,
+    "completion": 1,
+    "total": 6050
+  },
+  "variant": {
+    "index": 1,
+    "domain": "www.cloudflare.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk2 for forward secrecy without pre-shared static keys.",
+    "padding_hint": "Use random padding with wide range [40, 1400] to pass M6."
+  },
+  "generation_result": {
+    "reasoning": "Transport section: Using TLS with port 443 and firefox-120 fingerprint provides legitimate browser mimicry. The cloudflare.com SNI matches a major CDN that handles diverse traffic patterns, making tunnel traffic blend in naturally. Firefox fingerprint adds variety from chrome-dominated traffic.\n\nHandshake section: Noise protocol with NNpsk2 pattern provides forward secrecy and authentication without requiring pre-provisioned static keys. This pattern performs ephemeral key exchange (NN) followed by PSK authentication, offering stronger security than plain TLS while remaining compatible with automated testing infrastructure.\n\nPadding section: Random padding with range 40-1400 bytes creates natural-looking packet size variation that mimics real HTTPS traffic. This wide range ensures low KL divergence (M6) while avoiding the detectability of fixed-size padding. The distribution will naturally cluster around common web packet sizes.\n\nFallback section: Reverse proxy to cloudflare.com ensures active probes receive legitimate HTTPS responses matching the SNI. This is critical for M8 evasion as any abnormal response or connection reset would immediately flag the service as suspicious.\n\nTiming section: No artificial timing manipulation preserves natural traffic flow patterns. Batch or delay modes often create detectable regularities that increase KL-IAT scores, so maintaining organic timing is optimal for stealth.",
+    "config": {
+      "protocol": "noise-nnpsk2-random-v2",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "firefox-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.cloudflare.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk2",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 40,
+        "random_max": 1400,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.cloudflare.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "TLS 1.3 with legitimate SNI and browser fingerprint will be classified as HTTPS/TLS, not VPN"
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Valid SNI present, standard HTTPS port 443, Firefox browser fingerprint matches legitimate traffic patterns"
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Firefox-120 JA3 fingerprint matches real browser. Noise handshake occurs after TLS, avoiding raw encrypted stream detection"
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Random padding 40-1400 creates natural packet size variation with good coefficient of variation, avoiding uniform size penalties"
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Wide random padding range produces packet length distribution similar to real HTTPS, expecting KL < 0.15"
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Fallback proxy to real cloudflare.com ensures probes receive legitimate HTTPS responses matching the SNI"
+      }
+    },
+    "known_weaknesses": [
+      "Noise protocol adds slight overhead compared to pure TLS, potentially detectable by advanced traffic analysis",
+      "Random padding may not perfectly match cloudflare.com's specific traffic patterns if analyzed at CDN-specific granularity",
+      "Firefox fingerprint less common than Chrome in some regions, could stand out in Chrome-dominant networks",
+      "Port 443 usage may conflict with existing HTTPS services on the same host in production deployments"
+    ]
+  }
+}

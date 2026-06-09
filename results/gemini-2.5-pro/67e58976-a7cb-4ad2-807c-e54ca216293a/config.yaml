@@ -1,0 +1,35 @@
+protocol: tls-token-gcp-v1
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19522
+  tls:
+    version: '1.3'
+    fingerprint: safari-17
+    alpn:
+    - h2
+    - http/1.1
+    sni: storage.googleapis.com
+    cert_file: D:\programs\диплом\llm-eval\results\gemini-2.5-pro\67e58976-a7cb-4ad2-807c-e54ca216293a\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\gemini-2.5-pro\67e58976-a7cb-4ad2-807c-e54ca216293a\server.key
+    insecure: true
+handshake:
+  type: tls-token
+  tls_token:
+    field: session_ticket
+    kdf: hkdf-sha256
+    psk: 49b47360e904238f00dbc623f4748cc656bb9446424db23ab1ac5e6418b87ce7
+    length: 48
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: mimicry
+  profile: chrome-browsing
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://storage.googleapis.com

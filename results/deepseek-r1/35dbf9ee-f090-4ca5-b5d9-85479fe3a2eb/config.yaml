@@ -1,0 +1,35 @@
+protocol: llm-token-mimicry-v1
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19443
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.google.com
+    cert_file: D:\programs\диплом\llm-eval\results\deepseek-r1\35dbf9ee-f090-4ca5-b5d9-85479fe3a2eb\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\deepseek-r1\35dbf9ee-f090-4ca5-b5d9-85479fe3a2eb\server.key
+    insecure: true
+handshake:
+  type: tls-token
+  tls_token:
+    field: session_ticket
+    kdf: hkdf-sha256
+    psk: 41e2f50b410e92ccf2b8a0bdd819db39aca3f2fe6cfa51fe8a639101ad7a9441
+    length: 48
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: mimicry
+  profile: chrome-browsing
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.google.com

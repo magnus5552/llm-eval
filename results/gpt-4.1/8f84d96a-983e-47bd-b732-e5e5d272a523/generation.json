@@ -1,0 +1,110 @@
+{
+  "run_id": "8f84d96a-983e-47bd-b732-e5e5d272a523",
+  "timestamp": "2026-06-07T08:42:46.888676+00:00",
+  "elapsed_s": 11.6,
+  "model": "gpt-4.1",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 3942,
+    "completion": 1,
+    "total": 3943
+  },
+  "variant": {
+    "index": 1,
+    "domain": "www.cloudflare.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk2 for forward secrecy without pre-shared static keys.",
+    "padding_hint": "Use random padding with wide range [40, 1400] to pass M6."
+  },
+  "generation_result": {
+    "reasoning": "Transport: I selected TLS as the transport type with port 443, which is the standard HTTPS port, to blend in with typical web traffic and ensure no suspicion at the start of the connection (R1). The TLS fingerprint is set as chrome-120 to closely match real Chrome browsers (R2), and SNI is set to www.cloudflare.com to both satisfy the request and to evade Suricata SNI-based rules (R3). The ALPN values are typical for browsers, helping JA3 match. \n\nHandshake: I chose Noise NNpsk2 as the handshake pattern to provide strong forward secrecy and resistance to replay without requiring pre-provisioned static keys (R6). The PSK field is left empty for auto-injection. The cipher suite was selected for optimal security and efficiency.\n\nCrypto: Chacha20-poly1305 AEAD is chosen for speed and modern security, and hkdf-sha256 for consistency with best practices and previous runs.\n\nPadding: I used random mode with a wide range (40, 1400) as directed (padding focus), to mimic the variability seen in web browsing and pass M6 (R5). This also helps avoid uniform packet distributions that might trigger ML or KL-divergence based detection.\n\nTiming: The mode is 'none', providing natural timing from the application and underlying network for optimal realism (R7).\n\nFallback: Reverse-proxy fallback to https://www.cloudflare.com is enabled, guaranteeing a real HTTPS response on probes (R4) and matching the SNI for maximal camouflage.\n\nOverall, each choice was made to maximize resemblance to legitimate browser HTTPS, avoiding known DPI, ML, and probe detection vectors, while incorporating experimental variability per the run index.",
+    "config": {
+      "protocol": "noise-nnpsk2-v1-cloudflare",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.cloudflare.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk2",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 40,
+        "random_max": 1400,
+        "profile": null
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.cloudflare.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "TLS transport on port 443 with a browser-matching fingerprint results in classification as standard HTTPS, not VPN/obfuscation."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Non-empty SNI and a mainstream domain avoid Suricata rules, with session characteristics matching legitimate TLS clients."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "TLS fingerprint and handshake produce a JA3 string matching Chrome 120; no entropy anomalies in application payloads due to accurate mimicry."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Random padding across a wide size range and natural timing avoid telltale VPN-like uniformity, lowering ML classifier suspicion."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Random-sized packets across 40–1400 bytes closely mimic typical HTTPS web traffic, yielding low KL-divergence from real flows."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Reverse-proxy fallback to a live HTTPS service ensures legitimate TLS handshake and HTTP response to all probes."
+      }
+    },
+    "known_weaknesses": [
+      "Wildcard random padding has potential edge outliers (minimum/maximum sizes) rarely seen in real traffic, which could trigger anomalous flow statistics in rare cases.",
+      "Noise handshake is not part of standard browser protocol — if an active adversary can trigger and analyze application data, they might detect protocol deviations beyond TLS.",
+      "If an adversary correlates external behavior of fallback (reverse-proxy) with client traffic, novel patterns could theoretically be detected.",
+      "If large bursts of minimum-size frames appear repeatedly (due to application behavior), this could be flagged as suspicious, though unlikely with the given padding range."
+    ]
+  }
+}

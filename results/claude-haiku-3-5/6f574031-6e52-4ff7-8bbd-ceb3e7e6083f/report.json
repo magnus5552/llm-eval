@@ -1,0 +1,214 @@
+{
+  "verdict": "PASS",
+  "failed_checks": [],
+  "skipped_checks": [],
+  "checks": {
+    "M1_ndpi": {
+      "result": "PASS",
+      "detail": {
+        "classified_as": "SOCKS",
+        "confidence": null,
+        "is_known_vpn": false
+      }
+    },
+    "M2_suricata": {
+      "result": "PASS",
+      "detail": {
+        "alert_count": 0,
+        "categories": []
+      }
+    },
+    "M3_ja3": {
+      "result": "PASS",
+      "detail": {
+        "ja3_is_browser": false,
+        "browser_matches": [],
+        "unique_ja3_count": 0,
+        "high_entropy_streams": 0,
+        "payload_byte_entropy": 7.742
+      }
+    },
+    "M4_vpn_prob": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob": 0.0953
+      }
+    },
+    "M5_vpn_prob_seq": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob_seq": 0.4143
+      }
+    },
+    "M6_kl_len": {
+      "result": "PASS",
+      "detail": {
+        "kl_len": 0.3619
+      }
+    },
+    "M7_kl_iat": {
+      "result": "PASS",
+      "detail": {
+        "kl_iat": 0.2128
+      }
+    },
+    "M8_probe": {
+      "result": "PASS",
+      "detail": {
+        "distinguishable_ratio": 0.667,
+        "flags": 2
+      }
+    }
+  },
+  "config": {
+    "dsl_config": "D:\\programs\\диплом\\llm-eval\\results\\claude-haiku-3-5\\6f574031-6e52-4ff7-8bbd-ceb3e7e6083f\\config.yaml",
+    "scenario": "web",
+    "duration_s": 30
+  },
+  "raw": {
+    "pcap_path": "D:\\programs\\диплом\\llm-eval\\results\\claude-haiku-3-5\\6f574031-6e52-4ff7-8bbd-ceb3e7e6083f\\test_out\\capture.pcap",
+    "m1_ndpi": {
+      "classified_as": "SOCKS",
+      "is_known_vpn": false,
+      "is_acceptable": true,
+      "flow_count": 104,
+      "known_flow_count": 104,
+      "protocol_distribution": {
+        "SOCKS": 51,
+        "TLS.Google": 51,
+        "TLS": 1,
+        "HTTP": 1
+      },
+      "ja3_hashes": [
+        "059d933c8c87eb7ca194c4f58573d1b7",
+        "076b1b3a20a56dedb76691b48188a1ff",
+        "09dac21945c9891d8ef566021454db9e",
+        "0ddb7717be88d7747d244db0ae8c6c21",
+        "119f5c63f98539b37d30e29610ae9158",
+        "122ff328f2be5970c6b1a35058ece7e4",
+        "1502c46f550ed19f8a23b05c6fbab705",
+        "174f2f47fcd6abba43f12ab3662cf83d",
+        "27bcca15fabcd99023029c4ac4a27b99",
+        "2e7c45ff4c351a8f11e974e4bc11cf61",
+        "30f996905571ed69c62a6d92becb6970",
+        "331316bd4b0458831f288a86de610669",
+        "397e6911b1b4d25d2368fc12b4e606a6",
+        "39f9c09a1ed9a0b7872bd19dd9533fff",
+        "3c7b871cabf9bcb0fb332a70438ed864",
+        "40f8a03183ea1a2179fe2b4f46953c25",
+        "49efbacd5b724648c35da103283df9dc",
+        "4abbf1276cab3e2348bfb3945a3baeee",
+        "4b6118a632b2dfb63e4c0dbef7968d25",
+        "4d1ef03a3ed5375a700c0669f852b7b4",
+        "4f78ba1c35811b64338f57b127d7b1eb",
+        "52f103ea52d855aae99da896f810283e",
+        "5860b73f4eec4df789a10ea0d760eace",
+        "5a686160f0b5ced4786dbe0c3cf7aa0c",
+        "6401df263008f14e6b4dc23d78a4173b",
+        "6634dc460ae762681940aa6f11108b78",
+        "6b875e2ed840a1006476978907753b37",
+        "707545e9d2460cb1eb352052b0718284",
+        "736656b750d918978be73844cb446da9",
+        "7a0db2c0ed4de9af0a587cf56823b797",
+        "80f577973b1d3024303170d561c1cb4e",
+        "8b01fdc1752723049ae5d1d2efe5cc88",
+        "8c032d0610532b420c6705043ac7110d",
+        "8e377cbcfd06c6c0768862884a64bceb",
+        "9450603fab4eb2851e900bef6edba7ff",
+        "a183989007bb29fa9e6abadf6b7fb045",
+        "a71353881c4b38b801336f3a890a3252",
+        "a73a719c8af12ee4c78e73cf53dfe2f7",
+        "aa713684114bb33d5192f5934b3b3f3c",
+        "b2eff50040155d0f98ec965c210d0deb",
+        "b9a9927ddbca33304d4dc601826ecebf",
+        "bbaecb7499fb7e65d01755da9b6a1248",
+        "c36487a186a3815cca7e6997088b9efa",
+        "c8f53837fcd0e557ddd3e3d15f3b696a",
+        "cdfd25deb40db884ad35d2132c9cb0e1",
+        "d1f41d6065f37c925d7d310d901e05b3",
+        "d7c1f0f8c71ee0a7acdb500cce6299c1",
+        "dd4d24db138c8d8e2117d3441d154e7a",
+        "eabd4cbb125b7d3a63d3854d31c69c84",
+        "f67442c25af1ed907a635401a4e849d3",
+        "fc222950fe0c0d7b28be7c19a9e5e758",
+        "fd53bddca6350cabdc24e81de14b88b4"
+      ],
+      "ja4_hashes": [
+        "f4febc55ea12b31ae17cfb7e614afda8"
+      ],
+      "sni_set": [
+        "127.0.0.1",
+        "www.google.com"
+      ],
+      "tls_versions": [
+        "TLSv1.3"
+      ]
+    },
+    "m2_suricata": {
+      "alert_count": 0,
+      "alerts": [],
+      "flow_count": 107,
+      "tls_count": 52,
+      "tls_versions": [
+        "TLS 1.3"
+      ],
+      "tls_sni": [
+        "127.0.0.1",
+        "www.google.com"
+      ],
+      "categories": []
+    },
+    "m3_zeek": {
+      "ja3_hashes": [],
+      "ja3s_hashes": [],
+      "snis": [
+        "127.0.0.1",
+        "www.google.com"
+      ],
+      "cipher_suites": [
+        "TLS_AES_128_GCM_SHA256"
+      ],
+      "tls_versions": [
+        "TLSv13"
+      ],
+      "browser_matches": [],
+      "ja3_is_browser": false,
+      "unique_ja3_count": 0,
+      "conn_count": 107,
+      "unknown_service_conns": 0,
+      "payload_byte_entropy": 7.742,
+      "high_entropy_streams": 0,
+      "entropy_sample_size": 139402
+    },
+    "m4_m7_flow": {
+      "vpn_prob": 0.0953,
+      "vpn_prob_seq": 0.4143,
+      "kl_len": 0.3619,
+      "kl_iat": 0.2128,
+      "total_packets": 2400,
+      "total_flows": 107,
+      "total_bytes": 383266,
+      "duration_s": 36.92,
+      "pkt_len_mean": 261.7,
+      "pkt_len_std": 413.1,
+      "iat_mean_ms": 15.39,
+      "small_pkt_pct": 56.3,
+      "large_pkt_pct": 8.0,
+      "model_used": "heuristic"
+    },
+    "m8_probe": {
+      "distinguishable_ratio": 0.667,
+      "distinguishable_flags": 2,
+      "check_random_bytes_responded": true,
+      "check_http_looks_http": false,
+      "check_server_speaks_first": false,
+      "ttfb_mean_ms": 57.3,
+      "ttfb_values_ms": [
+        125.0,
+        0.0,
+        47.0
+      ],
+      "probe_count": 5
+    }
+  }
+}

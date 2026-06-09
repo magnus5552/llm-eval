@@ -1,0 +1,19 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	files
+#open	2026-06-07-10-55-32
+#fields	ts	fuid	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	source	depth	analyzers	mime_type	filename	duration	local_orig	is_orig	seen_bytes	total_bytes	missing_bytes	overflow_bytes	timedout	parent_fuid	md5	sha1	sha256	extracted	extracted_cutoff	extracted_size
+#types	time	string	string	addr	port	addr	port	string	count	set[string]	string	string	interval	bool	bool	count	count	count	count	bool	string	string	string	string	string	bool	count
+1780829668.671135	FOrWmG4lRjgLkzfECl	Cf0CrQ24tgVM9ICFQ5	127.0.0.1	7215	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780829669.101850	FFRigF4dgNscV1bPi4	Cv1r1d1mWzvBRUGYW8	127.0.0.1	7218	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780829670.556495	FgYqrB3z050z5Plgpb	CoeLHE4BbUwVsklcQh	127.0.0.1	7221	127.0.0.1	9080	HTTP	0	(empty)	text/json	-	0.000000	T	F	306	306	0	0	F	-	-	-	-	-	-	-
+1780829673.094916	F6d52z1EaPsl0wIJ1	CrID044zmZAQ9U2Tk5	127.0.0.1	7227	127.0.0.1	9080	HTTP	0	(empty)	text/json	-	0.000000	T	F	225	225	0	0	F	-	-	-	-	-	-	-
+1780829673.529102	Fq9bgZ2RLeypZG8au2	CLz8ML162ub0RzchO5	127.0.0.1	7239	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780829673.962124	FdzepE1D5ar6Gfx4hg	CI6urB2sZXclDDw3je	127.0.0.1	7243	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780829698.013275	F6Ryd44286b7qJRzL5	Cx4MFq4rh59OiX3B58	127.0.0.1	63429	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780829698.444548	FTigTc3CjX5JOipdGa	CQFFv91k3QEo11R257	127.0.0.1	63436	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780829700.769785	FY6cIH1Y2B8Edhawh8	CCpoEWL0Z8AJDK6p9	127.0.0.1	63444	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780829701.196943	Fbl5Cp1qSBl8NYN3ja	Cp5UHP3i8QLs8i1Zaj	127.0.0.1	63447	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+#close	2026-06-07-10-55-32

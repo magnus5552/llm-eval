@@ -1,0 +1,219 @@
+{
+  "verdict": "PASS",
+  "failed_checks": [],
+  "skipped_checks": [],
+  "checks": {
+    "M1_ndpi": {
+      "result": "PASS",
+      "detail": {
+        "classified_as": "SOCKS",
+        "confidence": null,
+        "is_known_vpn": false
+      }
+    },
+    "M2_suricata": {
+      "result": "PASS",
+      "detail": {
+        "alert_count": 0,
+        "categories": []
+      }
+    },
+    "M3_ja3": {
+      "result": "PASS",
+      "detail": {
+        "ja3_is_browser": false,
+        "browser_matches": [],
+        "unique_ja3_count": 0,
+        "high_entropy_streams": 0,
+        "payload_byte_entropy": 7.742
+      }
+    },
+    "M4_vpn_prob": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob": 0.0981
+      }
+    },
+    "M5_vpn_prob_seq": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob_seq": 0.4143
+      }
+    },
+    "M6_kl_len": {
+      "result": "PASS",
+      "detail": {
+        "kl_len": 0.3633
+      }
+    },
+    "M7_kl_iat": {
+      "result": "PASS",
+      "detail": {
+        "kl_iat": 0.2257
+      }
+    },
+    "M8_probe": {
+      "result": "PASS",
+      "detail": {
+        "distinguishable_ratio": 0.667,
+        "flags": 2
+      }
+    }
+  },
+  "config": {
+    "dsl_config": "D:\\programs\\диплом\\llm-eval\\results\\gpt-4o-mini\\84951379-8666-4150-b05e-96bba8273b65\\config.yaml",
+    "scenario": "web",
+    "duration_s": 30
+  },
+  "raw": {
+    "pcap_path": "D:\\programs\\диплом\\llm-eval\\results\\gpt-4o-mini\\84951379-8666-4150-b05e-96bba8273b65\\test_out\\capture.pcap",
+    "m1_ndpi": {
+      "classified_as": "SOCKS",
+      "is_known_vpn": false,
+      "is_acceptable": true,
+      "flow_count": 115,
+      "known_flow_count": 115,
+      "protocol_distribution": {
+        "SOCKS": 50,
+        "TLS.Github": 50,
+        "TLS": 1,
+        "HTTP": 1,
+        "MDNS": 4,
+        "LLMNR": 8,
+        "NetBIOS": 1
+      },
+      "ja3_hashes": [
+        "0660411141c91319a4673ed58959270e",
+        "0ed5c88b23df1429220bed5378bddeba",
+        "150770c172fee3a53c5a766a34c381a6",
+        "2122af3b1cad01b73c866919054c35a1",
+        "232e73001002d616bcc7195040bcc64f",
+        "2d398c6fdd6cb2566f46e3542c9184ce",
+        "302ac0901c8d69320e4497f89cb854cb",
+        "30f5172a7c52dd7cae9076d0d0b35e15",
+        "37a123493987bdff23bf8028a8bcb0e0",
+        "39334b3a6383f65d26d64f9d143d6a1a",
+        "3a66128719b261443645e440c61ac950",
+        "3bee27bdf3d1fc0a2d254d7ed6ed5c0c",
+        "400d34a0063ad4fa586e5e11123df3e2",
+        "4550394db3243b2adca252951841477a",
+        "4940f44d67679226a955a4ffad8449c9",
+        "4e72fc33368913eb3714e64e4a90a2bd",
+        "576ff3a1ec3ff1fc794f828cc2c56192",
+        "5e3bb4d159dcb5d30c1ddc37bb82f29b",
+        "6270291b87d8a9e022414e33167b6e06",
+        "689605d46f0848be75246f40c3759061",
+        "6fa11cbf6b26d7aed7eb4a76ac4eb711",
+        "71c4f064823b90b95cbb3d867bc9fb55",
+        "72aae6446db654485ebcde1f8bfc9294",
+        "7dea8cd8922e99f83926f8fb7278a913",
+        "8a98b621a51b7ef3bab701c66982d9e1",
+        "8aa180b48888516855c135b6874d1af3",
+        "8aec7466b756ec8fd62e78f7233ab943",
+        "8c60376883e5e2c43e4afbb7bc5661d6",
+        "8f6164dc7eaf91d03aa82260ba96a293",
+        "9b88d9b0bdf47d005410a19038243325",
+        "ab810c1a85e06fae520c51b145b91aad",
+        "ae4034a761a5cb11eebc3d8445c9959d",
+        "b400f7a57d64edcae54ee7f95b61caae",
+        "b4e9ed0aa7a595dc5acebd905f5188af",
+        "bf4de2dc6a839835a88c389ec3299a19",
+        "c36487a186a3815cca7e6997088b9efa",
+        "c5ba4b789fa95fa8fa40f339d7005acc",
+        "c83d97a01293e1dd7e7749ddb6f00919",
+        "d29046ea55ba12ba2853396c0173db78",
+        "d2e43c100fe36ad04c688edfd55dd275",
+        "d7f1b3d38041cfda7c62be5ee549bbdb",
+        "e53bda1d328fe7241e9f180e4a018da1",
+        "e6472145f6ab5a5ee2c2d9162a7b3a3b",
+        "eb0d3aceee00267df2555c05e0485002",
+        "eb121f9d737e31703d1d5006bbc0aa30",
+        "edb23d047435b26d4dc0a14f5a2b45b5",
+        "f64f70b0365d046db123127c3735423c",
+        "f670f2cd097b1b19dff873956602ce65",
+        "f7dc3b53fa330a754ba20618a3242faf",
+        "f99b94830d80cd3deec857115371a394",
+        "ff1a2afe968cf7461a32c9309af6d48e"
+      ],
+      "ja4_hashes": [
+        "f4febc55ea12b31ae17cfb7e614afda8"
+      ],
+      "sni_set": [
+        "127.0.0.1",
+        "desktop-rhkm7oi",
+        "desktop-rhkm7oi.local",
+        "laptop-t8jb3mps",
+        "www.github.com"
+      ],
+      "tls_versions": [
+        "TLSv1.3"
+      ]
+    },
+    "m2_suricata": {
+      "alert_count": 0,
+      "alerts": [],
+      "flow_count": 118,
+      "tls_count": 51,
+      "tls_versions": [
+        "TLS 1.3"
+      ],
+      "tls_sni": [
+        "127.0.0.1",
+        "www.github.com"
+      ],
+      "categories": []
+    },
+    "m3_zeek": {
+      "ja3_hashes": [],
+      "ja3s_hashes": [],
+      "snis": [
+        "127.0.0.1",
+        "www.github.com"
+      ],
+      "cipher_suites": [
+        "TLS_AES_128_GCM_SHA256"
+      ],
+      "tls_versions": [
+        "TLSv13"
+      ],
+      "browser_matches": [],
+      "ja3_is_browser": false,
+      "unique_ja3_count": 0,
+      "conn_count": 118,
+      "unknown_service_conns": 0,
+      "payload_byte_entropy": 7.742,
+      "high_entropy_streams": 0,
+      "entropy_sample_size": 137137
+    },
+    "m4_m7_flow": {
+      "vpn_prob": 0.0981,
+      "vpn_prob_seq": 0.4143,
+      "kl_len": 0.3633,
+      "kl_iat": 0.2257,
+      "total_packets": 2619,
+      "total_flows": 112,
+      "total_bytes": 445502,
+      "duration_s": 38.44,
+      "pkt_len_mean": 273.9,
+      "pkt_len_std": 408.9,
+      "iat_mean_ms": 14.68,
+      "small_pkt_pct": 62.6,
+      "large_pkt_pct": 5.1,
+      "model_used": "heuristic"
+    },
+    "m8_probe": {
+      "distinguishable_ratio": 0.667,
+      "distinguishable_flags": 2,
+      "check_random_bytes_responded": true,
+      "check_http_looks_http": false,
+      "check_server_speaks_first": false,
+      "ttfb_mean_ms": 67.7,
+      "ttfb_values_ms": [
+        140.0,
+        0.0,
+        63.0
+      ],
+      "probe_count": 5
+    }
+  }
+}

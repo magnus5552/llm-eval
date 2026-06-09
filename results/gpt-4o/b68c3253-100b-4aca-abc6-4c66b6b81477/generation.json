@@ -1,0 +1,109 @@
+{
+  "run_id": "b68c3253-100b-4aca-abc6-4c66b6b81477",
+  "timestamp": "2026-06-07T10:43:13.542012+00:00",
+  "elapsed_s": 7.9,
+  "model": "gpt-4o",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 3491,
+    "completion": 1,
+    "total": 3492
+  },
+  "variant": {
+    "index": 3,
+    "domain": "www.github.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk0 — PSK at first message, extra entropy from the start.",
+    "padding_hint": "Use random padding [64, 1200] — avoid near-MTU sizes to reduce M5 score."
+  },
+  "generation_result": {
+    "reasoning": "### Transport\nI chose `transport.type: tls` as per R1, ensuring the tunnel is indistinguishable from HTTPS. The TLS fingerprint `chrome-120` aligns with common browsers (R2), facilitating M3 compliance, while the SNI `www.github.com` (R3) is strategically selected to match a credible target, reducing M8 risks. The standard port 443 helps camouflage traffic as typical web activity.\n\n### Handshake\nThe `handshake.type` is set to `noise` utilizing the `NNpsk0` pattern as specified, which incorporates a PSK at the initial message. This adds a layer of pre-shared secrecy early on, enhancing entropy and obfuscating intentions without an upfront key exchange required. This design complies with R6 recommendations.\n\n### Padding\nPadding is implemented with `mode: random` ranging from 64 to 1200 bytes to add variability and reduce predictability (addressing R5 and focusing on avoiding fixed MTU sizes). This approach should minimize detection by M6 while providing sufficient randomness to pass M4 and M5.\n\n### Fallback\nFallback is active, with `enabled: true` targeting `https://www.github.com` as per R4, crucial for evading M8's active probes. This ensures the tunnel can seamlessly revert to a legitimate-looking HTTPS session if probed.\n\n### Timing\nThe `timing.mode` `none` is chosen to avoid introducing artificial patterns that could elevate the KL divergence with real HTTP/HTTPS traffic, ensuring better adherence to M7.",
+    "config": {
+      "protocol": "llm-gen-noise-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.github.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk0",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 64,
+        "random_max": 1200,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.github.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "Configured to mimic TLS, which should register as HTTPS, not as a VPN or proxy."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Using non-empty SNI and common TLS fingerprint reduces Suricata detection probability."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Using a recognized browser TLS fingerprint ensures compliance with browser protocols."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Random padding and realistic traffic patterns decrease likelihood of ML detection."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Random padding reduces uniformity in packet sizes, staying below KL divergence thresholds."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Active fallback to a real HTTPS target minimizes detection during active probing."
+      }
+    },
+    "known_weaknesses": [
+      "The Noise handshake pattern might still be distinguishable if future ML models train specifically on Noise-based patterns.",
+      "Random padding, while variable, could still introduce detectable anomalies if the range is not large enough.",
+      "Fallback effectiveness depends on the availability and responsiveness of the target site (www.github.com) under operational conditions."
+    ]
+  }
+}

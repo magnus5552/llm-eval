@@ -1,0 +1,108 @@
+{
+  "run_id": "b349599b-b9ef-4204-b3cf-94b08eb88c1c",
+  "timestamp": "2026-06-07T10:18:18.890268+00:00",
+  "elapsed_s": 30.58,
+  "model": "gemini-2.5-pro",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 2737,
+    "completion": 2809,
+    "total": 5546
+  },
+  "variant": {
+    "index": 3,
+    "domain": "www.github.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk0 — PSK at first message, extra entropy from the start.",
+    "padding_hint": "Use random padding [64, 1200] — avoid near-MTU sizes to reduce M5 score."
+  },
+  "generation_result": {
+    "reasoning": "This configuration uses a Noise protocol handshake (`NNpsk0`) layered within a standard TLS 1.3 session. \n\n- **Transport & Fallback**: The outer layer uses a `safari-17` TLS fingerprint and a matching SNI (`www.github.com`) to appear as legitimate web traffic to JA3 and Suricata (M2, M3). The fallback proxy to the same domain ensures that any active probes receive a valid HTTPS response from GitHub, passing M8.\n\n- **Handshake**: The `NNpsk0` pattern is chosen to provide immediate authentication and entropy. The Pre-Shared Key (PSK) is used in the very first handshake message from the client. This happens *inside* the TLS application data, which may confuse classifiers expecting a standard HTTP request after the TLS negotiation.\n\n- **Padding**: Random padding between 64 and 1200 bytes is configured. This avoids uniform packet sizes (which fail M6) and also avoids consistently large near-MTU packets, which are a strong feature for sequence-based classifiers (M5). This strategy creates a more varied packet size distribution than fixed padding.",
+    "config": {
+      "protocol": "noise-nnpsk0-safari-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.github.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk0",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 64,
+        "random_max": 1200,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.github.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m2_suricata": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m3_zeek": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m4_ml": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m6_kl_len": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m8_probe": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      }
+    },
+    "known_weaknesses": [
+      "While the Noise handshake occurs within TLS application data, its specific size and structure for the initial packets will differ from a typical HTTP/2 or HTTP/1.1 request. A highly specialized classifier trained to recognize the specific patterns of initial Noise messages (even encrypted) could potentially detect it.",
+      "Random padding is a significant improvement over fixed padding, but it is statistically inferior to `mimicry` mode. A sophisticated adversary could potentially distinguish the uniform random distribution of packet sizes from the more complex, content-dependent distribution of a real browser."
+    ]
+  }
+}

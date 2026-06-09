@@ -1,0 +1,108 @@
+{
+  "run_id": "03a6ff53-9ae1-4bf7-bd23-b07d3df2018b",
+  "timestamp": "2026-06-07T08:58:58.033252+00:00",
+  "elapsed_s": 18.23,
+  "model": "claude-sonnet-4",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 6046,
+    "completion": 1,
+    "total": 6047
+  },
+  "variant": {
+    "index": 2,
+    "domain": "www.microsoft.com",
+    "port": 8443,
+    "handshake_hint": "Combine tls-token with a browser fingerprint from a less common browser (safari-17).",
+    "padding_hint": "Use mimicry/video-streaming to simulate different traffic profile."
+  },
+  "generation_result": {
+    "reasoning": "Transport section: Using TLS on port 8443 with Safari-17 fingerprint as requested. Safari provides good browser legitimacy while being less common than Chrome/Firefox, potentially avoiding some signature detection. Microsoft.com is an excellent SNI choice - it's a major legitimate domain that's frequently accessed and unlikely to be blocked. TLS 1.3 with standard HTTP/2 and HTTP/1.1 ALPN provides modern browser-like negotiation.\n\nHandshake section: Implementing tls-token authentication as suggested, using session_ticket field which is a natural place for additional data in TLS. The 48-byte length is conservative and realistic for session tickets. HKDF-SHA256 provides strong key derivation while being standard. Leaving PSK empty for auto-generation during evaluation ensures proper key material.\n\nPadding section: Using mimicry mode with video-streaming profile as requested. This differs from the typical chrome-browsing profile and should generate varied packet sizes that mimic video traffic patterns - larger packets with more variance than web browsing, which could help evade ML classifiers trained primarily on VPN traffic with uniform sizes.\n\nCrypto section: ChaCha20-Poly1305 with HKDF-SHA256 provides strong, modern encryption while being commonly supported. This combination is used by major browsers and won't stand out in traffic analysis.\n\nTiming section: Using 'none' mode to avoid artificial timing patterns that could increase KL-divergence for inter-arrival times (M7). Natural timing variation is generally better than imposed patterns.\n\nFallback section: Targeting microsoft.com to match our SNI, ensuring active probes receive legitimate HTTPS responses. This is critical for passing M8 probe resistance tests.",
+    "config": {
+      "protocol": "safari-msft-video-v3",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 8443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.microsoft.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "video-streaming"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.microsoft.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "TLS transport with Safari-17 fingerprint and proper SNI should classify as legitimate HTTPS/TLS traffic, not as VPN protocol."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Non-empty SNI (www.microsoft.com), standard HTTPS setup with browser fingerprint, and legitimate port should avoid triggering IDS rules."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Safari-17 fingerprint provides authentic browser JA3 signature. Even if some encrypted payload is detected, the browser fingerprint should provide sufficient legitimacy."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Video-streaming mimicry profile should generate varied packet sizes with realistic distributions, avoiding the uniform sizes that ML classifiers associate with VPN traffic."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Mimicry mode with video-streaming profile generates diverse packet length distribution that should closely match legitimate HTTPS video traffic, keeping KL divergence low."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Fallback enabled with reverse-proxy to www.microsoft.com (matching SNI) should return legitimate HTTPS responses to active probes, preventing detection."
+      }
+    },
+    "known_weaknesses": [
+      "Safari fingerprint may be less common in some regions/networks, potentially standing out if the network typically sees only Chrome/Firefox",
+      "Video-streaming padding profile might generate larger average packet sizes than typical web browsing, which could be detectable if not properly calibrated",
+      "TLS-token handshake adds some overhead to initial connection that might be measurable in timing analysis",
+      "Microsoft.com target requires the fallback proxy to handle Microsoft's specific TLS configuration and potential redirects properly"
+    ]
+  }
+}

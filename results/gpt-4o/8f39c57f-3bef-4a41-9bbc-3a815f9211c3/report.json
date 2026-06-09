@@ -1,0 +1,231 @@
+{
+  "verdict": "FAIL",
+  "failed_checks": [
+    "M2_suricata"
+  ],
+  "skipped_checks": [],
+  "checks": {
+    "M1_ndpi": {
+      "result": "PASS",
+      "detail": {
+        "classified_as": "SOCKS",
+        "confidence": null,
+        "is_known_vpn": false
+      }
+    },
+    "M2_suricata": {
+      "result": "FAIL",
+      "detail": {
+        "alert_count": 1,
+        "categories": [
+          "Potential Corporate Privacy Violation"
+        ]
+      }
+    },
+    "M3_ja3": {
+      "result": "PASS",
+      "detail": {
+        "ja3_is_browser": false,
+        "browser_matches": [],
+        "unique_ja3_count": 0,
+        "high_entropy_streams": 0,
+        "payload_byte_entropy": 7.752
+      }
+    },
+    "M4_vpn_prob": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob": 0.1038
+      }
+    },
+    "M5_vpn_prob_seq": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob_seq": 0.4143
+      }
+    },
+    "M6_kl_len": {
+      "result": "PASS",
+      "detail": {
+        "kl_len": 0.3198
+      }
+    },
+    "M7_kl_iat": {
+      "result": "PASS",
+      "detail": {
+        "kl_iat": 0.245
+      }
+    },
+    "M8_probe": {
+      "result": "PASS",
+      "detail": {
+        "distinguishable_ratio": 0.667,
+        "flags": 2
+      }
+    }
+  },
+  "config": {
+    "dsl_config": "D:\\programs\\диплом\\llm-eval\\results\\gpt-4o\\8f39c57f-3bef-4a41-9bbc-3a815f9211c3\\config.yaml",
+    "scenario": "web",
+    "duration_s": 30
+  },
+  "raw": {
+    "pcap_path": "D:\\programs\\диплом\\llm-eval\\results\\gpt-4o\\8f39c57f-3bef-4a41-9bbc-3a815f9211c3\\test_out\\capture.pcap",
+    "m1_ndpi": {
+      "classified_as": "SOCKS",
+      "is_known_vpn": false,
+      "is_acceptable": true,
+      "flow_count": 111,
+      "known_flow_count": 111,
+      "protocol_distribution": {
+        "SOCKS": 55,
+        "TLS": 55,
+        "HTTP": 1
+      },
+      "ja3_hashes": [
+        "0322c2e3b3de9337503f0f5a5c2a05ec",
+        "0b2ab7b51f93b6b273715a70fc7d38b4",
+        "11aca2bedbfb5b00b87dab33093bf40d",
+        "14b577dc8f6bf5354229bf99e2258cdd",
+        "1a07358192b27d3bae6b0cbfc88c7729",
+        "1c4de90b00ab1919e80662e48b71ba54",
+        "26ad4ef84a02285f9dec350cc01a8e06",
+        "290a40656b5abe59fdb184cd442388a8",
+        "2a411c4a8796a45d9d7116df06655e5e",
+        "2db71cdac7d2b1acf153dd5d63419b12",
+        "33798a17d534f1cbaf3c3553cec53e27",
+        "348f57cba65434b5f766dc1589c18ff1",
+        "35cb8079d79ef9dbdfd3a03df707308b",
+        "37d6adfe80e1d35b86179a987ede5740",
+        "4a6d9a8981f50b1b84240a2d83bd8eb2",
+        "4e7a066742be87498e2141cdb2874fd0",
+        "4f6f1c5853cbaf1765ce9a2caf84b549",
+        "51f990fcc8cd95a2949baff63550fe54",
+        "5432747a674fe9a678bf23e27f9e7734",
+        "5537b848df0a095ef428a2599e48986b",
+        "554c269f3dedb0b606890f4ef6794ec8",
+        "5a959a5419f4c01d6ed3b0adec5d638b",
+        "62606dfe7352b140faf4f21e977c2d81",
+        "6a7fe64b5c5982913d485acc86154d95",
+        "74ba49dbe643fb9a1faf71b29ba46b55",
+        "768c79bb83e29672d4e7c546a89cd10a",
+        "8299b8269b1e2d63cbc9f8f24f00a6f4",
+        "8446cfffeb725ae29b90cd0feda17d1b",
+        "8733e7d44f979400560ae3e6dd6c079b",
+        "8ec6ce0de058968b17c8fef441f09f42",
+        "98c7d0b6beb12f25e0a73a0e26c79152",
+        "9a194145472283dc7cc01a5e4981c869",
+        "9cd05b91fe96535fe9f8e659fda70a11",
+        "a9cfcfc58b9ba24dc02a026b4ed6dabd",
+        "ac3efb7f150f6c552b2d4f6e75a31531",
+        "af57be75af286583a70011b5765d07bc",
+        "b2797ef876379ce3bf64099bfda21c73",
+        "bae8a99e60bb69226975dcb284e41992",
+        "c0323c8150209e46d82d4150f24cbfd4",
+        "c0bf6b9677cd836272760fc707b2911c",
+        "c12a12db5ff72dd190af15b8ebf97a96",
+        "c36487a186a3815cca7e6997088b9efa",
+        "c496c7a32faf84cf705567973aec1456",
+        "c51ec54df408f5d5198fc065c74313ca",
+        "d45e215c713770fd869d5995cfde4648",
+        "d51f2268ee7e8d0560de74453d10c694",
+        "d53b8c4670495341dc6e731c3aee79bd",
+        "dad521563741f26582e11164bb9f2016",
+        "deec4266a0e614242df46b401a9be200",
+        "e1065a86f4b8f9f1dac4689e3adc3c04",
+        "e6e48ecb176af849a7cdcaf603fec412",
+        "e742cba2907c046ac36497acb9d4f843",
+        "f61375ef360ff1b55bdd2765526757f2",
+        "f8c44d8c2aa592f7c25ed243d37a6ee0",
+        "faab06bd2b753194e245b1e3ddffd2e6"
+      ],
+      "ja4_hashes": [
+        "f4febc55ea12b31ae17cfb7e614afda8"
+      ],
+      "sni_set": [
+        "127.0.0.1",
+        "www.cloudflare.com"
+      ],
+      "tls_versions": [
+        "TLSv1.3"
+      ]
+    },
+    "m2_suricata": {
+      "alert_count": 1,
+      "alerts": [
+        {
+          "signature": "TUNNEL-TEST Uniform near-MTU TCP segments (possible fixed padding)",
+          "category": "Potential Corporate Privacy Violation",
+          "severity": 1,
+          "src": "127.0.0.1",
+          "dst": "127.0.0.1",
+          "dport": 49990
+        }
+      ],
+      "flow_count": 118,
+      "tls_count": 55,
+      "tls_versions": [
+        "TLS 1.3"
+      ],
+      "tls_sni": [
+        "127.0.0.1",
+        "www.cloudflare.com"
+      ],
+      "categories": [
+        "Potential Corporate Privacy Violation"
+      ]
+    },
+    "m3_zeek": {
+      "ja3_hashes": [],
+      "ja3s_hashes": [],
+      "snis": [
+        "127.0.0.1",
+        "www.cloudflare.com"
+      ],
+      "cipher_suites": [
+        "TLS_AES_128_GCM_SHA256"
+      ],
+      "tls_versions": [
+        "TLSv13"
+      ],
+      "browser_matches": [],
+      "ja3_is_browser": false,
+      "unique_ja3_count": 0,
+      "conn_count": 118,
+      "unknown_service_conns": 0,
+      "payload_byte_entropy": 7.752,
+      "high_entropy_streams": 0,
+      "entropy_sample_size": 145342
+    },
+    "m4_m7_flow": {
+      "vpn_prob": 0.1038,
+      "vpn_prob_seq": 0.4143,
+      "kl_len": 0.3198,
+      "kl_iat": 0.245,
+      "total_packets": 2742,
+      "total_flows": 118,
+      "total_bytes": 482098,
+      "duration_s": 35.79,
+      "pkt_len_mean": 298.6,
+      "pkt_len_std": 443.9,
+      "iat_mean_ms": 13.06,
+      "small_pkt_pct": 61.8,
+      "large_pkt_pct": 8.6,
+      "model_used": "heuristic"
+    },
+    "m8_probe": {
+      "distinguishable_ratio": 0.667,
+      "distinguishable_flags": 2,
+      "check_random_bytes_responded": true,
+      "check_http_looks_http": false,
+      "check_server_speaks_first": false,
+      "ttfb_mean_ms": 36.3,
+      "ttfb_values_ms": [
+        62.0,
+        0.0,
+        47.0
+      ],
+      "probe_count": 5
+    }
+  }
+}

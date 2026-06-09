@@ -1,0 +1,108 @@
+{
+  "run_id": "d4081664-d72b-4552-be22-aaa3daac41a6",
+  "timestamp": "2026-06-07T08:36:14.013551+00:00",
+  "elapsed_s": 7.5,
+  "model": "gpt-4o",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 3474,
+    "completion": 1,
+    "total": 3475
+  },
+  "variant": {
+    "index": 1,
+    "domain": "www.cloudflare.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk2 for forward secrecy without pre-shared static keys.",
+    "padding_hint": "Use random padding with wide range [40, 1400] to pass M6."
+  },
+  "generation_result": {
+    "reasoning": "### Transport\nThe transport is configured with TLS on port 443 to mimic standard HTTPS traffic, ensuring nDPI classifies it correctly as such (M1). The TLS fingerprint is set to 'chrome-120', aligning with known browser behavior to pass JA3 checks by Zeek (M3). The SNI 'www.cloudflare.com' meets the criterion for non-empty SNI to avoid Suricata alerts (M2).\n\n### Handshake\nThe handshake uses the Noise protocol with pattern 'NNpsk2', which provides forward secrecy without needing pre-shared static keys. This aligns with R6 for automated testing and strengthens the security of the handshake mechanism by utilizing ephemeral keys.\n\n### Padding\nRandom padding is employed with a range of 40 to 1400 bytes to avoid detection by flow classifiers and KL divergence checks (M4, M6). This ensures the tunnel traffic does not exhibit predictable packet sizes, which could trigger machine learning or statistical anomalies.\n\n### Timing and Fallback\nTiming mode is set to 'none' to avoid introducing detectable artificial timing patterns (M7). The fallback option is enabled and routes to 'https://www.cloudflare.com', assuring that active probes receive a valid HTTPS response (M8). This further enhances the protocol's mimicry of legitimate HTTPS traffic.\n\nBy addressing metrics M1-M8 with this configuration, the design aims to remain stealthy and indistinguishable from genuine browser traffic.",
+    "config": {
+      "protocol": "gen-run-index-2-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.cloudflare.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk2",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 40,
+        "random_max": 1400,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.cloudflare.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "TLS on port 443 matches standard HTTPS traffic, ensuring classification as HTTPS."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Non-empty SNI and a browser-based TLS configuration avoid known Suricata alerts."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Using a 'chrome-120' fingerprint ensures compatibility with browser JA3 signatures."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Random padding within a wide range helps avoid flow anomalies that ML classifiers use."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "The random padding strategy prevents uniform packet sizes, reducing KL divergence risks."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "The reverse-proxy fallback ensures valid HTTPS responses, mitigating probe detection."
+      }
+    },
+    "known_weaknesses": [
+      "The wide range of random padding might still cause occasional outliers in packet sizes that detection systems could pick up.",
+      "Without timing obfuscation, some advanced active probing techniques might eventually recognize the lack of variance in response times."
+    ]
+  }
+}

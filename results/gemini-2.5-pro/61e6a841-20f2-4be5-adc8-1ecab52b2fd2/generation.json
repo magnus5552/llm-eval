@@ -1,0 +1,107 @@
+{
+  "run_id": "61e6a841-20f2-4be5-adc8-1ecab52b2fd2",
+  "timestamp": "2026-06-07T11:01:04.650372+00:00",
+  "elapsed_s": 26.23,
+  "model": "gemini-2.5-pro",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 2739,
+    "completion": 2328,
+    "total": 5067
+  },
+  "variant": {
+    "index": 3,
+    "domain": "www.github.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk0 — PSK at first message, extra entropy from the start.",
+    "padding_hint": "Use random padding [64, 1200] — avoid near-MTU sizes to reduce M5 score."
+  },
+  "generation_result": {
+    "reasoning": "This configuration uses a Noise protocol handshake (`NNpsk0`) encapsulated within a standard TLS 1.3 layer. The transport layer is configured to mimic a Safari 17 browser connecting to `www.github.com`, a strategy designed to defeat TLS fingerprinting (M3) and SNI-based detection (M2). The `NNpsk0` handshake authenticates the client with the first message, which can add entropy early in the connection, potentially confusing sequence-based classifiers (M5). Random padding is employed with a wide range that deliberately avoids near-MTU values to create a packet length distribution that has low KL-divergence from normal HTTPS traffic (M6) and avoids flow-based ML detection (M4). Finally, a fallback to the real `www.github.com` ensures that any active probes receive a legitimate response, passing the M8 active probe checks.",
+    "config": {
+      "protocol": "noise-NNpsk0-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.github.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk0",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 64,
+        "random_max": 1200,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.github.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "M1 (nDPI): PASS - nDPI will classify the outer layer as TLS."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "M2 (Suricata IDS): PASS - The use of a common SNI (`www.github.com`), standard port (443), and a browser-like TLS fingerprint will prevent alerts."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "M3 (Zeek/JA3): PASS - The TLS fingerprint is that of Safari 17, which has a known, common JA3 hash."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "M4 (ML flow classifier): PASS - Random padding between 64 and 1200 bytes will create a statistical flow profile that is difficult to distinguish from general web browsing, avoiding features like high large-packet ratios."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "M6 (KL divergence - length): PASS - Random padding is highly effective at mimicking the variable packet sizes of real web traffic, ensuring a low KL divergence score."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "M8 (Active probe): PASS - `fallback.enabled` is true, and the proxy target matches the SNI, ensuring probes get a valid HTTPS response."
+      }
+    },
+    "known_weaknesses": [
+      "The primary potential weakness is the `NNpsk0` handshake itself. While wrapped in TLS, the specific sizes and sequence of the handshake messages (e.g., Client Hello, Server Hello, Noise message) are distinct from a standard TLS session resumption or data transfer. A sophisticated adversary with a classifier trained specifically to recognize Noise protocol message patterns could potentially identify it."
+    ]
+  }
+}

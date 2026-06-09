@@ -1,0 +1,105 @@
+{
+  "run_id": "b9bc04f3-a381-44f9-9411-a4966442cc99",
+  "timestamp": "2026-06-07T08:34:58.956425+00:00",
+  "elapsed_s": 6.22,
+  "model": "gpt-4o",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 3469,
+    "completion": 1,
+    "total": 3470
+  },
+  "variant": {
+    "index": 0,
+    "domain": "www.google.com",
+    "port": 9443,
+    "handshake_hint": "Use tls-token for maximum active-probe resistance (M8).",
+    "padding_hint": "Use mimicry/chrome-browsing to pass M4/M6."
+  },
+  "generation_result": {
+    "reasoning": "This tunnel configuration follows the constraints and requirements provided for evading deep-packet inspection and active probing detection metrics. For the transport section, I used TLS on port 9443 with a 'chrome-120' fingerprint and SNI set to 'www.google.com'. This ensures the connection resembles genuine browser traffic to pass detection metrics M1, M2, and M3. For the handshake, I opted for the 'tls-token' method to enhance security against active probing (M8). The padding is set to 'mimicry' with the 'chrome-browsing' profile to naturally vary packet sizes, thus reducing the chance of detection by the ML flow classifier (M4) and the KL divergence tests (M6). Timing is set to 'none' to avoid artificial patterns that could increase the KL-IAT score (M7). The fallback mode is a reverse proxy to a legitimate HTTPS server, ensuring the active probe detection metric (M8) is met. This configuration should effectively evade all targeted detection metrics based on the current understanding of their criteria.",
+    "config": {
+      "protocol": "llm-gen-variant",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.google.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.google.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "The use of TLS with a browser-matching fingerprint ensures the protocol is classified as HTTPS."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "A valid SNI and browser-like TLS setup match expected HTTPS patterns."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "TLS configuration matches common browser JA3 fingerprints."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Mimicry padding with a browsing profile helps avoid detection by maintaining natural variability."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Padding strategy prevents uniform packet lengths, reducing detectability."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "The reverse proxy ensures a valid HTTPS response, minimizing probe success."
+      }
+    },
+    "known_weaknesses": [
+      "The exclusive use of chrome-120 might allow pattern-based fingerprinting if not varied across configurations."
+    ]
+  }
+}

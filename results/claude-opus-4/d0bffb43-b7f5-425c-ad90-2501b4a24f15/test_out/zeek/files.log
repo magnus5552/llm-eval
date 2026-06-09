@@ -1,0 +1,32 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	files
+#open	2026-06-07-11-00-37
+#fields	ts	fuid	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	source	depth	analyzers	mime_type	filename	duration	local_orig	is_orig	seen_bytes	total_bytes	missing_bytes	overflow_bytes	timedout	parent_fuid	md5	sha1	sha256	extracted	extracted_cutoff	extracted_size
+#types	time	string	string	addr	port	addr	port	string	count	set[string]	string	string	interval	bool	bool	count	count	count	count	bool	string	string	string	string	string	bool	count
+1780829967.884986	FGTQq64jVz9zcXukPf	ChbS863ZZqjEcFwZXf	127.0.0.1	34221	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780829967.928290	FEuJZZ1ehXfjf6lszg	CA5Wkt4AklPGA3No22	127.0.0.1	34224	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780829968.311838	F2f1dscOliipSMnV3	CcWFpO1jZyNlPwrlij	127.0.0.1	34227	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780829968.358878	F7d6gZ1drls9EhWt67	CzIGBR30btlaw96SO	127.0.0.1	34230	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780829970.609044	FBv5ww4CroWuYezbBj	Cw0SM71owXdy4RZ6fj	127.0.0.1	34234	127.0.0.1	9080	HTTP	0	(empty)	text/json	-	0.000000	T	F	306	306	0	0	F	-	-	-	-	-	-	-
+1780829976.522445	F0lenH3RnZwhdfAbk9	Cl7n1w44bIaPgrqrvd	127.0.0.1	34248	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780829976.956473	FzREMM2LK7g25paJy5	CEWRAPPGFWLffPmm9	127.0.0.1	34251	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780829994.140813	F3r8ejWFDpzUomwd	C9noHOXh5dOc2aL76	127.0.0.1	4360	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780829994.572771	FkoPQP24i48b61Ur8d	CNZtsI16yXDcxkynf1	127.0.0.1	4366	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780829996.324890	FVGCAw1VR7biT1lRP1	CGMuW31SYp0uuDIPhb	127.0.0.1	4373	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780829996.761516	FiUqOe4aGLHGBdMwe9	CAiE1D4nItEnhgsXuf	127.0.0.1	4377	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780829997.451822	FwUQtr1qpKbkjC4q42	CPawT1eGz6gZEkZwd	127.0.0.1	4383	127.0.0.1	9080	HTTP	0	(empty)	text/json	-	0.000000	T	F	306	306	0	0	F	-	-	-	-	-	-	-
+1780829998.780968	FkXp4u28D0vXMXn4Zf	CJdiboL57jLp9PFek	127.0.0.1	4386	127.0.0.1	9080	HTTP	0	(empty)	text/json	-	0.000000	T	F	225	225	0	0	F	-	-	-	-	-	-	-
+1780829999.208391	FIoXSK3MSxfMltL5x5	CPZiVL1O7vXZmuiLx5	127.0.0.1	4389	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780829999.632970	Fgkqem2cFZchPMtNL7	Cy4V0YWPmQK2EAo2l	127.0.0.1	4392	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780830001.136455	Fk9Q5A43NF4alzsoa5	CObwhe1cs0wlz1bMW4	127.0.0.1	4395	127.0.0.1	9080	HTTP	0	(empty)	text/json	-	0.000000	T	F	306	306	0	0	F	-	-	-	-	-	-	-
+1780830001.532840	FuGkVh4KX86C003EO4	CiAhsU20YuDsAa6eb2	127.0.0.1	4398	127.0.0.1	9080	HTTP	0	(empty)	text/json	-	0.000000	T	F	225	225	0	0	F	-	-	-	-	-	-	-
+1780830001.972612	FascWY3eDaCTzK6hXg	CQNVQkKSY6ymL88Fb	127.0.0.1	4404	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780830002.391512	FRPGB14tBR7bp6RIWc	CKdlqOHnKRoKyt2U2	127.0.0.1	4407	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780830002.431079	FjZr8Z4Ue5uDooc15	COCC171IgvHSelWTL1	127.0.0.1	4401	127.0.0.1	9080	HTTP	0	(empty)	text/json	-	0.000000	T	F	225	225	0	0	F	-	-	-	-	-	-	-
+1780830002.867968	F5uMJfh57Lf0wPnxh	CBbEYo2xewzPpgAuDa	127.0.0.1	4416	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780830003.274667	FJUp6f4v27YZmmjwd1	CtWl2b4jtWUQv3lqY2	127.0.0.1	4419	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780830006.633942	FUntQz4PkcI4vTzak	CKquS62owWWFD607e2	127.0.0.1	4422	127.0.0.1	9080	HTTP	0	(empty)	text/json	-	0.000000	T	F	306	306	0	0	F	-	-	-	-	-	-	-
+#close	2026-06-07-11-00-37

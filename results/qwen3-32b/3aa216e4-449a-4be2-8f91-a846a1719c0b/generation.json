@@ -1,0 +1,107 @@
+{
+  "run_id": "3aa216e4-449a-4be2-8f91-a846a1719c0b",
+  "timestamp": "2026-06-07T09:51:18.447491+00:00",
+  "elapsed_s": 19.82,
+  "model": "qwen3-32b",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 5177,
+    "completion": 1,
+    "total": 5178
+  },
+  "variant": {
+    "index": 3,
+    "domain": "www.github.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk0 — PSK at first message, extra entropy from the start.",
+    "padding_hint": "Use random padding [64, 1200] — avoid near-MTU sizes to reduce M5 score."
+  },
+  "generation_result": {
+    "reasoning": "",
+    "config": {
+      "protocol": "",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "firefox-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.github.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk0",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 64,
+        "random_max": 1200,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.github.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "Using a TLS transport with a Firefox 120 fingerprint and GitHub SNI will likely be classified as HTTPS by nDPI rather than a VPN protocol."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "The TLS fingerprint and presence of a valid SNI domain should prevent Suricata from generating alerts."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "The Firefox TLS fingerprint and the use of a noise protocol with PSK authentication avoids being identified as non-browser traffic by Zeek's JA3 checks."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Random padding with sizes within [64, 1200] adds natural variability, which will better match HTTPS traffic patterns detected by the XGBoost flow classifier."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Random padding prevents uniform packet lengths and should have a lower KL divergence compared to fixed sizes, making this metric more likely to pass."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "The fallback configured with the same SNI as the target will return a legitimate response to active TCP probes, satisfying the detection criteria."
+      }
+    },
+    "known_weaknesses": [
+      "The use of a noise pattern might introduce non-browser-like traffic characteristics under deep inspection, potentially triggering M3 if the JA3 fingerprinting is too rigid."
+    ]
+  }
+}

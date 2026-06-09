@@ -1,0 +1,35 @@
+protocol: tls-token-safari-stream-v1
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19445
+  tls:
+    version: '1.3'
+    fingerprint: safari-17
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.microsoft.com
+    cert_file: D:\programs\диплом\llm-eval\results\gpt-4.1\48c3e136-c619-4d73-a2d4-ec8bd81ef1b4\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\gpt-4.1\48c3e136-c619-4d73-a2d4-ec8bd81ef1b4\server.key
+    insecure: true
+handshake:
+  type: tls-token
+  tls_token:
+    field: session_ticket
+    kdf: hkdf-sha256
+    psk: 4359014ad57842963cd3e9d57fb94e764e9dae12fc0116124fea7d187c116aa0
+    length: 48
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: mimicry
+  profile: video-streaming
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.microsoft.com

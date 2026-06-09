@@ -1,0 +1,30 @@
+protocol: pure-tls-amazon-5
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19447
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.amazon.com
+    cert_file: D:\programs\диплом\llm-eval\results\gemini-2.5-flash\40200960-f2a8-4caf-8db8-36d7391290a9\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\gemini-2.5-flash\40200960-f2a8-4caf-8db8-36d7391290a9\server.key
+    insecure: true
+handshake:
+  type: none
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: mimicry
+  profile: ssh-interactive
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.amazon.com

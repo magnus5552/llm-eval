@@ -1,0 +1,36 @@
+protocol: llm-gen-v2
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19464
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.cloudflare.com
+    cert_file: D:\programs\диплом\llm-eval\results\gpt-4o\cfc209f7-f8af-4ad6-89cf-1257b26e6842\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\gpt-4o\cfc209f7-f8af-4ad6-89cf-1257b26e6842\server.key
+    insecure: true
+handshake:
+  type: noise
+  noise:
+    pattern: NNpsk2
+    cipher_suite: 25519:ChaChaPoly:BLAKE2s
+    local_key: generate
+    psk: aa4b523da20b776c8cf7b84f2d24781013fc7c8e86719079b833621bc4efa7c2
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: random
+  random_min: 40
+  random_max: 1400
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.cloudflare.com

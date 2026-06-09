@@ -1,0 +1,19 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	files
+#open	2026-06-07-10-18-17
+#fields	ts	fuid	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	source	depth	analyzers	mime_type	filename	duration	local_orig	is_orig	seen_bytes	total_bytes	missing_bytes	overflow_bytes	timedout	parent_fuid	md5	sha1	sha256	extracted	extracted_cutoff	extracted_size
+#types	time	string	string	addr	port	addr	port	string	count	set[string]	string	string	interval	bool	bool	count	count	count	count	bool	string	string	string	string	string	bool	count
+1780827426.966710	Fu3msk1J1FWYdCeL43	CfTTng3eXfJ8lBwWIi	127.0.0.1	51563	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780827427.391337	FMlpKL3VMOxOUjbpok	Cn7i5n4q1MokPOHRmb	127.0.0.1	51566	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780827429.256762	F5xNoO1C6p6NgkIXoc	CXzWEo3WoBGv7O4Wvd	127.0.0.1	51569	127.0.0.1	9080	HTTP	0	(empty)	text/json	-	0.000000	T	F	306	306	0	0	F	-	-	-	-	-	-	-
+1780827435.147153	FxTT9E2hHfOcNWkRZ5	CHCLmmg1ll4252Xe3	127.0.0.1	51577	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780827435.572057	FK1FOo2NeQh43f1Smk	CpeCciUkEf6fd6ikk	127.0.0.1	51580	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780827442.890582	FWiknQ1ReTHzfWAKj4	CAAD5m3FgPsMynaVb3	127.0.0.1	51586	127.0.0.1	9080	HTTP	0	(empty)	text/json	-	0.000000	T	F	225	225	0	0	F	-	-	-	-	-	-	-
+1780827443.310099	Fr2ou22TvOIsUiEHCf	C07wuD3m5sjUbFbHJ5	127.0.0.1	51589	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780827443.743157	Fp3Yyt1mkVdmAy55Yf	C8UV2v1Oftz1cKven8	127.0.0.1	51592	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780827455.180559	FxGmWE1ufSkbSuXGo1	CzK7ATBLSZcQScuwk	127.0.0.1	64492	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780827455.591597	F165t22xUyfCZgYM9e	CszJH03FlPBaLWefki	127.0.0.1	64495	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+#close	2026-06-07-10-18-18

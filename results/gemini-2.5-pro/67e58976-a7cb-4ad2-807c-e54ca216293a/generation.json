@@ -1,0 +1,106 @@
+{
+  "run_id": "67e58976-a7cb-4ad2-807c-e54ca216293a",
+  "timestamp": "2026-06-07T11:10:39.293745+00:00",
+  "elapsed_s": 28.29,
+  "model": "gemini-2.5-pro",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 2736,
+    "completion": 2360,
+    "total": 5096
+  },
+  "variant": {
+    "index": 9,
+    "domain": "storage.googleapis.com",
+    "port": 443,
+    "handshake_hint": "Use tls-token with hkdf-sha256 and length=48 (standard).",
+    "padding_hint": "Use mimicry/chrome-browsing. This run: optimise for M7 (no timing)."
+  },
+  "generation_result": {
+    "reasoning": "This configuration is designed for high stealth by closely mimicking legitimate TLS traffic to a major cloud provider.\n\n- **Transport:** We use TLS 1.3 on port 443, the standard for HTTPS. The SNI is set to `storage.googleapis.com`, a high-traffic, unimpeachable domain. To increase diversity in testing (Run 20/20), the TLS fingerprint is set to `safari-17`, which provides a valid JA3 hash that will pass M3, differing from previous runs that might have used Chrome or Firefox.\n\n- **Handshake:** The `tls-token` method is used to carry the pre-shared key within the TLS session ticket. This is a covert method, as session tickets are a standard part of TLS 1.3 resumption, making the PSK exchange invisible to passive monitoring.\n\n- **Padding & Timing:** `padding.mode` is set to `mimicry` with the `chrome-browsing` profile. This is crucial for defeating statistical analysis (M4, M5, M6) by shaping the tunnel's packet size distribution to match that of a real browser. `timing.mode` is explicitly `none` to ensure packet inter-arrival times are as natural as possible, directly addressing M7.\n\n- **Fallback:** An active-probe fallback is configured to reverse-proxy to `https'//storage.googleapis.com`. This is essential for passing M8, as any unrecognized connection will be met with a genuine response from Google's infrastructure, making the server indistinguishable from the real thing.",
+    "config": {
+      "protocol": "tls-token-gcp-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "storage.googleapis.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://storage.googleapis.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "M1 (nDPI): PASS - Will be classified as TLS."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "M2 (Suricata): PASS - Valid SNI, standard port, and browser fingerprint will avoid alerts."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "M3 (Zeek/JA3): PASS - `safari-17` fingerprint provides a valid, common JA3 hash."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "M4 (ML flow): PASS - Mimicry padding with `chrome-browsing` profile is designed to defeat this."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "M6 (KL-len): PASS - Mimicry padding directly minimizes KL divergence on packet lengths."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "M8 (Active probe): PASS - Fallback to a live, matching HTTPS target will defeat active probes."
+      }
+    },
+    "known_weaknesses": [
+      "The primary (though minor) weakness is the fixed length of the session ticket used for the PSK. A highly targeted adversary analysing session ticket length distributions across many connections *could* notice a lack of variance, but this is an advanced and unlikely attack.",
+      "The camouflage is dependent on the behavior of `storage.googleapis.com`. Any changes to their TLS configuration or availability could potentially weaken the fallback mechanism."
+    ]
+  }
+}

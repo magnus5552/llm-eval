@@ -1,0 +1,59 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	socks
+#open	2026-06-07-09-13-45
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	version	user	password	status	request.host	request.name	request_p	bound.host	bound.name	bound_p
+#types	time	string	addr	port	addr	port	count	string	string	string	addr	string	port	addr	string	port
+1780823586.953363	CAzeWywcYzMLbMXb	127.0.0.1	53751	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	53752
+1780823585.287272	CQ6T5Q29q5N0NO2EJi	127.0.0.1	53741	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	53742
+1780823584.441192	CVDTHYh5er8VcB3Cg	127.0.0.1	53735	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	53736
+1780823582.738622	CwKAzF2Da4Q70kqVWa	127.0.0.1	53726	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	53727
+1780823581.668978	CqdKXD39afuAyDceda	127.0.0.1	53720	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	53721
+1780823580.206477	CFhvSy4pP6DcdJJnsf	127.0.0.1	53709	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	53710
+1780823578.519451	ClAIM73PCncrXvQZS3	127.0.0.1	53700	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	53701
+1780823578.095669	CrFtYINCZopA4Ho8l	127.0.0.1	53697	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	53698
+1780823576.773931	CcrHKN3igwliAuFdQ6	127.0.0.1	53691	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	53692
+1780823573.831726	CmwSCZ3eyviKeyw8eg	127.0.0.1	53673	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	53674
+1780823564.035278	CYSlhY1s7ifR20G1Ic	127.0.0.1	53613	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	53614
+1780823566.159530	CwomDW1vejsJvyVUVg	127.0.0.1	53628	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	53629
+1780823565.719002	Cgr2F3zh4PV5EUea	127.0.0.1	53625	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	53626
+1780823574.682462	C9L4gO28EkquVHRXWi	127.0.0.1	53679	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	53680
+1780823565.297029	Cg6Soi15x5KHAQlXBe	127.0.0.1	53619	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	53620
+1780823568.917154	Cn6vK920KT8O6otDAe	127.0.0.1	53645	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	53646
+1780823564.665264	CDHB3o3a2Vx1dGuyGe	127.0.0.1	53616	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	53617
+1780823576.354763	Cr9aEojkqbbTpkgoh	127.0.0.1	53688	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	53689
+1780823580.630427	CY0Auk2WaOEXtpaO01	127.0.0.1	53713	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	53714
+1780823577.417608	CtXB2k1Tj1IUxhgqvg	127.0.0.1	53694	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	53695
+1780823561.425259	CkzMzl2wB32IWuwwn7	127.0.0.1	53598	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	53599
+1780823579.577361	CWKYHp2z6t07oWyPI1	127.0.0.1	53706	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	53707
+1780823566.788509	CFmXsT1zGiLwGVOGNl	127.0.0.1	53633	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	53634
+1780823560.964014	CTeJsR2MZut12hZ9V7	127.0.0.1	53594	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	53595
+1780823573.202644	CGgYSfMT8TPL67SO9	127.0.0.1	53670	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	53671
+1780823561.849720	CYYS4I2hDiADleCeDf	127.0.0.1	53601	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	53602
+1780823582.299422	CvZYhlYRP3oAmAjk9	127.0.0.1	53723	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	53724
+1780823562.525995	CJII4o4zzcj79QDzj3	127.0.0.1	53604	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	53605
+1780823568.302246	Cz8h6L3MbV6sPj7ST6	127.0.0.1	53642	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	53643
+1780823563.155398	COIiD94CBcvdcU5dal	127.0.0.1	53607	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	53608
+1780823581.055282	CWOjbx4YPHEvIwVJd1	127.0.0.1	53716	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	53717
+1780823569.978206	CB7bct2qn83mnBtav5	127.0.0.1	53651	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	53652
+1780823585.913919	CKu4H04fTkCqHM2ufb	127.0.0.1	53744	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	53746
+1780823569.555275	CLVo051ekHXTpOZr2f	127.0.0.1	53648	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	53649
+1780823567.454716	CgmSBUQYV59Z41w02	127.0.0.1	53636	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	53637
+1780823586.526141	CtX8Br4qvxpJyxFkvj	127.0.0.1	53748	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	53749
+1780823570.402781	Cx8ELtHnLQsyn6MGj	127.0.0.1	53654	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	53655
+1780823575.300101	C2CTZw4p9BD3xBySe7	127.0.0.1	53682	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	53683
+1780823571.030619	Cs8UHbglhpHTh1qgi	127.0.0.1	53658	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	53659
+1780823578.962368	CymUsq1DnnLvLkM5Uc	127.0.0.1	53703	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	53704
+1780823567.864629	CinTjq3ZKxDRAP1UJ	127.0.0.1	53639	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	53640
+1780823571.660290	CYqf8N28O9rGxhE3pf	127.0.0.1	53661	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	53662
+1780823583.827954	CosqlZ2djoBuKozblj	127.0.0.1	53732	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	53733
+1780823572.100632	CBEYF83OJxbJhjrhG1	127.0.0.1	53664	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	53665
+1780823584.866283	C13krmi3cGd5Mvjxf	127.0.0.1	53738	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	53739
+1780823574.255937	CyxNfd3uAWw9grinof	127.0.0.1	53676	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	53677
+1780823572.524346	CUzJSOrJlGDmZ4Ejb	127.0.0.1	53667	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	53668
+1780823583.164391	C77PAn1ZWfiRHIVJei	127.0.0.1	53729	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	53730
+1780823563.594763	Cyq2yw487KL6ANU3v	127.0.0.1	53610	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	53611
+1780823575.930256	CizIw72lXmA4P7fZge	127.0.0.1	53685	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	53686
+#close	2026-06-07-09-13-45

@@ -1,0 +1,59 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	socks
+#open	2026-06-07-10-41-43
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	version	user	password	status	request.host	request.name	request_p	bound.host	bound.name	bound_p
+#types	time	string	addr	port	addr	port	count	string	string	string	addr	string	port	addr	string	port
+1780828860.587768	CyOL2Z10bFqXCWnyD9	127.0.0.1	25576	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	25577
+1780828859.514357	CjPeNhF1h0x3NW7Yd	127.0.0.1	25564	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	25565
+1780828859.226852	CRWbjK3DWpvpMs8rnk	127.0.0.1	25561	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	25562
+1780828858.708702	CTrqBwg4WXnxdyPvg	127.0.0.1	25555	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	25556
+1780828857.979460	CgJQZJ1fZTj0utcHD4	127.0.0.1	25549	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	25550
+1780828857.775904	Cx0Snj2FquYodcce1c	127.0.0.1	25546	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	25547
+1780828857.355275	CeY3hdRYOXxBIPBb3	127.0.0.1	25543	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	25544
+1780828856.257312	CVHGVv1E8AbRBhy2mj	127.0.0.1	25530	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	25531
+1780828860.158225	CrYgvIDWT1O8MoiP3	127.0.0.1	25570	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	25571
+1780828855.625042	C0l2XnIaTEFkQBEz6	127.0.0.1	25523	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	25525
+1780828858.312843	CHu9Nx1j5GBjb4bGz4	127.0.0.1	25552	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	25553
+1780828855.007820	C0nnaD134wcTmXYZJe	127.0.0.1	25517	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	25518
+1780828844.674723	CatWVb21EWwS6GArt3	127.0.0.1	25462	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	25464
+1780828844.674869	CWrjXVrA1SyVelOM7	127.0.0.1	25461	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	25463
+1780828843.357780	CBTmYxfGGYOusAFOe	127.0.0.1	25454	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	25455
+1780828842.838351	C7qvN93RmFN4g2K2V1	127.0.0.1	25451	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	25452
+1780828856.307217	CbLDzv3FwKXPkiy9Sd	127.0.0.1	25533	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	25534
+1780828855.184392	CwrDIw2NFBSd7Qwcq	127.0.0.1	25520	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	25521
+1780828842.235927	CCQYoB4UYPFc3fklm9	127.0.0.1	25448	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	25449
+1780828835.905854	COgDJA1LBneQ5UxBf	127.0.0.1	25419	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	25420
+1780828846.103660	ChOYWr3MdnUYV8Tur5	127.0.0.1	25474	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	25476
+1780828840.909192	CkBqq91bHV7Uq61qU4	127.0.0.1	25442	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	25443
+1780828855.627132	CHH5133ARIVmHz8Ncf	127.0.0.1	25524	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	25526
+1780828844.136684	CyOUKU2H4mOT6QqRT3	127.0.0.1	25458	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	25459
+1780828856.973279	CYMKyk49c0Qwj9MPu5	127.0.0.1	25539	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	25540
+1780828856.876711	CbiNxH2dVHBh2pVXmg	127.0.0.1	25536	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	25537
+1780828839.261966	CJeyFm49De3rgKAKbg	127.0.0.1	25435	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	25436
+1780828845.183828	CIqjWpFZhLLqYJd9	127.0.0.1	25467	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	25468
+1780828839.761024	CrLhX83kMQzpvSV84	127.0.0.1	25438	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	25439
+1780828836.393285	CM5Vy87Iql4wVhAqb	127.0.0.1	25422	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	25423
+1780828836.822729	CgCVsA4vp0RDOcJdIi	127.0.0.1	25425	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	25426
+1780828854.551889	CD3DJB3NE8GFjdF8mk	127.0.0.1	25511	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	25512
+1780828854.568030	CL04ke3APEvqMDa6sj	127.0.0.1	25514	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	25515
+1780828859.701422	Cu04nJ2zU2ze056VNe	127.0.0.1	25567	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	25568
+1780828838.737722	C8cWih3yzUCV02cTc3	127.0.0.1	25432	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	25433
+1780828837.807001	CPjpc61ffPocCkecOl	127.0.0.1	25429	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	25430
+1780828852.966432	Ch9n491qIHKOCtzd8b	127.0.0.1	25496	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	25497
+1780828860.347276	CHY0qT2ANwGm82vT3i	127.0.0.1	25573	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	25574
+1780828858.768314	CNBxJBIIqsOEf0Ea4	127.0.0.1	25558	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	25559
+1780828845.546520	CZtWP51C95AceAAsm8	127.0.0.1	25470	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	25471
+1780828846.102917	CucAym1t4V3LJR6WNb	127.0.0.1	25473	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	25475
+1780828846.626619	CSsdEu1DvYE58ksu6c	127.0.0.1	25479	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	25480
+1780828851.648103	CDoHqg2QbStC79rVRi	127.0.0.1	25483	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	25484
+1780828852.774206	C9hOyf1RcM4Bzl6RD2	127.0.0.1	25493	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	25494
+1780828852.161255	CSqHyd2CEQsmm2WJ9d	127.0.0.1	25486	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	25487
+1780828853.477517	CHwT2bKtFogf9pId7	127.0.0.1	25500	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	25501
+1780828852.225967	CkdfXF2LotZo9FOHMb	127.0.0.1	25489	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	25490
+1780828853.920574	Chfk3N2ghQbxkWap5d	127.0.0.1	25505	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	25506
+1780828853.477447	C9MhDR2q3piBjosqv5	127.0.0.1	25499	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	25502
+1780828854.139454	CTLumKqPTMz3TwtZ5	127.0.0.1	25508	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	25509
+#close	2026-06-07-10-41-43

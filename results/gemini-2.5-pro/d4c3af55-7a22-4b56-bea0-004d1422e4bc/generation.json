@@ -1,0 +1,108 @@
+{
+  "run_id": "d4c3af55-7a22-4b56-bea0-004d1422e4bc",
+  "timestamp": "2026-06-07T10:57:46.088237+00:00",
+  "elapsed_s": 22.33,
+  "model": "gemini-2.5-pro",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 2731,
+    "completion": 2020,
+    "total": 4751
+  },
+  "variant": {
+    "index": 1,
+    "domain": "www.cloudflare.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk2 for forward secrecy without pre-shared static keys.",
+    "padding_hint": "Use random padding with wide range [40, 1400] to pass M6."
+  },
+  "generation_result": {
+    "reasoning": "This configuration is designed for robust stealth against a comprehensive set of detection metrics. \n- **Transport**: We use TLS 1.3 with a Chrome 120 fingerprint and an SNI matching the fallback target ('www.cloudflare.com'). This ensures the initial handshake is indistinguishable from a standard Chrome browser connecting to Cloudflare, which is critical to passing M1 (nDPI), M2 (Suricata), and M3 (JA3).\n- **Handshake**: The `noise` protocol with the `NNpsk2` pattern is used for the inner handshake. This provides Perfect Forward Secrecy and PSK-based authentication without requiring static keys, fitting the automated test environment. This handshake occurs *after* the initial TLS setup, cloaking it from passive observers.\n- **Padding**: As requested, we employ `random` padding with a wide range of [40, 1400] bytes. This strategy directly counters statistical analysis based on packet sizes (M4, M6) by avoiding the highly suspicious pattern of uniform-sized packets common to many VPNs.\n- **Fallback**: A reverse-proxy fallback to the legitimate HTTPS endpoint matching the SNI is enabled. This is a non-negotiable requirement to defeat active probing (M8), as it ensures that any direct connection attempt receives a valid web response instead of a connection reset.",
+    "config": {
+      "protocol": "noise-randpad-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.cloudflare.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk2",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 40,
+        "random_max": 1400,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.cloudflare.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "M1 (nDPI): PASS - Outer protocol is indistinguishable from TLS."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "M2 (Suricata): PASS - Valid SNI and a browser-like TLS fingerprint will satisfy IDS rules."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "M3 (Zeek/JA3): PASS - JA3 fingerprint matches Chrome 120. Post-handshake encrypted data is padded to avoid raw-stream detection."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "M4 (ML flow): PASS - Random padding over a wide range prevents high scores on packet-size-uniformity features."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "M6 (KL len): PASS - The wide [40, 1400] random padding will create a packet size distribution with low KL divergence from real HTTPS traffic, unlike fixed-size padding."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "M8 (Active probe): PASS - The fallback mechanism is enabled and correctly configured to proxy to a real server, defeating probe checks."
+      }
+    },
+    "known_weaknesses": [
+      "While the inner `noise` handshake is encrypted by TLS, its message pattern is distinct. If the outer TLS were ever compromised, the presence of a Noise handshake could act as an indicator.",
+      "Random padding is a significant improvement over fixed padding, but it is less sophisticated than `mimicry`. An advanced adversary with a sufficiently detailed statistical model of browser traffic might still be able to distinguish this random distribution from a true browser's more complex traffic patterns."
+    ]
+  }
+}

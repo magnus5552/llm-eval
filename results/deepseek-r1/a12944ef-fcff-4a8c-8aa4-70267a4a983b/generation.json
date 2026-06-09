@@ -1,0 +1,107 @@
+{
+  "run_id": "a12944ef-fcff-4a8c-8aa4-70267a4a983b",
+  "timestamp": "2026-06-07T11:22:18.727884+00:00",
+  "elapsed_s": 144.82,
+  "model": "deepseek-r1",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 5272,
+    "completion": 1799,
+    "total": 7071
+  },
+  "variant": {
+    "index": 2,
+    "domain": "www.microsoft.com",
+    "port": 8443,
+    "handshake_hint": "Combine tls-token with a browser fingerprint from a less common browser (safari-17).",
+    "padding_hint": "Use mimicry/video-streaming to simulate different traffic profile."
+  },
+  "generation_result": {
+    "reasoning": "The configuration uses TLS 1.3 with a Safari-17 fingerprint to appear as a less common but legitimate browser. The handshake uses the TLS session ticket to embed the tunnel token, which is standard and avoids additional round trips. Padding is set to mimic video-streaming traffic to vary packet sizes naturally and avoid uniform packet detection. No artificial timing is applied to prevent IAT anomalies. Fallback is enabled to serve real content from www.microsoft.com for active probes. This design addresses all detection metrics: M1/M2/M3 by using standard TLS with a browser fingerprint; M4/M5/M6 by mimicking video-streaming packet distributions; M7 by using natural timing; and M8 with the fallback.",
+    "config": {
+      "protocol": "safari-video-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 8443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.microsoft.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "video-streaming"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.microsoft.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": ""
+      }
+    },
+    "known_weaknesses": [
+      "Safari fingerprint might be less common on non-Apple devices, but it is still a legitimate browser fingerprint.",
+      "The video-streaming padding profile may not match if the actual traffic is interactive, but for this configuration we are constrained to use it.",
+      "Fallback is set to a fixed target (www.microsoft.com) which might not match all requests, but it will serve valid HTTPS content."
+    ]
+  }
+}

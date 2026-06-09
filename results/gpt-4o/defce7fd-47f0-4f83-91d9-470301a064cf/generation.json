@@ -1,0 +1,105 @@
+{
+  "run_id": "defce7fd-47f0-4f83-91d9-470301a064cf",
+  "timestamp": "2026-06-07T10:47:29.686260+00:00",
+  "elapsed_s": 7.51,
+  "model": "gpt-4o",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 3488,
+    "completion": 1,
+    "total": 3489
+  },
+  "variant": {
+    "index": 7,
+    "domain": "www.wikipedia.org",
+    "port": 9443,
+    "handshake_hint": "Use tls-token; combine with ALPN containing only h2 (HTTP/2 only).",
+    "padding_hint": "Use random [30, 1450] — very wide range to maximise KL divergence tolerance."
+  },
+  "generation_result": {
+    "reasoning": "In this configuration, the tunnel protocol is designed to disguise itself as indistinguishable from legitimate HTTPS traffic using several key strategies. The transport is set to TLS on port 9443, aligning with common HTTPS patterns and ensuring we meet the requirement of not triggering entropy analysis with non-TLS protocols. The TLS configuration uses the 'chrome-120' fingerprint and specifies an SNI of 'www.wikipedia.org' to mimic a real browser's handshake, ensuring compliance with normal web browsing characteristics and evading deep-packet inspection classifiers. The handshake employs the TLS-token method with a PSK field left empty for evaluator auto-generation, facilitating a straightforward TLS handshake appearance while leveraging PSK for additional security. Padding is set to a broad random range (30 to 1450 bytes) to replicate typical web traffic variability, crucial for avoiding detection due to uniform packet sizes. This choice is particularly aimed at passing ML flow classifiers by increasing variability in packet lengths, which aligns with normal HTTPS traffic patterns. For fallback, a reverse-proxy mode is used targeting a reputable HTTPS server (\"https://www.wikipedia.org\"), to ensure the tunnel appropriately handles active probes without reverting to termination or obvious failure responses. This combination is designed to operate within normal HTTPS traffic boundaries while providing robust obfuscation against various detection methods.",
+    "config": {
+      "protocol": "novel-tunnel-8",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2"
+          ],
+          "sni": "www.wikipedia.org",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 30,
+        "random_max": 1450,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.wikipedia.org"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "The configuration uses TLS with a browser-like fingerprint and valid SNI, emulating regular HTTPS traffic."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "With a proper SNI field and real HTTPS characteristics, this setup should not trigger Suricata alerts."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "A Chrome TLS fingerprint ensures compliance with common JA3 signatures."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Random padding with a wide range will diversify packet sizes, reducing ML detectability."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "The use of random padding avoids the pitfalls of uniform packet sizing."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "The fallback redirects to a real website, ensuring graceful handling of active probes."
+      }
+    },
+    "known_weaknesses": [
+      "While random padding adds variability, certain edge cases (e.g., consistent request-response sizes at high rates) could still hint at non-typical usage patterns.",
+      "The use of a single ALPN protocol (h2) might not fully match some client setups, potentially reducing natural diversity."
+    ]
+  }
+}

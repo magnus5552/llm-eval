@@ -1,0 +1,36 @@
+protocol: cloudflare-noise-v2
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19444
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.cloudflare.com
+    cert_file: D:\programs\диплом\llm-eval\results\claude-haiku-3-5\687a767b-1218-40ff-a65d-933fb681a027\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\claude-haiku-3-5\687a767b-1218-40ff-a65d-933fb681a027\server.key
+    insecure: true
+handshake:
+  type: noise
+  noise:
+    pattern: NNpsk2
+    cipher_suite: 25519:ChaChaPoly:BLAKE2s
+    local_key: generate
+    psk: be055cd79b4430cad12c7fbc16225d1cee81a7831f52f5b4653bec0b7c5c2835
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: random
+  random_min: 40
+  random_max: 1400
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.cloudflare.com

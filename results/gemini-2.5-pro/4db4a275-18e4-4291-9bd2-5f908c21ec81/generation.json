@@ -1,0 +1,105 @@
+{
+  "run_id": "4db4a275-18e4-4291-9bd2-5f908c21ec81",
+  "timestamp": "2026-06-07T10:51:14.562849+00:00",
+  "elapsed_s": 25.96,
+  "model": "gemini-2.5-pro",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 2736,
+    "completion": 2431,
+    "total": 5167
+  },
+  "variant": {
+    "index": 7,
+    "domain": "www.wikipedia.org",
+    "port": 9443,
+    "handshake_hint": "Use tls-token; combine with ALPN containing only h2 (HTTP/2 only).",
+    "padding_hint": "Use random [30, 1450] — very wide range to maximise KL divergence tolerance."
+  },
+  "generation_result": {
+    "reasoning": "This configuration uses a standard TLS 1.3 transport with a Safari 17 JA3 fingerprint and a high-reputation SNI (`www.wikipedia.org`) to appear as legitimate browser traffic. The handshake leverages a `tls-token` in the session ticket, which is a subtle way to carry authentication data that is difficult to distinguish from normal TLS session resumption. For padding, it uses a wide random distribution as requested, which avoids the instant failure of fixed-size padding and adds significant noise to the packet size distribution. Finally, a critical reverse-proxy fallback to the SNI domain ensures that any active probes receive a valid HTTPS response, passing the M8 active probe tests.",
+    "config": {
+      "protocol": "tls-token-safari-h2-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2"
+          ],
+          "sni": "www.wikipedia.org",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 30,
+        "random_max": 1450,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.wikipedia.org"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "M1 (nDPI): PASS - Will be classified as TLS."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "M2 (Suricata): PASS - Valid SNI and browser fingerprint prevent alerts."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "M3 (Zeek/JA3): PASS - JA3 fingerprint matches Safari 17."
+      },
+      "m4_ml": {
+        "verdict": "UNCERTAIN",
+        "explanation": "M4 (ML Flow): UNCERTAIN - Random padding is less ideal than mimicry. The very wide range improves randomness, but the statistical properties might still diverge from a real browser, potentially leading to a higher `vpn_prob`."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "M6 (KL Divergence - Lengths): PASS - The wide random range of [30, 1450] will prevent the KL divergence score from being high, as it avoids the uniformity that `fixed` padding creates. It should stay below the 0.30 threshold."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "M8 (Active Probe): PASS - Fallback is correctly configured to a live HTTPS target that matches the SNI."
+      }
+    },
+    "known_weaknesses": [
+      "The padding `mode: random` creates a uniform distribution of packet sizes within its range. This is statistically different from the multi-modal distribution of real browser traffic that `mimicry` mode emulates. A more advanced statistical analysis could potentially flag this uniform distribution.",
+      "The ALPN `[\"h2\"]` is slightly anomalous. Most modern browsers will also advertise `http/1.1` as a fallback option. A server/client only offering HTTP/2 could be a minor fingerprintable characteristic."
+    ]
+  }
+}

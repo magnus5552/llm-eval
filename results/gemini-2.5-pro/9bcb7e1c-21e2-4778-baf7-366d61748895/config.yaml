@@ -1,0 +1,35 @@
+protocol: tls-token-safari-video-v3
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19445
+  tls:
+    version: '1.3'
+    fingerprint: safari-17
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.microsoft.com
+    cert_file: D:\programs\диплом\llm-eval\results\gemini-2.5-pro\9bcb7e1c-21e2-4778-baf7-366d61748895\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\gemini-2.5-pro\9bcb7e1c-21e2-4778-baf7-366d61748895\server.key
+    insecure: true
+handshake:
+  type: tls-token
+  tls_token:
+    field: session_ticket
+    kdf: hkdf-sha256
+    psk: e5e98fbf8c19a2391f0cf655ce1bdc34dadf1acb9fe96f0d0aeaeffa8ad515e5
+    length: 48
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: mimicry
+  profile: video-streaming
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.microsoft.com

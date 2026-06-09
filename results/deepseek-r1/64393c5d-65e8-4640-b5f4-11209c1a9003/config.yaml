@@ -1,0 +1,36 @@
+protocol: llm-noise-randompad-v2
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19484
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.cloudflare.com
+    cert_file: D:\programs\диплом\llm-eval\results\deepseek-r1\64393c5d-65e8-4640-b5f4-11209c1a9003\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\deepseek-r1\64393c5d-65e8-4640-b5f4-11209c1a9003\server.key
+    insecure: true
+handshake:
+  type: noise
+  noise:
+    pattern: NNpsk2
+    cipher_suite: 25519:ChaChaPoly:BLAKE2s
+    local_key: generate
+    psk: ba1a7bd73e278a2cd9c331611a52e09e94e8896b8275bc91fd059dfefa287bb6
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: random
+  random_min: 40
+  random_max: 1400
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.cloudflare.com

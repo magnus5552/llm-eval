@@ -1,0 +1,105 @@
+15:02:08 INFO generator — [gemini-2.5-pro] run 1/5 — variant 0 (www.google.com, port 9443)
+15:02:33 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+15:02:33 ERROR __main__ — Generation 1/5 failed: 1 validation error for GenerationResult
+config
+  Input should be a valid dictionary or instance of TunnelConfig [type=model_type, input_value=' protocol: "tls-token-go...ttps://www.google.com" ', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/model_type
+Traceback (most recent call last):
+  File "D:\programs\диплом\llm-eval\pipeline.py", line 129, in cmd_generate
+    artifact = generate_config(
+  File "D:\programs\диплом\llm-eval\generator.py", line 160, in generate_config
+    gen_result, meta = provider.generate_structured(
+  File "D:\programs\диплом\llm-eval\providers.py", line 152, in generate_structured
+    result = schema.model_validate(json.loads(tool_call.function.arguments))
+  File "C:\Users\Redmi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\pydantic\main.py", line 732, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+pydantic_core._pydantic_core.ValidationError: 1 validation error for GenerationResult
+config
+  Input should be a valid dictionary or instance of TunnelConfig [type=model_type, input_value=' protocol: "tls-token-go...ttps://www.google.com" ', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/model_type
+15:02:33 INFO generator — [gemini-2.5-pro] run 2/5 — variant 1 (www.cloudflare.com, port 443)
+15:03:05 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+15:03:05 ERROR __main__ — Generation 2/5 failed: 1 validation error for GenerationResult
+config
+  Input should be a valid dictionary or instance of TunnelConfig [type=model_type, input_value=' protocol: "noise-psk-ra...://www.cloudflare.com" ', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/model_type
+Traceback (most recent call last):
+  File "D:\programs\диплом\llm-eval\pipeline.py", line 129, in cmd_generate
+    artifact = generate_config(
+  File "D:\programs\диплом\llm-eval\generator.py", line 160, in generate_config
+    gen_result, meta = provider.generate_structured(
+  File "D:\programs\диплом\llm-eval\providers.py", line 152, in generate_structured
+    result = schema.model_validate(json.loads(tool_call.function.arguments))
+  File "C:\Users\Redmi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\pydantic\main.py", line 732, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+pydantic_core._pydantic_core.ValidationError: 1 validation error for GenerationResult
+config
+  Input should be a valid dictionary or instance of TunnelConfig [type=model_type, input_value=' protocol: "noise-psk-ra...://www.cloudflare.com" ', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/model_type
+15:03:05 INFO generator — [gemini-2.5-pro] run 3/5 — variant 2 (www.microsoft.com, port 8443)
+15:03:31 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+15:03:31 ERROR __main__ — Generation 3/5 failed: 1 validation error for GenerationResult
+config
+  Input should be a valid dictionary or instance of TunnelConfig [type=model_type, input_value=' protocol: "tls-token-sa...s://www.microsoft.com" ', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/model_type
+Traceback (most recent call last):
+  File "D:\programs\диплом\llm-eval\pipeline.py", line 129, in cmd_generate
+    artifact = generate_config(
+  File "D:\programs\диплом\llm-eval\generator.py", line 160, in generate_config
+    gen_result, meta = provider.generate_structured(
+  File "D:\programs\диплом\llm-eval\providers.py", line 152, in generate_structured
+    result = schema.model_validate(json.loads(tool_call.function.arguments))
+  File "C:\Users\Redmi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\pydantic\main.py", line 732, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+pydantic_core._pydantic_core.ValidationError: 1 validation error for GenerationResult
+config
+  Input should be a valid dictionary or instance of TunnelConfig [type=model_type, input_value=' protocol: "tls-token-sa...s://www.microsoft.com" ', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/model_type
+15:03:31 INFO generator — [gemini-2.5-pro] run 4/5 — variant 3 (www.github.com, port 443)
+15:03:56 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+15:03:56 ERROR __main__ — Generation 4/5 failed: 1 validation error for GenerationResult
+config
+  Input should be a valid dictionary or instance of TunnelConfig [type=model_type, input_value=' protocol: "noise-nnpsk0...ttps://www.github.com" ', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/model_type
+Traceback (most recent call last):
+  File "D:\programs\диплом\llm-eval\pipeline.py", line 129, in cmd_generate
+    artifact = generate_config(
+  File "D:\programs\диплом\llm-eval\generator.py", line 160, in generate_config
+    gen_result, meta = provider.generate_structured(
+  File "D:\programs\диплом\llm-eval\providers.py", line 152, in generate_structured
+    result = schema.model_validate(json.loads(tool_call.function.arguments))
+  File "C:\Users\Redmi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\pydantic\main.py", line 732, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+pydantic_core._pydantic_core.ValidationError: 1 validation error for GenerationResult
+config
+  Input should be a valid dictionary or instance of TunnelConfig [type=model_type, input_value=' protocol: "noise-nnpsk0...ttps://www.github.com" ', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/model_type
+15:03:56 INFO generator — [gemini-2.5-pro] run 5/5 — variant 4 (www.amazon.com, port 9443)
+15:04:19 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+15:04:19 INFO generator — [gemini-2.5-pro] run 5 done in 22.2s — 4512 tokens (in:2729 out:1783)
+15:04:19 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\gemini-2.5-pro\a56be013-ab62-4789-a8e8-88f31e43048a\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\gemini-2.5-pro\a56be013-ab62-4789-a8e8-88f31e43048a\test_out  (timeout 300s)
+15:05:36 INFO evaluator — Verdict: FAIL  (rc=2)
+
+────────────────────────────────────────────────────────────
+  Model  : gemini-2.5-pro
+  Runs   : 5
+  Test   : yes
+  Output : D:\programs\диплом\llm-eval\results\gemini-2.5-pro
+────────────────────────────────────────────────────────────
+
+
+  [5/5] run_id=a56be013…
+        protocol : baseline-ssh-mimic-v1
+        transport: tls  port=9443
+        tls      : fp=safari-17  sni=www.amazon.com
+        handshake: none
+        padding  : mimicry
+        fallback : True  target=https://www.amazon.com
+        tokens   : 4512  (22.2s)
+        predicted: M1=P  M2=P  M3=P  M4=U  M6=F  M8=P
+        ⚠  The primary weakness is a potential traffic mismatch. Using the `ssh-interactive` padding profile for traffic that is not actually interactive (e.g., video streaming, large file downloads) could create statistical anomalies in packet size distribution that ML-based classifiers (M4, M6) might detect.
+        ⚠  An adversary observing traffic to an Amazon IP with a packet distribution characteristic of SSH, not web browsing, might find the combination suspicious.
+  ↳ running tunnel-testing (port 19447, 30s)…
+  ✗ VERDICT: FAIL
+     M1=✓  M2=✗  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+

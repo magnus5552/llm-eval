@@ -1,0 +1,35 @@
+protocol: tls-token-chrome-v1
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19503
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.google.com
+    cert_file: D:\programs\диплом\llm-eval\results\gemini-2.5-pro\07bd8db4-b87b-4d10-b8c0-174727f2d99b\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\gemini-2.5-pro\07bd8db4-b87b-4d10-b8c0-174727f2d99b\server.key
+    insecure: true
+handshake:
+  type: tls-token
+  tls_token:
+    field: session_ticket
+    kdf: hkdf-sha256
+    psk: 1c8ab56338018a4f83ed96656d1cf4758eb17419cdc26fc65deddcb66e6d7bf2
+    length: 48
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: mimicry
+  profile: chrome-browsing
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.google.com

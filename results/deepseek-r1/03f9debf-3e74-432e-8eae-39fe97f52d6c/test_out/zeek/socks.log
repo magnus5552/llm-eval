@@ -1,0 +1,29 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	socks
+#open	2026-06-07-11-18-53
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	version	user	password	status	request.host	request.name	request_p	bound.host	bound.name	bound_p
+#types	time	string	addr	port	addr	port	count	string	string	string	addr	string	port	addr	string	port
+1780831099.141190	Ck8Ks63BHbircdU3X6	127.0.0.1	64106	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	64107
+1780831097.241243	CVZz6x1ZL5LZJJRMRe	127.0.0.1	64099	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	64100
+1780831096.801538	CZihaoaK4zTXIxqjf	127.0.0.1	64096	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	64097
+1780831091.315542	Cmenv32fa2Ey66KITi	127.0.0.1	42170	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	42171
+1780831076.229014	CKm5lX3LvY2lxLHfgc	127.0.0.1	1047	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	1048
+1780831079.955683	CpJPfz4kI9qLfCQwbi	127.0.0.1	1060	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	1061
+1780831087.442931	CLlw4N1bXaOGkcTdw3	127.0.0.1	40323	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	40324
+1780831075.350692	CAKOnb3bI0d8yG8Ssi	127.0.0.1	1041	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	1042
+1780831070.302547	CL5O6GywLdToQfa1i	127.0.0.1	44911	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	44912
+1780831079.515004	CUB5ST3WBkDDJBpqlb	127.0.0.1	1057	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	1058
+1780831071.289707	CpVqOn3v6GEGOQOa1i	127.0.0.1	1035	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	1036
+1780831097.681616	CxDyhti62dCqrFmE6	127.0.0.1	64102	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	64103
+1780831074.480279	Cnf5uB3UI6GiloMb7d	127.0.0.1	1038	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	1039
+1780831070.803824	CiBnpKaByegSJ4Ou5	127.0.0.1	1032	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	1033
+1780831077.280673	CaraqPJ7Yq9BGdLyf	127.0.0.1	1051	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	1052
+1780831087.883045	CvTyc93Lt0fqrXKHp7	127.0.0.1	40326	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	40327
+1780831075.789801	CE41AP3DxT5fJ7IAoh	127.0.0.1	1044	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	1045
+1780831081.940253	CfTr8V2m6u3vgUiEc9	127.0.0.1	1063	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	1064
+1780831079.089639	CaNWvS3YItS27WIVXb	127.0.0.1	1054	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	1055
+1780831088.322610	CZcjzS1b4MdCA43DV3	127.0.0.1	40329	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	40330
+#close	2026-06-07-11-18-53

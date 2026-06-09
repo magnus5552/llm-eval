@@ -1,0 +1,36 @@
+protocol: llm-gen-noise-v1
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19466
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.github.com
+    cert_file: D:\programs\диплом\llm-eval\results\gpt-4o\b68c3253-100b-4aca-abc6-4c66b6b81477\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\gpt-4o\b68c3253-100b-4aca-abc6-4c66b6b81477\server.key
+    insecure: true
+handshake:
+  type: noise
+  noise:
+    pattern: NNpsk0
+    cipher_suite: 25519:ChaChaPoly:BLAKE2s
+    local_key: generate
+    psk: 267f79c00a773ab7ecc5053061b2575b90cdaca6d04430d3d65059e8bf36d177
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: random
+  random_min: 64
+  random_max: 1200
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.github.com

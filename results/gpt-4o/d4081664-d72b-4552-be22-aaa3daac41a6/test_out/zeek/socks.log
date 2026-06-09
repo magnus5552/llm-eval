@@ -1,0 +1,24 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	socks
+#open	2026-06-07-08-37-38
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	version	user	password	status	request.host	request.name	request_p	bound.host	bound.name	bound_p
+#types	time	string	addr	port	addr	port	count	string	string	string	addr	string	port	addr	string	port
+1780821392.884022	Co4nZJ1TU4xm0uJZNj	127.0.0.1	38737	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	38738
+1780821387.359214	CaV4bw4nRiSZ3G1Ifk	127.0.0.1	38731	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	38732
+1780821399.291662	CuAm674G5bmGPh3wVb	127.0.0.1	38746	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	38748
+1780821398.866798	CHP7Ng2j2P9WNr54Gh	127.0.0.1	38743	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	38744
+1780821398.415335	C3axml4DGD9Eow4K3e	127.0.0.1	38740	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	38741
+1780821407.025130	CQvGx71Nd6tplcQqAl	127.0.0.1	38759	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	38760
+1780821404.808814	CYnOeX33RR3DEjT9db	127.0.0.1	38750	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	38751
+1780821406.584377	CCCsIDbaNdMRpLef8	127.0.0.1	38756	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	38757
+1780821386.478022	C614OJ16UJYJOOP4o3	127.0.0.1	38724	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	38725
+1780821386.933562	ComEpY2aiVKRJWaee2	127.0.0.1	38728	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	38729
+1780821406.157306	Czffyv36mc9Ue3RkB4	127.0.0.1	38753	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	38754
+1780821415.335152	CxIhN5348FeP29q0J2	127.0.0.1	38772	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	38773
+1780821412.497861	CLBmic4ngwqfVdAkL8	127.0.0.1	38763	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	38764
+1780821414.452526	CoLZ87BirBXGr1YJ6	127.0.0.1	38766	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	38767
+1780821414.896686	CfAqsOu9hdo4kIlR6	127.0.0.1	38769	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	38770
+#close	2026-06-07-08-37-38

@@ -1,0 +1,106 @@
+{
+  "run_id": "9bcb7e1c-21e2-4778-baf7-366d61748895",
+  "timestamp": "2026-06-07T10:16:34.276043+00:00",
+  "elapsed_s": 27.46,
+  "model": "gemini-2.5-pro",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 2727,
+    "completion": 2701,
+    "total": 5428
+  },
+  "variant": {
+    "index": 2,
+    "domain": "www.microsoft.com",
+    "port": 8443,
+    "handshake_hint": "Combine tls-token with a browser fingerprint from a less common browser (safari-17).",
+    "padding_hint": "Use mimicry/video-streaming to simulate different traffic profile."
+  },
+  "generation_result": {
+    "reasoning": "This configuration is designed to blend in with HTTPS traffic, specifically mimicking a video streaming session originating from a Safari browser to a Microsoft service.\n\n*   **Transport:** We use TLS 1.3 on port 8443 with the `safari-17` fingerprint and a `www.microsoft.com` SNI. This combination creates a legitimate-looking TLS handshake that matches a less common but still valid browser, passing JA3 (M3) and Suricata (M2) inspection. Port 8443 is a common alternative for HTTPS, avoiding suspicion.\n*   **Handshake:** The `tls-token` method is used to carry the tunnel preshared key within the TLS session ticket. This is a standards-compliant TLS feature, making the authentication mechanism invisible to any observer who is not actively trying to parse the session ticket as a custom authentication field.\n*   **Padding:** The key choice here is `mimicry` with the `video-streaming` profile. This shapes packet sizes to resemble a real-time video stream, effectively countering statistical analysis based on flow features (M4) and packet length distributions (M6). This provides a different camouflage profile than standard web browsing.\n*   **Fallback:** The configuration specifies a reverse-proxy fallback to `https://www.microsoft.com`. This is critical for defeating active probes (M8). Any connection that doesn't complete the tunnel handshake will be forwarded to the real Microsoft homepage, making the server appear as a legitimate web server.",
+    "config": {
+      "protocol": "tls-token-safari-video-v3",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 8443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.microsoft.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "video-streaming"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.microsoft.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m2_suricata": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m3_zeek": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m4_ml": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m6_kl_len": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m8_probe": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      }
+    },
+    "known_weaknesses": [
+      "The main potential weakness is a mismatch between the traffic profile (`video-streaming`) and the actual content. If an observer performs deep content analysis, they might notice that the data being transferred doesn't have the characteristics of video, which could be a flag.",
+      "Using a fixed length (48 bytes) for the `tls-token` could theoretically be detected by advanced statistical analysis across many independent sessions, although it is a very weak signal."
+    ]
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "run_id": "45dc1d6c-61af-4d53-884b-d07e58081115",
+  "timestamp": "2026-06-07T11:04:19.068110+00:00",
+  "elapsed_s": 21.42,
+  "model": "gemini-2.5-pro",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 2736,
+    "completion": 1940,
+    "total": 4676
+  },
+  "variant": {
+    "index": 5,
+    "domain": "login.microsoftonline.com",
+    "port": 443,
+    "handshake_hint": "Use tls-token with length=32 (shorter token, still 256 bits).",
+    "padding_hint": "Use random [100, 1300] to mimic API call distributions."
+  },
+  "generation_result": {
+    "reasoning": "This configuration is designed to blend in with HTTPS traffic to a common corporate service, Microsoft Online Login, using a standard TLS setup with a popular browser fingerprint. \n\n*   **Transport:** We use TLS 1.3 with a `chrome-120` fingerprint and an SNI of `login.microsoftonline.com` on port 443. This presents a completely standard appearance to network observers, crucial for passing M1, M2, and M3.\n*   **Handshake:** Authentication is handled by a 32-byte (256-bit) token embedded in the TLS session ticket. This is a subtle method, as session tickets are a standard part of TLS 1.3 session resumption, making the PSK exchange difficult to isolate.\n*   **Padding:** We use `random` padding with a range of 100 to 1300 bytes. This range is chosen to mimic the variable packet sizes of web API calls rather than bulk browsing, directly addressing M6 (KL divergence on packet lengths) and providing a non-uniform distribution to evade M4/M5 machine learning classifiers.\n*   **Fallback:** A reverse-proxy fallback to the legitimate `login.microsoftonline.com` ensures that any active probes (M8) receive a valid HTTPS response that matches the SNI, preventing probe-based detection.",
+    "config": {
+      "protocol": "tls-token-randompad-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "login.microsoftonline.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 32
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 100,
+        "random_max": 1300,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://login.microsoftonline.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m2_suricata": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m3_zeek": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m4_ml": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m6_kl_len": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m8_probe": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      }
+    },
+    "known_weaknesses": [
+      "The primary weakness is the use of `random` padding. While it avoids the obvious trap of `fixed` padding, the uniform random distribution between 100 and 1300 bytes does not perfectly match the more complex, multi-modal distribution of real browser traffic. A sophisticated statistical analysis could potentially distinguish this uniform distribution from a genuine `chrome-browsing` profile, making it slightly more detectable than `mimicry` padding."
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+protocol: noise-nnpsk0-github-v4
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19446
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.github.com
+    cert_file: D:\programs\диплом\llm-eval\results\claude-sonnet-4\98647cd2-5d9d-48d4-bd41-8b784a2cb2c6\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\claude-sonnet-4\98647cd2-5d9d-48d4-bd41-8b784a2cb2c6\server.key
+    insecure: true
+handshake:
+  type: noise
+  noise:
+    pattern: NNpsk0
+    cipher_suite: 25519:ChaChaPoly:BLAKE2s
+    local_key: generate
+    psk: 8b3e7583e05de342bc0f762ccdbb0163bc22df108ade5d540e8e7c25f6bcadc0
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: random
+  random_min: 64
+  random_max: 1200
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.github.com

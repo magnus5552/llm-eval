@@ -1,0 +1,35 @@
+protocol: wiki-h2-random-v8
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19450
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    sni: www.wikipedia.org
+    cert_file: D:\programs\диплом\llm-eval\results\claude-opus-4\2246c84e-cc6a-430f-8a03-91eede697ae0\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\claude-opus-4\2246c84e-cc6a-430f-8a03-91eede697ae0\server.key
+    insecure: true
+handshake:
+  type: tls-token
+  tls_token:
+    field: session_ticket
+    kdf: hkdf-sha256
+    psk: f4643419107ead5d35f5896de10456dcf892406503b76b36ef3f6ee9182eb056
+    length: 48
+crypto:
+  aead: aes-256-gcm
+  kdf: hkdf-sha256
+padding:
+  mode: random
+  random_min: 30
+  random_max: 1450
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.wikipedia.org

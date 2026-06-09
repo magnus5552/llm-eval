@@ -1,0 +1,30 @@
+protocol: chrome-mimicry-v5
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19447
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.amazon.com
+    cert_file: D:\programs\диплом\llm-eval\results\deepseek-chat\7e04a11d-d90d-4fcf-a9b1-8c176f7965ed\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\deepseek-chat\7e04a11d-d90d-4fcf-a9b1-8c176f7965ed\server.key
+    insecure: true
+handshake:
+  type: none
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: mimicry
+  profile: chrome-browsing
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.amazon.com

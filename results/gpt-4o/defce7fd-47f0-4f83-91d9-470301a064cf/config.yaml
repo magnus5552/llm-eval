@@ -1,0 +1,35 @@
+protocol: novel-tunnel-8
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19470
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    sni: www.wikipedia.org
+    cert_file: D:\programs\диплом\llm-eval\results\gpt-4o\defce7fd-47f0-4f83-91d9-470301a064cf\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\gpt-4o\defce7fd-47f0-4f83-91d9-470301a064cf\server.key
+    insecure: true
+handshake:
+  type: tls-token
+  tls_token:
+    field: session_ticket
+    kdf: hkdf-sha256
+    psk: 82ec5011529ef87315f3087fa9976c1a8f4bc71087a909c26587783c2e17d1b1
+    length: 48
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: random
+  random_min: 30
+  random_max: 1450
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.wikipedia.org

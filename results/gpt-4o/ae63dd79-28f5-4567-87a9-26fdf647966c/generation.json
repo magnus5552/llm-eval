@@ -1,0 +1,101 @@
+{
+  "run_id": "ae63dd79-28f5-4567-87a9-26fdf647966c",
+  "timestamp": "2026-06-07T10:56:55.537183+00:00",
+  "elapsed_s": 9.87,
+  "model": "gpt-4o",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 3487,
+    "completion": 1,
+    "total": 3488
+  },
+  "variant": {
+    "index": 4,
+    "domain": "www.amazon.com",
+    "port": 9443,
+    "handshake_hint": "Try handshake=none for the simplest possible surface — pure TLS with mimicry.",
+    "padding_hint": "Use mimicry/chrome-browsing but experiment with ssh-interactive for low-traffic sessions."
+  },
+  "generation_result": {
+    "reasoning": "### Transport\nI selected `tls` as the transport type and set the port to 9443, which is commonly used for HTTPS (\u001freducing suspicion in automated systems). The TLS configuration includes `chrome-120` fingerprint to match that of a popular browser, maximizing the chance of evading JA3 fingerprinting (M3). The SNI is set to `www.amazon.com`, a high-traffic site, ensuring the tunnel closely resembles legitimate web traffic, which is essential for evading Suricata (M2).\n\n### Handshake\nThe handshake is set to `none` to present the simplest surface, purely relying on TLS with mimicry. This setup minimizes elements that could raise alarms in complex handshake patterns while staying within constraints by providing a straightforward TLS negotiation (R6).\n\n### Padding\nTo create realistic traffic patterns, I've chosen `mimicry` with a profile of `ssh-interactive`. This padding strategy is suitable for low-traffic sessions and avoids uniform packet sizes (R5), which could lead to M6 failures. This setting helps maintain a natural variance in packet sizes typically seen in interactive sessions.\n\n### Fallback\nEnabling fallback with `reverse-proxy` mode pointing to `https://www.amazon.com` ensures resilience against active probing (M8). This setup returns valid HTTPS responses to any probes, increasing the tunnel's stealth.",
+    "config": {
+      "protocol": "llm-gen-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.amazon.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "none",
+        "noise": null,
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "ssh-interactive"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.amazon.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "Using TLS with chrome-120 fingerprint will likely be classified as HTTPS."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "SNI is correctly set to a legitimate domain, thus bypassing rule 9000002."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "JA3 fingerprint matches that of Chrome browser."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Padding mimicry and non-uniform packet sizes will evade statistical detection."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Non-fixed padding ensures a low KL divergence from normal HTTPS."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Enabling fallback with a real HTTPS site passes active probes."
+      }
+    },
+    "known_weaknesses": [
+      "The use of the ssh-interactive profile might be scrutinized if traffic levels are inconsistent with expected patterns from this profile.",
+      "The 'handshake: none' approach relies heavily on the mimicry capabilities of TLS itself, potentially vulnerable if this mimicry doesn't fully align with browser behavior."
+    ]
+  }
+}

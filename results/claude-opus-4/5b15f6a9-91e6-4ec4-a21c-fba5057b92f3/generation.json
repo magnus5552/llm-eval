@@ -1,0 +1,110 @@
+{
+  "run_id": "5b15f6a9-91e6-4ec4-a21c-fba5057b92f3",
+  "timestamp": "2026-06-07T10:56:55.998068+00:00",
+  "elapsed_s": 39.27,
+  "model": "claude-opus-4",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 6058,
+    "completion": 1,
+    "total": 6059
+  },
+  "variant": {
+    "index": 1,
+    "domain": "www.cloudflare.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk2 for forward secrecy without pre-shared static keys.",
+    "padding_hint": "Use random padding with wide range [40, 1400] to pass M6."
+  },
+  "generation_result": {
+    "reasoning": "**Transport Design**: Using TLS 1.3 on port 443 with firefox-120 fingerprint to blend with legitimate Firefox browser traffic. The SNI www.cloudflare.com is a high-traffic CDN domain that won't raise suspicion. Firefox fingerprint provides good compatibility while avoiding the overused Chrome fingerprint.\n\n**Handshake Strategy**: Implementing Noise protocol with NNpsk2 pattern as suggested. This provides forward secrecy without requiring pre-shared static keys, making it ideal for automated testing. The PSK authentication happens after initial handshake, providing security without complexity. Using the default Noise cipher suite (25519:ChaChaPoly:BLAKE2s) for optimal performance.\n\n**Padding Approach**: Random padding with range [40, 1400] as specified. This wide range creates a natural-looking packet size distribution that mimics real HTTPS traffic patterns. The 40-byte minimum avoids suspiciously small packets while 1400 maximum stays below typical MTU limits. This should effectively defeat fixed-size detection in M6.\n\n**Timing Strategy**: Keeping timing mode as \"none\" to avoid artificial patterns that could trigger M7. Natural timing variations from the application layer will provide sufficient randomness without introducing detectable regularities.\n\n**Fallback Configuration**: Reverse proxy to https://www.cloudflare.com matches our SNI, creating consistency. Active probes will receive legitimate Cloudflare responses, satisfying M8's distinguishability checks.",
+    "config": {
+      "protocol": "noise-nnpsk2-random-v12",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "firefox-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.cloudflare.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk2",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 40,
+        "random_max": 1400,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.cloudflare.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "TLS 1.3 with valid SNI and firefox-120 fingerprint will be classified as TLS/HTTPS, not VPN"
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Port 443, valid SNI present, browser fingerprint, standard ALPN values - no IDS triggers expected"
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Firefox-120 JA3 fingerprint matches real browser; Noise handshake occurs within TLS, avoiding raw entropy detection"
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Random padding [40-1400] creates varied packet sizes with good CV, avoiding uniform size penalties"
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Random padding with wide range [40-1400] should produce KL divergence well below 0.30 threshold"
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Fallback to real Cloudflare server returns legitimate HTTPS responses to all probe types"
+      }
+    },
+    "known_weaknesses": [
+      "Noise protocol within TLS adds slight overhead that sophisticated traffic analysis might detect",
+      "Random padding lacks the temporal correlation patterns of real browser traffic bursts",
+      "Cloudflare's specific response patterns might be fingerprintable if the censor monitors CF edge behavior",
+      "The NNpsk2 pattern requires PSK exchange which adds a round trip compared to pure TLS"
+    ]
+  }
+}

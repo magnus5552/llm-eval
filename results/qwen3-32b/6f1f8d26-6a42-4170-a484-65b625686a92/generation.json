@@ -1,0 +1,107 @@
+{
+  "run_id": "6f1f8d26-6a42-4170-a484-65b625686a92",
+  "timestamp": "2026-06-07T10:03:54.709145+00:00",
+  "elapsed_s": 18.51,
+  "model": "qwen3-32b",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 5176,
+    "completion": 1,
+    "total": 5177
+  },
+  "variant": {
+    "index": 1,
+    "domain": "www.cloudflare.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk2 for forward secrecy without pre-shared static keys.",
+    "padding_hint": "Use random padding with wide range [40, 1400] to pass M6."
+  },
+  "generation_result": {
+    "reasoning": "The config uses tls as the transport type to ensure it mimics HTTPS traffic. The Chrome-120 fingerprint is chosen because it closely resembles the TLS fingerprint of a modern Chrome browser, which is commonly used and thus less likely to raise suspicion. The SNI set to www.cloudflare.com is selected as per the given preference, as it will camouflage the traffic as going to a well-known CDN provider. Using the Noise handshake protocol with the NNpsk2 pattern ensures forward secrecy and avoids the use of static keys, aligning with the provided hint. The random padding with a range from 40 to 1400 bytes is used to avoid uniform packet sizes, which helps in bypassing the KL divergence detection based on packet lengths. A fallback to a real HTTPS server is enabled to handle active probing without revealing the tunnel's nature. For other timing aspects, the default configurations are used to avoid introducing detectable patterns.",
+    "config": {
+      "protocol": "tunnel-2",
+      "version": 2,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.cloudflare.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk2",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 40,
+        "random_max": 1400,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.cloudflare.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "tls transport with a browser-like TLS fingerprint makes it appear as legitimate HTTPS traffic to nDPI."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Correctly set TLS parameters and a valid SNI help avoid IDS alerts."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Chrome-120 fingerprint matches genuine browser traffic, avoiding entropy-based detection."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Random padding helps mimic natural HTTPS traffic patterns and reduces ML detection probability."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Random padding with a wide range of sizes prevents detection by KL divergence metrics on lengths."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "The fallback to a real HTTPS website ensures active probes return legitimate responses."
+      }
+    },
+    "known_weaknesses": [
+      "Relying on random padding may introduce occasional packets larger than typical HTTPS traffic, which could flag in specific entropy or size distribution analyses."
+    ]
+  }
+}

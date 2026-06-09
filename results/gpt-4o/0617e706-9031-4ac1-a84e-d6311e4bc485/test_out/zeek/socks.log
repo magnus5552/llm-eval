@@ -1,0 +1,25 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	socks
+#open	2026-06-07-10-50-10
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	version	user	password	status	request.host	request.name	request_p	bound.host	bound.name	bound_p
+#types	time	string	addr	port	addr	port	count	string	string	string	addr	string	port	addr	string	port
+1780829357.322996	CZ2jNH2HS4GlHsV6Oj	127.0.0.1	63412	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	63413
+1780829345.356017	C5swxc2xOsZ81jBZB5	127.0.0.1	44288	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	44289
+1780829368.415524	CkyER43s1b5QPfXNvb	127.0.0.1	56802	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	56803
+1780829350.906413	CFRrhCULS5gKE8ET4	127.0.0.1	63402	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	63403
+1780829373.034863	Ccg8V21lBLCNUrPfw6	127.0.0.1	56824	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	56825
+1780829356.880757	CjajIg4AAVznkSvdai	127.0.0.1	63409	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	63410
+1780829344.866042	C7Uxjo2t4J2cjYeJHl	127.0.0.1	44285	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	44286
+1780829356.439942	CVyxCJ122KiS7iKBJ6	127.0.0.1	63406	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	63407
+1780829362.864360	ChlB7A1HJlzgAliara	127.0.0.1	56798	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	56799
+1780829371.462305	Cs8QdC1VPxX3nwvIa7	127.0.0.1	56815	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	56816
+1780829344.358088	CAXLnO1yaoGYwD3srd	127.0.0.1	44282	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	44283
+1780829368.839986	Cj8BuY12Uma4sZ6Tof	127.0.0.1	56805	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	56806
+1780829369.276463	CXn8Jv2oAGj1AYlhL5	127.0.0.1	56809	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	56810
+1780829370.297598	CqCpV1nibaRNgsxTf	127.0.0.1	56812	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	56813
+1780829371.902719	CVw7dB3GEstWkWHikd	127.0.0.1	56818	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	56819
+1780829372.356272	CrpvOY1umhejDxIEpk	127.0.0.1	56821	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	56822
+#close	2026-06-07-10-50-10

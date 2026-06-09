@@ -1,0 +1,25 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	socks
+#open	2026-06-07-08-34-57
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	version	user	password	status	request.host	request.name	request_p	bound.host	bound.name	bound_p
+#types	time	string	addr	port	addr	port	count	string	string	string	addr	string	port	addr	string	port
+1780821235.937813	CrIsj23bxWxpQoFdX6	127.0.0.1	57182	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	57183
+1780821241.452398	CrUbsr3V8CXBsex6Tk	127.0.0.1	57186	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	57187
+1780821247.843239	CCfa8rLKVWOLqdrh6	127.0.0.1	57195	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	57196
+1780821246.976776	ClevOk2XGI9A6U0v2c	127.0.0.1	57189	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	57190
+1780821254.651615	ChXIxjkWWyDkfLc7	127.0.0.1	57207	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	57208
+1780821248.724280	CLv8Wz1s0TEK5owhhb	127.0.0.1	57200	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	57201
+1780821255.075610	CaDQer1MDrZR5Ny2z8	127.0.0.1	57210	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	57211
+1780821262.306662	CqFzpRxR9Qetyt7Aa	127.0.0.1	57218	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	57219
+1780821247.418389	CjEzfQ1HrEQlf1Dix1	127.0.0.1	57192	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	57193
+1780821235.463135	ChgDDx4IYV1zQKaJ74	127.0.0.1	57179	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	57180
+1780821260.624271	CpV9fs1tjaZSBxGOSb	127.0.0.1	57214	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	57215
+1780821234.960408	CGvADA4WYSIwz1HIvc	127.0.0.1	57176	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	57177
+1780821262.730749	CXfldB3lZo0nbPE93h	127.0.0.1	57221	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	57222
+1780821263.170316	Ck6E9dyuj4R6AkfOg	127.0.0.1	57224	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	57225
+1780821254.209865	C5GmoV3yRpyztOc8m3	127.0.0.1	57204	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	57205
+1780821264.558120	CCoyJM3kmkooe93OI8	127.0.0.1	57227	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	57228
+#close	2026-06-07-08-34-58

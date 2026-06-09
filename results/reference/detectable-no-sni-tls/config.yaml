@@ -1,0 +1,27 @@
+protocol: no-sni-tls-v1
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19545
+  tls:
+    version: '1.3'
+    fingerprint: go
+    alpn: []
+    sni: ''
+    cert_file: D:\programs\диплом\llm-eval\results\reference\detectable-no-sni-tls\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\reference\detectable-no-sni-tls\server.key
+    insecure: true
+handshake:
+  type: none
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: random
+  min_size: 64
+  max_size: 512
+timing:
+  mode: none
+fallback:
+  enabled: false

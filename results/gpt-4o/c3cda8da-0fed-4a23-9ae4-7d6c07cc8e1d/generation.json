@@ -1,0 +1,107 @@
+{
+  "run_id": "c3cda8da-0fed-4a23-9ae4-7d6c07cc8e1d",
+  "timestamp": "2026-06-07T10:41:52.023004+00:00",
+  "elapsed_s": 9.7,
+  "model": "gpt-4o",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 3481,
+    "completion": 1,
+    "total": 3482
+  },
+  "variant": {
+    "index": 2,
+    "domain": "www.microsoft.com",
+    "port": 8443,
+    "handshake_hint": "Combine tls-token with a browser fingerprint from a less common browser (safari-17).",
+    "padding_hint": "Use mimicry/video-streaming to simulate different traffic profile."
+  },
+  "generation_result": {
+    "reasoning": "### Transport\nThe transport uses TLS to ensure the traffic looks like standard HTTPS, satisfying R1. The listening port is set to 8443, which is commonly used for HTTPS and is less glaring than port 443 given the context, which fulfills the constraint. The SNI 'www.microsoft.com' ensures M2 compliance by being non-empty and pointing to a real domain. The `safari-17` fingerprint is used to vary from more common configurations, potentially reducing detection likelihood by systems tuned for Chrome and Firefox, addressing R2 and providing variety across runs.\n\n### Handshake\nThe tls-token type supports PSK authentication within the TLS layer, which secretly encodes an authentication token, ensuring stealthiness against deep packet inspection while maintaining the appearance of regular TLS negotiation. This adheres to the R6 requirements and makes the tunnel initialization look like typical HTTPS session resumption due to 'session_ticket' field use.\n\n### Padding\nUsing mimicry with a 'video-streaming' profile matches characteristics seen in media-rich traffic, skewing packet lengths towards a pattern indistinguishable from streaming services like YouTube or Netflix. This fulfills R5 by avoiding fixed padding pitfalls and aligns with the variant traffic profile requirement.\n\n### Fallback\nEnabled fallback directs to 'www.microsoft.com'. This dual role serves to redirect genuine probes ensuring M8 'active probe' tolerance while reinforcing SSL validation paths using live certificates from a reputable source. Hence, the choice fits both the evasion and compliance criteria outlined in R4.\n\n### Timing\nWith timing set to 'none', it avoids introducing detectable artificial delays, leveraging natural TLS packet regularities, aligning with R7 and circumventing potential timing anomaly detections.",
+    "config": {
+      "protocol": "run-3-tunnel-config",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 8443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.microsoft.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "aes-256-gcm",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "video-streaming"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.microsoft.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "The use of TLS with a browser-like fingerprint ensures nDPI classifies it as HTTPS."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Valid SNI and TLS fingerprint for a real browser pass Suricata checks."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "The safari-17 fingerprint mirrors real browser patterns, passing JA3 checks."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Mimicry padding and varied lengths reduce ML classifier confidence below threshold."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Video-streaming mimicry profile emulates natural packet size variance seen in streaming protocols."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Enabled fallback ensures valid HTTPS responses to probes, passing the active probe test."
+      }
+    },
+    "known_weaknesses": [
+      "Possible increased detection risk if common corporate networks disproportionately filter non-Chrome/Firefox traffic.",
+      "The mimicry mode may still generate non-standard traffic for specific less common TLS fingerprint setups, triggering anomalies under intense scrutiny.",
+      "Use of aes-256-gcm might be less common in some HTTPS servers, but it generally falls within accepted cryptographic practices."
+    ]
+  }
+}

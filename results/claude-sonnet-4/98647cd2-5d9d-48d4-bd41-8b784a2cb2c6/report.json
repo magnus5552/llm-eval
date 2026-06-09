@@ -1,0 +1,198 @@
+{
+  "verdict": "PASS",
+  "failed_checks": [],
+  "skipped_checks": [],
+  "checks": {
+    "M1_ndpi": {
+      "result": "PASS",
+      "detail": {
+        "classified_as": "SOCKS",
+        "confidence": null,
+        "is_known_vpn": false
+      }
+    },
+    "M2_suricata": {
+      "result": "PASS",
+      "detail": {
+        "alert_count": 0,
+        "categories": []
+      }
+    },
+    "M3_ja3": {
+      "result": "PASS",
+      "detail": {
+        "ja3_is_browser": false,
+        "browser_matches": [],
+        "unique_ja3_count": 0,
+        "high_entropy_streams": 0,
+        "payload_byte_entropy": 7.74
+      }
+    },
+    "M4_vpn_prob": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob": 0.1062
+      }
+    },
+    "M5_vpn_prob_seq": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob_seq": 0.4143
+      }
+    },
+    "M6_kl_len": {
+      "result": "PASS",
+      "detail": {
+        "kl_len": 0.3348
+      }
+    },
+    "M7_kl_iat": {
+      "result": "PASS",
+      "detail": {
+        "kl_iat": 0.2719
+      }
+    },
+    "M8_probe": {
+      "result": "PASS",
+      "detail": {
+        "distinguishable_ratio": 0.667,
+        "flags": 2
+      }
+    }
+  },
+  "config": {
+    "dsl_config": "D:\\programs\\диплом\\llm-eval\\results\\claude-sonnet-4\\98647cd2-5d9d-48d4-bd41-8b784a2cb2c6\\config.yaml",
+    "scenario": "web",
+    "duration_s": 30
+  },
+  "raw": {
+    "pcap_path": "D:\\programs\\диплом\\llm-eval\\results\\claude-sonnet-4\\98647cd2-5d9d-48d4-bd41-8b784a2cb2c6\\test_out\\capture.pcap",
+    "m1_ndpi": {
+      "classified_as": "SOCKS",
+      "is_known_vpn": false,
+      "is_acceptable": true,
+      "flow_count": 72,
+      "known_flow_count": 72,
+      "protocol_distribution": {
+        "SOCKS": 35,
+        "TLS.Github": 35,
+        "TLS": 1,
+        "HTTP": 1
+      },
+      "ja3_hashes": [
+        "04d466d6b242d6d62d955294044542bd",
+        "090795cef8ff21ed60dac69d7744b15f",
+        "0e14ef3bad89abf09c546a036597b031",
+        "163102967f7780732980009049f48cb8",
+        "1a294fc3f7e6e6760cabeb0bd023c2c9",
+        "2074b867a9733556ebe416b3e5c2ed4f",
+        "32ec0bdc7e4b878c01329003c402aee4",
+        "338cbc7dc20954519e6fb834a992533b",
+        "339cce0101f6b9215410c5510dcb36d6",
+        "36fec31aacb0e2764cecd6c9b0dade60",
+        "3f17e8a6cb299d5b21e0cae5edbdb17d",
+        "3f9f6b7c8075cf4eda5b9651b6cafc52",
+        "468bff68207ea58924e26d37a1fb6480",
+        "47b1750b702a640a4363b0ebe707b868",
+        "4a8b46e2e9bf9ea25233cd0f7d7e708c",
+        "4edb24e9cd67e625f0cc97a4e4eb8894",
+        "57feea28827d0749ef5566de0fdba58f",
+        "67fc6826fad9e3e8ae97606c54bd8773",
+        "6f139839b879f8dcda0bfe94ef374cc7",
+        "76a251759ff3857be36dee09a8dee8bc",
+        "8698e0378529fb9d3bb2ca74b0c403bc",
+        "87962b19b9d1fc850e186210a6532128",
+        "9ee8ea29831bfa5d1c493c7c142a32c6",
+        "adb6ff2a063bb3abcabc421ea97c64bb",
+        "ba6fd389626fe676c84c9ef75c7106cd",
+        "bc69535b25386220848263eba00a1c4d",
+        "c36487a186a3815cca7e6997088b9efa",
+        "c5de2ea6fc9f79b72e2ef2e49b5474c5",
+        "cec60d4bd5b91d01f5984e9e1884342c",
+        "d40b88ed2e7a0843fdbdd55f52078f63",
+        "d4eb47b886fb61d32c09242b8ae73e56",
+        "d8dffb3d5ef85a2f7290267085375c6d",
+        "db48fe6c3306aa9720d4ca834fc4a193",
+        "e67ed2668dfc75da12f1885edca4c830",
+        "ebc923c4061a65ac45be2513340c0230",
+        "fdb7a44d68475da92024a099e566afe7"
+      ],
+      "ja4_hashes": [
+        "f4febc55ea12b31ae17cfb7e614afda8"
+      ],
+      "sni_set": [
+        "127.0.0.1",
+        "www.github.com"
+      ],
+      "tls_versions": [
+        "TLSv1.3"
+      ]
+    },
+    "m2_suricata": {
+      "alert_count": 0,
+      "alerts": [],
+      "flow_count": 75,
+      "tls_count": 36,
+      "tls_versions": [
+        "TLS 1.3"
+      ],
+      "tls_sni": [
+        "127.0.0.1",
+        "www.github.com"
+      ],
+      "categories": []
+    },
+    "m3_zeek": {
+      "ja3_hashes": [],
+      "ja3s_hashes": [],
+      "snis": [
+        "127.0.0.1",
+        "www.github.com"
+      ],
+      "cipher_suites": [
+        "TLS_AES_128_GCM_SHA256"
+      ],
+      "tls_versions": [
+        "TLSv13"
+      ],
+      "browser_matches": [],
+      "ja3_is_browser": false,
+      "unique_ja3_count": 0,
+      "conn_count": 75,
+      "unknown_service_conns": 0,
+      "payload_byte_entropy": 7.74,
+      "high_entropy_streams": 0,
+      "entropy_sample_size": 96616
+    },
+    "m4_m7_flow": {
+      "vpn_prob": 0.1062,
+      "vpn_prob_seq": 0.4143,
+      "kl_len": 0.3348,
+      "kl_iat": 0.2719,
+      "total_packets": 1735,
+      "total_flows": 75,
+      "total_bytes": 311135,
+      "duration_s": 35.54,
+      "pkt_len_mean": 309.1,
+      "pkt_len_std": 418.9,
+      "iat_mean_ms": 20.5,
+      "small_pkt_pct": 57.4,
+      "large_pkt_pct": 6.0,
+      "model_used": "heuristic"
+    },
+    "m8_probe": {
+      "distinguishable_ratio": 0.667,
+      "distinguishable_flags": 2,
+      "check_random_bytes_responded": true,
+      "check_http_looks_http": false,
+      "check_server_speaks_first": false,
+      "ttfb_mean_ms": 57.3,
+      "ttfb_values_ms": [
+        125.0,
+        0.0,
+        47.0
+      ],
+      "probe_count": 5
+    }
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "run_id": "f99c2f91-975d-42c3-8578-73704b31f1af",
+  "timestamp": "2026-06-07T11:18:53.803474+00:00",
+  "elapsed_s": 134.51,
+  "model": "deepseek-r1",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 5271,
+    "completion": 1884,
+    "total": 7155
+  },
+  "variant": {
+    "index": 1,
+    "domain": "www.cloudflare.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk2 for forward secrecy without pre-shared static keys.",
+    "padding_hint": "Use random padding with wide range [40, 1400] to pass M6."
+  },
+  "generation_result": {
+    "reasoning": "Chose TLS transport with Chrome 120 fingerprint to match common browser traffic. Noise NNpsk2 handshake provides forward secrecy without static keys, encrypted within TLS. Random padding (40-1400 bytes) avoids fixed-size detection and improves packet length distribution. No artificial timing to prevent IAT anomalies. Fallback reverse-proxy to SNI-matching domain ensures active probes return valid HTTPS responses. This config should pass all metrics: M1/M2/M3 via browser-like TLS; M4/M5 via variable packet sizes; M6 via wide random padding; M7 via natural timing; M8 via fallback.",
+    "config": {
+      "protocol": "llm-gen-v12",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.cloudflare.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk2",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 40,
+        "random_max": 1400,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.cloudflare.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": ""
+      }
+    },
+    "known_weaknesses": [
+      "The noise handshake inside TLS might be detectable by advanced systems analyzing encrypted data structure, though unlikely.",
+      "Random padding, while avoiding fixed sizes, may not perfectly mimic real Chrome traffic patterns.",
+      "Reverse proxy to cloudflare might have slightly different response characteristics than a direct connection."
+    ]
+  }
+}

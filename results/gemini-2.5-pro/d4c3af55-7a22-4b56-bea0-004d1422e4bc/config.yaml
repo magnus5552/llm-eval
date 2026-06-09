@@ -1,0 +1,36 @@
+protocol: noise-randpad-v1
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19514
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.cloudflare.com
+    cert_file: D:\programs\диплом\llm-eval\results\gemini-2.5-pro\d4c3af55-7a22-4b56-bea0-004d1422e4bc\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\gemini-2.5-pro\d4c3af55-7a22-4b56-bea0-004d1422e4bc\server.key
+    insecure: true
+handshake:
+  type: noise
+  noise:
+    pattern: NNpsk2
+    cipher_suite: 25519:ChaChaPoly:BLAKE2s
+    local_key: generate
+    psk: baa7a8f2eac26487801a2fba676dbd22ee10cfc23b56823d92ecc92423916aaa
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: random
+  random_min: 40
+  random_max: 1400
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.cloudflare.com

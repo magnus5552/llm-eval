@@ -1,0 +1,101 @@
+{
+  "run_id": "5dd77d60-4b20-4cef-8535-05f27c39d9ce",
+  "timestamp": "2026-06-07T09:51:50.314150+00:00",
+  "elapsed_s": 30.09,
+  "model": "qwen3-32b",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 5169,
+    "completion": 1,
+    "total": 5170
+  },
+  "variant": {
+    "index": 4,
+    "domain": "www.amazon.com",
+    "port": 9443,
+    "handshake_hint": "Try handshake=none for the simplest possible surface — pure TLS with mimicry.",
+    "padding_hint": "Use mimicry/chrome-browsing but experiment with ssh-interactive for low-traffic sessions."
+  },
+  "generation_result": {
+    "reasoning": "I need to generate a tunnel protocol configuration that evades detection for all M1–M8 metrics. Let me analyze the requirements and constraints to design an optimal config.\n\nFor the transport layer: the task requires `tls` as the transport type. I'll set `transport.type: tls` and use port `9443` (per constraint) with SNI `www.amazon.com` (as preferred). Choosing `fingerprint: firefox-120` provides a valid, realistic TLS fingerprint.\n\nFor the handshake strategy, the task suggests using `handshake=none` to minimize complexity, so I'll set `handshake.type: none`. This simplifies the handshake to pure TLS.\n\nFor padding: the task recommends using `mimicry` with `chrome-browsing`, so I'll set `padding.mode: mimicry` and `profile: chrome-browsing` to generate traffic that mimics typical browser behavior. This avoids the M6 detection issue from fixed-size padding.\n\nFor fallback: the fallback must be enabled with a real HTTPS target (to pass M8). I'll set `fallback.enabled: true` and use `fallback.target: https://www.amazon.com`, which matches the SNI for realistic response camouflage.\n\nFor crypto: the default is `chacha20-poly1305` with `hkdf-sha256`, which are secure and provide adequate obfuscation. I'll keep these as they are standard and effective.\n\nFor timing: the task indicates to use `timing.mode: none` except if there is a specific hypothesis for timing obfuscation, which there isn't in this case. So, I'll leave it as the default.\n\nThis configuration is designed to avoid detection by all the metrics, ensuring TLS fingerprint compatibility, mimicking real browser traffic for padding, and providing a realistic fallback for active probing.\n\nIn terms of expected scores:\n- nDPI should classify it as HTTPS (PASS)\n- Suricata should not raise any alerts (PASS)\n- Zeek's JA3 fingerprint and entropy metrics should pass with a valid browser fingerprint (PASS)\n- The ML classifier (XGBoost) should score low vpn_prob due to the mimicry padding and realistic TLS flow (PASS)\n- KL divergence for packet lengths and inter-arrival times should be low due to mimicry of browser traffic (PASS)\n- Active probing with fallback should return a real HTTPS response for `www.amazon.com` (PASS)\n\nKnown weaknesses might include the static port choice, which could be a detection vector if the port is commonly associated with tunneling, and potential timing pattern anomalies if the padding doesn't perfectly mimic real traffic. These are acknowledged trade-offs.",
+    "config": {
+      "protocol": "llm-gen-v5",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "firefox-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.amazon.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "none",
+        "noise": null,
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.amazon.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "TLS/HTTPS fingerprint with SNI 'www.amazon.com' should classify as HTTPS, not a tunneling protocol."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Valid TLS fingerprint and no known alerts should prevent Suricata from triggering."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Firefox-120 TLS fingerprint should match a real browser, satisfying Zeek's JA3 requirement."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Mimicry traffic pattern with chrome-browsing should have realistic flow statistics and low CV values."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Mimicry of real browser traffic should ensure KL divergence for packet lengths is within acceptable limits."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Fallback reverse-proxy to www.amazon.com should return valid HTTPS responses to avoid detection."
+      }
+    },
+    "known_weaknesses": [
+      "Static port 9443 may be flagged if it's not commonly used for HTTPS by the target environment.",
+      "The use of a single TLS fingerprint increases the risk of signature-based detection if it becomes known."
+    ]
+  }
+}

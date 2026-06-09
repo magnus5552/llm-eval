@@ -1,0 +1,108 @@
+{
+  "run_id": "7c23bb82-5e5a-464b-917b-de823b25d41f",
+  "timestamp": "2026-06-07T08:29:05.733358+00:00",
+  "elapsed_s": 14.75,
+  "model": "gpt-4o-mini",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 3474,
+    "completion": 1,
+    "total": 3475
+  },
+  "variant": {
+    "index": 1,
+    "domain": "www.cloudflare.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk2 for forward secrecy without pre-shared static keys.",
+    "padding_hint": "Use random padding with wide range [40, 1400] to pass M6."
+  },
+  "generation_result": {
+    "reasoning": "In this configuration, I chose the transport type as TLS on port 443 to utilize the standard HTTPS port, which is less suspicious and more likely to blend in with typical web traffic. The TLS fingerprint is set to 'chrome-120' to match a common browser and enhance anonymity against detection metrics. The SNI is set to 'www.cloudflare.com' as requested, providing a legitimate domain for obfuscation. For the handshake, I used the noise protocol with the 'NNpsk2' pattern to ensure forward secrecy without relying on static keys, enhancing security against detection. \n\nThe padding mode is randomized between 40 and 1400 bytes, which significantly reduces the risk of detection metrics failing due to uniform packet sizes. The fallback is enabled, targeting 'https://www.cloudflare.com' to match the set SNI, ensuring that any active probe will receive a legitimate response to avoid triggering alarms. Timing adjustments are set to 'none' to avoid introducing artificial timing patterns that could increase the likelihood of detection.",
+    "config": {
+      "protocol": "tunnel-v2",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.cloudflare.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk2",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 40,
+        "random_max": 1400,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.cloudflare.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "The configuration utilizes standard TLS on port 443 with a recognized SNI, which aligns with typical HTTPS traffic."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "The SNI is appropriately set, the TLS fingerprint mimics a valid browser, and the configuration avoids known rules that could trigger alerts."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "The noise handshake and random padding ensure sufficient variability to avoid detection through JA3 fingerprinting."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "The randomized padding and non-uniform packet sizes should meet criteria for passing machine learning-based classifiers."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Random padding across a wide range helps to maintain a low KL divergence score against standard HTTPS traffic."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "The fallback mechanism provides a real HTTPS response, ensuring that active probes receive legitimate server interaction."
+      }
+    },
+    "known_weaknesses": [
+      "Potentially, if the SNI or target domain becomes overly common, it may attract attention from more sophisticated detection algorithms.",
+      "The use of a patchy fingerprint like 'chrome-120' may not perfectly match all versions of Chrome, but it should generally suffice for common detection systems."
+    ]
+  }
+}

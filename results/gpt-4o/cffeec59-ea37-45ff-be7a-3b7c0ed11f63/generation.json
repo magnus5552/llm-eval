@@ -1,0 +1,107 @@
+{
+  "run_id": "cffeec59-ea37-45ff-be7a-3b7c0ed11f63",
+  "timestamp": "2026-06-07T10:50:10.845804+00:00",
+  "elapsed_s": 18.96,
+  "model": "gpt-4o",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 3486,
+    "completion": 1,
+    "total": 3487
+  },
+  "variant": {
+    "index": 9,
+    "domain": "storage.googleapis.com",
+    "port": 443,
+    "handshake_hint": "Use tls-token with hkdf-sha256 and length=48 (standard).",
+    "padding_hint": "Use mimicry/chrome-browsing. This run: optimise for M7 (no timing)."
+  },
+  "generation_result": {
+    "reasoning": "## Reasoning  \nFor the transport layer, I used `tls` type with a `chrome-120` fingerprint and SNI set to `storage.googleapis.com` to pass M1, M2, and M3 metrics. These choices help mimic standard HTTPS traffic, crucial for avoiding detection. The host is set to localhost, and the port is the standard 443, which is typical for HTTPS and avoids any suspicion from traffic sent over unusual ports.  \n\nThe handshake is configured with `tls-token` using `hkdf-sha256` and a length of 48. This setup provides Pre-Shared Key (PSK) based authentication without requiring manual PSK configuration, aligning with R6 and ensuring simplicity and compatibility with automated evaluations.  \n\nCrypto settings use `chacha20-poly1305` with `hkdf-sha256` for secure encryption, aligning with general best practices and maintaining consistency with the rest of the configuration.  \n\nFor padding, the `mode` is `mimicry`, with `profile` set to `chrome-browsing`, optimized to blend with regular web traffic patterns, particularly to lower the KL Divergence for packet lengths (M6) and inter-arrival times (M7) by making this traffic appear like natural browsing activity.  \n\nNo artificial timing strategies are applied here (`mode: none`) to avoid complications with metric M7, ensuring timestamps and intervals appear natural.   \n\nThe fallback mechanism includes a `reverse-proxy` configuration pointing towards a legitimate HTTPS server (`storage.googleapis.com`) to ensure active probes receive legitimate responses and avoid detection under metric M8. This aligns with R4 requirements.  \n\nIn summary, this configuration seeks to align closely with legitimate HTTPS traffic across several dimensions, including SNI usage, fingerprinting, and fallback responses, to evade detection by DPI and traffic analysis tools.",
+    "config": {
+      "protocol": "tls-token-opt-m7-run10",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "storage.googleapis.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://storage.googleapis.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "The configuration uses TLS with a common browser fingerprint, making it likely to be classified as HTTPS, not a tunneling protocol."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "The presence of a valid SNI and a real HTTPS target for fallback should suppress alerts from Suricata IDS rules."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "By using a `chrome-120` fingerprint, it will match known JA3 fingerprints for browsers, avoiding entropy-related detection."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "The chosen padding and timing modes combined with variable packet sizes help to maintain a low profile in traffic pattern analysis."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "The mimicry padding ensures variable packet lengths, avoiding fixed-size frame detection."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "The reverse-proxy will ensure that active probes receive legitimate responses, minimizing detection risk."
+      }
+    },
+    "known_weaknesses": [
+      "The reliance on a single HTTPS domain for SNI and fallback could be a potential detection vector if this domain sees unusual traffic volumes.",
+      "While no timing obfuscation is intentionally applied, unexpected network conditions could inadvertently signal irregularities.",
+      "Dependence on mimicry profiles may not perfectly align with every traffic analysis model, which might still identify anomalies in edge cases."
+    ]
+  }
+}

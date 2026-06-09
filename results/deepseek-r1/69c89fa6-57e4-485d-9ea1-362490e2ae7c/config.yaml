@@ -1,0 +1,35 @@
+protocol: tls-token-google-storage-v1
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19492
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: storage.googleapis.com
+    cert_file: D:\programs\диплом\llm-eval\results\deepseek-r1\69c89fa6-57e4-485d-9ea1-362490e2ae7c\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\deepseek-r1\69c89fa6-57e4-485d-9ea1-362490e2ae7c\server.key
+    insecure: true
+handshake:
+  type: tls-token
+  tls_token:
+    field: session_ticket
+    kdf: hkdf-sha256
+    psk: 7c82057e986792f0ff4b454151472a0deee4fe2614b0519dc6c09d3ab51bb599
+    length: 48
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: mimicry
+  profile: chrome-browsing
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://storage.googleapis.com

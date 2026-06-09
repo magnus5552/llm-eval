@@ -1,0 +1,262 @@
+{
+  "verdict": "FAIL",
+  "failed_checks": [
+    "M2_suricata"
+  ],
+  "skipped_checks": [],
+  "checks": {
+    "M1_ndpi": {
+      "result": "PASS",
+      "detail": {
+        "classified_as": "SOCKS",
+        "confidence": null,
+        "is_known_vpn": false
+      }
+    },
+    "M2_suricata": {
+      "result": "FAIL",
+      "detail": {
+        "alert_count": 5,
+        "categories": [
+          "Potential Corporate Privacy Violation"
+        ]
+      }
+    },
+    "M3_ja3": {
+      "result": "PASS",
+      "detail": {
+        "ja3_is_browser": false,
+        "browser_matches": [],
+        "unique_ja3_count": 0,
+        "high_entropy_streams": 0,
+        "payload_byte_entropy": 7.748
+      }
+    },
+    "M4_vpn_prob": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob": 0.1001
+      }
+    },
+    "M5_vpn_prob_seq": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob_seq": 0.4143
+      }
+    },
+    "M6_kl_len": {
+      "result": "PASS",
+      "detail": {
+        "kl_len": 0.3381
+      }
+    },
+    "M7_kl_iat": {
+      "result": "PASS",
+      "detail": {
+        "kl_iat": 0.2466
+      }
+    },
+    "M8_probe": {
+      "result": "PASS",
+      "detail": {
+        "distinguishable_ratio": 0.667,
+        "flags": 2
+      }
+    }
+  },
+  "config": {
+    "dsl_config": "D:\\programs\\диплом\\llm-eval\\results\\gpt-4o\\24911d21-5a39-4482-9e2a-a9c16bf7823b\\config.yaml",
+    "scenario": "web",
+    "duration_s": 30
+  },
+  "raw": {
+    "pcap_path": "D:\\programs\\диплом\\llm-eval\\results\\gpt-4o\\24911d21-5a39-4482-9e2a-a9c16bf7823b\\test_out\\capture.pcap",
+    "m1_ndpi": {
+      "classified_as": "SOCKS",
+      "is_known_vpn": false,
+      "is_acceptable": true,
+      "flow_count": 107,
+      "known_flow_count": 107,
+      "protocol_distribution": {
+        "SSDP": 1,
+        "SOCKS": 51,
+        "TLS.Microsoft365": 51,
+        "TLS": 2,
+        "HTTP": 2
+      },
+      "ja3_hashes": [
+        "02a542782c76ad75c7f4fa1c3093aa33",
+        "136aec815fcedf999af4f5306345b559",
+        "1a4e2b749dd41c85247d5a5a124fa910",
+        "1b49f616fe04150911ece91ae6e21616",
+        "1ee810cae42e791e5386877bd49fb965",
+        "251143c0447fa9593e9e034f1df89389",
+        "2662f7bceefa7c3fe0d7e02eecd965a0",
+        "30f22fe2bf7b00932fde00f4241e9418",
+        "3170023896420b497192cb8a8582623a",
+        "3185e3e64858f8f88e2afd87ec97891a",
+        "34a231473c77d1f1659ca36ac54905f3",
+        "35c3e7b1a3be78f0fe0299a5b1f7226c",
+        "3a9c71be7ffc1e4248778217816fa1e9",
+        "456f01cc4c4b2f991ee91c3a47da187b",
+        "496873e07722544228837a817c4144e1",
+        "4e456bce191b63439d648d84c5e4cfc3",
+        "4f2fcc0c13d3b6d2c4bbf267bec62d9b",
+        "4f3b5c75ca731e91b9c33c4680468c4e",
+        "5347378ce32ab5f9fdc1d112c974ccd0",
+        "5678c869a2791bd77c5c7a4b8d146b0f",
+        "586b2a0a8ad86ae5cf5f34aeeb121460",
+        "5a46c4dbea33865be44b3b8c19257748",
+        "5af3aeb737912712fb97f624c091f35c",
+        "5d3060e3ee63da4b49c2e2db3af50001",
+        "61232151b5fd1d65bb140b45ad0efda4",
+        "6207b9b59e05562b06c971185b8161d8",
+        "662163d35ec3bd1c001b8c74d9cbc026",
+        "7458d4fe6e3c2bd869b3ef8bd581776b",
+        "7f502cbe9a3443f98031ec2a9d5a6f34",
+        "7f73b2fea5398d6cc1c4c101cb59be30",
+        "8621c0c638357840bd8aaf14be0cb8e3",
+        "868fcf2b5f97cebfcab4393ad71b8b0f",
+        "8a8090195318cfbc3a24e1ebad632668",
+        "9e2a8d438bd187fb729d042227ad31ee",
+        "a3f8956d5540ae2f71dc9fe4305a7aad",
+        "a5307067cbd43fc53fb900cd532232f8",
+        "a73bbf31b66045d546c116f544d5bf00",
+        "a8b324ef186977d14486a3fe2d544f12",
+        "a8ef6543f1bfeb5c1a1efd3320d34518",
+        "b271e366361d2f857ee7599849e8cec9",
+        "bb071ba6ae4194c64e472f8541391ef7",
+        "bf272764b40e0205335b8569e2dfaa54",
+        "bfa40865870d3a800196597dc8bb072c",
+        "c36487a186a3815cca7e6997088b9efa",
+        "c4ae00b62951961a20b32278c60a3130",
+        "c7134e7babe7b672b6b8e69adad110c2",
+        "ca2c6f3b0e9bcc29fd7577a34cd6b7ce",
+        "db5b458d6f68f49f5a1e165ddf31bfbf",
+        "e67f464b4044ae85fa558cee49f7e3af",
+        "f188d15de9e0ed4ded5cb8bc6fb2a399",
+        "fc210785ce3c0ed3a141d06ec832d307",
+        "fc9f4040d2a02416952bb46cb4fa9364"
+      ],
+      "ja4_hashes": [
+        "f4febc55ea12b31ae17cfb7e614afda8"
+      ],
+      "sni_set": [
+        "127.0.0.1",
+        "login.microsoftonline.com"
+      ],
+      "tls_versions": [
+        "TLSv1.3"
+      ]
+    },
+    "m2_suricata": {
+      "alert_count": 5,
+      "alerts": [
+        {
+          "signature": "TUNNEL-TEST Uniform near-MTU TCP segments (possible fixed padding)",
+          "category": "Potential Corporate Privacy Violation",
+          "severity": 1,
+          "src": "127.0.0.1",
+          "dst": "127.0.0.1",
+          "dport": 34001
+        },
+        {
+          "signature": "TUNNEL-TEST Uniform near-MTU TCP segments (possible fixed padding)",
+          "category": "Potential Corporate Privacy Violation",
+          "severity": 1,
+          "src": "127.0.0.1",
+          "dst": "127.0.0.1",
+          "dport": 34026
+        },
+        {
+          "signature": "TUNNEL-TEST Uniform near-MTU TCP segments (possible fixed padding)",
+          "category": "Potential Corporate Privacy Violation",
+          "severity": 1,
+          "src": "127.0.0.1",
+          "dst": "127.0.0.1",
+          "dport": 34050
+        },
+        {
+          "signature": "TUNNEL-TEST Uniform near-MTU TCP segments (possible fixed padding)",
+          "category": "Potential Corporate Privacy Violation",
+          "severity": 1,
+          "src": "127.0.0.1",
+          "dst": "127.0.0.1",
+          "dport": 34075
+        },
+        {
+          "signature": "TUNNEL-TEST Uniform near-MTU TCP segments (possible fixed padding)",
+          "category": "Potential Corporate Privacy Violation",
+          "severity": 1,
+          "src": "127.0.0.1",
+          "dst": "127.0.0.1",
+          "dport": 34099
+        }
+      ],
+      "flow_count": 119,
+      "tls_count": 53,
+      "tls_versions": [
+        "TLS 1.3"
+      ],
+      "tls_sni": [
+        "127.0.0.1",
+        "login.microsoftonline.com"
+      ],
+      "categories": [
+        "Potential Corporate Privacy Violation"
+      ]
+    },
+    "m3_zeek": {
+      "ja3_hashes": [],
+      "ja3s_hashes": [],
+      "snis": [
+        "127.0.0.1",
+        "login.microsoftonline.com"
+      ],
+      "cipher_suites": [
+        "TLS_AES_128_GCM_SHA256"
+      ],
+      "tls_versions": [
+        "TLSv13"
+      ],
+      "browser_matches": [],
+      "ja3_is_browser": false,
+      "unique_ja3_count": 0,
+      "conn_count": 120,
+      "unknown_service_conns": 0,
+      "payload_byte_entropy": 7.748,
+      "high_entropy_streams": 0,
+      "entropy_sample_size": 136855
+    },
+    "m4_m7_flow": {
+      "vpn_prob": 0.1001,
+      "vpn_prob_seq": 0.4143,
+      "kl_len": 0.3381,
+      "kl_iat": 0.2466,
+      "total_packets": 2589,
+      "total_flows": 119,
+      "total_bytes": 442039,
+      "duration_s": 39.14,
+      "pkt_len_mean": 288.7,
+      "pkt_len_std": 434.0,
+      "iat_mean_ms": 15.12,
+      "small_pkt_pct": 61.6,
+      "large_pkt_pct": 7.3,
+      "model_used": "heuristic"
+    },
+    "m8_probe": {
+      "distinguishable_ratio": 0.667,
+      "distinguishable_flags": 2,
+      "check_random_bytes_responded": true,
+      "check_http_looks_http": false,
+      "check_server_speaks_first": false,
+      "ttfb_mean_ms": 57.3,
+      "ttfb_values_ms": [
+        110.0,
+        0.0,
+        62.0
+      ],
+      "probe_count": 5
+    }
+  }
+}

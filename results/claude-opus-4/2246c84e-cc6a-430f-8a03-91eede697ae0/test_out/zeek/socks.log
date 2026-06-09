@@ -1,0 +1,23 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	socks
+#open	2026-06-07-10-51-19
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	version	user	password	status	request.host	request.name	request_p	bound.host	bound.name	bound_p
+#types	time	string	addr	port	addr	port	count	string	string	string	addr	string	port	addr	string	port
+1780829408.749754	CgMGMf3bF55X5tyly9	127.0.0.1	11472	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	11473
+1780829408.145399	C1Gljb2EcwuuPvNBKe	127.0.0.1	11465	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	11467
+1780829408.145368	C6uWQ71wJGuOTJP013	127.0.0.1	11466	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	11468
+1780829408.778914	CrPMdF5pejdzG7Fad	127.0.0.1	11475	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	11476
+1780829408.824757	CVQc8lfpJpEusdiq1	127.0.0.1	11478	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	11479
+1780829409.259380	CjqtOo4EnoIro40oTc	127.0.0.1	11481	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	11482
+1780829409.382860	Cs0V6n2AV0RfCAyrzb	127.0.0.1	11484	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	11485
+1780829409.414031	Cr4lOr1msoyPV83iW6	127.0.0.1	11487	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	11488
+1780829409.680125	CAKrKB2IwmVCY9kHpf	127.0.0.1	11490	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	11491
+1780829409.807337	CQ1EWo1y2rRsblxrM2	127.0.0.1	11493	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	11494
+1780829409.838116	C0dmHZatEmELow7Fc	127.0.0.1	11496	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	11497
+1780829410.231528	C9UZI41HOYDKcs42c4	127.0.0.1	11499	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	11500
+1780829410.276750	CyXd7yQWluVvJ5yBk	127.0.0.1	11502	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	11503
+1780829410.356797	CHfZ8O1dmWq6t1Yd6e	127.0.0.1	11505	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	11506
+#close	2026-06-07-10-51-19

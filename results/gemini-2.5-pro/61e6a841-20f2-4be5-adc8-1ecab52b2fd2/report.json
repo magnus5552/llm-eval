@@ -1,0 +1,182 @@
+{
+  "verdict": "FAIL",
+  "failed_checks": [
+    "M2_suricata",
+    "M6_kl_len",
+    "M7_kl_iat"
+  ],
+  "skipped_checks": [],
+  "checks": {
+    "M1_ndpi": {
+      "result": "PASS",
+      "detail": {
+        "classified_as": "TLS",
+        "confidence": null,
+        "is_known_vpn": false
+      }
+    },
+    "M2_suricata": {
+      "result": "FAIL",
+      "detail": {
+        "alert_count": 1,
+        "categories": [
+          "Potential Corporate Privacy Violation"
+        ]
+      }
+    },
+    "M3_ja3": {
+      "result": "PASS",
+      "detail": {
+        "ja3_is_browser": false,
+        "browser_matches": [],
+        "unique_ja3_count": 0,
+        "high_entropy_streams": 0,
+        "payload_byte_entropy": 7.448
+      }
+    },
+    "M4_vpn_prob": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob": 0.1387
+      }
+    },
+    "M5_vpn_prob_seq": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob_seq": 0.4143
+      }
+    },
+    "M6_kl_len": {
+      "result": "FAIL",
+      "detail": {
+        "kl_len": 0.4543
+      }
+    },
+    "M7_kl_iat": {
+      "result": "FAIL",
+      "detail": {
+        "kl_iat": 0.4948
+      }
+    },
+    "M8_probe": {
+      "result": "PASS",
+      "detail": {
+        "distinguishable_ratio": 0.667,
+        "flags": 2
+      }
+    }
+  },
+  "config": {
+    "dsl_config": "D:\\programs\\диплом\\llm-eval\\results\\gemini-2.5-pro\\61e6a841-20f2-4be5-adc8-1ecab52b2fd2\\config.yaml",
+    "scenario": "web",
+    "duration_s": 30
+  },
+  "raw": {
+    "pcap_path": "D:\\programs\\диплом\\llm-eval\\results\\gemini-2.5-pro\\61e6a841-20f2-4be5-adc8-1ecab52b2fd2\\test_out\\capture.pcap",
+    "m1_ndpi": {
+      "classified_as": "TLS",
+      "is_known_vpn": false,
+      "is_acceptable": true,
+      "flow_count": 49,
+      "known_flow_count": 49,
+      "protocol_distribution": {
+        "SOCKS": 22,
+        "TLS": 24,
+        "HTTP": 2,
+        "NetBIOS.SMBv1": 1
+      },
+      "ja3_hashes": [
+        "773906b0efdefa24a7f2b8eb6985bf37",
+        "c36487a186a3815cca7e6997088b9efa"
+      ],
+      "ja4_hashes": [
+        "f4febc55ea12b31ae17cfb7e614afda8"
+      ],
+      "sni_set": [
+        "127.0.0.1",
+        "cdn.jsdelivr.net",
+        "laptop-t8jb3mps"
+      ],
+      "tls_versions": [
+        "TLSv1.3"
+      ]
+    },
+    "m2_suricata": {
+      "alert_count": 1,
+      "alerts": [
+        {
+          "signature": "TUNNEL-TEST Uniform near-MTU TCP segments (possible fixed padding)",
+          "category": "Potential Corporate Privacy Violation",
+          "severity": 1,
+          "src": "127.0.0.1",
+          "dst": "127.0.0.1",
+          "dport": 3942
+        }
+      ],
+      "flow_count": 127,
+      "tls_count": 24,
+      "tls_versions": [
+        "TLS 1.3"
+      ],
+      "tls_sni": [
+        "127.0.0.1",
+        "cdn.jsdelivr.net"
+      ],
+      "categories": [
+        "Potential Corporate Privacy Violation"
+      ]
+    },
+    "m3_zeek": {
+      "ja3_hashes": [],
+      "ja3s_hashes": [],
+      "snis": [
+        "127.0.0.1",
+        "cdn.jsdelivr.net"
+      ],
+      "cipher_suites": [
+        "TLS_AES_128_GCM_SHA256"
+      ],
+      "tls_versions": [
+        "TLSv13"
+      ],
+      "browser_matches": [],
+      "ja3_is_browser": false,
+      "unique_ja3_count": 0,
+      "conn_count": 144,
+      "unknown_service_conns": 0,
+      "payload_byte_entropy": 7.448,
+      "high_entropy_streams": 0,
+      "entropy_sample_size": 56531
+    },
+    "m4_m7_flow": {
+      "vpn_prob": 0.1387,
+      "vpn_prob_seq": 0.4143,
+      "kl_len": 0.4543,
+      "kl_iat": 0.4948,
+      "total_packets": 1502,
+      "total_flows": 127,
+      "total_bytes": 240167,
+      "duration_s": 33.82,
+      "pkt_len_mean": 292.6,
+      "pkt_len_std": 522.9,
+      "iat_mean_ms": 22.53,
+      "small_pkt_pct": 72.1,
+      "large_pkt_pct": 15.8,
+      "model_used": "heuristic"
+    },
+    "m8_probe": {
+      "distinguishable_ratio": 0.667,
+      "distinguishable_flags": 2,
+      "check_random_bytes_responded": true,
+      "check_http_looks_http": false,
+      "check_server_speaks_first": false,
+      "ttfb_mean_ms": 57.7,
+      "ttfb_values_ms": [
+        110.0,
+        0.0,
+        63.0
+      ],
+      "probe_count": 5
+    }
+  }
+}

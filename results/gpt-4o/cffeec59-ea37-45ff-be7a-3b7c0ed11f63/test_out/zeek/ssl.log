@@ -1,0 +1,12 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	ssl
+#open	2026-06-07-10-51-41
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	version	cipher	curve	server_name	resumed	last_alert	next_protocol	established	ssl_history	cert_chain_fps	client_cert_chain_fps	sni_matches_cert	server_version	client_version	client_ciphers	ssl_client_exts	ssl_server_exts	ticket_lifetime_hint	dh_param_size	point_formats	client_curves	orig_alpn	client_supported_versions	server_supported_version	psk_key_exchange_modes	client_key_share_groups	server_key_share_group	client_comp_methods	sigalgs	hashalgs
+#types	time	string	addr	port	addr	port	string	string	string	string	bool	string	string	bool	string	vector[string]	vector[string]	bool	count	count	vector[count]	vector[count]	vector[count]	count	count	vector[count]	vector[count]	vector[string]	vector[count]	count	vector[count]	vector[count]	count	vector[count]	vector[count]	vector[count]
+1780829437.958478	CayTul414flTboQsF6	127.0.0.1	18323	127.0.0.1	19509	TLSv13	TLS_AES_128_GCM_SHA256	x25519	127.0.0.1	F	-	-	F	Cji	-	-	-	771	771	4865,4866	0,43,10	43,51	-	-	-	29	-	772,771	772	-	-	29	0	-	-
+1780829442.803702	CnMJnR1HD0g0m26cfc	127.0.0.1	18334	127.0.0.1	19450	TLSv13	TLS_AES_128_GCM_SHA256	x25519	127.0.0.1	F	-	-	F	Cji	-	-	-	771	771	4865,4866	0,43,10	43,51	-	-	-	29	-	772,771	772	-	-	29	0	-	-
+1780829467.300942	CM5knmgYMms7w7Bvi	127.0.0.1	18357	127.0.0.1	19472	TLSv13	TLS_AES_128_GCM_SHA256	x25519	127.0.0.1	F	-	-	F	Cji	-	-	-	771	771	4865,4866	0,43,10	43,51	-	-	-	29	-	772,771	772	-	-	29	0	-	-
+#close	2026-06-07-10-51-41

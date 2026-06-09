@@ -1,0 +1,36 @@
+protocol: chrome-noise-nnpsk0-v1
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19446
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.github.com
+    cert_file: D:\programs\диплом\llm-eval\results\gpt-4.1\57b5841b-8abb-46b5-809c-6dc0ba3d7d64\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\gpt-4.1\57b5841b-8abb-46b5-809c-6dc0ba3d7d64\server.key
+    insecure: true
+handshake:
+  type: noise
+  noise:
+    pattern: NNpsk0
+    cipher_suite: 25519:ChaChaPoly:BLAKE2s
+    local_key: generate
+    psk: e11341b6c5e99cb2105a33aeb1a326947c991409e15159e41ef02b72c75c8029
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: random
+  random_min: 64
+  random_max: 1200
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.github.com

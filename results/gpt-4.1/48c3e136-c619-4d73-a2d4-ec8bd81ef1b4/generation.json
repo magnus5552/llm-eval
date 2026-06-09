@@ -1,0 +1,108 @@
+{
+  "run_id": "48c3e136-c619-4d73-a2d4-ec8bd81ef1b4",
+  "timestamp": "2026-06-07T08:44:11.812282+00:00",
+  "elapsed_s": 11.57,
+  "model": "gpt-4.1",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 3939,
+    "completion": 1,
+    "total": 3940
+  },
+  "variant": {
+    "index": 2,
+    "domain": "www.microsoft.com",
+    "port": 8443,
+    "handshake_hint": "Combine tls-token with a browser fingerprint from a less common browser (safari-17).",
+    "padding_hint": "Use mimicry/video-streaming to simulate different traffic profile."
+  },
+  "generation_result": {
+    "reasoning": "For transport, I selected TLS with port 8443 to suggest an alternate HTTPS service, and used the 'safari-17' fingerprint to vary browser camouflage as requested for this run. The SNI is set to 'www.microsoft.com' to match the fallback and evade Suricata alerts. For handshake, I used 'tls-token' for PSK authentication embedded in the TLS session ticket, which is evaluatable and invisible to most DPI tools. The handshake is compatible with both camouflage and stealth. Crypto uses chacha20-poly1305 with hkdf-sha256 for standard security. Padding is set to 'mimicry' with 'video-streaming' profile to diversify length and burst patterns, closely resembling streaming traffic and defeating ML flow/payload-len–based detection (M4/M6). Timing is 'none' to avoid artificial regularity. Fallback is a reverse proxy to 'https://www.microsoft.com', guaranteeing a valid probe response (M8). All fields are chosen to avoid common automated detection mistakes and maximize indistinguishability from real HTTPS video streaming to both signature and statistical classifiers.",
+    "config": {
+      "protocol": "tls-token-safari-stream-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 8443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.microsoft.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "video-streaming"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.microsoft.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "TLS fingerprint is set to 'safari-17', a real browser; ALPN and SNI are plausible and align with common HTTPS video streaming, so nDPI will not detect non-TLS protocols."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "SNI is present and valid; combination of port 8443, browser fingerprint, and valid SNI evades all EMERGING_TLS and generic Suricata HTTPS fingerprint rules."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Safari-17 fingerprint will produce a convincing browser JA3; video-streaming padding avoids plain encrypted bulk streams, evading entropy and browser-matching rules."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Mimicry padding with 'video-streaming' profile ensures variable, realistic packet sizes and sequence, lowering ML classifier VPN probability below the threshold."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Packet-length mimicry using real video streaming shape closely matches normal HTTPS streaming, resulting in very low KL divergence."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Fallback returns real content from www.microsoft.com with proper HTTP(S) headers, satisfying all probe expectations for a legitimate server."
+      }
+    },
+    "known_weaknesses": [
+      "If video-streaming mimicry generates bursts inconsistent with the actual SNI's traffic profile, a sophisticated adversary might detect mismatch between payload behavior and known microsoft.com usage.",
+      "Safari JA3 is less common in some enterprise environments; a network that only sees Chrome/Firefox on Windows might consider this slightly more suspicious.",
+      "If ALPN or SNI settings ever diverge from real Microsoft servers' deployment, potential for protocol mismatch fingerprinting increases.",
+      "If fallback implementation is poor and does not pass through all headers or cookies from the real target, probe-based detection risk increases."
+    ]
+  }
+}

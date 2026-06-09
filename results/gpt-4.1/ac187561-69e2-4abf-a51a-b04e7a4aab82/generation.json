@@ -1,0 +1,102 @@
+{
+  "run_id": "ac187561-69e2-4abf-a51a-b04e7a4aab82",
+  "timestamp": "2026-06-07T08:46:54.826669+00:00",
+  "elapsed_s": 20.79,
+  "model": "gpt-4.1",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 3945,
+    "completion": 1,
+    "total": 3946
+  },
+  "variant": {
+    "index": 4,
+    "domain": "www.amazon.com",
+    "port": 9443,
+    "handshake_hint": "Try handshake=none for the simplest possible surface — pure TLS with mimicry.",
+    "padding_hint": "Use mimicry/chrome-browsing but experiment with ssh-interactive for low-traffic sessions."
+  },
+  "generation_result": {
+    "reasoning": "The transport layer uses TLS on port 9443, which is a plausible alternative to 443 seen in enterprise environments, satisfying R1 and the preferred port constraint. The TLS fingerprint chosen is 'safari-17' for diversity, providing realistic browser-level JA3 signatures and complying with R2. The SNI is set to 'www.amazon.com' in line with R3 and the camouflage domain preference. The handshake is set to 'none', resulting in pure TLS connections with no extra cryptographic noise, representing the lowest possible surface area and making the tunnel virtually indistinguishable from standard HTTPS (R6, as 'none' is allowed when maximizing mimicry). For padding, 'mimicry' mode with 'ssh-interactive' profile is chosen to experiment with mimicking low-traffic, interactive HTTPS patterns (per the padding focus), which may better fit interactive or bursty tunneling (R5). No timing obfuscation is added ('none'), as added delays can worsen inter-arrival KL divergence. The fallback is a reverse-proxy to 'https://www.amazon.com' (R4), ensuring active probes receive genuine HTTPS traffic. Cryptography uses chacha20-poly1305 for performance and wide support. This configuration balances maximum stealth against all metrics, while introducing new diversity by using the Safari fingerprint and 'ssh-interactive' mimicry profile.",
+    "config": {
+      "protocol": "browser-mimicry-safari-ssh-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.amazon.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "none",
+        "noise": null,
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "ssh-interactive"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.amazon.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "TLS v1.3 with Safari browser fingerprint on a common HTTPS alternative port will be classified as standard TLS/HTTPS, not as a VPN/proxy."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "SNI is non-empty and matches a popular domain; TLS fingerprint mimics a real browser; standard ALPN and version — all avoid signature-based Suricata rules."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "The Safari JA3 fingerprint will match real browser connections, and pure TLS handshake type produces no high-entropy noise prior to application data."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "The padding mimicry (ssh-interactive) introduces natural variability in packet sizes and flow features, helping reduce VPN-like statistical signatures."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Mimicry mode with ssh-interactive profile generates variable packet sizes similar to low-traffic HTTPS sessions, resulting in low KL divergence."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Active probes receive full, valid HTTPS responses through the reverse-proxy fallback, making tunnel endpoints indistinguishable from legitimate servers."
+      }
+    },
+    "known_weaknesses": [
+      "If the ssh-interactive mimicry profile exhibits low throughput over long periods, high-traffic tunnels may stand out compared to typical web browsing.",
+      "Unusual intensity or duration of activity on port 9443 for www.amazon.com may still appear anomalous to sophisticated behavioral analytics.",
+      "JA3/JA4 fingerprint mismatches could reveal subtle implementation differences if the TLS library does not fully match Safari 17's handshake specifics."
+    ]
+  }
+}

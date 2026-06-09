@@ -1,0 +1,107 @@
+{
+  "run_id": "2907152d-4a88-4ffc-b7aa-52e755b32bd4",
+  "timestamp": "2026-06-07T08:51:30.804399+00:00",
+  "elapsed_s": 22.67,
+  "model": "claude-haiku-3-5",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 6086,
+    "completion": 1,
+    "total": 6087
+  },
+  "variant": {
+    "index": 2,
+    "domain": "www.microsoft.com",
+    "port": 8443,
+    "handshake_hint": "Combine tls-token with a browser fingerprint from a less common browser (safari-17).",
+    "padding_hint": "Use mimicry/video-streaming to simulate different traffic profile."
+  },
+  "generation_result": {
+    "reasoning": "Transport Design:\nI'll use TLS 1.3 with Safari 17 fingerprint to provide a less common but still legitimate browser profile. Port 8443 is a semi-standard SSL port that won't raise immediate suspicion. Microsoft.com as SNI provides a high-reputation, enterprise-grade camouflage domain that's likely to pass scrutiny.\n\nHandshake Strategy:\nTLS-token handshake with session ticket provides a lightweight authentication mechanism without introducing exotic protocol signatures. The PSK will be auto-generated, ensuring no static key compromise. By using the session ticket field, we leverage a standard TLS extension for our obfuscation.\n\nPadding Configuration:\nVideo streaming profile introduces more variance in packet sizes compared to typical web browsing. This mimicry approach helps defeat ML classifiers looking for uniform encrypted traffic patterns. The profile simulates adaptive bitrate streaming, which naturally has more packet size diversity.\n\nFallback Mechanism:\nDirect reverse proxy to Microsoft's HTTPS endpoint ensures that any active probing will retrieve a legitimate web response. This is critical for defeating sophisticated detection techniques that perform secondary validation.\n\nCrypto and Timing:\nChaCha20-Poly1305 provides modern, efficient encryption. No artificial timing modifications prevent inter-arrival time analysis from detecting our tunnel.",
+    "config": {
+      "protocol": "ms-video-tunnel-v3",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 8443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.microsoft.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "video-streaming"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.microsoft.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "Safari-17 TLS fingerprint, standard HTTPS port, microsoft.com SNI"
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Full TLS negotiation, valid SNI, standard alpn"
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Legitimate Safari browser JA3 fingerprint"
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Video streaming padding introduces natural packet size variance"
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Mimicry mode prevents uniform packet lengths"
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Reverse proxy to microsoft.com ensures legitimate HTTPS fallback"
+      }
+    },
+    "known_weaknesses": [
+      "Safari-17 fingerprint might be less common, potentially increasing suspicion",
+      "TLS-token authentication could be detectable if carefully analyzed",
+      "Consistent use of microsoft.com might create a trackable signature across multiple connections"
+    ]
+  }
+}

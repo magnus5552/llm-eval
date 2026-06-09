@@ -1,0 +1,107 @@
+{
+  "run_id": "4a278a24-f39c-4e95-be3c-4b267633fabe",
+  "timestamp": "2026-06-07T10:53:15.848711+00:00",
+  "elapsed_s": 36.83,
+  "model": "claude-opus-4",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 6064,
+    "completion": 1,
+    "total": 6065
+  },
+  "variant": {
+    "index": 9,
+    "domain": "storage.googleapis.com",
+    "port": 443,
+    "handshake_hint": "Use tls-token with hkdf-sha256 and length=48 (standard).",
+    "padding_hint": "Use mimicry/chrome-browsing. This run: optimise for M7 (no timing)."
+  },
+  "generation_result": {
+    "reasoning": "Transport: Using TLS on port 443 with firefox-120 fingerprint to blend with legitimate Firefox traffic. The SNI storage.googleapis.com is a high-traffic Google service that handles diverse content types, making traffic patterns harder to profile. Firefox fingerprint provides variety from Chrome-heavy configs.\n\nHandshake: TLS-token with hkdf-sha256 provides authenticated tunneling while remaining indistinguishable from regular TLS session resumption. The 48-byte length matches common session ticket sizes. This approach avoids the entropy signatures of raw Noise handshakes that could trigger M3.\n\nPadding: Mimicry mode with chrome-browsing profile ensures packet size distributions match real HTTPS traffic, crucial for passing M4/M5/M6. Despite using Firefox fingerprint for TLS, Chrome browsing patterns are universal enough to not create inconsistency. This avoids the KL divergence spike from fixed-size padding.\n\nTiming: None mode selected per the optimization hint for M7. Natural packet timing without artificial batching or delays provides the best IAT distribution match with real HTTPS traffic.\n\nFallback: Reverse proxy to https://storage.googleapis.com ensures active probes receive legitimate Google Storage responses, maintaining cover story consistency with the SNI. This is essential for M8 probe resistance.",
+    "config": {
+      "protocol": "tls-token-gcs-v10",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "firefox-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "storage.googleapis.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://storage.googleapis.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "TLS 1.3 with valid SNI and browser fingerprint will classify as TLS/HTTPS, not VPN"
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Firefox fingerprint with storage.googleapis.com SNI and standard ALPN avoids all known Suricata rules"
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Firefox-120 JA3 matches real browser; TLS-token handshake stays within TLS protocol bounds, no raw entropy"
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Mimicry padding with chrome-browsing profile produces varied packet sizes and natural flow statistics"
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Mimicry mode generates realistic packet length distribution matching HTTPS patterns, avoiding fixed-size trap"
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Fallback proxy to real storage.googleapis.com returns legitimate Google responses to probes"
+      }
+    },
+    "known_weaknesses": [
+      "Firefox TLS fingerprint accessing Google services might be less common than Chrome, though still legitimate",
+      "TLS-token authentication in session tickets could be detected by deep TLS state analysis if inspectors decrypt traffic",
+      "Mimicry padding adds some latency compared to unpadded traffic, potentially detectable in real-time analysis"
+    ]
+  }
+}

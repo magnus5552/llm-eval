@@ -1,0 +1,36 @@
+protocol: noise-nnpsk2-v1
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19444
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.cloudflare.com
+    cert_file: D:\programs\диплом\llm-eval\results\deepseek-chat\ced70588-c04b-4522-9ee6-547fb2f8c302\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\deepseek-chat\ced70588-c04b-4522-9ee6-547fb2f8c302\server.key
+    insecure: true
+handshake:
+  type: noise
+  noise:
+    pattern: NNpsk2
+    cipher_suite: 25519:ChaChaPoly:BLAKE2s
+    local_key: generate
+    psk: 11e02d5199842fb5e8dd462987ca99cdb231d9d9b51b0fbfdf9fc1f20ab27682
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: random
+  random_min: 40
+  random_max: 1400
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.cloudflare.com

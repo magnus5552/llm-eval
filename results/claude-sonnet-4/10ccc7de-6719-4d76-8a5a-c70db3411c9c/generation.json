@@ -1,0 +1,110 @@
+{
+  "run_id": "10ccc7de-6719-4d76-8a5a-c70db3411c9c",
+  "timestamp": "2026-06-07T08:57:29.811686+00:00",
+  "elapsed_s": 18.01,
+  "model": "claude-sonnet-4",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 6049,
+    "completion": 1,
+    "total": 6050
+  },
+  "variant": {
+    "index": 1,
+    "domain": "www.cloudflare.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk2 for forward secrecy without pre-shared static keys.",
+    "padding_hint": "Use random padding with wide range [40, 1400] to pass M6."
+  },
+  "generation_result": {
+    "reasoning": "**Transport Design:** I'm using TLS on port 443 with chrome-120 fingerprint to maximize M2/M3 compatibility. Chrome fingerprints are ubiquitous and well-supported by Suricata rules. The SNI \"www.cloudflare.com\" is chosen to match a highly popular, legitimate HTTPS destination that will blend with normal web traffic. TLS 1.3 provides better security and is widely deployed.\n\n**Handshake Strategy:** Following the hint, I'm using noise protocol with NNpsk2 pattern for forward secrecy without requiring pre-shared static keys. This provides strong authentication through PSK while being automation-friendly. The 25519:ChaChaPoly:BLAKE2s cipher suite offers excellent security properties and performance. Setting local_key to \"generate\" allows the evaluator to inject proper key material automatically.\n\n**Padding Configuration:** Implementing random padding with range [40, 1400] as requested to pass M6. This wide range mimics realistic HTTPS traffic where small packets (HTTP headers, ACKs) and large packets (image/video content) are common. The random distribution should produce a KL divergence well below the 0.30 threshold, avoiding the uniform-size trap that causes instant M6 failures.\n\n**Timing and Fallback:** Using timing mode \"none\" to avoid artificial regularity that could trigger M7. The fallback is configured to reverse-proxy to the same cloudflare.com domain as our SNI, ensuring consistency when active probes hit our server. This should return legitimate HTTPS responses and pass all M8 distinguishability checks.",
+    "config": {
+      "protocol": "noise-cloudflare-v2",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.cloudflare.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk2",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 40,
+        "random_max": 1400,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.cloudflare.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "Chrome-120 TLS fingerprint over port 443 with proper ALPN should classify as standard HTTPS/TLS traffic, not VPN protocols."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Non-empty SNI (www.cloudflare.com), standard port 443, and chrome-120 fingerprint should satisfy ET Open rules without triggering VPN detection alerts."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Chrome-120 fingerprint produces a legitimate browser JA3 signature that Zeek recognizes, avoiding raw-noise entropy detection."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Random padding [40,1400] creates diverse packet sizes with realistic coefficient of variation, mimicking normal HTTPS flow statistics."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Wide random padding range [40,1400] should produce packet length distribution similar to real HTTPS traffic, keeping KL divergence well below 0.30."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Fallback reverse-proxy to www.cloudflare.com will return legitimate HTTPS responses to active probes, passing distinguishability checks."
+      }
+    },
+    "known_weaknesses": [
+      "NNpsk2 pattern may produce distinctive handshake message sizes that differ from standard TLS",
+      "Random padding uniformly distributed may not perfectly match real HTTPS traffic patterns which often have bimodal distributions",
+      "Noise protocol framing adds small overhead that could be detectable in precise timing analysis",
+      "PSK authentication requires out-of-band key distribution which may be operationally complex"
+    ]
+  }
+}

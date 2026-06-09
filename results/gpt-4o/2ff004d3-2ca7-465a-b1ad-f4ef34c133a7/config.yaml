@@ -1,0 +1,35 @@
+protocol: run-3-tunnel-config
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19445
+  tls:
+    version: '1.3'
+    fingerprint: safari-17
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.microsoft.com
+    cert_file: D:\programs\диплом\llm-eval\results\gpt-4o\2ff004d3-2ca7-465a-b1ad-f4ef34c133a7\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\gpt-4o\2ff004d3-2ca7-465a-b1ad-f4ef34c133a7\server.key
+    insecure: true
+handshake:
+  type: tls-token
+  tls_token:
+    field: session_ticket
+    kdf: hkdf-sha256
+    psk: d5ee1a8b266ee69414bd0fc32297b2ce6a62c52618b17276b8a20165db26c69d
+    length: 48
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: mimicry
+  profile: video-streaming
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.microsoft.com

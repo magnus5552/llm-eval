@@ -1,0 +1,108 @@
+{
+  "run_id": "b27c77d4-c924-4d8b-8699-2f34829d43ad",
+  "timestamp": "2026-06-07T09:03:22.897048+00:00",
+  "elapsed_s": 34.23,
+  "model": "claude-opus-4",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 6043,
+    "completion": 1,
+    "total": 6044
+  },
+  "variant": {
+    "index": 0,
+    "domain": "www.google.com",
+    "port": 9443,
+    "handshake_hint": "Use tls-token for maximum active-probe resistance (M8).",
+    "padding_hint": "Use mimicry/chrome-browsing to pass M4/M6."
+  },
+  "generation_result": {
+    "reasoning": "Transport: Selected TLS with port 9443 as required. Using chrome-120 fingerprint for run 1/5 to ensure browser-like JA3 hash that passes M3. TLS 1.3 with h2/http/1.1 ALPN mimics modern Chrome behavior. SNI set to www.google.com for camouflage.\n\nHandshake: Following the hint, using tls-token for maximum active-probe resistance. This embeds auth tokens in TLS session tickets, making the tunnel indistinguishable from resumed TLS sessions. Field set to session_ticket with 48-byte length matching typical ticket sizes. Empty PSK allows evaluator to inject keys.\n\nPadding: Using mimicry mode with chrome-browsing profile as suggested. This produces realistic packet size distributions matching real HTTPS browsing patterns, crucial for passing M4 (ML classifier) and M6 (KL divergence).\n\nTiming: Set to none to avoid artificial regularity that could increase M7 KL-IAT scores. Natural timing patterns are less detectable than batch/delay modes.\n\nFallback: Enabled with reverse-proxy to https://www.google.com, matching the SNI. This ensures active probes receive legitimate Google HTTPS responses, passing M8 distinguishability checks.",
+    "config": {
+      "protocol": "tls-token-chrome-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.google.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.google.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "nDPI will see standard TLS 1.3 with legitimate SNI, ALPN, and Chrome fingerprint. No VPN-specific patterns exposed."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "SNI is present (www.google.com), port 9443 is non-standard but not suspicious, Chrome fingerprint avoids TLS anomaly rules."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "JA3 hash will match Chrome 120 browser fingerprint. TLS-token handshake operates within TLS protocol, no raw encrypted streams."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Mimicry padding with chrome-browsing profile produces realistic packet size variation and flow statistics matching HTTPS browsing."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Chrome-browsing mimicry creates packet length distribution very similar to real HTTPS traffic, KL divergence should be well below 0.30."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Fallback proxy to real Google servers ensures active probes receive legitimate HTTPS responses indistinguishable from direct connections."
+      }
+    },
+    "known_weaknesses": [
+      "Non-standard port 9443 might draw analyst attention, though it's not automatically flagged",
+      "TLS certificate must match SNI domain or could trigger certificate validation alerts",
+      "Heavy traffic patterns might reveal statistical anomalies over long observation periods",
+      "If Google changes their server behavior, fallback responses might become distinguishable"
+    ]
+  }
+}

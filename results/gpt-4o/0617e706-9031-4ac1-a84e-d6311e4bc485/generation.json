@@ -1,0 +1,108 @@
+{
+  "run_id": "0617e706-9031-4ac1-a84e-d6311e4bc485",
+  "timestamp": "2026-06-07T10:48:50.905393+00:00",
+  "elapsed_s": 8.24,
+  "model": "gpt-4o",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 3480,
+    "completion": 1,
+    "total": 3481
+  },
+  "variant": {
+    "index": 8,
+    "domain": "cdn.jsdelivr.net",
+    "port": 443,
+    "handshake_hint": "Use noise NN (no PSK, no auth) — simplest noise for comparison.",
+    "padding_hint": "Use mimicry/video-streaming to test a different length distribution."
+  },
+  "generation_result": {
+    "reasoning": "In order to ensure that our tunnel configuration is effectively camouflaged, several strategic decisions were made across the configuration parameters. First, by selecting `tls` as the transport type with a valid SNI and aligning the TLS fingerprint with known browser profiles (here, `safari-17`), we aim to match legitimate HTTPS traffic patterns, which helps pass M1 (nDPI) and M3 (Zeek JA3). The SNI is set to cdn.jsdelivr.net, adhering to the specified constraint and ensuring no Suricata alerts (M2).\n\nThe handshake strategy employs Noise protocol with the NN pattern—a simple negotiation pattern without PSK—which fits the requirement for comparison purposes and keeps us within R6, ensuring the handshake remains undetectable by performing a lightweight and typical negotiation (a scoring edge for M5 if TLS negotiation is typical). \n\nPadding is configured to `mimicry` with a `video-streaming` profile, providing a diverse packet length distribution that resembles video streaming patterns. This approach reduces the risk of detection by ML classifiers and KL divergence checks (M4, M6), unlike fixed-size padding which would immediately fail under these checks.\n\nThe fallback is set as a reverse proxy to cdn.jsdelivr.net to satisfy M8 requirements. This ensures that any active probes receive valid HTTP responses, reducing the likelihood of detection.\n\nOverall, the design choices reflect a balance between adhering to the constraints and optimizing for stealth across the specified detection metrics.",
+    "config": {
+      "protocol": "llm-gen-v1-run-9",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "cdn.jsdelivr.net",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NN",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "video-streaming"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://cdn.jsdelivr.net"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "TLS with correct browser fingerprint and SNI unlikely to trigger non-HTTPS classification."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Proper SNI conforms with Suricata's checks; no empty SNIs used."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "JA3 browser fingerprint expected; entropy evasion through mixed TLS handshake."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Padding profile designed to emulate legitimate streaming traffic; variability aids evasion."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Mimicry padding modeled after real-world streaming traffic reduces KL divergence risk."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Fallback proxy with valid HTTPS response to target ensures probe stealth."
+      }
+    },
+    "known_weaknesses": [
+      "If the SNI 'cdn.jsdelivr.net' were to ever get known for tunneling, its usage here could become detectable in the future.",
+      "The use of the Noise protocol might still leave small traces in timing/packet pattern analytics if noisy keys have patterns that deviate."
+    ]
+  }
+}

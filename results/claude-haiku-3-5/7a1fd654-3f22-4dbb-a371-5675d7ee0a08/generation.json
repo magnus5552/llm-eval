@@ -1,0 +1,109 @@
+{
+  "run_id": "7a1fd654-3f22-4dbb-a371-5675d7ee0a08",
+  "timestamp": "2026-06-07T08:53:03.660916+00:00",
+  "elapsed_s": 20.97,
+  "model": "claude-haiku-3-5",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 6094,
+    "completion": 1,
+    "total": 6095
+  },
+  "variant": {
+    "index": 3,
+    "domain": "www.github.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk0 — PSK at first message, extra entropy from the start.",
+    "padding_hint": "Use random padding [64, 1200] — avoid near-MTU sizes to reduce M5 score."
+  },
+  "generation_result": {
+    "reasoning": "Transport Design: We'll use TLS 1.3 with a Chrome 120 fingerprint to maximize browser-like characteristics. GitHub.com as SNI provides a credible, technical domain that won't raise suspicion. Port 443 ensures standard HTTPS alignment.\n\nHandshake Strategy: Noise NNpsk0 provides an initial PSK for entropy and authentication. This pattern allows fresh ephemeral keys each connection while maintaining a pre-shared secret, which adds an extra layer of obfuscation beyond bare TLS.\n\nPadding Approach: Random padding between 64-1200 bytes mimics real-world HTTPS browsing variability. By avoiding near-MTU sizes and using a wide range, we reduce predictability that ML classifiers might exploit. The chrome-browsing profile further enhances natural-looking packet distributions.\n\nFallback Mechanism: GitHub's HTTPS endpoint provides a robust, high-availability reverse proxy target. This ensures that any active probing will receive a legitimate HTTPS response, critical for evading M8 detection strategies.\n\nCrypto Choices: ChaCha20-Poly1305 with HKDF-SHA256 provides modern, performant cryptographic properties while maintaining compatibility with most security analysis tools.",
+    "config": {
+      "protocol": "github-noise-v4",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.github.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk0",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 64,
+        "random_max": 1200,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.github.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "Chrome-like TLS 1.3 with GitHub SNI mimics standard HTTPS traffic"
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Standard port, valid SNI, browser-like TLS configuration"
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Chrome-120 fingerprint provides authentic JA3 signature"
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Random padding and variable packet sizes reduce VPN detection probability"
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Random padding between 64-1200 bytes prevents uniform size detection"
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "GitHub HTTPS reverse proxy ensures legitimate response to active probing"
+      }
+    },
+    "known_weaknesses": [
+      "Noise protocol might introduce slight timing variations",
+      "Random padding could still have statistical differences from pure HTTPS",
+      "Potential entropy differences in initial key exchange"
+    ]
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "run_id": "774645e0-f908-4cd4-bc2b-8018deb4ea50",
+  "timestamp": "2026-06-07T11:09:05.503106+00:00",
+  "elapsed_s": 25.15,
+  "model": "gemini-2.5-pro",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 2725,
+    "completion": 2405,
+    "total": 5130
+  },
+  "variant": {
+    "index": 8,
+    "domain": "cdn.jsdelivr.net",
+    "port": 443,
+    "handshake_hint": "Use noise NN (no PSK, no auth) — simplest noise for comparison.",
+    "padding_hint": "Use mimicry/video-streaming to test a different length distribution."
+  },
+  "generation_result": {
+    "reasoning": "This configuration uses a Noise protocol handshake (`NN` pattern) hidden inside a standard TLS 1.3 session. \n\n*   **Transport:** It mimics a Safari 17 browser connecting to the `cdn.jsdelivr.net` domain on port 443. This provides a strong outer layer of camouflage, ensuring the TLS handshake itself is indistinguishable from a real browser (passes M2, M3).\n\n*   **Handshake:** The `Noise_NN` handshake is chosen for its simplicity. It performs an unauthenticated key exchange *after* the TLS session is established, meaning the handshake messages are themselves encrypted by the outer TLS layer. This prevents fingerprinting of the inner protocol.\n\n*   **Padding:** `mimicry` mode with the `video-streaming` profile is used. This strategy generates a packet length distribution that resembles common video streaming services, providing a different statistical profile than typical web browsing to challenge ML classifiers (M4, M6).\n\n*   **Fallback:** Active probes (M8) are handled by reverse-proxying illegitimate requests to the real `cdn.jsdelivr.net`, which perfectly matches the SNI and certificate expectations.",
+    "config": {
+      "protocol": "noise-video-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "cdn.jsdelivr.net",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NN",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "video-streaming"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://cdn.jsdelivr.net"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m2_suricata": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m3_zeek": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m4_ml": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m6_kl_len": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m8_probe": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      }
+    },
+    "known_weaknesses": [
+      "The `NN` Noise pattern provides no authentication, making it theoretically vulnerable to a Man-in-the-Middle (MitM) attack if an attacker can intercept the initial key exchange.",
+      "If the user's actual traffic pattern does not resemble video streaming (e.g., it is purely interactive shell traffic), a very sophisticated analysis might detect a mismatch between the padding profile and the underlying data flow characteristics."
+    ]
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "run_id": "2df9c548-8989-43eb-8ce2-e9ef2dfa863f",
+  "timestamp": "2026-06-07T11:05:50.856196+00:00",
+  "elapsed_s": 29.19,
+  "model": "gemini-2.5-pro",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 2730,
+    "completion": 2512,
+    "total": 5242
+  },
+  "variant": {
+    "index": 6,
+    "domain": "api.twitter.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk2 with aes-256-gcm cipher suite variant.",
+    "padding_hint": "Use mimicry/chrome-browsing — social media API traffic is already variable."
+  },
+  "generation_result": {
+    "reasoning": "This configuration uses a layered approach to evade detection. \n\n*   **Transport:** We establish a standard TLS 1.3 session on port 443, using a Chrome 120 fingerprint and a legitimate SNI (`api.twitter.com`). This is designed to be indistinguishable from normal HTTPS traffic for DPI engines (M1), IDS systems (M2), and JA3-based fingerprinters (M3).\n\n*   **Handshake:** Instead of a bare TLS stream, we perform a secondary `Noise` handshake (NNpsk2) inside the encrypted TLS tunnel. This provides forward-secret, one-way authenticated key exchange for the tunnel payload itself, but the handshake traffic is hidden from network observers by the outer TLS layer.\nThe requested `aes-256-gcm` variant is achieved by selecting the `25519:AESGCM:SHA256` cipher suite.\n\n*   **Padding:** We use `mimicry` padding with the `chrome-browsing` profile. This dynamically pads packets to match the size distribution of typical web traffic, which is crucial for defeating statistical analysis from ML-based classifiers (M4, M6).\n\n*   **Fallback:** A reverse-proxy fallback to the real `api.twitter.com` is configured. This is a critical defense against active probers (M8), as any non-tunnel traffic will receive a valid HTTPS response, making the server appear as a legitimate web server.",
+    "config": {
+      "protocol": "noise-twitter-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "api.twitter.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk2",
+          "cipher_suite": "25519:AESGCM:SHA256",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "aes-256-gcm",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://api.twitter.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m2_suricata": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m3_zeek": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m4_ml": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m6_kl_len": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m8_probe": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      }
+    },
+    "known_weaknesses": [
+      "The primary weakness is a post-decryption attack: if an adversary obtains the server's TLS private keys, they could decrypt the outer TLS layer and observe the underlying Noise handshake pattern. However, this is outside the scope of *network-based* detection.",
+      "The `chrome-browsing` mimicry profile might not perfectly match the statistical properties of traffic to `api.twitter.com`, which could be a detectable anomaly for a highly specialized classifier."
+    ]
+  }
+}

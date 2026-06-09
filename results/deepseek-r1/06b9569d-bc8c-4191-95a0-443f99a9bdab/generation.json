@@ -1,0 +1,106 @@
+{
+  "run_id": "06b9569d-bc8c-4191-95a0-443f99a9bdab",
+  "timestamp": "2026-06-07T10:56:17.161243+00:00",
+  "elapsed_s": 166.71,
+  "model": "deepseek-r1",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 5272,
+    "completion": 1974,
+    "total": 7246
+  },
+  "variant": {
+    "index": 5,
+    "domain": "login.microsoftonline.com",
+    "port": 443,
+    "handshake_hint": "Use tls-token with length=32 (shorter token, still 256 bits).",
+    "padding_hint": "Use random [100, 1300] to mimic API call distributions."
+  },
+  "generation_result": {
+    "reasoning": "The transport uses TLS 1.3 with Chrome 120 fingerprint on port 443 and SNI set to login.microsoftonline.com to appear as standard HTTPS traffic. The handshake uses a tls-token embedded in the session ticket field with a 32-byte PSK (auto-generated) for authentication without static keys. Padding is set to random between 100 and 1300 bytes to mimic API call traffic patterns. Fallback is enabled to reverse-probe to the actual SNI domain. Timing is left natural to avoid artificial patterns. These choices are designed to pass all detection metrics by mimicking browser behavior and avoiding detectable patterns.",
+    "config": {
+      "protocol": "llm-gen-v6",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "login.microsoftonline.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 32
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 100,
+        "random_max": 1400,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://login.microsoftonline.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": ""
+      }
+    },
+    "known_weaknesses": [
+      "The random padding mode may not perfectly mimic the exact packet length distribution of the target domain (login.microsoftonline.com), which could lead to slight deviations in KL divergence.",
+      "The handshake token length (32 bytes) is on the shorter side for a session ticket, which might be unusual but not necessarily suspicious."
+    ]
+  }
+}

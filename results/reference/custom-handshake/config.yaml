@@ -1,0 +1,34 @@
+protocol: custom-v1
+version: 1
+transport:
+  type: raw-tcp
+  host: 127.0.0.1
+  port: 19544
+handshake:
+  type: custom
+  steps:
+  - type: send
+    payload: deadc0de{{time:8}}{{rand:4}}
+  - type: recv
+    length: 12
+    validate: cafebabe
+  - type: send
+    payload: '{{rand:16}}'
+  - type: recv
+    length: 4
+    validate: '00000000'
+  - type: derive
+    derive_as: session_key
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: random
+  random_min: 64
+  random_max: 512
+timing:
+  mode: delay
+  delay_min_ms: 1
+  delay_max_ms: 5
+fallback:
+  enabled: false

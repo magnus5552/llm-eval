@@ -1,0 +1,24 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	socks
+#open	2026-06-07-08-32-00
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	version	user	password	status	request.host	request.name	request_p	bound.host	bound.name	bound_p
+#types	time	string	addr	port	addr	port	count	string	string	string	addr	string	port	addr	string	port
+1780821069.478859	Cp0Hr21rlJoueE3bO3	127.0.0.1	30097	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	30098
+1780821081.362975	Cf355H2HsjQBLjRuT6	127.0.0.1	30111	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	30112
+1780821060.924816	CpGeL53ZspprOvdgI7	127.0.0.1	30084	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	30085
+1780821056.496751	C5Z0F9eypcxu4VsKl	127.0.0.1	30071	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	30072
+1780821060.031942	C50lQZ2gPINLHvfkTe	127.0.0.1	30077	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	30078
+1780821080.938726	CBRT0m2T3RM5RTSSqc	127.0.0.1	30108	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	30109
+1780821056.068799	CtWeiv4wjOCFyOj9od	127.0.0.1	30068	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	30069
+1780821068.646410	CiK6z04SrKZET54hRk	127.0.0.1	30090	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	30091
+1780821074.958073	CnTOrU3cSzpi9nQtn7	127.0.0.1	30101	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	30102
+1780821060.466809	ChQTAQ3LHAXJsNiZmb	127.0.0.1	30081	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	30082
+1780821057.288247	CbwZO8e4r404UYhIj	127.0.0.1	30074	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	30075
+1780821066.420209	CwWxMb1lzRVSJkLAZf	127.0.0.1	30087	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	30088
+1780821055.610027	CDgWTp3qq84XnTrzlj	127.0.0.1	30065	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	30066
+1780821069.056445	CrF4t42VA1MgL4HNPk	127.0.0.1	30094	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	30095
+1780821080.497660	Ct5EmdpV5b5qFAfj5	127.0.0.1	30105	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	30106
+#close	2026-06-07-08-32-00

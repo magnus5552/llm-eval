@@ -1,0 +1,36 @@
+protocol: tunnel-v2
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19444
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.cloudflare.com
+    cert_file: D:\programs\диплом\llm-eval\results\gpt-4o-mini\7c23bb82-5e5a-464b-917b-de823b25d41f\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\gpt-4o-mini\7c23bb82-5e5a-464b-917b-de823b25d41f\server.key
+    insecure: true
+handshake:
+  type: noise
+  noise:
+    pattern: NNpsk2
+    cipher_suite: 25519:ChaChaPoly:BLAKE2s
+    local_key: generate
+    psk: aed93b914f8fe0d0950cd676511e1d1716585b85b7b921a389592debd90bcbaa
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: random
+  random_min: 40
+  random_max: 1400
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.cloudflare.com

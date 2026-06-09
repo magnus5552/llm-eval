@@ -1,0 +1,1304 @@
+13:27:37 INFO generator — [gpt-4o-mini] run 1/5 — variant 0 (www.google.com, port 9443)
+13:27:54 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:54 INFO generator — [gpt-4o-mini] run 1 done in 16.9s — 3470 tokens (in:3469 out:1)
+13:27:54 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\gpt-4o-mini\b4cbc1cb-0bda-4f8d-ba0d-972e1e37922b\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\gpt-4o-mini\b4cbc1cb-0bda-4f8d-ba0d-972e1e37922b\test_out  (timeout 300s)
+13:29:05 INFO evaluator — Verdict: FAIL  (rc=2)
+13:29:05 INFO generator — [gpt-4o-mini] run 2/5 — variant 1 (www.cloudflare.com, port 443)
+13:29:20 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:20 INFO generator — [gpt-4o-mini] run 2 done in 14.7s — 3475 tokens (in:3474 out:1)
+13:29:20 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\gpt-4o-mini\7c23bb82-5e5a-464b-917b-de823b25d41f\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\gpt-4o-mini\7c23bb82-5e5a-464b-917b-de823b25d41f\test_out  (timeout 300s)
+13:30:33 INFO evaluator — Verdict: PASS  (rc=0)
+13:30:33 INFO generator — [gpt-4o-mini] run 3/5 — variant 2 (www.microsoft.com, port 8443)
+13:30:50 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:50 INFO generator — [gpt-4o-mini] run 3 done in 17.0s — 3472 tokens (in:3471 out:1)
+13:30:50 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\gpt-4o-mini\a26d10da-ca82-45ae-bffa-b7bfe4a649f3\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\gpt-4o-mini\a26d10da-ca82-45ae-bffa-b7bfe4a649f3\test_out  (timeout 300s)
+13:32:01 INFO evaluator — Verdict: FAIL  (rc=2)
+13:32:01 INFO generator — [gpt-4o-mini] run 4/5 — variant 3 (www.github.com, port 443)
+13:32:23 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+13:32:23 INFO generator — [gpt-4o-mini] run 4 done in 22.0s — 3482 tokens (in:3481 out:1)
+13:32:23 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\gpt-4o-mini\84951379-8666-4150-b05e-96bba8273b65\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\gpt-4o-mini\84951379-8666-4150-b05e-96bba8273b65\test_out  (timeout 300s)
+13:33:35 INFO evaluator — Verdict: PASS  (rc=0)
+13:33:35 INFO generator — [gpt-4o-mini] run 5/5 — variant 4 (www.amazon.com, port 9443)
+13:33:50 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+13:33:50 INFO generator — [gpt-4o-mini] run 5 done in 14.6s — 3478 tokens (in:3477 out:1)
+13:33:50 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\gpt-4o-mini\40e26d97-bb39-4eb3-8226-720c3a2a597b\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\gpt-4o-mini\40e26d97-bb39-4eb3-8226-720c3a2a597b\test_out  (timeout 300s)
+13:34:58 INFO evaluator — Verdict: FAIL  (rc=2)
+13:34:58 INFO generator — [gpt-4o] run 1/5 — variant 0 (www.google.com, port 9443)
+13:35:05 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+13:35:05 INFO generator — [gpt-4o] run 1 done in 6.2s — 3470 tokens (in:3469 out:1)
+13:35:05 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\gpt-4o\b9bc04f3-a381-44f9-9411-a4966442cc99\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\gpt-4o\b9bc04f3-a381-44f9-9411-a4966442cc99\test_out  (timeout 300s)
+13:36:14 INFO evaluator — Verdict: PASS  (rc=0)
+13:36:14 INFO generator — [gpt-4o] run 2/5 — variant 1 (www.cloudflare.com, port 443)
+13:36:21 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+13:36:21 INFO generator — [gpt-4o] run 2 done in 7.5s — 3475 tokens (in:3474 out:1)
+13:36:21 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\gpt-4o\d4081664-d72b-4552-be22-aaa3daac41a6\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\gpt-4o\d4081664-d72b-4552-be22-aaa3daac41a6\test_out  (timeout 300s)
+13:37:39 INFO evaluator — Verdict: FAIL  (rc=2)
+13:37:39 INFO generator — [gpt-4o] run 3/5 — variant 2 (www.microsoft.com, port 8443)
+13:37:47 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+13:37:47 INFO generator — [gpt-4o] run 3 done in 7.7s — 3472 tokens (in:3471 out:1)
+13:37:47 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\gpt-4o\2ff004d3-2ca7-465a-b1ad-f4ef34c133a7\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\gpt-4o\2ff004d3-2ca7-465a-b1ad-f4ef34c133a7\test_out  (timeout 300s)
+13:38:56 INFO evaluator — Verdict: PASS  (rc=0)
+13:38:56 INFO generator — [gpt-4o] run 4/5 — variant 3 (www.github.com, port 443)
+13:39:03 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+13:39:03 INFO generator — [gpt-4o] run 4 done in 7.0s — 3482 tokens (in:3481 out:1)
+13:39:03 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\gpt-4o\a437276d-73dd-47af-a4f4-4c05c3e15933\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\gpt-4o\a437276d-73dd-47af-a4f4-4c05c3e15933\test_out  (timeout 300s)
+13:40:14 INFO evaluator — Verdict: PASS  (rc=0)
+13:40:14 INFO generator — [gpt-4o] run 5/5 — variant 4 (www.amazon.com, port 9443)
+13:40:22 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+13:40:22 INFO generator — [gpt-4o] run 5 done in 7.4s — 3478 tokens (in:3477 out:1)
+13:40:22 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\gpt-4o\dc96f379-a4cd-4387-84b5-237561d98566\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\gpt-4o\dc96f379-a4cd-4387-84b5-237561d98566\test_out  (timeout 300s)
+13:41:30 INFO evaluator — Verdict: PASS  (rc=0)
+13:41:30 INFO generator — [gpt-4.1] run 1/5 — variant 0 (www.google.com, port 9443)
+13:41:37 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+13:41:37 INFO generator — [gpt-4.1] run 1 done in 7.0s — 3938 tokens (in:3937 out:1)
+13:41:37 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\gpt-4.1\c5fdf394-cd73-417f-892d-98015725fe53\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\gpt-4.1\c5fdf394-cd73-417f-892d-98015725fe53\test_out  (timeout 300s)
+13:42:46 INFO evaluator — Verdict: PASS  (rc=0)
+13:42:46 INFO generator — [gpt-4.1] run 2/5 — variant 1 (www.cloudflare.com, port 443)
+13:42:58 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+13:42:58 INFO generator — [gpt-4.1] run 2 done in 11.6s — 3943 tokens (in:3942 out:1)
+13:42:58 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\gpt-4.1\8f84d96a-983e-47bd-b732-e5e5d272a523\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\gpt-4.1\8f84d96a-983e-47bd-b732-e5e5d272a523\test_out  (timeout 300s)
+13:44:11 INFO evaluator — Verdict: FAIL  (rc=2)
+13:44:11 INFO generator — [gpt-4.1] run 3/5 — variant 2 (www.microsoft.com, port 8443)
+13:44:23 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+13:44:23 INFO generator — [gpt-4.1] run 3 done in 11.6s — 3940 tokens (in:3939 out:1)
+13:44:23 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\gpt-4.1\48c3e136-c619-4d73-a2d4-ec8bd81ef1b4\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\gpt-4.1\48c3e136-c619-4d73-a2d4-ec8bd81ef1b4\test_out  (timeout 300s)
+13:45:33 INFO evaluator — Verdict: PASS  (rc=0)
+13:45:33 INFO generator — [gpt-4.1] run 4/5 — variant 3 (www.github.com, port 443)
+13:45:42 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+13:45:42 INFO generator — [gpt-4.1] run 4 done in 8.8s — 3950 tokens (in:3949 out:1)
+13:45:42 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\gpt-4.1\57b5841b-8abb-46b5-809c-6dc0ba3d7d64\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\gpt-4.1\57b5841b-8abb-46b5-809c-6dc0ba3d7d64\test_out  (timeout 300s)
+13:46:54 INFO evaluator — Verdict: FAIL  (rc=2)
+13:46:54 INFO generator — [gpt-4.1] run 5/5 — variant 4 (www.amazon.com, port 9443)
+13:47:15 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+13:47:15 INFO generator — [gpt-4.1] run 5 done in 20.8s — 3946 tokens (in:3945 out:1)
+13:47:15 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\gpt-4.1\ac187561-69e2-4abf-a51a-b04e7a4aab82\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\gpt-4.1\ac187561-69e2-4abf-a51a-b04e7a4aab82\test_out  (timeout 300s)
+13:48:29 INFO evaluator — Verdict: PASS  (rc=0)
+13:48:29 INFO generator — [claude-haiku-3-5] run 1/5 — variant 0 (www.google.com, port 9443)
+13:48:49 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+13:48:49 INFO generator — [claude-haiku-3-5] run 1 done in 20.3s — 6084 tokens (in:6083 out:1)
+13:48:49 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\claude-haiku-3-5\6f574031-6e52-4ff7-8bbd-ceb3e7e6083f\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\claude-haiku-3-5\6f574031-6e52-4ff7-8bbd-ceb3e7e6083f\test_out  (timeout 300s)
+13:49:59 INFO evaluator — Verdict: PASS  (rc=0)
+13:49:59 INFO generator — [claude-haiku-3-5] run 2/5 — variant 1 (www.cloudflare.com, port 443)
+13:50:20 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+13:50:20 INFO generator — [claude-haiku-3-5] run 2 done in 21.2s — 6090 tokens (in:6089 out:1)
+13:50:20 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\claude-haiku-3-5\687a767b-1218-40ff-a65d-933fb681a027\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\claude-haiku-3-5\687a767b-1218-40ff-a65d-933fb681a027\test_out  (timeout 300s)
+13:51:30 INFO evaluator — Verdict: PASS  (rc=0)
+13:51:30 INFO generator — [claude-haiku-3-5] run 3/5 — variant 2 (www.microsoft.com, port 8443)
+13:51:53 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+13:51:53 INFO generator — [claude-haiku-3-5] run 3 done in 22.7s — 6087 tokens (in:6086 out:1)
+13:51:53 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\claude-haiku-3-5\2907152d-4a88-4ffc-b7aa-52e755b32bd4\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\claude-haiku-3-5\2907152d-4a88-4ffc-b7aa-52e755b32bd4\test_out  (timeout 300s)
+13:53:03 INFO evaluator — Verdict: PASS  (rc=0)
+13:53:03 INFO generator — [claude-haiku-3-5] run 4/5 — variant 3 (www.github.com, port 443)
+13:53:24 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+13:53:24 INFO generator — [claude-haiku-3-5] run 4 done in 21.0s — 6095 tokens (in:6094 out:1)
+
+============================================================
+  MODEL: gpt-4o-mini
+============================================================
+
+────────────────────────────────────────────────────────────
+  Model  : gpt-4o-mini
+  Runs   : 5
+  Test   : yes
+  Output : D:\programs\диплом\llm-eval\results\gpt-4o-mini
+────────────────────────────────────────────────────────────
+
+
+  [1/5] run_id=b4cbc1cb…
+        protocol : novel-tunnel-v1
+        transport: tls  port=9443
+        tls      : fp=chrome-120  sni=www.google.com
+        handshake: tls-token
+        padding  : mimicry
+        fallback : True  target=https://www.google.com
+        tokens   : 3470  (16.9s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+  ↳ running tunnel-testing (port 19443, 30s)…
+  ✗ VERDICT: FAIL
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✗  M8=✓
+
+
+  [2/5] run_id=7c23bb82…
+        protocol : tunnel-v2
+        transport: tls  port=443
+        tls      : fp=chrome-120  sni=www.cloudflare.com
+        handshake: noise
+        padding  : random
+        fallback : True  target=https://www.cloudflare.com
+        tokens   : 3475  (14.7s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  Potentially, if the SNI or target domain becomes overly common, it may attract attention from more sophisticated detection algorithms.
+        ⚠  The use of a patchy fingerprint like 'chrome-120' may not perfectly match all versions of Chrome, but it should generally suffice for common detection systems.
+  ↳ running tunnel-testing (port 19444, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+  [3/5] run_id=a26d10da…
+        protocol : novel-tunnel-v1
+        transport: tls  port=8443
+        tls      : fp=safari-17  sni=www.microsoft.com
+        handshake: tls-token
+        padding  : mimicry
+        fallback : True  target=https://www.microsoft.com
+        tokens   : 3472  (17.0s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  This config relies on the active existence of www.microsoft.com for the fallback mechanism. If the target changes or experiences downtime, the tunnel may face detection issues during probing. Additionally, while using an uncommon browser fingerprint reduces immediate detection risks, advancements in fingerprinting techniques may still pose risks in the future.
+  ↳ running tunnel-testing (port 19445, 30s)…
+  ✗ VERDICT: FAIL
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✗  M8=✓
+
+
+  [4/5] run_id=84951379…
+        protocol : novel-tunnel-v1
+        transport: tls  port=443
+        tls      : fp=chrome-120  sni=www.github.com
+        handshake: noise
+        padding  : random
+        fallback : True  target=https://www.github.com
+        tokens   : 3482  (22.0s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  Potential risk of detection if traffic patterns exhibit unusual variability not typical of legitimate HTTPS usage.
+        ⚠  Fallback may inadvertently expose extra information if misconfigured or if the target server experiences disruptions.
+  ↳ running tunnel-testing (port 19446, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+  [5/5] run_id=40e26d97…
+        protocol : tls-mimicry-v1
+        transport: tls  port=9443
+        tls      : fp=chrome-120  sni=www.amazon.com
+        handshake: none
+        padding  : mimicry
+        fallback : True  target=https://www.amazon.com
+        tokens   : 3478  (14.6s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+  ↳ running tunnel-testing (port 19447, 30s)…
+  ✗ VERDICT: FAIL
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✗  M8=✓
+
+
+============================================================
+  MODEL: gpt-4o
+============================================================
+
+────────────────────────────────────────────────────────────
+  Model  : gpt-4o
+  Runs   : 5
+  Test   : yes
+  Output : D:\programs\диплом\llm-eval\results\gpt-4o
+────────────────────────────────────────────────────────────
+
+
+  [1/5] run_id=b9bc04f3…
+        protocol : llm-gen-variant
+        transport: tls  port=9443
+        tls      : fp=chrome-120  sni=www.google.com
+        handshake: tls-token
+        padding  : mimicry
+        fallback : True  target=https://www.google.com
+        tokens   : 3470  (6.2s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  The exclusive use of chrome-120 might allow pattern-based fingerprinting if not varied across configurations.
+  ↳ running tunnel-testing (port 19443, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+  [2/5] run_id=d4081664…
+        protocol : gen-run-index-2-v1
+        transport: tls  port=443
+        tls      : fp=chrome-120  sni=www.cloudflare.com
+        handshake: noise
+        padding  : random
+        fallback : True  target=https://www.cloudflare.com
+        tokens   : 3475  (7.5s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  The wide range of random padding might still cause occasional outliers in packet sizes that detection systems could pick up.
+        ⚠  Without timing obfuscation, some advanced active probing techniques might eventually recognize the lack of variance in response times.
+  ↳ running tunnel-testing (port 19444, 30s)…
+  ✗ VERDICT: FAIL
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✗  M8=✓
+
+
+  [3/5] run_id=2ff004d3…
+        protocol : run-3-tunnel-config
+        transport: tls  port=8443
+        tls      : fp=safari-17  sni=www.microsoft.com
+        handshake: tls-token
+        padding  : mimicry
+        fallback : True  target=https://www.microsoft.com
+        tokens   : 3472  (7.7s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  The use of safari-17 might be slightly more detectable if not common in certain regions or network environments.
+        ⚠  While mimicry helps evade with packet size variation, excessive deviation from expected profiles on certain networks might still be notable.
+  ↳ running tunnel-testing (port 19445, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+  [4/5] run_id=a437276d…
+        protocol : novel-tls-config-v4
+        transport: tls  port=443
+        tls      : fp=firefox-120  sni=www.github.com
+        handshake: noise
+        padding  : random
+        fallback : True  target=https://www.github.com
+        tokens   : 3482  (7.0s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  Potential side-channel leakage might arise from subtle variations in timing not fully mimicked by the 'none' setting, although this is less probable.
+        ⚠  Random padding may occasionally align with certain heuristic detection patterns, but wide padding ranges mitigate this risk.
+  ↳ running tunnel-testing (port 19446, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+  [5/5] run_id=dc96f379…
+        protocol : tls-mimicry-v5
+        transport: tls  port=9443
+        tls      : fp=safari-17  sni=www.amazon.com
+        handshake: none
+        padding  : mimicry
+        fallback : True  target=https://www.amazon.com
+        tokens   : 3478  (7.4s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+13:53:24 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\claude-haiku-3-5\7a1fd654-3f22-4dbb-a371-5675d7ee0a08\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\claude-haiku-3-5\7a1fd654-3f22-4dbb-a371-5675d7ee0a08\test_out  (timeout 300s)
+13:54:34 INFO evaluator — Verdict: FAIL  (rc=2)
+13:54:34 INFO generator — [claude-haiku-3-5] run 5/5 — variant 4 (www.amazon.com, port 9443)
+13:54:53 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+13:54:53 INFO generator — [claude-haiku-3-5] run 5 done in 19.5s — 6093 tokens (in:6092 out:1)
+13:54:53 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\claude-haiku-3-5\b9902ad8-1ed4-4e69-973e-1144b174b294\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\claude-haiku-3-5\b9902ad8-1ed4-4e69-973e-1144b174b294\test_out  (timeout 300s)
+13:56:02 INFO evaluator — Verdict: FAIL  (rc=2)
+13:56:02 INFO generator — [claude-sonnet-4] run 1/5 — variant 0 (www.google.com, port 9443)
+13:56:21 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+13:56:21 INFO generator — [claude-sonnet-4] run 1 done in 19.0s — 6044 tokens (in:6043 out:1)
+13:56:21 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\claude-sonnet-4\71b09829-5ea1-4728-a6a1-52bdd3029a92\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\claude-sonnet-4\71b09829-5ea1-4728-a6a1-52bdd3029a92\test_out  (timeout 300s)
+13:57:29 INFO evaluator — Verdict: FAIL  (rc=2)
+13:57:29 INFO generator — [claude-sonnet-4] run 2/5 — variant 1 (www.cloudflare.com, port 443)
+13:57:47 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+13:57:47 INFO generator — [claude-sonnet-4] run 2 done in 18.0s — 6050 tokens (in:6049 out:1)
+13:57:47 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\claude-sonnet-4\10ccc7de-6719-4d76-8a5a-c70db3411c9c\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\claude-sonnet-4\10ccc7de-6719-4d76-8a5a-c70db3411c9c\test_out  (timeout 300s)
+13:58:58 INFO evaluator — Verdict: PASS  (rc=0)
+13:58:58 INFO generator — [claude-sonnet-4] run 3/5 — variant 2 (www.microsoft.com, port 8443)
+13:59:16 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+13:59:16 INFO generator — [claude-sonnet-4] run 3 done in 18.2s — 6047 tokens (in:6046 out:1)
+13:59:16 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\claude-sonnet-4\03a6ff53-9ae1-4bf7-bd23-b07d3df2018b\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\claude-sonnet-4\03a6ff53-9ae1-4bf7-bd23-b07d3df2018b\test_out  (timeout 300s)
+14:00:25 INFO evaluator — Verdict: FAIL  (rc=2)
+14:00:25 INFO generator — [claude-sonnet-4] run 4/5 — variant 3 (www.github.com, port 443)
+14:00:44 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:00:44 INFO generator — [claude-sonnet-4] run 4 done in 18.7s — 6055 tokens (in:6054 out:1)
+14:00:44 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\claude-sonnet-4\98647cd2-5d9d-48d4-bd41-8b784a2cb2c6\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\claude-sonnet-4\98647cd2-5d9d-48d4-bd41-8b784a2cb2c6\test_out  (timeout 300s)
+14:01:53 INFO evaluator — Verdict: PASS  (rc=0)
+14:01:53 INFO generator — [claude-sonnet-4] run 5/5 — variant 4 (www.amazon.com, port 9443)
+14:02:11 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:02:11 INFO generator — [claude-sonnet-4] run 5 done in 18.4s — 6053 tokens (in:6052 out:1)
+14:02:11 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\claude-sonnet-4\c62b924f-2032-4a7b-9d4e-d71a0f8863ad\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\claude-sonnet-4\c62b924f-2032-4a7b-9d4e-d71a0f8863ad\test_out  (timeout 300s)
+14:03:22 INFO evaluator — Verdict: PASS  (rc=0)
+14:03:22 INFO generator — [claude-opus-4] run 1/5 — variant 0 (www.google.com, port 9443)
+14:03:57 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:03:57 INFO generator — [claude-opus-4] run 1 done in 34.2s — 6044 tokens (in:6043 out:1)
+14:03:57 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\claude-opus-4\b27c77d4-c924-4d8b-8699-2f34829d43ad\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\claude-opus-4\b27c77d4-c924-4d8b-8699-2f34829d43ad\test_out  (timeout 300s)
+14:05:06 INFO evaluator — Verdict: PASS  (rc=0)
+14:05:06 INFO generator — [claude-opus-4] run 2/5 — variant 1 (www.cloudflare.com, port 443)
+14:05:43 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:05:43 INFO generator — [claude-opus-4] run 2 done in 37.2s — 6050 tokens (in:6049 out:1)
+14:05:43 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\claude-opus-4\c975c3cc-9d66-40e5-97a2-a27af728bb08\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\claude-opus-4\c975c3cc-9d66-40e5-97a2-a27af728bb08\test_out  (timeout 300s)
+14:06:56 INFO evaluator — Verdict: FAIL  (rc=2)
+14:06:56 INFO generator — [claude-opus-4] run 3/5 — variant 2 (www.microsoft.com, port 8443)
+14:07:35 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:07:35 INFO generator — [claude-opus-4] run 3 done in 39.0s — 6047 tokens (in:6046 out:1)
+        ⚠  Using 'safari-17' might have a less common JA3 fingerprint, which could still be inspected more closely in some environments.
+        ⚠  'ssh-interactive' padding profile could lead to some variance in less typical browsing patterns, potentially raising suspicion in M4 scenarios.
+  ↳ running tunnel-testing (port 19447, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+============================================================
+  MODEL: gpt-4.1
+============================================================
+
+────────────────────────────────────────────────────────────
+  Model  : gpt-4.1
+  Runs   : 5
+  Test   : yes
+  Output : D:\programs\диплом\llm-eval\results\gpt-4.1
+────────────────────────────────────────────────────────────
+
+
+  [1/5] run_id=c5fdf394…
+        protocol : novel-tls-token-chrome-v1
+        transport: tls  port=9443
+        tls      : fp=chrome-120  sni=www.google.com
+        handshake: tls-token
+        padding  : mimicry
+        fallback : True  target=https://www.google.com
+        tokens   : 3938  (7.0s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  Potential for future JA3 fingerprint evolution to slightly diverge from Chrome if consistently not updated.
+        ⚠  If TLS handshake implementations differ at a byte-level from real Chrome, could potentially be fingerprinted by a determined adversary.
+  ↳ running tunnel-testing (port 19443, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+  [2/5] run_id=8f84d96a…
+        protocol : noise-nnpsk2-v1-cloudflare
+        transport: tls  port=443
+        tls      : fp=chrome-120  sni=www.cloudflare.com
+        handshake: noise
+        padding  : random
+        fallback : True  target=https://www.cloudflare.com
+        tokens   : 3943  (11.6s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  Wildcard random padding has potential edge outliers (minimum/maximum sizes) rarely seen in real traffic, which could trigger anomalous flow statistics in rare cases.
+        ⚠  Noise handshake is not part of standard browser protocol — if an active adversary can trigger and analyze application data, they might detect protocol deviations beyond TLS.
+  ↳ running tunnel-testing (port 19444, 30s)…
+  ✗ VERDICT: FAIL
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✗  M8=✓
+
+
+  [3/5] run_id=48c3e136…
+        protocol : tls-token-safari-stream-v1
+        transport: tls  port=8443
+        tls      : fp=safari-17  sni=www.microsoft.com
+        handshake: tls-token
+        padding  : mimicry
+        fallback : True  target=https://www.microsoft.com
+        tokens   : 3940  (11.6s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  If video-streaming mimicry generates bursts inconsistent with the actual SNI's traffic profile, a sophisticated adversary might detect mismatch between payload behavior and known microsoft.com usage.
+        ⚠  Safari JA3 is less common in some enterprise environments; a network that only sees Chrome/Firefox on Windows might consider this slightly more suspicious.
+  ↳ running tunnel-testing (port 19445, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+  [4/5] run_id=57b5841b…
+        protocol : chrome-noise-nnpsk0-v1
+        transport: tls  port=443
+        tls      : fp=chrome-120  sni=www.github.com
+        handshake: noise
+        padding  : random
+        fallback : True  target=https://www.github.com
+        tokens   : 3950  (8.8s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  If the implementation of Noise handshake is not byte-for-byte identical to browser TLS flows, future IDS with Noise-trained signatures might flag it (though current NDPI/IDS cannot).
+        ⚠  Unusually rare handshake patterns in enterprise environments could be analytics outliers (long-term risk).
+  ↳ running tunnel-testing (port 19446, 30s)…
+  ✗ VERDICT: FAIL
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✗  M8=✓
+
+
+  [5/5] run_id=ac187561…
+        protocol : browser-mimicry-safari-ssh-v1
+        transport: tls  port=9443
+        tls      : fp=safari-17  sni=www.amazon.com
+        handshake: none
+        padding  : mimicry
+        fallback : True  target=https://www.amazon.com
+        tokens   : 3946  (20.8s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  If the ssh-interactive mimicry profile exhibits low throughput over long periods, high-traffic tunnels may stand out compared to typical web browsing.
+        ⚠  Unusual intensity or duration of activity on port 9443 for www.amazon.com may still appear anomalous to sophisticated behavioral analytics.
+  ↳ running tunnel-testing (port 19447, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+============================================================
+  MODEL: claude-haiku-3-5
+============================================================
+
+────────────────────────────────────────────────────────────
+  Model  : claude-haiku-3-5
+  Runs   : 5
+  Test   : yes
+  Output : D:\programs\диплом\llm-eval\results\claude-haiku-3-5
+────────────────────────────────────────────────────────────
+
+
+  [1/5] run_id=6f574031…
+        protocol : llm-gen-v1
+        transport: tls  port=9443
+        tls      : fp=chrome-120  sni=www.google.com
+        handshake: tls-token
+        padding  : mimicry
+        fallback : True  target=https://www.google.com
+        tokens   : 6084  (20.3s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  Potential timing side-channels in TLS handshake
+        ⚠  Static certificate might be detectable if reused
+  ↳ running tunnel-testing (port 19443, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+  [2/5] run_id=687a767b…
+        protocol : cloudflare-noise-v2
+        transport: tls  port=443
+        tls      : fp=chrome-120  sni=www.cloudflare.com
+        handshake: noise
+        padding  : random
+        fallback : True  target=https://www.cloudflare.com
+        tokens   : 6090  (21.2s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  Noise protocol might have unique first-packet characteristics
+        ⚠  Potential entropy differences in initial key exchange
+  ↳ running tunnel-testing (port 19444, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+  [3/5] run_id=2907152d…
+        protocol : ms-video-tunnel-v3
+        transport: tls  port=8443
+        tls      : fp=safari-17  sni=www.microsoft.com
+        handshake: tls-token
+        padding  : mimicry
+        fallback : True  target=https://www.microsoft.com
+        tokens   : 6087  (22.7s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  Safari-17 fingerprint might be less common, potentially increasing suspicion
+        ⚠  TLS-token authentication could be detectable if carefully analyzed
+  ↳ running tunnel-testing (port 19445, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+  [4/5] run_id=7a1fd654…
+        protocol : github-noise-v4
+        transport: tls  port=443
+        tls      : fp=chrome-120  sni=www.github.com
+        handshake: noise
+        padding  : random
+        fallback : True  target=https://www.github.com
+        tokens   : 6095  (21.0s)
+14:07:35 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\claude-opus-4\af7fee8b-fe05-43eb-8e99-50fe7facc23a\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\claude-opus-4\af7fee8b-fe05-43eb-8e99-50fe7facc23a\test_out  (timeout 300s)
+14:08:44 INFO evaluator — Verdict: PASS  (rc=0)
+14:08:44 INFO generator — [claude-opus-4] run 4/5 — variant 3 (www.github.com, port 443)
+14:09:26 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:09:26 INFO generator — [claude-opus-4] run 4 done in 41.8s — 6055 tokens (in:6054 out:1)
+14:09:26 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\claude-opus-4\8eded13f-005c-486a-90bd-c89d1164b8c3\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\claude-opus-4\8eded13f-005c-486a-90bd-c89d1164b8c3\test_out  (timeout 300s)
+14:10:38 INFO evaluator — Verdict: PASS  (rc=0)
+14:10:38 INFO generator — [claude-opus-4] run 5/5 — variant 4 (www.amazon.com, port 9443)
+14:11:20 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:11:20 INFO generator — [claude-opus-4] run 5 done in 41.9s — 6053 tokens (in:6052 out:1)
+14:11:20 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\claude-opus-4\c9f59c51-0281-4318-8da0-a66c4a6ccd63\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\claude-opus-4\c9f59c51-0281-4318-8da0-a66c4a6ccd63\test_out  (timeout 300s)
+14:12:29 INFO evaluator — Verdict: FAIL  (rc=2)
+14:12:29 INFO generator — [gemini-2.5-flash] run 1/5 — variant 0 (www.google.com, port 9443)
+14:12:36 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:12:36 INFO generator — [gemini-2.5-flash] run 1 done in 7.0s — 2725 tokens (in:2724 out:1)
+14:12:36 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\gemini-2.5-flash\00d80529-38ec-4b3d-92ed-b0061cd2b151\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\gemini-2.5-flash\00d80529-38ec-4b3d-92ed-b0061cd2b151\test_out  (timeout 300s)
+14:13:46 INFO evaluator — Verdict: PASS  (rc=0)
+14:13:46 INFO generator — [gemini-2.5-flash] run 2/5 — variant 1 (www.cloudflare.com, port 443)
+14:13:52 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:13:52 INFO generator — [gemini-2.5-flash] run 2 done in 6.5s — 2730 tokens (in:2729 out:1)
+14:13:52 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\gemini-2.5-flash\3deba161-565d-482a-8d7b-7733bcbacc2a\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\gemini-2.5-flash\3deba161-565d-482a-8d7b-7733bcbacc2a\test_out  (timeout 300s)
+14:15:02 INFO evaluator — Verdict: PASS  (rc=0)
+14:15:02 INFO generator — [gemini-2.5-flash] run 3/5 — variant 2 (www.microsoft.com, port 8443)
+14:15:07 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:15:07 INFO generator — [gemini-2.5-flash] run 3 done in 5.3s — 2728 tokens (in:2727 out:1)
+14:15:07 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\gemini-2.5-flash\aa89ade0-8fb6-4db6-81d3-7b117797cf62\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\gemini-2.5-flash\aa89ade0-8fb6-4db6-81d3-7b117797cf62\test_out  (timeout 300s)
+14:16:16 INFO evaluator — Verdict: FAIL  (rc=2)
+14:16:16 INFO generator — [gemini-2.5-flash] run 4/5 — variant 3 (www.github.com, port 443)
+14:16:21 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:16:21 INFO generator — [gemini-2.5-flash] run 4 done in 5.6s — 2738 tokens (in:2737 out:1)
+14:16:21 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\gemini-2.5-flash\ada22564-21f0-4aa1-9f12-178682fdcca7\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\gemini-2.5-flash\ada22564-21f0-4aa1-9f12-178682fdcca7\test_out  (timeout 300s)
+14:17:31 INFO evaluator — Verdict: PASS  (rc=0)
+14:17:31 INFO generator — [gemini-2.5-flash] run 5/5 — variant 4 (www.amazon.com, port 9443)
+14:17:37 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:17:37 INFO generator — [gemini-2.5-flash] run 5 done in 5.7s — 2730 tokens (in:2729 out:1)
+14:17:37 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\gemini-2.5-flash\40200960-f2a8-4caf-8db8-36d7391290a9\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\gemini-2.5-flash\40200960-f2a8-4caf-8db8-36d7391290a9\test_out  (timeout 300s)
+14:18:46 INFO evaluator — Verdict: FAIL  (rc=2)
+14:18:46 INFO generator — [gemini-2.5-pro] run 1/5 — variant 0 (www.google.com, port 9443)
+14:19:10 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:10 ERROR __main__ — Generation 1/5 failed: 1 validation error for GenerationResult
+config
+  Input should be a valid dictionary or instance of TunnelConfig [type=model_type, input_value='\' protocol: "tls-token-...ps://www.google.com" \'', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/model_type
+Traceback (most recent call last):
+  File "D:\programs\диплом\llm-eval\pipeline.py", line 129, in cmd_generate
+    artifact = generate_config(
+  File "D:\programs\диплом\llm-eval\generator.py", line 160, in generate_config
+    gen_result, meta = provider.generate_structured(
+  File "D:\programs\диплом\llm-eval\providers.py", line 152, in generate_structured
+    result = schema.model_validate(json.loads(tool_call.function.arguments))
+  File "C:\Users\Redmi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\pydantic\main.py", line 732, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+pydantic_core._pydantic_core.ValidationError: 1 validation error for GenerationResult
+config
+  Input should be a valid dictionary or instance of TunnelConfig [type=model_type, input_value='\' protocol: "tls-token-...ps://www.google.com" \'', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/model_type
+14:19:11 INFO generator — [gemini-2.5-pro] run 2/5 — variant 1 (www.cloudflare.com, port 443)
+14:19:33 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:33 ERROR __main__ — Generation 2/5 failed: 1 validation error for GenerationResult
+config
+  Input should be a valid dictionary or instance of TunnelConfig [type=model_type, input_value='\' protocol: "noise-nnps.../www.cloudflare.com" \'', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/model_type
+Traceback (most recent call last):
+  File "D:\programs\диплом\llm-eval\pipeline.py", line 129, in cmd_generate
+    artifact = generate_config(
+  File "D:\programs\диплом\llm-eval\generator.py", line 160, in generate_config
+    gen_result, meta = provider.generate_structured(
+  File "D:\programs\диплом\llm-eval\providers.py", line 152, in generate_structured
+    result = schema.model_validate(json.loads(tool_call.function.arguments))
+  File "C:\Users\Redmi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\pydantic\main.py", line 732, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+pydantic_core._pydantic_core.ValidationError: 1 validation error for GenerationResult
+config
+  Input should be a valid dictionary or instance of TunnelConfig [type=model_type, input_value='\' protocol: "noise-nnps.../www.cloudflare.com" \'', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/model_type
+14:19:33 INFO generator — [gemini-2.5-pro] run 3/5 — variant 2 (www.microsoft.com, port 8443)
+14:19:57 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:57 ERROR __main__ — Generation 3/5 failed: 1 validation error for GenerationResult
+config
+  Input should be a valid dictionary or instance of TunnelConfig [type=model_type, input_value='\'protocol: "tls-token-s... SNI for consistency \'', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/model_type
+Traceback (most recent call last):
+  File "D:\programs\диплом\llm-eval\pipeline.py", line 129, in cmd_generate
+    artifact = generate_config(
+  File "D:\programs\диплом\llm-eval\generator.py", line 160, in generate_config
+    gen_result, meta = provider.generate_structured(
+  File "D:\programs\диплом\llm-eval\providers.py", line 152, in generate_structured
+    result = schema.model_validate(json.loads(tool_call.function.arguments))
+  File "C:\Users\Redmi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\pydantic\main.py", line 732, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+pydantic_core._pydantic_core.ValidationError: 1 validation error for GenerationResult
+config
+  Input should be a valid dictionary or instance of TunnelConfig [type=model_type, input_value='\'protocol: "tls-token-s... SNI for consistency \'', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/model_type
+14:19:57 INFO generator — [gemini-2.5-pro] run 4/5 — variant 3 (www.github.com, port 443)
+14:20:38 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:38 ERROR __main__ — Generation 4/5 failed: 1 validation error for GenerationResult
+config
+  Input should be a valid dictionary or instance of TunnelConfig [type=model_type, input_value='\' protocol: "noise-nnps...ps://www.github.com" \'', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/model_type
+Traceback (most recent call last):
+  File "D:\programs\диплом\llm-eval\pipeline.py", line 129, in cmd_generate
+    artifact = generate_config(
+  File "D:\programs\диплом\llm-eval\generator.py", line 160, in generate_config
+    gen_result, meta = provider.generate_structured(
+  File "D:\programs\диплом\llm-eval\providers.py", line 152, in generate_structured
+    result = schema.model_validate(json.loads(tool_call.function.arguments))
+  File "C:\Users\Redmi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\pydantic\main.py", line 732, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+pydantic_core._pydantic_core.ValidationError: 1 validation error for GenerationResult
+config
+  Input should be a valid dictionary or instance of TunnelConfig [type=model_type, input_value='\' protocol: "noise-nnps...ps://www.github.com" \'', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/model_type
+14:20:38 INFO generator — [gemini-2.5-pro] run 5/5 — variant 4 (www.amazon.com, port 9443)
+14:21:05 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:21:05 ERROR __main__ — Generation 5/5 failed: 1 validation error for GenerationResult
+config
+  Input should be a valid dictionary or instance of TunnelConfig [type=model_type, input_value='\' protocol: "baseline-t...ps://www.amazon.com" \'', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/model_type
+Traceback (most recent call last):
+  File "D:\programs\диплом\llm-eval\pipeline.py", line 129, in cmd_generate
+    artifact = generate_config(
+  File "D:\programs\диплом\llm-eval\generator.py", line 160, in generate_config
+    gen_result, meta = provider.generate_structured(
+  File "D:\programs\диплом\llm-eval\providers.py", line 152, in generate_structured
+    result = schema.model_validate(json.loads(tool_call.function.arguments))
+  File "C:\Users\Redmi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\pydantic\main.py", line 732, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+pydantic_core._pydantic_core.ValidationError: 1 validation error for GenerationResult
+config
+  Input should be a valid dictionary or instance of TunnelConfig [type=model_type, input_value='\' protocol: "baseline-t...ps://www.amazon.com" \'', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/model_type
+14:21:05 INFO generator — [deepseek-chat] run 1/5 — variant 0 (www.google.com, port 9443)
+14:21:38 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:21:38 INFO generator — [deepseek-chat] run 1 done in 32.3s — 6299 tokens (in:6298 out:1)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  Noise protocol might introduce slight timing variations
+        ⚠  Random padding could still have statistical differences from pure HTTPS
+  ↳ running tunnel-testing (port 19446, 30s)…
+  ✗ VERDICT: FAIL
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✗  M8=✓
+
+
+  [5/5] run_id=b9902ad8…
+        protocol : amazon-mimic-v5
+        transport: tls  port=9443
+        tls      : fp=chrome-120  sni=www.amazon.com
+        handshake: tls-token
+        padding  : mimicry
+        fallback : True  target=https://www.amazon.com
+        tokens   : 6093  (19.5s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  SSH-interactive padding might be unusual for web browsing
+        ⚠  Consistent use of Amazon domain could be a statistical signal if overused
+  ↳ running tunnel-testing (port 19447, 30s)…
+  ✗ VERDICT: FAIL
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✗  M7=✓  M8=✓
+
+
+============================================================
+  MODEL: claude-sonnet-4
+============================================================
+
+────────────────────────────────────────────────────────────
+  Model  : claude-sonnet-4
+  Runs   : 5
+  Test   : yes
+  Output : D:\programs\диплом\llm-eval\results\claude-sonnet-4
+────────────────────────────────────────────────────────────
+
+
+  [1/5] run_id=71b09829…
+        protocol : firefox-tls-token-v1
+        transport: tls  port=9443
+        tls      : fp=firefox-120  sni=www.google.com
+        handshake: tls-token
+        padding  : mimicry
+        fallback : True  target=https://www.google.com
+        tokens   : 6044  (19.0s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  TLS session ticket field embedding could theoretically be detected if an adversary specifically monitors for non-standard entropy patterns in session tickets, though this is not implemented in common DPI systems
+        ⚠  Firefox fingerprint may become outdated over time as browser versions evolve, potentially making the JA3 signature appear suspicious
+  ↳ running tunnel-testing (port 19443, 30s)…
+  ✗ VERDICT: FAIL
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✗  M8=✓
+
+
+  [2/5] run_id=10ccc7de…
+        protocol : noise-cloudflare-v2
+        transport: tls  port=443
+        tls      : fp=chrome-120  sni=www.cloudflare.com
+        handshake: noise
+        padding  : random
+        fallback : True  target=https://www.cloudflare.com
+        tokens   : 6050  (18.0s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  NNpsk2 pattern may produce distinctive handshake message sizes that differ from standard TLS
+        ⚠  Random padding uniformly distributed may not perfectly match real HTTPS traffic patterns which often have bimodal distributions
+  ↳ running tunnel-testing (port 19444, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+  [3/5] run_id=03a6ff53…
+        protocol : safari-msft-video-v3
+        transport: tls  port=8443
+        tls      : fp=safari-17  sni=www.microsoft.com
+        handshake: tls-token
+        padding  : mimicry
+        fallback : True  target=https://www.microsoft.com
+        tokens   : 6047  (18.2s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  Safari fingerprint may be less common in some regions/networks, potentially standing out if the network typically sees only Chrome/Firefox
+        ⚠  Video-streaming padding profile might generate larger average packet sizes than typical web browsing, which could be detectable if not properly calibrated
+  ↳ running tunnel-testing (port 19445, 30s)…
+  ✗ VERDICT: FAIL
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✗  M8=✓
+
+
+  [4/5] run_id=98647cd2…
+        protocol : noise-nnpsk0-github-v4
+        transport: tls  port=443
+        tls      : fp=chrome-120  sni=www.github.com
+        handshake: noise
+        padding  : random
+        fallback : True  target=https://www.github.com
+        tokens   : 6055  (18.7s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  Noise NNpsk0 handshake may have distinctive timing patterns during key exchange that could be fingerprinted with sufficient samples
+        ⚠  Random padding bounds (64-1200) create a specific distribution signature that could be learned by advanced ML models
+  ↳ running tunnel-testing (port 19446, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+  [5/5] run_id=c62b924f…
+        protocol : safari-amazon-ssh-v1
+        transport: tls  port=9443
+        tls      : fp=safari-17  sni=www.amazon.com
+        handshake: none
+        padding  : mimicry
+        fallback : True  target=https://www.amazon.com
+        tokens   : 6053  (18.4s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  SSH-interactive padding profile may have slightly different statistical properties than typical HTTPS browsing, potentially detectable by advanced ML models
+        ⚠  Safari fingerprints are less common than Chrome, which might make the traffic stand out in environments where Safari usage is rare
+  ↳ running tunnel-testing (port 19447, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+============================================================
+  MODEL: claude-opus-4
+============================================================
+
+────────────────────────────────────────────────────────────
+  Model  : claude-opus-4
+  Runs   : 5
+  Test   : yes
+  Output : D:\programs\диплом\llm-eval\results\claude-opus-4
+────────────────────────────────────────────────────────────
+
+
+  [1/5] run_id=b27c77d4…
+        protocol : tls-token-chrome-v1
+        transport: tls  port=9443
+        tls      : fp=chrome-120  sni=www.google.com
+        handshake: tls-token
+        padding  : mimicry
+        fallback : True  target=https://www.google.com
+        tokens   : 6044  (34.2s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  Non-standard port 9443 might draw analyst attention, though it's not automatically flagged
+        ⚠  TLS certificate must match SNI domain or could trigger certificate validation alerts
+  ↳ running tunnel-testing (port 19443, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+  [2/5] run_id=c975c3cc…
+        protocol : noise-nnpsk2-random-v2
+        transport: tls  port=443
+        tls      : fp=firefox-120  sni=www.cloudflare.com
+        handshake: noise
+        padding  : random
+        fallback : True  target=https://www.cloudflare.com
+        tokens   : 6050  (37.2s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  Noise protocol adds slight overhead compared to pure TLS, potentially detectable by advanced traffic analysis
+        ⚠  Random padding may not perfectly match cloudflare.com's specific traffic patterns if analyzed at CDN-specific granularity
+  ↳ running tunnel-testing (port 19444, 30s)…
+  ✗ VERDICT: FAIL
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✗  M8=✓
+
+
+  [3/5] run_id=af7fee8b…
+        protocol : safari-video-tls-v3
+        transport: tls  port=8443
+        tls      : fp=safari-17  sni=www.microsoft.com
+        handshake: tls-token
+        padding  : mimicry
+        fallback : True  target=https://www.microsoft.com
+        tokens   : 6047  (39.0s)
+14:21:38 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\deepseek-chat\1c469711-ffd8-4050-b83a-ba691faa0f7e\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\deepseek-chat\1c469711-ffd8-4050-b83a-ba691faa0f7e\test_out  (timeout 300s)
+14:22:46 INFO evaluator — Verdict: FAIL  (rc=2)
+14:22:46 INFO generator — [deepseek-chat] run 2/5 — variant 1 (www.cloudflare.com, port 443)
+14:23:06 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:23:06 INFO generator — [deepseek-chat] run 2 done in 20.0s — 6302 tokens (in:6301 out:1)
+14:23:06 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\deepseek-chat\ced70588-c04b-4522-9ee6-547fb2f8c302\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\deepseek-chat\ced70588-c04b-4522-9ee6-547fb2f8c302\test_out  (timeout 300s)
+14:24:20 INFO evaluator — Verdict: FAIL  (rc=2)
+14:24:20 INFO generator — [deepseek-chat] run 3/5 — variant 2 (www.microsoft.com, port 8443)
+14:25:02 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:25:02 INFO generator — [deepseek-chat] run 3 done in 42.8s — 7436 tokens (in:6302 out:1134)
+14:25:02 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\deepseek-chat\c4c53969-fcb1-451e-b0c5-c086cef2b798\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\deepseek-chat\c4c53969-fcb1-451e-b0c5-c086cef2b798\test_out  (timeout 300s)
+14:26:13 INFO evaluator — Verdict: PASS  (rc=0)
+14:26:13 INFO generator — [deepseek-chat] run 4/5 — variant 3 (www.github.com, port 443)
+14:26:37 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:26:37 ERROR __main__ — Generation 4/5 failed: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "D:\programs\диплом\llm-eval\pipeline.py", line 129, in cmd_generate
+    artifact = generate_config(
+  File "D:\programs\диплом\llm-eval\generator.py", line 160, in generate_config
+    gen_result, meta = provider.generate_structured(
+  File "D:\programs\диплом\llm-eval\providers.py", line 152, in generate_structured
+    result = schema.model_validate(json.loads(tool_call.function.arguments))
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+14:26:37 INFO generator — [deepseek-chat] run 5/5 — variant 4 (www.amazon.com, port 9443)
+14:26:59 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:26:59 INFO generator — [deepseek-chat] run 5 done in 22.0s — 6306 tokens (in:6305 out:1)
+14:26:59 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\deepseek-chat\7e04a11d-d90d-4fcf-a9b1-8c176f7965ed\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\deepseek-chat\7e04a11d-d90d-4fcf-a9b1-8c176f7965ed\test_out  (timeout 300s)
+14:28:14 INFO evaluator — Verdict: PASS  (rc=0)
+14:28:14 INFO generator — [deepseek-r1] run 1/5 — variant 0 (www.google.com, port 9443)
+14:30:44 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:30:44 INFO generator — [deepseek-r1] run 1 done in 150.1s — 7012 tokens (in:5261 out:1751)
+14:30:45 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\deepseek-r1\35dbf9ee-f090-4ca5-b5d9-85479fe3a2eb\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\deepseek-r1\35dbf9ee-f090-4ca5-b5d9-85479fe3a2eb\test_out  (timeout 300s)
+14:31:55 INFO evaluator — Verdict: PASS  (rc=0)
+14:31:55 INFO generator — [deepseek-r1] run 2/5 — variant 1 (www.cloudflare.com, port 443)
+14:34:05 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:34:05 INFO generator — [deepseek-r1] run 2 done in 130.7s — 6718 tokens (in:5264 out:1454)
+14:34:06 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\deepseek-r1\f083da6e-8c35-49c9-b23c-a3bf6c229b1b\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\deepseek-r1\f083da6e-8c35-49c9-b23c-a3bf6c229b1b\test_out  (timeout 300s)
+14:35:16 INFO evaluator — Verdict: PASS  (rc=0)
+14:35:16 INFO generator — [deepseek-r1] run 3/5 — variant 2 (www.microsoft.com, port 8443)
+14:37:56 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:37:56 INFO generator — [deepseek-r1] run 3 done in 160.0s — 7180 tokens (in:5265 out:1915)
+14:37:56 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\deepseek-r1\7dda4c6e-6943-4d1c-b83b-cbaa4432d29d\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\deepseek-r1\7dda4c6e-6943-4d1c-b83b-cbaa4432d29d\test_out  (timeout 300s)
+14:39:05 INFO evaluator — Verdict: FAIL  (rc=2)
+14:39:05 INFO generator — [deepseek-r1] run 4/5 — variant 3 (www.github.com, port 443)
+14:42:16 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:42:16 INFO generator — [deepseek-r1] run 4 done in 190.4s — 7617 tokens (in:5270 out:2347)
+14:42:16 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\deepseek-r1\0de68eb4-fad8-4d47-9ac0-0aa2d6cf16d7\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\deepseek-r1\0de68eb4-fad8-4d47-9ac0-0aa2d6cf16d7\test_out  (timeout 300s)
+14:43:26 INFO evaluator — Verdict: PASS  (rc=0)
+14:43:26 INFO generator — [deepseek-r1] run 5/5 — variant 4 (www.amazon.com, port 9443)
+14:46:39 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:46:39 INFO generator — [deepseek-r1] run 5 done in 193.5s — 8026 tokens (in:5268 out:2758)
+14:46:39 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\deepseek-r1\0208efc3-513e-4869-90dd-e231a06fae6f\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\deepseek-r1\0208efc3-513e-4869-90dd-e231a06fae6f\test_out  (timeout 300s)
+14:47:54 INFO evaluator — Verdict: PASS  (rc=0)
+14:47:54 INFO generator — [qwen3-32b] run 1/5 — variant 0 (www.google.com, port 9443)
+14:48:12 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:48:12 INFO generator — [qwen3-32b] run 1 done in 17.6s — 5162 tokens (in:5161 out:1)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  Safari browser usage is less common than Chrome/Firefox, potentially drawing attention in environments where Safari is rare
+        ⚠  Port 8443 while legitimate, is less common than 443 and might be subject to additional scrutiny in some networks
+  ↳ running tunnel-testing (port 19445, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+  [4/5] run_id=8eded13f…
+        protocol : noise-nnpsk0-github-v4
+        transport: tls  port=443
+        tls      : fp=firefox-120  sni=www.github.com
+        handshake: noise
+        padding  : random
+        fallback : True  target=https://www.github.com
+        tokens   : 6055  (41.8s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  NNpsk0 pattern adds PSK material in first Noise message, which could create subtle timing differences vs pure TLS if handshake processing is slower
+        ⚠  GitHub traffic patterns may be distinguishable from general web browsing if adversary profiles specific site behaviors
+  ↳ running tunnel-testing (port 19446, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+  [5/5] run_id=c9f59c51…
+        protocol : stealth-safari-ssh-v5
+        transport: tls  port=9443
+        tls      : fp=safari-17  sni=www.amazon.com
+        handshake: none
+        padding  : mimicry
+        fallback : True  target=https://www.amazon.com
+        tokens   : 6053  (41.9s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  SSH-interactive profile may have slightly different characteristics than typical HTTPS browsing, though still within normal bounds for web-based SSH clients
+        ⚠  Safari fingerprint is less common than Chrome/Firefox, potentially drawing attention in environments where Safari usage is rare
+  ↳ running tunnel-testing (port 19447, 30s)…
+  ✗ VERDICT: FAIL
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✗  M7=✗  M8=✓
+
+
+============================================================
+  MODEL: gemini-2.5-flash
+============================================================
+
+────────────────────────────────────────────────────────────
+  Model  : gemini-2.5-flash
+  Runs   : 5
+  Test   : yes
+  Output : D:\programs\диплом\llm-eval\results\gemini-2.5-flash
+────────────────────────────────────────────────────────────
+
+
+  [1/5] run_id=00d80529…
+        protocol : tls-token-chrome-v1
+        transport: tls  port=9443
+        tls      : fp=chrome-120  sni=www.google.com
+        handshake: tls-token
+        padding  : mimicry
+        fallback : True  target=https://www.google.com
+        tokens   : 2725  (7.0s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+  ↳ running tunnel-testing (port 19443, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+  [2/5] run_id=3deba161…
+        protocol : noise-tunnel-v2
+        transport: tls  port=443
+        tls      : fp=chrome-120  sni=www.cloudflare.com
+        handshake: noise
+        padding  : random
+        fallback : True  target=https://www.cloudflare.com
+        tokens   : 2730  (6.5s)
+        predicted: M1=P  M2=P  M3=P  M4=U  M6=P  M8=P
+        ⚠  Random padding, while better than fixed, might still generate packet length distributions that differ subtly from real browser traffic, potentially impacting M4 (ML flow classifier) and M6 (KL divergence packet lengths vs HTTPS).
+        ⚠  Using Noise protocol is inherently more complex than bare TLS, and its initial handshake (although PSK-authenticated) could potentially leave subtle artifacts detectable by very advanced ML classifiers looking for deviations from standard TLS handshakes. However, with NNpsk2, this should be minimal.
+  ↳ running tunnel-testing (port 19444, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+  [3/5] run_id=aa89ade0…
+        protocol : tls-token-safari-streaming-v3
+        transport: tls  port=8443
+        tls      : fp=safari-17  sni=www.microsoft.com
+        handshake: tls-token
+        padding  : mimicry
+        fallback : True  target=https://www.microsoft.com
+        tokens   : 2728  (5.3s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  The "video-streaming" padding profile might exhibit slightly different packet length distributions compared to "chrome-browsing", potentially impacting M6. Using a less common browser fingerprint (Safari) might still stand out to highly advanced fingerprinting or ML models not trained on a diverse enough dataset, though it is a valid browser fingerprint.
+  ↳ running tunnel-testing (port 19445, 30s)…
+  ✗ VERDICT: FAIL
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✗  M8=✓
+
+
+  [4/5] run_id=ada22564…
+        protocol : noise-nnpsk0-random-padding-v4
+        transport: tls  port=443
+        tls      : fp=chrome-120  sni=www.github.com
+        handshake: noise
+        padding  : random
+        fallback : True  target=https://www.github.com
+        tokens   : 2738  (5.6s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  Noise protocol handshake might still be distinguishable if the initial packet lengths or timing deviate significantly from a standard TLS client hello, even with random padding. Requires careful tuning and testing to ensure M5/M7 pass.
+  ↳ running tunnel-testing (port 19446, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+  [5/5] run_id=40200960…
+        protocol : pure-tls-amazon-5
+        transport: tls  port=9443
+        tls      : fp=chrome-120  sni=www.amazon.com
+        handshake: none
+        padding  : mimicry
+        fallback : True  target=https://www.amazon.com
+        tokens   : 2730  (5.7s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  While "ssh-interactive" padding is used, if the actual traffic pattern deviates significantly from SSH, it could raise suspicion in ML classifiers (M4, M5).
+        ⚠  Pure TLS without an additional handshake mechanism might still be distinguishable from some HTTPS traffic if not all TLS features are fully utilized or if the client/server behaves unusually.
+  ↳ running tunnel-testing (port 19447, 30s)…
+  ✗ VERDICT: FAIL
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✗  M7=✗  M8=✓
+
+
+============================================================
+  MODEL: gemini-2.5-pro
+============================================================
+
+────────────────────────────────────────────────────────────
+  Model  : gemini-2.5-pro
+  Runs   : 5
+  Test   : yes
+  Output : D:\programs\диплом\llm-eval\results\gemini-2.5-pro
+────────────────────────────────────────────────────────────
+
+
+============================================================
+  MODEL: deepseek-chat
+============================================================
+
+────────────────────────────────────────────────────────────
+  Model  : deepseek-chat
+  Runs   : 5
+  Test   : yes
+  Output : D:\programs\диплом\llm-eval\results\deepseek-chat
+────────────────────────────────────────────────────────────
+
+
+  [1/5] run_id=1c469711…
+        protocol : tls-token-mimicry-v1
+14:48:12 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\qwen3-32b\e7e680ac-f0d3-49e0-a742-0be07f9cc1ab\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\qwen3-32b\e7e680ac-f0d3-49e0-a742-0be07f9cc1ab\test_out  (timeout 300s)
+14:49:23 INFO evaluator — Verdict: PASS  (rc=0)
+14:49:23 INFO generator — [qwen3-32b] run 2/5 — variant 1 (www.cloudflare.com, port 443)
+14:49:44 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:49:44 INFO generator — [qwen3-32b] run 2 done in 20.7s — 5170 tokens (in:5169 out:1)
+14:49:44 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\qwen3-32b\ac5f6192-f56c-4404-9327-eca847dfe3b8\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\qwen3-32b\ac5f6192-f56c-4404-9327-eca847dfe3b8\test_out  (timeout 300s)
+14:49:56 INFO generator — [qwen3-32b] run 3/5 — variant 2 (www.microsoft.com, port 8443)
+14:50:07 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:50:07 INFO generator — [qwen3-32b] run 3 done in 11.3s — 5166 tokens (in:5165 out:1)
+14:50:07 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\qwen3-32b\746abf3a-697a-49fc-b8de-a35d457175f9\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\qwen3-32b\746abf3a-697a-49fc-b8de-a35d457175f9\test_out  (timeout 300s)
+14:51:18 INFO evaluator — Verdict: PASS  (rc=0)
+14:51:18 INFO generator — [qwen3-32b] run 4/5 — variant 3 (www.github.com, port 443)
+14:51:38 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:51:38 INFO generator — [qwen3-32b] run 4 done in 19.8s — 5178 tokens (in:5177 out:1)
+14:51:38 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\qwen3-32b\3aa216e4-449a-4be2-8f91-a846a1719c0b\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\qwen3-32b\3aa216e4-449a-4be2-8f91-a846a1719c0b\test_out  (timeout 300s)
+14:51:50 INFO generator — [qwen3-32b] run 5/5 — variant 4 (www.amazon.com, port 9443)
+14:52:20 INFO httpx — HTTP Request: POST https://polza.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+14:52:20 INFO generator — [qwen3-32b] run 5 done in 30.1s — 5170 tokens (in:5169 out:1)
+14:52:20 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\qwen3-32b\5dd77d60-4b20-4cef-8535-05f27c39d9ce\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\qwen3-32b\5dd77d60-4b20-4cef-8535-05f27c39d9ce\test_out  (timeout 300s)
+14:53:36 INFO evaluator — Verdict: PASS  (rc=0)
+14:53:36 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\reference\baseline-plain-tls\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\reference\baseline-plain-tls\test_out  (timeout 300s)
+14:54:44 INFO evaluator — Verdict: FAIL  (rc=2)
+14:54:44 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\reference\custom-handshake\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\reference\custom-handshake\test_out  (timeout 300s)
+14:55:48 INFO evaluator — Verdict: FAIL  (rc=2)
+14:55:48 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\reference\detectable-no-sni-tls\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\reference\detectable-no-sni-tls\test_out  (timeout 300s)
+14:56:00 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\reference\detectable-raw-noise\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\reference\detectable-raw-noise\test_out  (timeout 300s)
+14:57:17 INFO evaluator — Verdict: FAIL  (rc=2)
+14:57:17 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\reference\noise-ik-over-tls\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\reference\noise-ik-over-tls\test_out  (timeout 300s)
+14:58:27 INFO evaluator — Verdict: FAIL  (rc=2)
+14:58:27 WARNING evaluator — keygen error: [WinError 5] Отказано в доступе
+14:58:27 WARNING evaluator — keygen failed; falling back to local_key=generate
+14:58:27 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\reference\noise-xx-raw\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\reference\noise-xx-raw\test_out  (timeout 300s)
+14:59:45 INFO evaluator — Verdict: FAIL  (rc=2)
+14:59:45 INFO evaluator — Running: --config D:\programs\диплом\llm-eval\results\reference\tls-token\config.yaml --root D:\programs\диплом\tunnel-gen --scenario web --duration 30 --output D:\programs\диплом\llm-eval\results\reference\tls-token\test_out  (timeout 300s)
+15:00:54 INFO evaluator — Verdict: FAIL  (rc=2)
+        transport: tls  port=9443
+        tls      : fp=chrome-120  sni=www.google.com
+        handshake: tls-token
+        padding  : mimicry
+        fallback : True  target=https://www.google.com
+        tokens   : 6299  (32.3s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  TLS-token handshake may be detectable if session_ticket field is monitored for abnormal lengths
+        ⚠  Fixed ALPN list (h2, http/1.1) could be fingerprinted if ALPN randomization is expected
+  ↳ running tunnel-testing (port 19443, 30s)…
+  ✗ VERDICT: FAIL
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✗  M8=✓
+
+
+  [2/5] run_id=ced70588…
+        protocol : noise-nnpsk2-v1
+        transport: tls  port=443
+        tls      : fp=chrome-120  sni=www.cloudflare.com
+        handshake: noise
+        padding  : random
+        fallback : True  target=https://www.cloudflare.com
+        tokens   : 6302  (20.0s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  Noise handshake may introduce slight latency, though timing.mode=none mitigates this.
+        ⚠  Random padding, while effective, may still show minor deviations from perfect mimicry in high-precision ML analysis.
+  ↳ running tunnel-testing (port 19444, 30s)…
+  ✗ VERDICT: FAIL
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✗  M8=✓
+
+
+  [3/5] run_id=c4c53969…
+        protocol : safari-tls-token-v1
+        transport: tls  port=8443
+        tls      : fp=safari-17  sni=www.microsoft.com
+        handshake: tls-token
+        padding  : mimicry
+        fallback : True  target=https://www.microsoft.com
+        tokens   : 7436  (42.8s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  The use of safari-17 fingerprint might be less common but could still be detectable if the client population is predominantly using other browsers.
+        ⚠  The video-streaming padding profile might not perfectly match all traffic patterns, potentially causing minor deviations.
+  ↳ running tunnel-testing (port 19445, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+  [5/5] run_id=7e04a11d…
+        protocol : chrome-mimicry-v5
+        transport: tls  port=9443
+        tls      : fp=chrome-120  sni=www.amazon.com
+        handshake: none
+        padding  : mimicry
+        fallback : True  target=https://www.amazon.com
+        tokens   : 6306  (22.0s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  Potential passive detection if the mimicry profile does not perfectly match the user's actual browsing behavior.
+        ⚠  The lack of handshake may be a minor signal in highly controlled environments, though unlikely to trigger common detectors.
+  ↳ running tunnel-testing (port 19447, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+============================================================
+  MODEL: deepseek-r1
+============================================================
+
+────────────────────────────────────────────────────────────
+  Model  : deepseek-r1
+  Runs   : 5
+  Test   : yes
+  Output : D:\programs\диплом\llm-eval\results\deepseek-r1
+────────────────────────────────────────────────────────────
+
+
+  [1/5] run_id=35dbf9ee…
+        protocol : llm-token-mimicry-v1
+        transport: tls  port=9443
+        tls      : fp=chrome-120  sni=www.google.com
+        handshake: tls-token
+        padding  : mimicry
+        fallback : True  target=https://www.google.com
+        tokens   : 7012  (150.1s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  Using a fixed SNI (www.google.com) might be less common in enterprise settings and could be monitored.
+        ⚠  Port 9443 is non-standard for HTTPS and might attract attention, though it is commonly used for secure services.
+  ↳ running tunnel-testing (port 19443, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+  [2/5] run_id=f083da6e…
+        protocol : noise-nnpsk2-randompad-v1
+        transport: tls  port=443
+        tls      : fp=chrome-120  sni=www.cloudflare.com
+        handshake: noise
+        padding  : random
+        fallback : True  target=https://www.cloudflare.com
+        tokens   : 6718  (130.7s)
+        predicted: M1=U  M2=U  M3=U  M4=U  M6=U  M8=U
+  ↳ running tunnel-testing (port 19444, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+  [3/5] run_id=7dda4c6e…
+        protocol : safari-video-llm-v1
+        transport: tls  port=8443
+        tls      : fp=safari-17  sni=www.microsoft.com
+        handshake: tls-token
+        padding  : mimicry
+        fallback : True  target=https://www.microsoft.com
+        tokens   : 7180  (160.0s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  The video-streaming profile might not match typical client usage patterns at all times, potentially leading to anomalies.
+        ⚠  Safari-17 fingerprint is less common than Chrome or Firefox, which might be slightly anomalous in some networks.
+  ↳ running tunnel-testing (port 19445, 30s)…
+  ✗ VERDICT: FAIL
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✗  M8=✓
+
+
+  [4/5] run_id=0de68eb4…
+        protocol : noise-nnpsk0-random-v1
+        transport: tls  port=443
+        tls      : fp=chrome-120  sni=www.github.com
+        handshake: noise
+        padding  : random
+        fallback : True  target=https://www.github.com
+        tokens   : 7617  (190.4s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  Fixed handshake size of Noise NNpsk0 might be detectable if padding is insufficient, but random padding mitigates this.
+        ⚠  Random padding range (64-1200) may not perfectly match real traffic distributions.
+  ↳ running tunnel-testing (port 19446, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+  [5/5] run_id=0208efc3…
+        protocol : safari-tls-random-pad
+        transport: tls  port=9443
+        tls      : fp=safari-17  sni=www.amazon.com
+        handshake: none
+        padding  : random
+        fallback : True  target=https://www.amazon.com
+        tokens   : 8026  (193.5s)
+        predicted: M1=P  M2=P  M3=P  M4=U  M6=U  M8=P
+        ⚠  Random padding may not perfectly mimic HTTPS packet length distribution, potentially increasing KL divergence (M6) and ML classifier score (M4).
+        ⚠  Safari-17 fingerprint is less common than Chrome or Firefox, but still a valid browser signature.
+  ↳ running tunnel-testing (port 19447, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+============================================================
+  MODEL: qwen3-32b
+============================================================
+
+────────────────────────────────────────────────────────────
+  Model  : qwen3-32b
+  Runs   : 5
+  Test   : yes
+  Output : D:\programs\диплом\llm-eval\results\qwen3-32b
+────────────────────────────────────────────────────────────
+
+
+  [1/5] run_id=e7e680ac…
+        protocol : generated-protocol-1
+        transport: tls  port=9443
+        tls      : fp=chrome-120  sni=www.google.com
+        handshake: tls-token
+        padding  : mimicry
+        fallback : True  target=https://www.google.com
+        tokens   : 5162  (17.6s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  Chrome-browsing padding might be less effective against high-accuracy ML models trained on large datasets
+        ⚠  TLS 1.3 is newer and may raise suspicion in legacy network monitoring tools
+  ↳ running tunnel-testing (port 19443, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+  [2/5] run_id=ac5f6192…
+        protocol : 
+        transport: tls  port=443
+        tls      : fp=chrome-120  sni=www.cloudflare.com
+        handshake: noise
+        padding  : random
+        fallback : True  target=https://www.cloudflare.com
+        tokens   : 5170  (20.7s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  Noise protocol pattern is more complex than standard TLS; could potentially be flagged as unusual traffic pattern if deep protocol analysis is applied.
+  ↳ running tunnel-testing (port 19444, 30s)…
+  ✗ ERROR: no report.json produced
+
+
+  [3/5] run_id=746abf3a…
+        protocol : safari-tls-token
+        transport: tls  port=8443
+        tls      : fp=safari-17  sni=www.microsoft.com
+        handshake: tls-token
+        padding  : mimicry
+        fallback : True  target=https://www.microsoft.com
+        tokens   : 5166  (11.3s)
+        predicted: M1=U  M2=U  M3=U  M4=U  M6=U  M8=U
+        ⚠  safari-17 fingerprint might be more easily identifiable to some edge cases of Zeek as non-human
+        ⚠  Using mimicry in video-streaming, while better than chrome-browsing, may still show higher average packet size than normal browsing which could be an edge-case in entropy ML model M4.
+  ↳ running tunnel-testing (port 19445, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+  [4/5] run_id=3aa216e4…
+        protocol : 
+        transport: tls  port=443
+        tls      : fp=firefox-120  sni=www.github.com
+        handshake: noise
+        padding  : random
+        fallback : True  target=https://www.github.com
+        tokens   : 5178  (19.8s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  The use of a noise pattern might introduce non-browser-like traffic characteristics under deep inspection, potentially triggering M3 if the JA3 fingerprinting is too rigid.
+  ↳ running tunnel-testing (port 19446, 30s)…
+  ✗ ERROR: no report.json produced
+
+
+  [5/5] run_id=5dd77d60…
+        protocol : llm-gen-v5
+        transport: tls  port=9443
+        tls      : fp=firefox-120  sni=www.amazon.com
+        handshake: none
+        padding  : mimicry
+        fallback : True  target=https://www.amazon.com
+        tokens   : 5170  (30.1s)
+        predicted: M1=P  M2=P  M3=P  M4=P  M6=P  M8=P
+        ⚠  Static port 9443 may be flagged if it's not commonly used for HTTPS by the target environment.
+        ⚠  The use of a single TLS fingerprint increases the risk of signature-based detection if it becomes known.
+  ↳ running tunnel-testing (port 19447, 30s)…
+  ✓ VERDICT: PASS
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+
+============================================================
+  REFERENCE CONFIGS
+============================================================
+
+Running 7 reference configs:
+
+  [1/7] baseline-plain-tls  (port 19543)
+  ✗ VERDICT: FAIL
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✗  M8=✓
+
+  [2/7] custom-handshake  (port 19544)
+  ✗ VERDICT: FAIL
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✗  M7=✓  M8=✗
+
+  [3/7] detectable-no-sni-tls  (port 19545)
+  ✗ ERROR: no report.json produced
+
+  [4/7] detectable-raw-noise  (port 19546)
+  ✗ VERDICT: FAIL
+     M1=✓  M2=✗  M3=✗  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+  [5/7] noise-ik-over-tls  (port 19547)
+  ✗ VERDICT: FAIL
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✗  M7=✗  M8=✓
+
+  [6/7] noise-xx-raw  (port 19548)
+  ✗ VERDICT: FAIL
+     M1=✓  M2=✗  M3=✗  M4=✓  M5=✓  M6=✓  M7=✓  M8=✓
+
+  [7/7] tls-token  (port 19549)
+  ✗ VERDICT: FAIL
+     M1=✓  M2=✓  M3=✓  M4=✓  M5=✓  M6=✓  M7=✗  M8=✓
+

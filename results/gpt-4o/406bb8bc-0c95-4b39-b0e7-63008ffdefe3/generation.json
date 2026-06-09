@@ -1,0 +1,109 @@
+{
+  "run_id": "406bb8bc-0c95-4b39-b0e7-63008ffdefe3",
+  "timestamp": "2026-06-07T10:55:33.154523+00:00",
+  "elapsed_s": 6.47,
+  "model": "gpt-4o",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 3491,
+    "completion": 1,
+    "total": 3492
+  },
+  "variant": {
+    "index": 3,
+    "domain": "www.github.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk0 — PSK at first message, extra entropy from the start.",
+    "padding_hint": "Use random padding [64, 1200] — avoid near-MTU sizes to reduce M5 score."
+  },
+  "generation_result": {
+    "reasoning": "The design leverages critical elements known to evade detection metrics M1-M8 while matching the attacker's preferences. Transport is set to TLS (R1) for inherent encryption and stealth through JA3-compatible fingerprints (R2) like 'chrome-120'. The domain 'www.github.com' is selected as SNI (R3) to comply with traffic commonality checks performed by tools like Suricata. Noise protocol with the NNpsk0 pattern (R6) is chosen to use a pre-shared key in the first message for added connection entropy, adhering to the automated generation setup.\n\nRandom padding (R5) between 64 and 1200 bytes avoids predictability in packet size, helping pass M6 (KL divergence on length). This avoids the risks associated with fixed padding. Timing mode is set to none (R7) to avoid artificial patterns detectable by timing analysis (M7).\n\nThe reverse-proxy fallback on a publicly accessible domain (R4) caters to active probe responses, effectively deceiving probing mechanisms by behaving like a typical HTTPS service, thus aiding in bypassing M8 checks. Overall, this configuration aims to maintain low detectability while still allowing effective tunneling.",
+    "config": {
+      "protocol": "tunnel-run-14",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.github.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk0",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 64,
+        "random_max": 1200,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.github.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "TLS with browser JA3 will classify as HTTPS."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "SNI provided and standard browser TLS used, avoiding Suricata rules."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Browser fingerprint ensures correct JA3; no raw TCP/UDP streams."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Padding diversity helps conform to HTTPS traffic distribution."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Random padding avoids fixed sizes causing high KL divergence."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Fallback to real HTTPS response aids passing probe checks."
+      }
+    },
+    "known_weaknesses": [
+      "The use of visible SNI might still reveal tunnel existence under scrutiny.",
+      "Noise protocol in non-default configurations might leave fingerprintable traces faintly against expected pure HTTPS.",
+      "Random padding might still occasionally produce detectable patterns under prolonged analysis."
+    ]
+  }
+}

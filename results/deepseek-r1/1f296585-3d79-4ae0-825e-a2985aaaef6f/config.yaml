@@ -1,0 +1,36 @@
+protocol: noise-nnpsk0-v1
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19486
+  tls:
+    version: '1.3'
+    fingerprint: chrome-120
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.github.com
+    cert_file: D:\programs\диплом\llm-eval\results\deepseek-r1\1f296585-3d79-4ae0-825e-a2985aaaef6f\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\deepseek-r1\1f296585-3d79-4ae0-825e-a2985aaaef6f\server.key
+    insecure: true
+handshake:
+  type: noise
+  noise:
+    pattern: NNpsk0
+    cipher_suite: 25519:ChaChaPoly:BLAKE2s
+    local_key: generate
+    psk: babcd97ddecc99a43d7b042d8fd60241cb14c41d430e370b489ff3e8036eb796
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: random
+  random_min: 64
+  random_max: 1400
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.github.com

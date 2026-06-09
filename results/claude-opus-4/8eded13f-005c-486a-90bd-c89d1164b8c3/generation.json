@@ -1,0 +1,110 @@
+{
+  "run_id": "8eded13f-005c-486a-90bd-c89d1164b8c3",
+  "timestamp": "2026-06-07T09:08:44.646349+00:00",
+  "elapsed_s": 41.83,
+  "model": "claude-opus-4",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 6054,
+    "completion": 1,
+    "total": 6055
+  },
+  "variant": {
+    "index": 3,
+    "domain": "www.github.com",
+    "port": 443,
+    "handshake_hint": "Use noise NNpsk0 — PSK at first message, extra entropy from the start.",
+    "padding_hint": "Use random padding [64, 1200] — avoid near-MTU sizes to reduce M5 score."
+  },
+  "generation_result": {
+    "reasoning": "Transport: Using TLS on port 443 with firefox-120 fingerprint to blend with regular HTTPS traffic. Firefox is less common than Chrome but still prevalent, providing diversity across runs. The github.com SNI is a high-traffic developer site that generates varied packet patterns.\n\nHandshake: Implementing Noise NNpsk0 as requested, which injects the PSK in the first message. This provides immediate authentication entropy and makes the initial handshake packets look more like TLS Application Data rather than predictable key exchange patterns, potentially improving M5 scores.\n\nPadding: Random padding [64, 1200] avoids both tiny packets (suspicious) and near-MTU sizes that VPNs favor. This range mimics typical HTTPS payloads - small for headers/ACKs, medium for HTML/JSON responses. The upper bound of 1200 leaves headroom for protocol overhead without hitting MTU limits.\n\nFallback: Reverse proxy to github.com maintains consistency with the SNI choice. GitHub serves diverse content (HTML, API, Git protocols) which helps explain varied traffic patterns if inspected. The TLS handshake will complete normally for probes.\n\nTiming: None selected to avoid artificial IAT patterns that worsen M7. Natural timing preserves realistic flow characteristics.",
+    "config": {
+      "protocol": "noise-nnpsk0-github-v4",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "firefox-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.github.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "noise",
+        "noise": {
+          "pattern": "NNpsk0",
+          "cipher_suite": "25519:ChaChaPoly:BLAKE2s",
+          "prologue": "",
+          "psk": "",
+          "local_key": "generate",
+          "remote_key": ""
+        },
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "random",
+        "fixed_size": null,
+        "random_min": 64,
+        "random_max": 1200,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.github.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "TLS 1.3 on port 443 with valid SNI and browser fingerprint will classify as TLS/HTTPS, not VPN."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Firefox fingerprint with github.com SNI on standard port meets all Suricata expectations for legitimate HTTPS."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "Firefox-120 JA3 fingerprint is recognized as legitimate browser. Noise handshake occurs after TLS, avoiding raw entropy detection."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Random padding [64-1200] creates variable packet sizes with good CV. Avoiding near-MTU sizes reduces large-packet ratio typical of VPNs."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Random padding with 64-1200 range produces varied packet sizes similar to HTTPS. Avoids fixed-size padding that yields high KL divergence."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Fallback to real github.com ensures probes receive legitimate HTTPS responses. TLS handshake completes normally before tunnel activation."
+      }
+    },
+    "known_weaknesses": [
+      "NNpsk0 pattern adds PSK material in first Noise message, which could create subtle timing differences vs pure TLS if handshake processing is slower",
+      "GitHub traffic patterns may be distinguishable from general web browsing if adversary profiles specific site behaviors",
+      "Random padding lacks the nuanced packet size distributions of mimicry mode, potentially detectable by advanced ML models",
+      "Firefox fingerprint is less common than Chrome in some regions, potentially drawing attention in homogeneous networks"
+    ]
+  }
+}

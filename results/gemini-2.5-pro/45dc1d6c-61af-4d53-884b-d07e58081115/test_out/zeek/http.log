@@ -1,0 +1,18 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	http
+#open	2026-06-07-11-05-49
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	trans_depth	method	host	uri	referrer	version	user_agent	origin	request_body_len	response_body_len	status_code	status_msg	info_code	info_msg	tags	username	password	proxied	orig_fuids	orig_filenames	orig_mime_types	resp_fuids	resp_filenames	resp_mime_types
+#types	time	string	addr	port	addr	port	count	string	string	string	string	string	string	string	count	count	count	string	count	string	set[enum]	string	string	set[string]	vector[string]	vector[string]	vector[string]	vector[string]	vector[string]	vector[string]
+1780830284.304484	CD8aZ34xgztAvZOoUk	127.0.0.1	45706	127.0.0.1	9080	1	GET	httpbin.org	/headers	-	1.1	python-requests/2.34.2	-	0	162	503	Service Temporarily Unavailable	-	-	(empty)	-	-	-	-	-	-	FQ1fjO1cTDNpmY1uIa	-	text/html
+1780830284.826529	CfP2DC1Tn6APyJfvk2	127.0.0.1	45709	127.0.0.1	9080	1	GET	example.com	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	FN2l1E0u35HVf1VFg	-	text/html
+1780830285.142506	ChJxUg4KRLCcGznMo9	127.0.0.1	45713	127.0.0.1	9080	1	GET	example.com	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	FvFVC11mYU1TOhaqfh	-	text/html
+1780830285.247461	CZGRdV1z4NqMAyazZ	127.0.0.1	45716	127.0.0.1	9080	1	GET	example.org	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	FllOLN1Yko8X1Bz5nl	-	text/html
+1780830285.575647	CHXcy34BZC2C1VEGQh	127.0.0.1	45719	127.0.0.1	9080	1	GET	example.org	/	-	1.1	python-requests/2.34.2	-	0	528	200	OK	-	-	(empty)	-	-	-	-	-	-	FK1TVu1S8NEM6g6R9b	-	text/html
+1780830285.762025	CWGUmW3UBPWTcYjiMk	127.0.0.1	45722	127.0.0.1	9080	1	GET	httpbin.org	/get	-	1.1	python-requests/2.34.2	-	0	162	503	Service Temporarily Unavailable	-	-	(empty)	-	-	-	-	-	-	FRSzZ545JM6QxeUk7	-	text/html
+1780830286.093894	CPWjXhDrFA9EVwCj6	127.0.0.1	45725	127.0.0.1	9080	1	GET	httpbin.org	/get	-	1.1	python-requests/2.34.2	-	0	162	503	Service Temporarily Unavailable	-	-	(empty)	-	-	-	-	-	-	F8faOa4vD3Sx4pg6R6	-	text/html
+1780830294.495406	C5J8co3LmyBqynCWu7	127.0.0.1	45740	127.0.0.1	19489	1	GET	127.0.0.1	/	-	-	-	-	0	0	-	-	-	-	(empty)	-	-	-	-	-	-	-	-	-
+1780830318.911912	CTvQ1p1kJEP4JgENV1	127.0.0.1	45761	127.0.0.1	19518	1	GET	127.0.0.1	/	-	-	-	-	0	0	-	-	-	-	(empty)	-	-	-	-	-	-	-	-	-
+#close	2026-06-07-11-05-49

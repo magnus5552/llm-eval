@@ -1,0 +1,106 @@
+{
+  "run_id": "41d2259e-4db7-49f3-b6d7-00980c0a29ba",
+  "timestamp": "2026-06-07T10:42:52.388303+00:00",
+  "elapsed_s": 27.82,
+  "model": "gemini-2.5-pro",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 2728,
+    "completion": 2570,
+    "total": 5298
+  },
+  "variant": {
+    "index": 2,
+    "domain": "www.microsoft.com",
+    "port": 8443,
+    "handshake_hint": "Combine tls-token with a browser fingerprint from a less common browser (safari-17).",
+    "padding_hint": "Use mimicry/video-streaming to simulate different traffic profile."
+  },
+  "generation_result": {
+    "reasoning": "This configuration uses a layered approach to evade detection. For transport, it uses TLS 1.3 with a Safari 17 fingerprint and a matching SNI for \"www.microsoft.com\", making the initial connection indistinguishable from a real browser visiting that site (M2, M3). The handshake is concealed within the TLS session ticket field using the `tls-token` method, avoiding any non-standard handshake signatures. To defeat statistical analysis, the padding mode mimics a video streaming session, creating a packet size distribution that appears as legitimate, high-volume HTTPS traffic (M4, M6). Finally, a fallback to the real www.microsoft.com is configured, which is essential to defeat active probes (M8).",
+    "config": {
+      "protocol": "safari-video-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 8443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.microsoft.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "video-streaming"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.microsoft.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m2_suricata": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m3_zeek": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m4_ml": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m6_kl_len": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      },
+      "m8_probe": {
+        "verdict": "UNCERTAIN",
+        "explanation": ""
+      }
+    },
+    "known_weaknesses": [
+      "The video-streaming packet distribution might be anomalous for non-video applications (e.g., interactive shell), potentially detectable by advanced behavioral analysis.",
+      "While the safari-17 fingerprint is valid, its relative rarity compared to Chrome could be a minor statistical flag in certain network environments."
+    ]
+  }
+}

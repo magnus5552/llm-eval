@@ -1,0 +1,31 @@
+protocol: safari-tls-random-pad
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19447
+  tls:
+    version: '1.3'
+    fingerprint: safari-17
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.amazon.com
+    cert_file: D:\programs\диплом\llm-eval\results\deepseek-r1\0208efc3-513e-4869-90dd-e231a06fae6f\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\deepseek-r1\0208efc3-513e-4869-90dd-e231a06fae6f\server.key
+    insecure: true
+handshake:
+  type: none
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: random
+  random_min: 40
+  random_max: 1400
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.amazon.com

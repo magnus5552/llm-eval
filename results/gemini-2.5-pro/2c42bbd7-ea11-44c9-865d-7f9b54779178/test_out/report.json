@@ -1,0 +1,215 @@
+{
+  "verdict": "PASS",
+  "failed_checks": [],
+  "skipped_checks": [],
+  "checks": {
+    "M1_ndpi": {
+      "result": "PASS",
+      "detail": {
+        "classified_as": "SOCKS",
+        "confidence": null,
+        "is_known_vpn": false
+      }
+    },
+    "M2_suricata": {
+      "result": "PASS",
+      "detail": {
+        "alert_count": 0,
+        "categories": []
+      }
+    },
+    "M3_ja3": {
+      "result": "PASS",
+      "detail": {
+        "ja3_is_browser": false,
+        "browser_matches": [],
+        "unique_ja3_count": 0,
+        "high_entropy_streams": 0,
+        "payload_byte_entropy": 7.738
+      }
+    },
+    "M4_vpn_prob": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob": 0.0727
+      }
+    },
+    "M5_vpn_prob_seq": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob_seq": 0.0543
+      }
+    },
+    "M6_kl_len": {
+      "result": "PASS",
+      "detail": {
+        "kl_len": 0.3081
+      }
+    },
+    "M7_kl_iat": {
+      "result": "PASS",
+      "detail": {
+        "kl_iat": 0.2092
+      }
+    },
+    "M8_probe": {
+      "result": "PASS",
+      "detail": {
+        "distinguishable_ratio": 0.667,
+        "flags": 2
+      }
+    }
+  },
+  "config": {
+    "dsl_config": "D:\\programs\\\u0434\u0438\u043f\u043b\u043e\u043c\\llm-eval\\results\\gemini-2.5-pro\\2c42bbd7-ea11-44c9-865d-7f9b54779178\\config.yaml",
+    "scenario": "web",
+    "duration_s": 30
+  },
+  "raw": {
+    "pcap_path": "D:\\programs\\\u0434\u0438\u043f\u043b\u043e\u043c\\llm-eval\\results\\gemini-2.5-pro\\2c42bbd7-ea11-44c9-865d-7f9b54779178\\test_out\\capture.pcap",
+    "m1_ndpi": {
+      "classified_as": "SOCKS",
+      "is_known_vpn": false,
+      "is_acceptable": true,
+      "flow_count": 105,
+      "known_flow_count": 105,
+      "protocol_distribution": {
+        "SOCKS": 51,
+        "TLS.Microsoft365": 51,
+        "SSDP": 1,
+        "TLS": 1,
+        "HTTP": 1
+      },
+      "ja3_hashes": [
+        "089a14dd5ef7d9030147de42a6a7b80e",
+        "0c3fc33c7177eb89e98c18e88441c33a",
+        "17b577f13241498ffbe1e7cc13cc904d",
+        "23f7e429aff62fcc9ce8316e4aacc22f",
+        "2d057b91555215c72e1591368175db00",
+        "305431d33cf650093c815599c85ff9d3",
+        "3148811a95c4c85bf815fc003c2d8e33",
+        "317a9db23371e48a666f7f3777860c94",
+        "3e2f6e0dc80a1495981b32e360782e5e",
+        "3e64c289b838ccf44883382c55318e41",
+        "459e25a9dd0eb31a8730cac5ad287576",
+        "4dc2c9fc76fca72c86c9b5bb07a91566",
+        "516f1e86b03303958db560e810c0a86a",
+        "5257135ddd9a983d28864ab80524da5b",
+        "543d23782c5d12e980fa0e456f962066",
+        "58ac8e585e703bc6e84c0f8def9a6d72",
+        "597a72590631a4b748dc57ed96c427cb",
+        "5d2080bc43252aa6829d9e900a2e30cf",
+        "5e73b7c6bb427d1204ebff2e222e509e",
+        "67cbfa6029b511c9d620f3a930d44eca",
+        "6a76b009dcba8e489a926cfd6032fe08",
+        "6d74d6205d9f8f6355fdf04851c312fd",
+        "709be26e85732ffbf0e2ec58e7554b64",
+        "756608fc20646436f77fed0b47df2c14",
+        "792ea7ac4b72600337c91f80b0abed47",
+        "7ded3b7393742da1df17afb0c1ccba79",
+        "8b3850c510a539cfdc06509f411e8825",
+        "8f39130b106347cf868920af3e5c9683",
+        "98e31f2c98aeafdfc6875da3d856f420",
+        "9eb3a6d3f2cc82bb967cd811b98c07c9",
+        "a0b5323bf503e9b070c76505879b8d33",
+        "aa3d7a839d73c00073df1b769300f27b",
+        "ac2a66fecc7b42d59389d87dab598ee6",
+        "acf9279759e6c646ddac1fd64b67e7c2",
+        "c36487a186a3815cca7e6997088b9efa",
+        "c86cacc307b01728c96a54f09ea0c959",
+        "d373084be664e3f852b2eaa703cb6e94",
+        "d39ae6dd67536f363859ad46769ea78b",
+        "d5688beee3dcbfa75ba8582cf20c60e4",
+        "dccb9aa875c0477bd92705bb982b809d",
+        "de5d965eb86898927a8d082281240251",
+        "e02b86f1526d1bd6c34757208482cd93",
+        "ef5d7c2a08bd6eec59331109393b687d",
+        "efe78a8b9a8ce1882f816322d0095c81",
+        "f0955a715cfb0cb59588c43352d7a14e",
+        "f2b446a49010577cc2904faea4bd242f",
+        "f3c2063b16dfa10b0092e794e5968e1c",
+        "f46044d3c2a23f16822c1a9fdf90c39b",
+        "f6b44ee157a38d05d6fc4879c0ac43a1",
+        "f88e0ceb2112f7bea9656eee4355932c",
+        "fd4864ba42ac550c3a29486796c1b9a5",
+        "fdc754c9e57aebd4cbe84e16d60612dc"
+      ],
+      "ja4_hashes": [
+        "f4febc55ea12b31ae17cfb7e614afda8"
+      ],
+      "sni_set": [
+        "127.0.0.1",
+        "login.microsoftonline.com"
+      ],
+      "tls_versions": [
+        "TLSv1.3"
+      ]
+    },
+    "m2_suricata": {
+      "alert_count": 0,
+      "alerts": [],
+      "flow_count": 111,
+      "tls_count": 52,
+      "tls_versions": [
+        "TLS 1.3"
+      ],
+      "tls_sni": [
+        "127.0.0.1",
+        "login.microsoftonline.com"
+      ],
+      "categories": []
+    },
+    "m3_zeek": {
+      "ja3_hashes": [],
+      "ja3s_hashes": [],
+      "snis": [
+        "127.0.0.1",
+        "login.microsoftonline.com"
+      ],
+      "cipher_suites": [
+        "TLS_AES_128_GCM_SHA256"
+      ],
+      "tls_versions": [
+        "TLSv13"
+      ],
+      "browser_matches": [],
+      "ja3_is_browser": false,
+      "unique_ja3_count": 0,
+      "conn_count": 111,
+      "unknown_service_conns": 0,
+      "payload_byte_entropy": 7.738,
+      "high_entropy_streams": 0,
+      "entropy_sample_size": 139827
+    },
+    "m4_m7_flow": {
+      "vpn_prob": 0.0727,
+      "vpn_prob_seq": 0.0543,
+      "kl_len": 0.3081,
+      "kl_iat": 0.2092,
+      "total_packets": 2406,
+      "total_flows": 111,
+      "total_bytes": 435494,
+      "duration_s": 37.76,
+      "pkt_len_mean": 315.0,
+      "pkt_len_std": 435.5,
+      "iat_mean_ms": 15.7,
+      "small_pkt_pct": 56.2,
+      "large_pkt_pct": 7.1,
+      "model_used": "heuristic"
+    },
+    "m8_probe": {
+      "distinguishable_ratio": 0.667,
+      "distinguishable_flags": 2,
+      "check_random_bytes_responded": true,
+      "check_http_looks_http": false,
+      "check_server_speaks_first": false,
+      "ttfb_mean_ms": 62.3,
+      "ttfb_values_ms": [
+        140.0,
+        0.0,
+        47.0
+      ],
+      "probe_count": 5
+    }
+  }
+}

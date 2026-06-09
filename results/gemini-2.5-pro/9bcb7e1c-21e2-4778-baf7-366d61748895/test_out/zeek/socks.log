@@ -1,0 +1,24 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	socks
+#open	2026-06-07-10-18-17
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	version	user	password	status	request.host	request.name	request_p	bound.host	bound.name	bound_p
+#types	time	string	addr	port	addr	port	count	string	string	string	addr	string	port	addr	string	port
+1780827435.886692	C87QhJ1XMmhKuhgafb	127.0.0.1	51583	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	51584
+1780827435.463188	CpeCciUkEf6fd6ikk	127.0.0.1	51580	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	51581
+1780827427.282221	Cn7i5n4q1MokPOHRmb	127.0.0.1	51566	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	51567
+1780827435.034244	CHCLmmg1ll4252Xe3	127.0.0.1	51577	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	51578
+1780827429.562951	C2MSPWAyJqYDSGuOc	127.0.0.1	51572	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	51573
+1780827443.206431	C07wuD3m5sjUbFbHJ5	127.0.0.1	51589	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	51590
+1780827455.895853	CeLpBY2twcifdCtcM9	127.0.0.1	64498	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	64499
+1780827426.836642	CfTTng3eXfJ8lBwWIi	127.0.0.1	51563	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	51564
+1780827441.407591	CAAD5m3FgPsMynaVb3	127.0.0.1	51586	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	51587
+1780827443.629996	C8UV2v1Oftz1cKven8	127.0.0.1	51592	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	51593
+1780827444.070493	C8ttEi3VIZy3c78bT5	127.0.0.1	51596	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	51597
+1780827455.060599	CzK7ATBLSZcQScuwk	127.0.0.1	64492	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	64493
+1780827449.528007	CzUsne1XUsL3jMRNC3	127.0.0.1	51599	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	51600
+1780827427.706064	CXzWEo3WoBGv7O4Wvd	127.0.0.1	51569	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	51570
+1780827455.486161	CszJH03FlPBaLWefki	127.0.0.1	64495	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	64496
+#close	2026-06-07-10-18-18

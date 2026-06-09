@@ -1,0 +1,24 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	socks
+#open	2026-06-07-10-21-43
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	version	user	password	status	request.host	request.name	request_p	bound.host	bound.name	bound_p
+#types	time	string	addr	port	addr	port	count	string	string	string	addr	string	port	addr	string	port
+1780827645.442126	CQGvN12uhtZ0CQvFmg	127.0.0.1	3804	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	3805
+1780827644.495996	CY2rMt1qhfVBoAeEk	127.0.0.1	3798	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	3799
+1780827636.192041	CEmT5U13TSpfKO1nla	127.0.0.1	3788	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	3789
+1780827650.919652	CDJDS2GjJeOuhPXNj	127.0.0.1	3807	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	3808
+1780827636.613663	Cx9i2y3cwIWjH06Jz2	127.0.0.1	3791	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	3792
+1780827635.762440	C1bBN33hqpmd0nrcaa	127.0.0.1	3785	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	3786
+1780827644.970117	CCA5v232ThEljoVkS	127.0.0.1	3801	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	3802
+1780827642.141608	Cbyv0H1yIgO7g21kL2	127.0.0.1	3794	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	3795
+1780827656.456353	Cu6xKK2VQs8JtiA4bl	127.0.0.1	3812	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	3813
+1780827660.178942	CMhcvf4lNXjN5gtkWa	127.0.0.1	3824	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	3825
+1780827656.892061	CjCLrt34P7DV9if0m5	127.0.0.1	3815	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	3816
+1780827657.315669	Cn42DCfYe2H4ZOCl2	127.0.0.1	3818	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	3819
+1780827658.511739	CWR3bhTmIdth6Qlq5	127.0.0.1	3821	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	3822
+1780827661.010207	Ctx3HGkg66A5EEf72	127.0.0.1	3830	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	3831
+1780827660.588600	C32CO22AMxkeD98bEe	127.0.0.1	3827	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	3828
+#close	2026-06-07-10-21-43

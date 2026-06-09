@@ -1,0 +1,33 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	files
+#open	2026-06-07-08-54-33
+#fields	ts	fuid	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	source	depth	analyzers	mime_type	filename	duration	local_orig	is_orig	seen_bytes	total_bytes	missing_bytes	overflow_bytes	timedout	parent_fuid	md5	sha1	sha256	extracted	extracted_cutoff	extracted_size
+#types	time	string	string	addr	port	addr	port	string	count	set[string]	string	string	interval	bool	bool	count	count	count	count	bool	string	string	string	string	string	bool	count
+1780822409.701306	FCxxzo3a0dHptalNfc	CASJjU1Orkz62xaH95	127.0.0.1	9527	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780822410.138810	FTPQQ216oN3sJfiEJl	CB56cm1PuoOUfsJEWh	127.0.0.1	9530	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780822410.790354	FtfyrI1hMjHZS0xpi3	CAor11sC5fpLHMG73	127.0.0.1	9534	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	162	162	0	0	F	-	-	-	-	-	-	-
+1780822411.398787	FKPMTI3pg1wU6EQzgj	CfqS732Gcj6aGttd4k	127.0.0.1	9537	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	162	162	0	0	F	-	-	-	-	-	-	-
+1780822411.833067	FkGTaE2Ov1gAVgCFA2	CuVK7l3Spm0v5shRdd	127.0.0.1	9540	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780822412.267283	FxiU3l1fPTiG21JDKc	C2q7xMkkMtXDEYSf6	127.0.0.1	9543	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780822412.872684	FFGHlL2jNKm87kdXd1	Ckq7rl2s6xzxcs4UIg	127.0.0.1	9546	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	162	162	0	0	F	-	-	-	-	-	-	-
+1780822413.476261	FsKjIc40tNeyTWdXg9	Crvfbl4J4xOi00umm5	127.0.0.1	9549	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	162	162	0	0	F	-	-	-	-	-	-	-
+1780822413.909122	F1IhIR3rU1TazwSlXd	CRk7Ow29tsZtnsCCcc	127.0.0.1	9552	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780822414.340483	FISPiK3QZGp8NfXhuf	CB2yE02r8tnB8tAoA8	127.0.0.1	9555	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780822414.954460	F1FLw2pwsJwBoGOei	CMYIyH3dgdP2QlYWK9	127.0.0.1	9558	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	162	162	0	0	F	-	-	-	-	-	-	-
+1780822415.559356	FeuXHX307Iakc5iJph	CaWprm1pAnTTaHJiHh	127.0.0.1	9561	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	162	162	0	0	F	-	-	-	-	-	-	-
+1780822415.972858	FcSWAI3c8lnBn1Wp57	CXtyba3szpX5yiXd54	127.0.0.1	9564	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780822416.401738	FfCEWyqC21g6f0Hr5	Ccv0Fm1aWh8HwO2Bhe	127.0.0.1	9567	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780822417.068787	FuWoPr3f6rcKvFb9E8	CO1t5a1nRgr1Viv1w1	127.0.0.1	9570	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	162	162	0	0	F	-	-	-	-	-	-	-
+1780822417.685288	Fanbwp3gIsrwWtUff6	CmJ0Ra2qmoFJtLeAz	127.0.0.1	9573	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	162	162	0	0	F	-	-	-	-	-	-	-
+1780822418.119991	FHlDHnDmv4seD8zJk	Cc8NYN2Cyztqt2P0Vg	127.0.0.1	9576	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780822418.547917	Fs6J0H26eht576PNL3	CfJIMh1waJuZRWvo52	127.0.0.1	9579	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780822419.153700	FWCjBm3UpxR6fevPke	CgBHpe3yKTgVGYVHD1	127.0.0.1	9582	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	162	162	0	0	F	-	-	-	-	-	-	-
+1780822422.528236	FjNTYx35Lh3EWkIOI9	ClOXN21nFyWXVNhC6g	127.0.0.1	9585	127.0.0.1	9080	HTTP	0	(empty)	text/json	-	0.000000	T	F	225	225	0	0	F	-	-	-	-	-	-	-
+1780822422.967429	FsuwO5CLylzEkdnOl	CCwNXp2tnyxPv8mYR1	127.0.0.1	9589	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780822423.401859	FXbYfZ37bogLjL9pYb	CMuKX5wwBByb1OBge	127.0.0.1	9592	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780822434.918777	FILLNpQgVtjkudYi5	CW3gP44k89b7IcZQY4	127.0.0.1	9602	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780822435.345801	Ff5Yn94RLPOvsTaE3l	C4aD6L1E3Hnvrbaba	127.0.0.1	9605	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+#close	2026-06-07-08-54-33

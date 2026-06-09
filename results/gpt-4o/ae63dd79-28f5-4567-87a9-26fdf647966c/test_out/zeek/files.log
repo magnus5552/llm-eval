@@ -1,0 +1,17 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	files
+#open	2026-06-07-10-58-15
+#fields	ts	fuid	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	source	depth	analyzers	mime_type	filename	duration	local_orig	is_orig	seen_bytes	total_bytes	missing_bytes	overflow_bytes	timedout	parent_fuid	md5	sha1	sha256	extracted	extracted_cutoff	extracted_size
+#types	time	string	string	addr	port	addr	port	string	count	set[string]	string	string	interval	bool	bool	count	count	count	count	bool	string	string	string	string	string	bool	count
+1780829829.687649	FVPMp32Rxh0lFl06Hb	Cv0GD3CiZP7P5kJK3	127.0.0.1	7183	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780829830.115849	F4xUsv4dRVizkkWeUg	CmntG8do4Fatn4xAh	127.0.0.1	7186	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780829836.847466	F2lYtt1lbU8d5Fc9Tc	CfjPVU12X8pXQnyFab	127.0.0.1	7204	127.0.0.1	9080	HTTP	0	(empty)	text/json	-	0.000000	T	F	225	225	0	0	F	-	-	-	-	-	-	-
+1780829858.007797	F5a3jN1VDsKZfyupu9	CzFGJy217P7kL8JFmd	127.0.0.1	51713	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780829858.444081	FxnPvm3qYaZCM9mkb5	CMJMjD1fwouI6C3wN1	127.0.0.1	22240	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780829860.394649	FONihF1ZNU0bMmuGM9	CPZEA92G5DsDjyEOid	127.0.0.1	22247	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780829860.824582	FMScVQ25hCQp9OJFB6	CMhdNf21YLQ3FMUSnj	127.0.0.1	22250	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780829861.094520	Ft2ffm1hICyksg6pM7	CLUyO04ZY21MbvBG07	127.0.0.1	22243	127.0.0.1	9080	HTTP	0	(empty)	text/json	-	0.000000	T	F	306	306	0	0	F	-	-	-	-	-	-	-
+#close	2026-06-07-10-58-15

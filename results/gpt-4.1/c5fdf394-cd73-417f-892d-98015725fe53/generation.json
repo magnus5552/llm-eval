@@ -1,0 +1,107 @@
+{
+  "run_id": "c5fdf394-cd73-417f-892d-98015725fe53",
+  "timestamp": "2026-06-07T08:41:30.596975+00:00",
+  "elapsed_s": 7.0,
+  "model": "gpt-4.1",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 3937,
+    "completion": 1,
+    "total": 3938
+  },
+  "variant": {
+    "index": 0,
+    "domain": "www.google.com",
+    "port": 9443,
+    "handshake_hint": "Use tls-token for maximum active-probe resistance (M8).",
+    "padding_hint": "Use mimicry/chrome-browsing to pass M4/M6."
+  },
+  "generation_result": {
+    "reasoning": "Transport is set to TLS, keeping with the requirement to blend in with standard HTTPS traffic. The SNI is set to 'www.google.com' and the port to 9443, both typical of browser HTTPS and key for passing Suricata and other DPI (M1, M2). The TLS fingerprint utilizes 'chrome-120' for maximum mimicry (avoiding 'go', which is non-browser and easily flagged by JA3/Zeek). Handshake uses 'tls-token', providing strong active-probe resistance (M8) and simple PSK-based authentication suitable for automated evaluation. For padding, 'mimicry' with 'chrome-browsing' profile is chosen to accurately simulate natural packet size distributions (critical for M4, M6). Timing is set to 'none', reducing risk of artificial timing artifacts that could trigger KL divergence (M7). Fallback is enabled with the target set to https://www.google.com, matching SNI and ensuring real browser-like probe responses. These choices maximize stealth across all specified metrics.",
+    "config": {
+      "protocol": "novel-tls-token-chrome-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.google.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.google.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "TLS with a browser JA3 fingerprint and standard SNI will be classified as HTTPS, not VPN."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "Suricata is satisfied by browser fingerprint, correct SNI, and port. No alerts expected."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "JA3 will match Chrome browser; entropy looks normal since no Nonce-based encryption after TLS handshake."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Mimicry padding and natural traffic shape pass ML and packet-sequence tests (no uniformities)."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Mimicry/chrome-browsing padding accurately simulates real Chrome HTTPS traffic length distribution."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "Fallback to real Google means probes return real HTTPS responses indistinguishable from the camouflaged service."
+      }
+    },
+    "known_weaknesses": [
+      "Potential for future JA3 fingerprint evolution to slightly diverge from Chrome if consistently not updated.",
+      "If TLS handshake implementations differ at a byte-level from real Chrome, could potentially be fingerprinted by a determined adversary.",
+      "Insiders aware of this port assignment policy could perform port-based scanning, though 9443 is a known alternative HTTPS port."
+    ]
+  }
+}

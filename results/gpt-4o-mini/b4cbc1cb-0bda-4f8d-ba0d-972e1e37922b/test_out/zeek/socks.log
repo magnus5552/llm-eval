@@ -1,0 +1,24 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	socks
+#open	2026-06-07-08-29-04
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	version	user	password	status	request.host	request.name	request_p	bound.host	bound.name	bound_p
+#types	time	string	addr	port	addr	port	count	string	string	string	addr	string	port	addr	string	port
+1780820880.889454	CZ80Umr9Z76HIVAl5	127.0.0.1	27352	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	27353
+1780820887.348015	CaXN45a2mskus5O62	127.0.0.1	27359	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	27360
+1780820887.778580	CAk2q02WYqnMUatxV3	127.0.0.1	27362	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	27363
+1780820895.738125	CMWxSa2U0ea9UCRaOk	127.0.0.1	27376	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	27377
+1780820898.433657	CT2ktRpL5uktxgBKi	127.0.0.1	27385	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	27386
+1780820888.190721	CJktQL1DEpEvY2MK09	127.0.0.1	27365	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	27366
+1780820896.160098	Cg2Fjl2veVRpP9xdi5	127.0.0.1	27379	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	27380
+1780820903.950265	CYKFODffFLUh521E6	127.0.0.1	27389	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	27390
+1780820880.400361	Cshzss3eHhy3iQbaui	127.0.0.1	27349	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	27350
+1780820886.426045	CZp31p12xw4IVuu4k4	127.0.0.1	27356	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	27357
+1780820879.902208	CgfQ0C3nhFOh6LIBy7	127.0.0.1	27345	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	27347
+1780820893.668275	C9k7dK2EDYo0zSqJH8	127.0.0.1	27372	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	27373
+1780820896.574909	Cv8WcG2KoJth7Qpbh2	127.0.0.1	27382	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	27383
+1780820904.806498	CudHHa1ukhm8Dt4Hnk	127.0.0.1	27395	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	27396
+1780820904.384148	CdSeel4quc47MMhSlk	127.0.0.1	27392	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	27393
+#close	2026-06-07-08-29-04

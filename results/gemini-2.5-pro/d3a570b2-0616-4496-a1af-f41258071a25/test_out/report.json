@@ -1,0 +1,185 @@
+{
+  "verdict": "FAIL",
+  "failed_checks": [
+    "M3_ja3",
+    "M7_kl_iat"
+  ],
+  "skipped_checks": [],
+  "checks": {
+    "M1_ndpi": {
+      "result": "PASS",
+      "detail": {
+        "classified_as": "SOCKS",
+        "confidence": null,
+        "is_known_vpn": false
+      }
+    },
+    "M2_suricata": {
+      "result": "PASS",
+      "detail": {
+        "alert_count": 0,
+        "categories": []
+      }
+    },
+    "M3_ja3": {
+      "result": "FAIL",
+      "detail": {
+        "ja3_is_browser": false,
+        "browser_matches": [],
+        "unique_ja3_count": 0,
+        "high_entropy_streams": 3,
+        "payload_byte_entropy": 7.745
+      }
+    },
+    "M4_vpn_prob": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob": 0.081
+      }
+    },
+    "M5_vpn_prob_seq": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob_seq": 0.4143
+      }
+    },
+    "M6_kl_len": {
+      "result": "PASS",
+      "detail": {
+        "kl_len": 0.2865
+      }
+    },
+    "M7_kl_iat": {
+      "result": "FAIL",
+      "detail": {
+        "kl_iat": 0.699
+      }
+    },
+    "M8_probe": {
+      "result": "PASS",
+      "detail": {
+        "distinguishable_ratio": 0.667,
+        "flags": 2
+      }
+    }
+  },
+  "config": {
+    "dsl_config": "D:\\programs\\\u0434\u0438\u043f\u043b\u043e\u043c\\llm-eval\\results\\gemini-2.5-pro\\d3a570b2-0616-4496-a1af-f41258071a25\\config.yaml",
+    "scenario": "web",
+    "duration_s": 30
+  },
+  "raw": {
+    "pcap_path": "D:\\programs\\\u0434\u0438\u043f\u043b\u043e\u043c\\llm-eval\\results\\gemini-2.5-pro\\d3a570b2-0616-4496-a1af-f41258071a25\\test_out\\capture.pcap",
+    "m1_ndpi": {
+      "classified_as": "SOCKS",
+      "is_known_vpn": false,
+      "is_acceptable": true,
+      "flow_count": 47,
+      "known_flow_count": 44,
+      "protocol_distribution": {
+        "SOCKS": 19,
+        "TLS.Microsoft365": 19,
+        "TLS": 5,
+        "HTTP": 4
+      },
+      "ja3_hashes": [
+        "135f263b0a4cc061e387f0e15662ac7a",
+        "32f248d6ba88da002f26c292d548aaeb",
+        "335c52706903ba1c5ccde4363d9ca225",
+        "671f53141625871c369aef9447aa09f5",
+        "7521d979abcb91c8edcf1c7a215d49cc",
+        "83c2d96dd5d499db58cab97cb215ba8c",
+        "84fe4e763ff6abc972f0055c22124fc8",
+        "8c30aad1b98b1e6b957da70247673452",
+        "935725d210a42ae9a1141be1ea0085ce",
+        "96ce762516073ceef1c128c52283e4f8",
+        "9b39dff4bbd7e4f2071219089a310069",
+        "9cbb115ebe3ff32f17bb861bc4f5fe30",
+        "a05aaedf2c85c7571fa12447dfc53cf4",
+        "a98aeb1a2cafe4fbfd107c0fc0167feb",
+        "aac3e410699d1aac9503ad3bb123da6a",
+        "c36487a186a3815cca7e6997088b9efa",
+        "e534bb49743fda6a84c981afa5f29286",
+        "f06f96aa1bf4c02139da696ab4949bc9",
+        "f42d4a4fae8f1734c8cfcc311e783497",
+        "f4f84c7552e3920f83a6e6851e19b71a"
+      ],
+      "ja4_hashes": [
+        "f4febc55ea12b31ae17cfb7e614afda8"
+      ],
+      "sni_set": [
+        "127.0.0.1",
+        "login.microsoftonline.com"
+      ],
+      "tls_versions": [
+        "TLSv1.3"
+      ]
+    },
+    "m2_suricata": {
+      "alert_count": 0,
+      "alerts": [],
+      "flow_count": 99,
+      "tls_count": 22,
+      "tls_versions": [
+        "TLS 1.3"
+      ],
+      "tls_sni": [
+        "127.0.0.1",
+        "login.microsoftonline.com"
+      ],
+      "categories": []
+    },
+    "m3_zeek": {
+      "ja3_hashes": [],
+      "ja3s_hashes": [],
+      "snis": [
+        "127.0.0.1",
+        "login.microsoftonline.com"
+      ],
+      "cipher_suites": [
+        "TLS_AES_128_GCM_SHA256"
+      ],
+      "tls_versions": [
+        "TLSv13"
+      ],
+      "browser_matches": [],
+      "ja3_is_browser": false,
+      "unique_ja3_count": 0,
+      "conn_count": 166,
+      "unknown_service_conns": 3,
+      "payload_byte_entropy": 7.745,
+      "high_entropy_streams": 3,
+      "entropy_sample_size": 55728
+    },
+    "m4_m7_flow": {
+      "vpn_prob": 0.081,
+      "vpn_prob_seq": 0.4143,
+      "kl_len": 0.2865,
+      "kl_iat": 0.699,
+      "total_packets": 1202,
+      "total_flows": 99,
+      "total_bytes": 190995,
+      "duration_s": 34.18,
+      "pkt_len_mean": 351.1,
+      "pkt_len_std": 448.3,
+      "iat_mean_ms": 28.46,
+      "small_pkt_pct": 52.6,
+      "large_pkt_pct": 7.4,
+      "model_used": "heuristic"
+    },
+    "m8_probe": {
+      "distinguishable_ratio": 0.667,
+      "distinguishable_flags": 2,
+      "check_random_bytes_responded": true,
+      "check_http_looks_http": false,
+      "check_server_speaks_first": false,
+      "ttfb_mean_ms": 0.0,
+      "ttfb_values_ms": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "probe_count": 5
+    }
+  }
+}

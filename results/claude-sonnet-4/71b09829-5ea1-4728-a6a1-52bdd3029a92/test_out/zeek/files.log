@@ -1,0 +1,19 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	files
+#open	2026-06-07-08-57-28
+#fields	ts	fuid	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	source	depth	analyzers	mime_type	filename	duration	local_orig	is_orig	seen_bytes	total_bytes	missing_bytes	overflow_bytes	timedout	parent_fuid	md5	sha1	sha256	extracted	extracted_cutoff	extracted_size
+#types	time	string	string	addr	port	addr	port	string	count	set[string]	string	string	interval	bool	bool	count	count	count	count	bool	string	string	string	string	string	bool	count
+1780822586.523252	FSpsht29Hlzh3mKfA8	CTnWFG3TZ1UPzPO948	127.0.0.1	9780	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780822586.944721	FeneJTg5yZwymsgMc	CsSpeS2vhsx5piRn4l	127.0.0.1	9783	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780822598.470863	FepXJW1TkWs9hzPYb4	CJU1av16xHtC5roFUd	127.0.0.1	9793	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780822599.054026	F4gQNj3WZbSNMlFFca	CdYmnw1mpZFdKBweJ7	127.0.0.1	9796	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780822602.573547	FkPJ663jjOItIjUjZa	CjvzOy3pQndAuW6k6g	127.0.0.1	9799	127.0.0.1	9080	HTTP	0	(empty)	text/json	-	0.000000	T	F	306	306	0	0	F	-	-	-	-	-	-	-
+1780822608.510176	FmWYhI3eGk8HOB9zde	CQxdSZ2MCtaKOZbQN7	127.0.0.1	9806	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780822608.936248	FpRJpT3aXnRU9vQcO2	CpoDEc1JurHb4exP9j	127.0.0.1	9809	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780822610.189195	FuK0pEyT8w25JuSUb	CoFTUXn49NC3ZJ3x2	127.0.0.1	9812	127.0.0.1	9080	HTTP	0	(empty)	text/json	-	0.000000	T	F	306	306	0	0	F	-	-	-	-	-	-	-
+1780822616.102443	Fpzrym2vDphBeB2Hsc	CloZC4gYYJeY4TUn6	127.0.0.1	9858	127.0.0.1	9080	HTTP	0	(empty)	text/html	-	0.000000	T	F	528	-	0	0	F	-	-	-	-	-	-	-
+1780822618.106381	FediZe1HgE5qOGW4Yg	CvPQ2H1iBlLIcqAWCb	127.0.0.1	9790	127.0.0.1	9080	HTTP	0	(empty)	text/json	-	0.000000	T	F	225	225	0	0	F	-	-	-	-	-	-	-
+#close	2026-06-07-08-57-28

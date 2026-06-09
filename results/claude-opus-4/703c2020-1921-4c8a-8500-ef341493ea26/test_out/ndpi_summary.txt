@@ -1,0 +1,13 @@
+Guessed flow protos:	30
+
+DPI Packets (TCP):	848	(6.38 pkts/flow)
+DPI Packets (UDP):	1	(1.00 pkts/flow)
+Confidence Unknown          : 27 (flows)
+Confidence DPI              : 107 (flows)
+
+Unknown	203	12727	27
+HTTP	27	1614	3
+SSDP	2	244	1
+TLS	34	2224	3
+SOCKS	960	79623	50
+Microsoft	1262	429041	50

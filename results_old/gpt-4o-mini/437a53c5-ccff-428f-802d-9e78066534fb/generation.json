@@ -1,0 +1,105 @@
+{
+  "run_id": "437a53c5-ccff-428f-802d-9e78066534fb",
+  "timestamp": "2026-06-07T08:16:31.442247+00:00",
+  "elapsed_s": 15.78,
+  "model": "gpt-4o-mini",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 3469,
+    "completion": 1,
+    "total": 3470
+  },
+  "variant": {
+    "index": 0,
+    "domain": "www.google.com",
+    "port": 9443,
+    "handshake_hint": "Use tls-token for maximum active-probe resistance (M8).",
+    "padding_hint": "Use mimicry/chrome-browsing to pass M4/M6."
+  },
+  "generation_result": {
+    "reasoning": "In this configuration, the transport type is set to 'tls' to ensure it is indistinguishable from standard TLS traffic, complying with R1. I selected 'chrome-120' as the fingerprint for the TLS transport, which meets R2's requirement for acceptable fingerprints. The SNI is set to 'www.google.com' for its commonality and to satisfy R3. The server listens on the designated port 9443, as per the constraints.\n\nThe handshake type is 'tls-token' to maximize resistance against active probing (M8) and to ensure that the handshake does not reveal any consistent patterns or keys, since the PSK fields are left empty for the evaluator to inject key material, satisfying R6. \n\nFor padding, I chose the 'mimicry' mode with a profile of 'chrome-browsing.' This approach will help pass M4 and M6 by mimicking the patterns of regular web traffic effectively (R5).\n\nI opted for no artificial timing delays as per R7, believing that it minimizes detection risk. Finally, I have enabled the fallback to ensure it meets the requirements for active probing, directing traffic to 'https://www.google.com', which is a valid real HTTPS server and aligns well with our SNI choice.",
+    "config": {
+      "protocol": "novel-tunnel-v1",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.google.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "tls-token",
+        "noise": null,
+        "tls_token": {
+          "field": "session_ticket",
+          "kdf": "hkdf-sha256",
+          "psk": "",
+          "length": 48
+        },
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.google.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "The use of TLS as the transport layer ensures it is classified as standard HTTPS by nDPI."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "The configuration satisfies SNI and standard port requirements, and the fingerprint is correctly set to a browser-like value."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "The JA3 fingerprint generated will match that of a real browser due to the chosen fingerprint settings."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "The mimicry padding profile simulates the variability in packet sizes observed in normal web traffic, helping to pass the ML classifier."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "The variable packet sizes introduced by the mimicry padding reduce the KL divergence, thus passing the test."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "The active fallback to a real HTTPS server prevents triggering multiple checks during probing."
+      }
+    },
+    "known_weaknesses": [
+      "Potential detection via correlation of the fallback traffic if monitored closely, as well as the use of the tls-token handshake, which may draw attention if not randomized sufficiently."
+    ]
+  }
+}

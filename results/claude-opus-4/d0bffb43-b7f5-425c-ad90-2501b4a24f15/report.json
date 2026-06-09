@@ -1,0 +1,183 @@
+{
+  "verdict": "FAIL",
+  "failed_checks": [
+    "M3_ja3",
+    "M7_kl_iat"
+  ],
+  "skipped_checks": [],
+  "checks": {
+    "M1_ndpi": {
+      "result": "PASS",
+      "detail": {
+        "classified_as": "SOCKS",
+        "confidence": null,
+        "is_known_vpn": false
+      }
+    },
+    "M2_suricata": {
+      "result": "PASS",
+      "detail": {
+        "alert_count": 0,
+        "categories": []
+      }
+    },
+    "M3_ja3": {
+      "result": "FAIL",
+      "detail": {
+        "ja3_is_browser": false,
+        "browser_matches": [],
+        "unique_ja3_count": 0,
+        "high_entropy_streams": 1,
+        "payload_byte_entropy": 7.579
+      }
+    },
+    "M4_vpn_prob": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob": 0.1677
+      }
+    },
+    "M5_vpn_prob_seq": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob_seq": 0.2131
+      }
+    },
+    "M6_kl_len": {
+      "result": "PASS",
+      "detail": {
+        "kl_len": 0.2517
+      }
+    },
+    "M7_kl_iat": {
+      "result": "FAIL",
+      "detail": {
+        "kl_iat": 0.44
+      }
+    },
+    "M8_probe": {
+      "result": "PASS",
+      "detail": {
+        "distinguishable_ratio": 0.667,
+        "flags": 2
+      }
+    }
+  },
+  "config": {
+    "dsl_config": "D:\\programs\\диплом\\llm-eval\\results\\claude-opus-4\\d0bffb43-b7f5-425c-ad90-2501b4a24f15\\config.yaml",
+    "scenario": "web",
+    "duration_s": 30
+  },
+  "raw": {
+    "pcap_path": "D:\\programs\\диплом\\llm-eval\\results\\claude-opus-4\\d0bffb43-b7f5-425c-ad90-2501b4a24f15\\test_out\\capture.pcap",
+    "m1_ndpi": {
+      "classified_as": "SOCKS",
+      "is_known_vpn": false,
+      "is_acceptable": true,
+      "flow_count": 71,
+      "known_flow_count": 70,
+      "protocol_distribution": {
+        "SOCKS": 33,
+        "TLS.Microsoft": 21,
+        "HTTP": 3,
+        "TLS.Microsoft365": 12,
+        "TLS": 2
+      },
+      "ja3_hashes": [
+        "1e09efa17aa0d47561fbb23b20b55e2a",
+        "359592f4ce0f6498bb755791330493b2",
+        "3f3cfc8a0d7c54044b3c6e38c9222bac",
+        "53aec85dbdfc5d3310427e0a8a7a7895",
+        "60a8a10dae902a73f9cad047b0b866e6",
+        "773906b0efdefa24a7f2b8eb6985bf37",
+        "82439e306a38ec702d2badf4d6ff73a8",
+        "c36487a186a3815cca7e6997088b9efa",
+        "cab7a4865f6f1f5624140da6d77af322",
+        "cde5dc593833875e84e47b2ae98d9cdd",
+        "d8d1c414d2bc066d6045a0a6ab08a3e1",
+        "e31e49d114a0b9460eedd6d3af6bd967",
+        "f52c4997bbe5103edc15edf9e2fc96e8",
+        "f970bbbdb08b917ea59faeb295d9f405"
+      ],
+      "ja4_hashes": [
+        "f4febc55ea12b31ae17cfb7e614afda8"
+      ],
+      "sni_set": [
+        "127.0.0.1",
+        "login.microsoftonline.com",
+        "www.microsoft.com"
+      ],
+      "tls_versions": [
+        "TLSv1.3"
+      ]
+    },
+    "m2_suricata": {
+      "alert_count": 0,
+      "alerts": [],
+      "flow_count": 133,
+      "tls_count": 35,
+      "tls_versions": [
+        "TLS 1.3"
+      ],
+      "tls_sni": [
+        "127.0.0.1",
+        "login.microsoftonline.com",
+        "www.microsoft.com"
+      ],
+      "categories": []
+    },
+    "m3_zeek": {
+      "ja3_hashes": [],
+      "ja3s_hashes": [],
+      "snis": [
+        "127.0.0.1",
+        "login.microsoftonline.com",
+        "www.microsoft.com"
+      ],
+      "cipher_suites": [
+        "TLS_AES_128_GCM_SHA256"
+      ],
+      "tls_versions": [
+        "TLSv13"
+      ],
+      "browser_matches": [],
+      "ja3_is_browser": false,
+      "unique_ja3_count": 0,
+      "conn_count": 148,
+      "unknown_service_conns": 1,
+      "payload_byte_entropy": 7.579,
+      "high_entropy_streams": 1,
+      "entropy_sample_size": 90115
+    },
+    "m4_m7_flow": {
+      "vpn_prob": 0.1677,
+      "vpn_prob_seq": 0.2131,
+      "kl_len": 0.2517,
+      "kl_iat": 0.44,
+      "total_packets": 1750,
+      "total_flows": 133,
+      "total_bytes": 351153,
+      "duration_s": 40.25,
+      "pkt_len_mean": 401.6,
+      "pkt_len_std": 552.7,
+      "iat_mean_ms": 23.01,
+      "small_pkt_pct": 56.6,
+      "large_pkt_pct": 19.5,
+      "model_used": "heuristic"
+    },
+    "m8_probe": {
+      "distinguishable_ratio": 0.667,
+      "distinguishable_flags": 2,
+      "check_random_bytes_responded": true,
+      "check_http_looks_http": false,
+      "check_server_speaks_first": false,
+      "ttfb_mean_ms": 31.3,
+      "ttfb_values_ms": [
+        47.0,
+        0.0,
+        47.0
+      ],
+      "probe_count": 5
+    }
+  }
+}

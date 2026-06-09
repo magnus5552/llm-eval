@@ -169,8 +169,16 @@ class FallbackConf(BaseModel):
 
 class TunnelConfig(BaseModel):
     """Complete tunnel-gen DSL document."""
-    protocol:  str          = Field(description="Short human-readable protocol name, e.g. 'llm-gen-v1'")
+    protocol:  str          = Field(default="llm-gen-v1", description="Short human-readable protocol name, e.g. 'llm-gen-v1'")
     version:   int          = 1
+
+    @field_validator("protocol", mode="before")
+    @classmethod
+    def protocol_must_not_be_empty(cls, v: object) -> str:
+        """Ensure protocol is never an empty string — tunnel-gen requires a non-empty name."""
+        if isinstance(v, str) and v.strip():
+            return v.strip()
+        return "llm-gen-v1"
     transport: TransportConf
     handshake: HandshakeConf
     crypto:    CryptoConf   = Field(default_factory=CryptoConf)
@@ -269,9 +277,72 @@ class GenerationResult(BaseModel):
     @field_validator("config", mode="before")
     @classmethod
     def coerce_config_from_string(cls, v: object) -> object:
-        if isinstance(v, str):
-            import yaml as _yaml
-            return _yaml.safe_load(v)
+        """
+        Coerce a YAML/JSON string returned by LLMs into a TunnelConfig-compatible dict.
+
+        Different models wrap the YAML in different ways:
+          - Gemini 2.5 Flash:  plain YAML string (works directly)
+          - Gemini 2.5 Pro:    YAML wrapped in outer single quotes, or indented block
+          - DeepSeek:          occasionally returns compact single-line YAML
+        We try four strategies in order and return the first dict we get.
+        """
+        if not isinstance(v, str):
+            return v
+
+        import textwrap
+        import yaml as _yaml
+
+        def _try_parse(text: str) -> object:
+            """Return parsed dict, or None on any failure."""
+            try:
+                r = _yaml.safe_load(text)
+                if isinstance(r, dict):
+                    return r
+                # YAML returned a quoted scalar — one more level
+                if isinstance(r, str):
+                    r2 = _yaml.safe_load(r)
+                    if isinstance(r2, dict):
+                        return r2
+            except Exception:
+                pass
+            return None
+
+        text = v.strip()
+
+        # Strategy 1: parse as-is (works for most models)
+        result = _try_parse(text)
+        if result is not None:
+            return result
+
+        # Strategy 2: strip outer quotes (single, double, or triple) then parse.
+        #   Gemini 2.5 Pro wraps in triple single-quotes (markdown-style):
+        #     '''
+        #     protocol: "tls-token-..."
+        #     ...
+        #     '''
+        #   or in a single layer of quotes: 'protocol: ...'
+        for q in ("'''", '"""', "'", '"'):
+            n = len(q)
+            if text.startswith(q) and text.endswith(q) and len(text) > 2 * n:
+                result = _try_parse(text[n:-n].strip())
+                if result is not None:
+                    return result
+
+        # Strategy 3: textwrap.dedent — handles globally-indented YAML blocks
+        result = _try_parse(textwrap.dedent(text))
+        if result is not None:
+            return result
+
+        # Strategy 4: try JSON (some models output JSON instead of YAML)
+        try:
+            import json as _json
+            r = _json.loads(text)
+            if isinstance(r, dict):
+                return r
+        except Exception:
+            pass
+
+        # Give up — return original so pydantic reports the error with context
         return v
 
     @field_validator("stealth_prediction", mode="before")

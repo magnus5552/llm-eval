@@ -1,0 +1,101 @@
+{
+  "run_id": "dc96f379-a4cd-4387-84b5-237561d98566",
+  "timestamp": "2026-06-07T08:40:14.793401+00:00",
+  "elapsed_s": 7.36,
+  "model": "gpt-4o",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 3477,
+    "completion": 1,
+    "total": 3478
+  },
+  "variant": {
+    "index": 4,
+    "domain": "www.amazon.com",
+    "port": 9443,
+    "handshake_hint": "Try handshake=none for the simplest possible surface — pure TLS with mimicry.",
+    "padding_hint": "Use mimicry/chrome-browsing but experiment with ssh-interactive for low-traffic sessions."
+  },
+  "generation_result": {
+    "reasoning": "For the transport layer, I selected TLS with a listening port of 9443, conforming to the constraint preferences. The TLS fingerprint is set to 'safari-17' to vary from typical choices like 'chrome-120' or 'firefox-120', adding diversity across multiple runs. The SNI is set to 'www.amazon.com' to ensure compliance with M2 and provide an authentic target for M8 probing.\n\nThe handshake type is set to 'none', opting for the simplest setup that uses standard TLS negotiation only. This minimizes the observable differences in early packets, reducing the chance of detection through M1–M5, especially given the natural mimicry of HTTPS traffic.\n\nFor padding, I've chosen 'mimicry' with the 'ssh-interactive' profile to explore its impact on low-traffic sessions, while still maintaining the overall stealth needed to defeat M4 and M6.\n\nThe timing mode is 'none' to avoid introducing artificial regularity in packet timing, which could increase KL divergence scores in M7.\n\nFinally, the fallback is enabled with 'reverse-proxy' pointing to 'https://www.amazon.com', ensuring that legitimate responses are returned during active probing, preventing any Observable M8 FAIL.",
+    "config": {
+      "protocol": "tls-mimicry-v5",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "safari-17",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.amazon.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "none",
+        "noise": null,
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "ssh-interactive"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.amazon.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": "Using TLS with a common browser fingerprint and valid SNI should ensure traffic is classified as HTTPS."
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": "The inclusion of a valid SNI and the use of a standard port should avoid triggering IDS rules."
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": "The use of a browser-like TLS fingerprint should match known JA3 fingerprints of real browsers."
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": "Non-uniform packet sizes from mimicry padding and standard timing help pass the ML-based detection."
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": "Padding mimicry should ensure packet sizes vary naturally, matching expected HTTPS distributions."
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": "A valid HTTPS fallback should respond to active probes correctly, avoiding detection."
+      }
+    },
+    "known_weaknesses": [
+      "Using 'safari-17' might have a less common JA3 fingerprint, which could still be inspected more closely in some environments.",
+      "'ssh-interactive' padding profile could lead to some variance in less typical browsing patterns, potentially raising suspicion in M4 scenarios."
+    ]
+  }
+}

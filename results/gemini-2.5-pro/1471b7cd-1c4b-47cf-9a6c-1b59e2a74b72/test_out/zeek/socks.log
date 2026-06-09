@@ -1,0 +1,11 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	socks
+#open	2026-06-07-11-04-18
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	version	user	password	status	request.host	request.name	request_p	bound.host	bound.name	bound_p
+#types	time	string	addr	port	addr	port	count	string	string	string	addr	string	port	addr	string	port
+1780830194.106799	Co8TPBSlVra8j1ge	127.0.0.1	12880	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	12881
+1780830194.554037	CfWGR6wCfS7Zodhsf	127.0.0.1	12883	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	12884
+#close	2026-06-07-11-04-17

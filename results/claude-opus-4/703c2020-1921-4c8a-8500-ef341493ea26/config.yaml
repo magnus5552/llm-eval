@@ -1,0 +1,35 @@
+protocol: safari-video-tunnel-v3
+version: 1
+transport:
+  type: tls
+  host: 127.0.0.1
+  port: 19445
+  tls:
+    version: '1.3'
+    fingerprint: safari-17
+    alpn:
+    - h2
+    - http/1.1
+    sni: www.microsoft.com
+    cert_file: D:\programs\диплом\llm-eval\results\claude-opus-4\703c2020-1921-4c8a-8500-ef341493ea26\server.crt
+    key_file: D:\programs\диплом\llm-eval\results\claude-opus-4\703c2020-1921-4c8a-8500-ef341493ea26\server.key
+    insecure: true
+handshake:
+  type: tls-token
+  tls_token:
+    field: session_ticket
+    kdf: hkdf-sha256
+    psk: dff85dac5f9e71b8f49f2e97ee0801bec25b1ac9bdd1bdaf30d825fcf96f9fc1
+    length: 48
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: mimicry
+  profile: video-streaming
+timing:
+  mode: none
+fallback:
+  enabled: true
+  mode: reverse-proxy
+  target: https://www.microsoft.com

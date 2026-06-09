@@ -1,0 +1,20 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	socks
+#open	2026-06-07-09-18-45
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	version	user	password	status	request.host	request.name	request_p	bound.host	bound.name	bound_p
+#types	time	string	addr	port	addr	port	count	string	string	string	addr	string	port	addr	string	port
+1780823887.452981	C2lAlO19KjTFnh7dgb	127.0.0.1	64083	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	64084
+1780823886.587361	CD9b8JOehdK0C1mO5	127.0.0.1	64077	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	64078
+1780823887.027647	CIjE8H3hSmhPptmu92	127.0.0.1	64080	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	64081
+1780823881.038807	C6FjR74RDS7D1kIh32	127.0.0.1	64073	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	64074
+1780823862.671206	CjMNJ333uYjAk7VONk	127.0.0.1	52721	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	52722
+1780823875.499118	CBiknG39a1tfq3WmN3	127.0.0.1	64070	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	64071
+1780823863.111989	CdKRHbPnKdHCCsgh	127.0.0.1	52724	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	52725
+1780823875.074326	CTZb09kfdIAJmOPH5	127.0.0.1	64067	127.0.0.1	9080	5	-	-	succeeded	-	example.org	80	127.0.0.1	-	64068
+1780823863.535943	C6cRuR3m1HC4unm3g	127.0.0.1	52727	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	52728
+1780823874.633940	CBNRN81dvzoM7PEDui	127.0.0.1	64064	127.0.0.1	9080	5	-	-	succeeded	-	example.com	80	127.0.0.1	-	64065
+1780823869.087273	CZy8af2k5DOkCSWLB6	127.0.0.1	4426	127.0.0.1	9080	5	-	-	succeeded	-	httpbin.org	80	127.0.0.1	-	64059
+#close	2026-06-07-09-18-45

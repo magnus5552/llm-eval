@@ -1,0 +1,205 @@
+{
+  "verdict": "FAIL",
+  "failed_checks": [
+    "M6_kl_len"
+  ],
+  "skipped_checks": [],
+  "checks": {
+    "M1_ndpi": {
+      "result": "PASS",
+      "detail": {
+        "classified_as": "SOCKS",
+        "confidence": null,
+        "is_known_vpn": false
+      }
+    },
+    "M2_suricata": {
+      "result": "PASS",
+      "detail": {
+        "alert_count": 0,
+        "categories": []
+      }
+    },
+    "M3_ja3": {
+      "result": "PASS",
+      "detail": {
+        "ja3_is_browser": false,
+        "browser_matches": [],
+        "unique_ja3_count": 0,
+        "high_entropy_streams": 0,
+        "payload_byte_entropy": 7.741
+      }
+    },
+    "M4_vpn_prob": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob": 0.0872
+      }
+    },
+    "M5_vpn_prob_seq": {
+      "result": "PASS",
+      "detail": {
+        "vpn_prob_seq": 0.4143
+      }
+    },
+    "M6_kl_len": {
+      "result": "FAIL",
+      "detail": {
+        "kl_len": 0.4541
+      }
+    },
+    "M7_kl_iat": {
+      "result": "PASS",
+      "detail": {
+        "kl_iat": 0.2526
+      }
+    },
+    "M8_probe": {
+      "result": "PASS",
+      "detail": {
+        "distinguishable_ratio": 0.667,
+        "flags": 2
+      }
+    }
+  },
+  "config": {
+    "dsl_config": "D:\\programs\\диплом\\llm-eval\\results\\claude-haiku-3-5\\b9902ad8-1ed4-4e69-973e-1144b174b294\\config.yaml",
+    "scenario": "web",
+    "duration_s": 30
+  },
+  "raw": {
+    "pcap_path": "D:\\programs\\диплом\\llm-eval\\results\\claude-haiku-3-5\\b9902ad8-1ed4-4e69-973e-1144b174b294\\test_out\\capture.pcap",
+    "m1_ndpi": {
+      "classified_as": "SOCKS",
+      "is_known_vpn": false,
+      "is_acceptable": true,
+      "flow_count": 80,
+      "known_flow_count": 80,
+      "protocol_distribution": {
+        "NetBIOS.SMBv1": 2,
+        "SOCKS": 38,
+        "TLS.Amazon": 38,
+        "TLS": 1,
+        "HTTP": 1
+      },
+      "ja3_hashes": [
+        "027aecdae6fec524ec4a7832d6f9725e",
+        "0adda7c6703739d507ba09c5ebf449c8",
+        "19306fb47f8fba22a5433481b3289e80",
+        "2184372deff2978acb2ff0a0fcaf1bd7",
+        "24efd603c0d44a110ffa2e47f19ca906",
+        "2b4cac21dc2dec2fa38a353410252409",
+        "2c1671399aa60883967456da99d96da3",
+        "3095441022f3cf5fa0e8db1ff28251ea",
+        "31b8cfe29b052169ef00f1f461da7f86",
+        "3978a0fdb52a3c4f0f0d395561dc5c29",
+        "3c4c3a3091695af4d5efbddcc59f3583",
+        "434ef64fe2e7e33f9257f71b01895225",
+        "47969c5db0fa5fc7ef5e101bdd98e7b2",
+        "5037a3a5b5e04023c0e49f3e191deeec",
+        "560f8fe45be1c8d620a1196fb96fa390",
+        "62ad06eda75ac22a35f44e4e1db846d5",
+        "801ebb68036ead9cdbfc12b627252fcc",
+        "8f2430bf89a984ab18c296f05096b3f6",
+        "913c1d46e105cdfe2b5561ea112246ab",
+        "950ddfa07fb83838f26ce7e8ada01b96",
+        "96eeb4ca5356582054080b55ff5599ee",
+        "98d47e4583c70b73e5ecfd451076401e",
+        "9d689ac5d7ad3a37a51dc651e936e904",
+        "9efb7ef8afde635c979431ebf5fe2da7",
+        "ae2e2286951ace062f6603d5a42cb5f7",
+        "b8b3172f2f65c5a16ebfebbeda436e2b",
+        "b91db85c0f1d5f37b9d5b052ba7300bd",
+        "c1b235685de5c772407b6c4a07b7fe7a",
+        "c35f0e67a3f3c70d72dd02b3b2f0d563",
+        "c36487a186a3815cca7e6997088b9efa",
+        "c4a7f93d0a80405e1812d5038c959540",
+        "ce7e9a7b3e7e8b10d3872e559e6d3bbf",
+        "d8adc5b1abcf97cceebfa2ee7343fe12",
+        "dcc0d0c69eeb6d64639ac0d2a78ce293",
+        "e27b3c73e85b21c5b914a7ce9d1581c4",
+        "e769a4b0f76c3d7acd228d8294156f93",
+        "eaf1edb52275de6a0583fe6e0af61e36",
+        "f4b1a7e5facdf7860d328f8c99912754",
+        "f54f0d1431ae8e8b5613d0b8561b663a"
+      ],
+      "ja4_hashes": [
+        "f4febc55ea12b31ae17cfb7e614afda8"
+      ],
+      "sni_set": [
+        "127.0.0.1",
+        "laptop-t8jb3mps",
+        "www.amazon.com"
+      ],
+      "tls_versions": [
+        "TLSv1.3"
+      ]
+    },
+    "m2_suricata": {
+      "alert_count": 0,
+      "alerts": [],
+      "flow_count": 83,
+      "tls_count": 39,
+      "tls_versions": [
+        "TLS 1.3"
+      ],
+      "tls_sni": [
+        "127.0.0.1",
+        "www.amazon.com"
+      ],
+      "categories": []
+    },
+    "m3_zeek": {
+      "ja3_hashes": [],
+      "ja3s_hashes": [],
+      "snis": [
+        "127.0.0.1",
+        "www.amazon.com"
+      ],
+      "cipher_suites": [
+        "TLS_AES_128_GCM_SHA256"
+      ],
+      "tls_versions": [
+        "TLSv13"
+      ],
+      "browser_matches": [],
+      "ja3_is_browser": false,
+      "unique_ja3_count": 0,
+      "conn_count": 83,
+      "unknown_service_conns": 0,
+      "payload_byte_entropy": 7.741,
+      "high_entropy_streams": 0,
+      "entropy_sample_size": 102646
+    },
+    "m4_m7_flow": {
+      "vpn_prob": 0.0872,
+      "vpn_prob_seq": 0.4143,
+      "kl_len": 0.4541,
+      "kl_iat": 0.2526,
+      "total_packets": 1689,
+      "total_flows": 83,
+      "total_bytes": 243203,
+      "duration_s": 35.21,
+      "pkt_len_mean": 226.7,
+      "pkt_len_std": 362.9,
+      "iat_mean_ms": 20.86,
+      "small_pkt_pct": 60.7,
+      "large_pkt_pct": 5.6,
+      "model_used": "heuristic"
+    },
+    "m8_probe": {
+      "distinguishable_ratio": 0.667,
+      "distinguishable_flags": 2,
+      "check_random_bytes_responded": true,
+      "check_http_looks_http": false,
+      "check_server_speaks_first": false,
+      "ttfb_mean_ms": 57.3,
+      "ttfb_values_ms": [
+        125.0,
+        0.0,
+        47.0
+      ],
+      "probe_count": 5
+    }
+  }
+}

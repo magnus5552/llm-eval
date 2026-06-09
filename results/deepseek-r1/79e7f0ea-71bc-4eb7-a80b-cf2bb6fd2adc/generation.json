@@ -1,0 +1,101 @@
+{
+  "run_id": "79e7f0ea-71bc-4eb7-a80b-cf2bb6fd2adc",
+  "timestamp": "2026-06-07T11:32:22.845219+00:00",
+  "elapsed_s": 396.76,
+  "model": "deepseek-r1",
+  "provider": "polza",
+  "tokens": {
+    "prompt": 5275,
+    "completion": 5032,
+    "total": 10307
+  },
+  "variant": {
+    "index": 4,
+    "domain": "www.amazon.com",
+    "port": 9443,
+    "handshake_hint": "Try handshake=none for the simplest possible surface — pure TLS with mimicry.",
+    "padding_hint": "Use mimicry/chrome-browsing but experiment with ssh-interactive for low-traffic sessions."
+  },
+  "generation_result": {
+    "reasoning": "We designed a pure TLS-based tunnel using Chrome 120 TLS fingerprint to mimic browser traffic. The SNI is set to www.amazon.com for camouflage. Padding uses chrome-browsing mimicry to replicate packet length distributions of real Chrome traffic. No timing manipulation avoids IAT anomalies. Fallback reverse-proxy handles active probes by serving real Amazon content. Handshake is set to none for minimal surface area, relying on TLS for encryption without additional handshake steps.",
+    "config": {
+      "protocol": "llm-gen-v15",
+      "version": 1,
+      "transport": {
+        "type": "tls",
+        "host": "127.0.0.1",
+        "port": 9443,
+        "tls": {
+          "version": "1.3",
+          "fingerprint": "chrome-120",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "sni": "www.amazon.com",
+          "cert_file": "server.crt",
+          "key_file": "server.key",
+          "insecure": true
+        }
+      },
+      "handshake": {
+        "type": "none",
+        "noise": null,
+        "tls_token": null,
+        "steps": null
+      },
+      "crypto": {
+        "aead": "chacha20-poly1305",
+        "kdf": "hkdf-sha256"
+      },
+      "padding": {
+        "mode": "mimicry",
+        "fixed_size": null,
+        "random_min": null,
+        "random_max": null,
+        "profile": "chrome-browsing"
+      },
+      "timing": {
+        "mode": "none",
+        "batch_interval_ms": null,
+        "delay_min_ms": null,
+        "delay_max_ms": null
+      },
+      "fallback": {
+        "enabled": true,
+        "mode": "reverse-proxy",
+        "target": "https://www.amazon.com"
+      }
+    },
+    "stealth_prediction": {
+      "m1_ndpi": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m2_suricata": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m3_zeek": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m4_ml": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m6_kl_len": {
+        "verdict": "PASS",
+        "explanation": ""
+      },
+      "m8_probe": {
+        "verdict": "PASS",
+        "explanation": ""
+      }
+    },
+    "known_weaknesses": [
+      "The tunnel server must inspect the first few bytes of application data to distinguish tunnel traffic from HTTP, which might be detectable by advanced probes.",
+      "The key derivation for the tunnel crypto in the absence of a handshake is undefined and may not be implemented consistently."
+    ]
+  }
+}

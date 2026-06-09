@@ -1,0 +1,22 @@
+protocol: noise-nn-raw-v1
+version: 1
+transport:
+  type: raw-tcp
+  host: 127.0.0.1
+  port: 19546
+handshake:
+  type: noise
+  noise:
+    pattern: NN
+    cipher_suite: 25519:ChaChaPoly:BLAKE2s
+    local_key: generate
+crypto:
+  aead: chacha20-poly1305
+  kdf: hkdf-sha256
+padding:
+  mode: fixed
+  fixed_size: 1400
+timing:
+  mode: none
+fallback:
+  enabled: false
